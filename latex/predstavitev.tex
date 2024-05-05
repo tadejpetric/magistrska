@@ -39,6 +39,7 @@
         \draw (A) -- (C) -- (E) -- (B) -- (D) -- (A);
     \end{tikzpicture}
 \end{frame}
+% BEGIN CHEEGER
 \begin{frame}
     \frametitle{Cheegerjeva konstanta}
     Ločevanje grafa na dva dela
@@ -101,10 +102,43 @@
 
     \pause
     Primer za \(n\)-cikel.
-    \[c(G) = \frac{2}{\lfloor \frac n2\rfloor}\]
+    \[c(C_n) = \frac{2}{\lfloor \frac n2\rfloor}\]
 \end{frame}
 \begin{frame}{Primeri - Cheegerjeva konstanta}
+    \begin{tikzpicture}
+        \node[circle, fill=black, inner sep=2pt, label=above:A] (A) at (90:2) {};
+        \node[circle, fill=black, inner sep=2pt, label=left:B] (B) at (162:2) {};
+        \node[circle, fill=black, inner sep=2pt, label=left:C] (C) at (234:2) {};
+        \node[circle, fill=black, inner sep=2pt, label=right:D] (D) at (306:2) {};
+        \node[circle, fill=black, inner sep=2pt, label=right:E] (E) at (18:2) {};
+        \draw (A) -- (B) -- (C) -- (D) -- (E) -- (A);
+        \draw (A) -- (C) -- (E) -- (B) -- (D) -- (A);
+    \end{tikzpicture}
+    \pause
+    Primer za \(K_n\).
+    \[c(K_n) = \lceil \frac n2\rceil\]
+\end{frame}
+% END CHEEGER
+% BEGIN SPECTRAL GAP
+\begin{frame}{Spektralna luknja}
+    Obstaja soroden pojem Cheegerjeve konstante - spektralna luknja.
 
+    \(\lambda_i\) lastne vrednosti sosednostne matrike grafov.
+    \[
+        \lambda_1 \geq \lambda_2 \geq \ldots \geq \lambda_n
+    \]
+
+    \[
+        s(G) = \lambda_1 - \lambda_2
+    \]
+\end{frame}
+\begin{frame}{Lastne vrednosti grafov - primeri}
+    \begin{itemize}
+        \item \(K_n\) - \(n-1, -1, \ldots, -1\)
+        \item \(K_{d,d}\) - \(d,\)
+    \end{itemize}
+\end{frame}
+\begin{frame}{Spektralna luknja - primeri}
     \begin{tikzpicture}
         % Defining the vertices of the cycle
         \foreach \x in {0,60,...,300} {
@@ -113,11 +147,12 @@
         % Drawing the edges of the cycle
         \draw (0:2) -- (60:2) -- (120:2) -- (180:2) -- (240:2) -- (300:2) -- cycle;
     \end{tikzpicture}
-    
+
     \pause
     Primer za \(n\)-cikel.
     \[c(G) = \frac{2}{\lfloor \frac n2\rfloor}\]
 \end{frame}
+% END SPECTRAL GAP
 \begin{frame}{Caylejevi grafi \(\mathbb Z_4\)}
     \begin{tikzpicture}
         % Define the style for the nodes
