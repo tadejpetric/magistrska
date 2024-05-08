@@ -201,6 +201,7 @@
     Torej večja kot je spektralna luknja, večja je Cheegerjeva konstanta.
 \end{frame}
 \begin{frame}{Cheegerjeva neenakost - primeri}
+    TODO: Naredi grafe instead?
     \(K_n\) za sodi \(n\): \(c(K_n) = \frac{n}{2}\), \(s(K_n) = n\)
     \[
         \frac{n}{2} \leq \frac{n}{2} \leq \sqrt{2n(n-1)}
@@ -215,9 +216,9 @@
 % BEGIN RAMANUJAN
 \begin{frame}
     \frametitle{Alon-Boppanov izrek}
-    Imamo družino \(G_n\) d-regularnih grafov. \(\lambda_i\) druga največja lastna vrednost. \(|G_n| \to \infty\)
+    Imamo družino \(G_i\) d-regularnih grafov. \(\lambda_i\) druga največja lastna vrednost \(G_i\). \(|G_i| \to \infty\)
     \begin{align*}
-        \lambda_i \geq 2\sqrt{d-1} -o_n(1) \\
+        \lambda_i \geq 2\sqrt{d-1} -o_{|G_i|}(1) \\
     \end{align*}
     Oziroma
     %https://www.math.mcgill.ca/goren/667.2010/Luiz.pdf
@@ -234,20 +235,17 @@
     \[
         \lambda \leq 2\sqrt{d-1}
     \]
-    oziroma
-    \[
-        s(G) \geq d-2\sqrt{d-1}
-    \]
+    kjer je \(\lambda\) največja netrivialna lastna vrednost po absolutni vrednosti.
 \end{frame}
 \begin{frame}
     \frametitle{Ramanujanovi grafi - primeri}
-    \(K_n\) za sodi \(n\): \(s(K_n) = n\)
+    \(K_n\): \(\lambda = 1\)
     \begin{itemize}
-        \item \(n \geq n-2\sqrt{n-2}\)
+        \item \(1 \leq 2 \sqrt{n-2}\)
     \end{itemize}
     Je Ramanujanov graf.
 
-    Vsi 2-regularni grafi so Ramanujanovi.
+    Vsi cikli so Ramanujanovi.
 \end{frame}
 \begin{frame}
     \frametitle{Ramanujanovi grafi - protiprimer}
@@ -289,6 +287,15 @@
 \end{frame}
 % END RAMANUJAN
 % BEGIN KONSTRUKCIJE
+\begin{frame}
+    \frametitle{Konstrukcije družin Ramanujanovih grafov}
+    \begin{itemize}
+        \item Enostavno poiskati neskončne družine.
+        \item Ponavadi imajo preveč robov (\(K_n\)). \pause
+        \item Želimo, da število robov raste linearno z velikostjo grafa.
+        \item Iščemo neskončne družine \(d\)-regularnih grafov za \emph{fiksen} \(d\).
+    \end{itemize}
+\end{frame}
 \begin{frame}{Caylejevi grafi \(\mathbb Z_4\)}
     \begin{tikzpicture}
         % Define the style for the nodes
@@ -309,14 +316,3 @@
 \end{frame}
 
 \end{document}
-
-np.array([[0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
-        [1, 0, 1, 1, 1, 0, 0, 0, 0, 0],
-        [1, 1, 0, 1, 1, 0, 0, 0, 0, 0],
-        [1, 1, 1, 0, 0, 0, 1, 0, 0, 0],
-        [1, 1, 1, 1, 0, 0, 0, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
-        [0, 0, 0, 1, 0, 1, 0, 1, 1, 1],
-        [0, 0, 0, 0, 1, 1, 1, 0, 1, 1],
-        [0, 0, 0, 0, 0, 1, 1, 1, 0, 1],
-        [0, 0, 0, 0, 0, 1, 1, 1, 1, 0]])
