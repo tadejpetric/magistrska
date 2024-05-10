@@ -1,5 +1,7 @@
 \documentclass{beamer}
 \usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
 
 \usetheme{default}
 
@@ -198,19 +200,72 @@
         \frac{1}{2}s(G)\leq c(G) \leq \sqrt{2d s(G)} \\
         2c(G) \geq s(G) \geq \frac{c^2(G)}{2d}
     \end{align*}
-    Torej večja kot je spektralna luknja, večja je Cheegerjeva konstanta.
+    Večja kot je spektralna luknja, večja je Cheegerjeva konstanta.
 \end{frame}
-\begin{frame}{Cheegerjeva neenakost - primeri}
-    TODO: Naredi grafe instead?
-    \(K_n\) za sodi \(n\): \(c(K_n) = \frac{n}{2}\), \(s(K_n) = n\)
-    \[
-        \frac{n}{2} \leq \frac{n}{2} \leq \sqrt{2n(n-1)}
-    \]
+\begin{frame}
+    \frametitle{Cheegerjeva neenakost - primeri}
     \(C_n\) za sodi \(n\): \(c(C_n) = \frac{4}{n}\), \(s(C_n) = 2\left(1-\cos\left(\frac{2\pi}{n}\right)\right)\)
-    \[
-        1-\cos\left(\frac{2\pi}{n}\right) \leq \frac{4}{n} \leq 2\sqrt{2\left(1-\cos\left(\frac{2\pi}{n}\right)\right)}
-    \]
-    % https://www.desmos.com/calculator/4yx13carzp
+
+    \begin{tikzpicture}
+        \begin{axis}[
+                axis lines = left,
+                xlabel = \( x \),
+                ylabel = {\( y \)},
+                legend pos=north east,
+                xtick={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15},
+                ytick={0,1,2,3,4,5},
+                domain=1.5:15,
+                ymax=5,
+                ymin=0,
+                samples=100,
+                restrict y to domain=0:15,
+                width=0.9\textwidth,
+                height=0.7\textwidth
+            ]
+            % Adding plots
+            \addplot[blue, thick] {1-cos(deg(2*pi/x))};
+            \addlegendentry{\(1-\cos\left(\frac{2\pi}{x}\right)\)}
+
+            \addplot[red, thick] {4/x};
+            \addlegendentry{\(\frac{4}{x}\)}
+
+            \addplot[green, thick] {2*sqrt(2-2*cos(deg(2*pi/x)))};
+            \addlegendentry{\(2\sqrt{2-2\cos\left(\frac{2\pi}{x}\right)}\)}
+
+        \end{axis}
+    \end{tikzpicture}
+\end{frame}
+\begin{frame}
+    \frametitle{Cheegerjeva neenakost - primeri}
+    \(K_n\) za sodi \(n\): \(c(K_n) = \frac{n}{2}\), \(s(K_n) = n\)
+    \begin{tikzpicture}
+        \begin{axis}[
+                axis lines = left,
+                xlabel = \( x \),
+                ylabel = {\( y \)},
+                legend pos=north east,
+                xtick={0,1,2,3,4,5,6,7,8,9,10},
+                ytick={0,1,2,3,4,5,6,7,8,9,10},
+                domain=0:10,
+                ymax=10,
+                ymin=0,
+                samples=50,  % Adjusted for smoother function without the need for 100 samples
+                restrict y to domain=0:10,
+                width=0.9\textwidth,
+                height=0.7\textwidth
+            ]
+            % Adding plots
+            \addplot[blue, thick] {x/2};
+            \addlegendentry{\(\frac{x}{2}\)}
+
+            \addplot[red, dashed, thick] {x/2};
+            \addlegendentry{\(\frac{x}{2}\)}
+
+            \addplot[green, thick] {sqrt(2*x*(x-1))};
+            \addlegendentry{\(\sqrt{2x(x-1)}\)}
+
+        \end{axis}
+    \end{tikzpicture}
 \end{frame}
 % END SPECTRAL GAP
 % BEGIN RAMANUJAN
@@ -314,5 +369,80 @@
         \draw (4) -- (1);
     \end{tikzpicture}
 \end{frame}
+\begin{frame}
+    \frametitle{Konstrukcija družin Ramanujanovih grafov}
+    Caylejev graf katere grupe?
+\end{frame}
+\begin{frame}
+    \frametitle{Projektivne linearne grupe}
+    \begin{align*}
+        PGL(2, \mathbb Z / q\mathbb Z) = GL(2, \mathbb Z / q\mathbb Z) / Z(2, \mathbb Z / q\mathbb Z) \\
+        PSL(2, \mathbb Z / q\mathbb Z) = SL(2, \mathbb Z / q\mathbb Z) / SZ(2, \mathbb Z / q\mathbb Z)
+    \end{align*}
+    Večji kot je \(q\), večji je Caylejev graf (\(q(q^2-1)\)vozlišč za \(PGL\), \(q(q^2-1)/2\) vozlišč za \(PSL\)).
+\end{frame}
+\begin{frame}
+    \frametitle{Konstrukcija družin Ramanujanovih grafov}
+    Izberemo \(p,q\)
+    \begin{itemize}
+        \item \(p,q\) sta praštevili
+        \item \(p\neq q\)
+        \item \(p,q \equiv 1\pmod 4\)
+    \end{itemize}
+    Če je \(p\) kvadratni ostanek modulo \(q\), izberemo \(PSL\)
 
+    Če ni, izberemo \(PGL\)
+\end{frame}
+\begin{frame}
+    \frametitle{Konstrukcija družin Ramanujanovih grafov}
+    Kateri generatorji Caylejevega grafa?
+\end{frame}
+\begin{frame}
+    \frametitle{Jacobijev izrek o štirih kvadratih}
+    Če je \(p\) praštevilo obstaja le \(8(p+1)\) načinov kako zapisati \(p\) kot vsoto štirih kvadratov celih števil.
+    \begin{align*}
+        p = a^2 + b^2 + c^2 + d^2
+    \end{align*}\pause
+    Struktura rešitev je ``osem kopij \(p+1\) rešitev''
+\end{frame}
+\begin{frame}
+\frametitle{Konstrukcija družin Ramanujanovih grafov}
+Izberemo \(i\in\mathbb Z\), da \(i^2 \equiv -1\pmod{q}\)
+
+Dobimo \(p+1\) generatorjev
+\begin{align*}
+    \begin{bmatrix}
+        a + ib  & c+id \\
+        -c + id & a-ib
+    \end{bmatrix}
+\end{align*}
+\end{frame}
+\begin{frame}
+    \frametitle{Konstrukcija družin Ramanujanovih grafov}
+    Caylejevi grafi z omenjenimi generatorji tvorijo družino \(p+1\) regularnih Ramanujanovih grafov.
+\end{frame}
+%END KONSTRUKCIJE
+%BEGIN BIPARTITE KONSTRUKCIJE
+\begin{frame}
+    \frametitle{Konstrukcija družin Ramanujanovih grafov}
+    Kaj pa za splošen \(d\), ne le \(p+1\)?\pause
+
+    Znamo za dvodelne grafe.
+\end{frame}
+\begin{frame}
+    \frametitle{2 dvig grafa}
+    2-dvig grafa \(G\) ima za vsako vozlišče \(G\) dva vozlišča in za vsako povezavo \(G\) dve povezavi.\pause 
+    Če \(\{u_0, u_1\}\) in \(\{v_0, v_1\}\) vlakni \(u, v\) in \((u,v)\) povezava, potem povezavi v dvigu:
+    \begin{align*}
+        (u_0, v_0) &(u_1, v_1) \\
+        (u_0, v_1) &(u_1, v_0)
+    \end{align*}
+\end{frame}
+\begin{frame}
+    \frametitle{Konstrukcija družin Ramanujanovih grafov}
+    Za vsak Ramanujanov graf \(G\) obstaja 2-dvig, ki je tudi Ramanujanov.\pause
+
+    Začnemo z \(K_{d,d}\) in induktivno zgradimo neskončno družino.
+\end{frame}
+%END BIPARTITE KONSTRUKCIJE
 \end{document}
