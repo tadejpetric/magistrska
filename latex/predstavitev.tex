@@ -47,7 +47,7 @@
     Ločevanje grafa na dva dela
     \begin{itemize}
         \item \(G = (V, E)\) povezan graf
-        \item \(S \subseteq V\) množica vozlišč (\(|S| \leq \frac{|V|}{2}\))
+        \item \(S \subseteq V\) množica vozlišč (\(0 < |S| \leq \frac{|V|}{2}\))
         \item \(\partial S\subseteq E\) množica povezav od \(S\) do \(\overline S\) \pause
         \item Želimo, da za velik \(|S|\) tudi velik \(\partial S\)
     \end{itemize}
@@ -116,14 +116,15 @@
         \draw (A) -- (B) -- (C) -- (D) -- (E) -- (A);
         \draw (A) -- (C) -- (E) -- (B) -- (D) -- (A);
     \end{tikzpicture}
+
     \pause
     Primer za \(K_n\).
     \[c(K_n) = \lceil \frac n2\rceil\]
 \end{frame}
 % END CHEEGER
 % BEGIN SPECTRAL GAP
-\begin{frame}{Spektralna luknja}
-    Obstaja soroden pojem Cheegerjeve konstante - spektralna luknja.
+\begin{frame}{Spektralna vrzel}
+    Obstaja soroden pojem Cheegerjeve konstante - spektralna vrzel.
 
     \(\lambda_i\) lastne vrednosti sosednostne matrike grafov.
     \[
@@ -194,13 +195,13 @@
     \end{align*}
     \((\lambda_i)_1^{10} \approx (-1.83, -1, -1, -1, -1, -1, -1, -0.24, 3.83, 4.24)\)
 \end{frame}
-\begin{frame}{Cheegerjeva neenakost}
+\begin{frame}{Cheegerjeva neenakost (Dodziuk, 1984)}
     Za \(d\)-regularen graf velja
     \begin{align*}
         \frac{1}{2}s(G)\leq c(G) \leq \sqrt{2d s(G)} \\
         2c(G) \geq s(G) \geq \frac{c^2(G)}{2d}
     \end{align*}
-    Večja kot je spektralna luknja, večja je Cheegerjeva konstanta.
+    Večja kot je spektralna vrzel, večja je Cheegerjeva konstanta.
 \end{frame}
 \begin{frame}
     \frametitle{Cheegerjeva neenakost - primeri}
@@ -270,7 +271,7 @@
 % END SPECTRAL GAP
 % BEGIN RAMANUJAN
 \begin{frame}
-    \frametitle{Alon-Boppanov izrek}
+    \frametitle{Alon-Boppanov izrek (1986)}
     Imamo družino \(G_i\) d-regularnih grafov. \(\lambda_i\) druga največja lastna vrednost \(G_i\). \(|G_i| \to \infty\)
     \begin{align*}
         \lambda_i \geq 2\sqrt{d-1} -o_{|G_i|}(1) \\
@@ -283,7 +284,7 @@
     Manjša kot je \(\lambda_i\), večja je \(s(G_i)\)!
 \end{frame}
 \begin{frame}
-    \frametitle{Ramanujanovi grafi}
+    \frametitle{Ramanujanovi grafi (Lubotzky, Phillips and Sarnak, 1986)}
     Optimalni grafi glede na Alon-Boppanov izrek. \pause
 
     So d-regularni grafi za katere velja
@@ -431,7 +432,8 @@ Dobimo \(p+1\) generatorjev
 \end{frame}
 \begin{frame}
     \frametitle{2 dvig grafa}
-    2-dvig grafa \(G\) ima za vsako vozlišče \(G\) dva vozlišča in za vsako povezavo \(G\) dve povezavi.\pause 
+    2-dvig grafa \(G\) ima za vsako vozlišče \(G\) dva vozlišča in za vsako povezavo \(G\) dve povezavi.\pause
+    
     Če \(\{u_0, u_1\}\) in \(\{v_0, v_1\}\) vlakni \(u, v\) in \((u,v)\) povezava, potem povezavi v dvigu:
     \begin{align*}
         (u_0, v_0) &(u_1, v_1) \\
@@ -439,7 +441,7 @@ Dobimo \(p+1\) generatorjev
     \end{align*}
 \end{frame}
 \begin{frame}
-    \frametitle{Konstrukcija družin Ramanujanovih grafov}
+    \frametitle{Konstrukcija družin Ramanujanovih grafov (Marcus, Spielman, Srivastava, 2014)}
     Za vsak Ramanujanov graf \(G\) obstaja 2-dvig, ki je tudi Ramanujanov.\pause
 
     Začnemo z \(K_{d,d}\) in induktivno zgradimo neskončno družino.
