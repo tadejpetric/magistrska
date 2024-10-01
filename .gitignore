@@ -12,6 +12,13 @@
 *.nav
 *.snm
 .vscode
-
+*.gz
+*.idx
+*.ilg
+*.ind
+*.xmpdata
+*.xmpi
 
 *.pdf
+
+.venv
