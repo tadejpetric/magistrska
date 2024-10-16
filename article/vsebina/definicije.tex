@@ -103,6 +103,183 @@ Oglejmo si še primer, kjer je zelo očitna povezava med ozkim grlom grafa in Ch
     Večji kot je \(n\), bolj izrazito je ozko grlo na grafu, kar vidimo tudi v manjši \(c(G)\).
 \end{primer}
 \subsection{Spektralna vrzel}
+Graf lahko predstavimo tudi s sosednostno matriko. Vozlišča grafa \(G=(V,E)\) označimo od \(1\) do \(n=\lvert V\rvert\) in naredimo \(n\times n\) matriko \(N(G)\), ki ima vrednost \(1\) na \((i,j)\)-tem mestu, če obstaja povezava med vozliščem \(i\) in \(j\) (oziroma \((i,j)\in E\)). Če povezave ni, je na tistem mestu vrednost \(0\).
+
+Ker so grafi neusmerjeni je matrika simetrična. Po spektralnem izreku ima torej \(n\) realnih lastnih vrednosti \(\lambda_i\), ki jih uredimo po velikosti.
+\begin{align*}
+    \lambda_1 \geq \lambda_2 \geq \ldots \geq \lambda_n
+\end{align*}
+
+\begin{definicija}[Spektralna vrzel]
+    Spektralna vrzel grafa \(G\) je razlika med dvema največjima lastnima vrednostima njegove sosednostne matrike.
+    \begin{align*}
+        s(G) = \lambda_1 - \lambda_2
+    \end{align*}
+\end{definicija}
+\begin{primer}[Cikli]
+    Graf \(C_n\) ima sosednostno matriko
+    \begin{align*}
+        N(C_n) = \begin{bmatrix}
+                     0      & 1      & 0      & 0      & \cdots & 0      & 0      & 1      \\
+                     1      & 0      & 1      & 0      & \cdots & 0      & 0      & 0      \\
+                     0      & 1      & 0      & 1      & \cdots & 0      & 0      & 0      \\
+                     \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots \\
+                     0      & 0      & 0      & 0      & \cdots & 1      & 0      & 1
+                 \end{bmatrix}.
+    \end{align*}
+    Matrika je cirkulantna, zato poznamo njene lastne vrednosti.
+    \begin{align*}
+        \lambda(N(C_n)) = \left\{ 2 \cos\left(\frac{2\pi k}{n}\right) \mid 0 \leq k \leq n-1\right\}
+    \end{align*}
+    % Add source?
+    Od tod sledi, da je spektralna vrzel
+    \begin{align*}
+        s(C_n) = 2 - 2\cos\frac{2\pi}{n}.
+    \end{align*}
+    Opazimo da večji kot je graf, manjša je spektralna vrzel, prav tako kot je manjša Cheegerjeva konstanta.
+\end{primer}
+\begin{primer}[Polni grafi]
+    Graf \(K_n\) ima sosednostno matriko
+    \begin{align*}
+        N(K_n) = \begin{bmatrix}
+                     0      & 1      & 1      & \cdots & 1      \\
+                     1      & 0      & 1      & \cdots & 1      \\
+                     1      & 1      & 0      & \cdots & 1      \\
+                     \vdots & \vdots & \vdots & \ddots & \vdots \\
+                     1      & 1      & 1      & \cdots & 0
+                 \end{bmatrix}.
+    \end{align*}
+    Lastne vrednosti matrike dobimo tako, da uganemo lastne vektorje.
+    \begin{align*}
+        v_1 = \begin{bmatrix}
+                  1      \\
+                  1      \\
+                  \vdots \\
+                  1
+              \end{bmatrix} \\
+        N(K_n) v_1 = (n-1) \cdot v_1
+    \end{align*}
+    Torej je ena lastna vrednost \(n-1\). Ostale lastne vektorje \(v_j\) za \(j>1\) dobimo kot
+    \begin{align*}
+        v_j = e_1 - e_j,
+    \end{align*}
+    kjer je \(e_j\) enotski vektor z \(1\) v \(j\)-ti komponenti. Ker je
+    \begin{align*}
+        N(K_n)v_j = -1 \cdot v_j,
+    \end{align*}
+    dobimo še \(n-1\) lastnih vrednosti \(-1\). Spektralna vrzel je torej
+    \begin{align*}
+        s(K_n) = (n-1) - (-1) = n.
+    \end{align*}
+    Opazimo da večji kot je graf, večja je vrzel (prav tako, kot je večja Cheegerjeva konstanta).
+\end{primer}
+\begin{primer}[Ozko grlo]
+    Vzamemo primer dveh grafov \(K_n\), povezanih z eno povezavo. Matrika sosednosti je dimenzije \(2n \times 2n\) in ima na zgornji levi \(n\times n\) podmatriki vrednosti \(1\) povsod razen na diagonali, kjer so vrednosti \(0\). Enako je na spodnji desni \(n\times n\) podmatriki (tako dobimo dva grafa \(K_n\) kot podgrafa). Ostale vrednosti so \(0\), razen na elementu matrike \((1, n+1)\) in \((n+1, 1)\), kjer je vrednost \(1\) (ki predstavlja povezavo med grafoma \(K_n\)).
+
+    Spektralne vrzeli izračunamo numerično in izrišemo na grafu.
+    % compute/definicije_spectral_gap_bottleneck.py
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$n$},
+                    width=0.9\textwidth,
+                    ylabel={Spektralna vrzel},
+                    grid=major,
+                    ymin=0, ymax=2.5,
+                    xtick={1,2,...,20},
+                    ytick={0,0.5,1,1.5,2,2.5},
+                    thick
+                ]
+                \addplot coordinates {
+                        (1, 2.0)
+                        (2, 0.9999999999999988)
+                        (3, 0.6821627548042195)
+                        (4, 0.5114877902540731)
+                        (5, 0.40764085275359996)
+                        (6, 0.3384804373175667)
+                        (7, 0.28929431396096117)
+                        (8, 0.2525727509441946)
+                        (9, 0.22412614005130305)
+                        (10, 0.20144531545046007)
+                        (11, 0.18293973049316747)
+                        (12, 0.16755365441690628)
+                        (13, 0.15455930002271145)
+                        (14, 0.14343884532369877)
+                        (15, 0.13381387867170424)
+                        (16, 0.1254014671437087)
+                        (17, 0.11798583829938813)
+                        (18, 0.11139957046625426)
+                        (19, 0.10551076707121965)
+                        (20, 0.10021410708796452)
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Graf spektralnih vrzeli za \(n\) od 1 do 20}
+    \end{figure}
+    Opazimo, da večji kot je \(n\), manjša je spektralna vrzel, prav tako kot je manjša Cheegerjeva konstanta (in bolj kot je očitno ozko grlo).
+\end{primer}
+
+Računanje lastnih vrednosti regularnega grafa nam olajša tudi lastnost, da je njegova največja lastna vrednost enaka stopnji regularnosti.
+\begin{izrek}[Največja vrednost \(d\)-regularnega grafa]
+    Največja lastna vrednost \(d\)-regularnega grafa je \(d\).
+\end{izrek}
+\begin{dokaz}
+    Lastni vektor \(d\)-regularnega grafa \(G\) za lastno vrednost \(d\) je vedno vektor samih enic, saj ima vsaka vrstica sosednostne matrike natanko \(n\) enic.
+
+    Večje lastne vrednosti ne obstaja, saj so elementi sosednostne matrike samo \(0\) in \(1\). Če bi obstajala lastna vrednost \(\lambda > d\), potem si ogledamo največji element lastnega vektorja za to lastno vrednost, \(x\). Ker ima matrika natanko \(d\) enic v vsaki vrstici (in ostale vrednosti \(0\)), bi moralo obstajati \(d\) elementov vektorja, ki se skupaj sešteje v \(\lambda x\). Ker pa je vsak element manjši ali enak \(x\), imamo jih pa \(d\) lahko dosežemo kvečjemu \(d \times x\), torej večja lastna vrednost ne obstaja.
+\end{dokaz}
+Če je graf regularen torej, potrebujemo le izračunati njegovo drugo največjo lastno vrednost.
 \subsection{Cheegerjeva neenakost}
+Opazili smo, da se Cheegerjeva konstanta in spektralna vrzel obnašata podobno. Definiciji pa nista enakovredni - obstajajo na primer grafi, kjer lahko dodamo povezave ampak znižamo spektralno vrzel (medtem, ko bo Cheegerjeva konstanta ne more postati nižja).
+
+\begin{primer}[Dodajanje povezave poviša vrzel]
+    % compute/edges_increase_gap.py
+    Kot primer vzamemo graf
+    % change the labels to be as in the bottleneck example. Also make h! work
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[scale=1, every node/.style={circle, draw, minimum size=1cm}]
+            % Nodes
+            \node (1) at (0,2) {1};
+            \node (2) at (2,3) {2};
+            \node (3) at (4,2) {3};
+            \node (4) at (0,0) {4};
+            \node (5) at (2,-1) {5};
+            \node (6) at (4,0) {6};
+
+            % Edges based on the adjacency matrix
+            \path[draw=red] (1) edge (2);
+            \path (1) edge (3);
+            \path (1) edge (5);
+            \path (1) edge (6);
+
+            \path (2) edge (3);
+            \path (2) edge (5);
+            \path (2) edge (6);
+
+            \path (3) edge (4);
+            \path (3) edge (5);
+            \path (3) edge (6);
+
+            \path (4) edge (5);
+            \path (4) edge (6);
+        \end{tikzpicture}
+    \end{figure}
+    s sosednostno matriko
+    \begin{align*}
+        \begin{bmatrix}
+            0          & \mathbf{1} & 1 & 0 & 1 & 1 \\
+            \mathbf{1} & 0          & 1 & 0 & 1 & 1 \\
+            1          & 1          & 0 & 1 & 1 & 1 \\
+            0          & 0          & 1 & 0 & 1 & 1 \\
+            1          & 1          & 1 & 1 & 0 & 0 \\
+            1          & 1          & 1 & 1 & 0 & 0 \\
+        \end{bmatrix}.
+    \end{align*}
+    Spektralna vrzel grafa je približno \(3.706\), če pa odstranimo rdečo povezavo (oziroma odebeljena elementa sosednostne matrike) dobimo spektralno vrzel približno \(3.766\). Tako smo graf naredili slabše povezanega, spektralno vrzel pa vseeno povišali.
+    % izračunaj Cheegerjevo konstanto.
+\end{primer}
+
 \subsection{Alon-Boppanov izrek}
 \subsection{Ramanujanovi grafi}

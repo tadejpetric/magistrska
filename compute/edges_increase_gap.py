@@ -62,6 +62,7 @@ for _ in range(edges_to_remove):
                     print(adj_matrix)
 
                     print(adj_matrix_copy)
+                    raise Exception("end")
                 else:
                     print(f"Smaller new gap {new_gap}")
                 
