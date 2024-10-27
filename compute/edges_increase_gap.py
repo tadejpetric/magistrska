@@ -3,6 +3,7 @@ import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 
+from cheeger import cheeger
     
 num_vertices = 6
 edges_to_remove = 10
@@ -62,7 +63,9 @@ for _ in range(edges_to_remove):
                     print(adj_matrix)
 
                     print(adj_matrix_copy)
-                    raise Exception("end")
+                    print("cheeger before", cheeger(adj_matrix))
+                    print("cheeger after", cheeger(adj_matrix_copy))
+                    #raise Exception("end")
                 else:
                     print(f"Smaller new gap {new_gap}")
                 

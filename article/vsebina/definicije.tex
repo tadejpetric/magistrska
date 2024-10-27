@@ -277,9 +277,53 @@ Opazili smo, da se Cheegerjeva konstanta in spektralna vrzel obnašata podobno. 
             1          & 1          & 1 & 1 & 0 & 0 \\
         \end{bmatrix}.
     \end{align*}
-    Spektralna vrzel grafa je približno \(3.706\), če pa odstranimo rdečo povezavo (oziroma odebeljena elementa sosednostne matrike) dobimo spektralno vrzel približno \(3.766\). Tako smo graf naredili slabše povezanega, spektralno vrzel pa vseeno povišali.
-    % izračunaj Cheegerjevo konstanto.
+    Spektralna vrzel grafa je približno \(3.706\), če pa odstranimo povezavo med vozliščema \(1\) in \(2\) dobimo spektralno vrzel približno \(3.766\). Tako smo graf naredili slabše povezanega, spektralno vrzel pa vseeno povišali. Cheegerjeva konstanta pa je v obeh primerih enaka \(2\) (kjer za \(S\) lahko vzamemo vozlišča \(1\), \(2\) in \(5\)).
 \end{primer}
 
+Kljub temu pa lahko povezavo med konceptoma Cheegerjeve neenakosti in spektralne vrzeli vseeno formaliziramo.
+\begin{izrek}[Cheegerjeva neenakost]
+    Za \(d\)-regularen graf \(G\) velja 
+    \begin{align*}
+        \frac{1}{2}s(G) \leq c(G) \leq \sqrt{2ds(G)}
+    \end{align*}
+    oziroma
+    \begin{align*}
+        2c(G) \geq s(G) \geq \frac{c(G)^2}{2d}
+    \end{align*}    
+\end{izrek}
+\begin{dokaz}
+    Dokažimo najprej \(2c(G) \geq s(G)\). Naj bo \(S\subset V(G)\) tak, da zadosti minimumu iz definicije Cheegerjeve konstante, torej \(0<\lvert S\rvert \leq \frac12\lvert V(G)\rvert\) in 
+    \begin{align*}
+        c(G) = \frac{\lvert\partial S\rvert}{\lvert S \rvert}.
+    \end{align*}
+    Spektralno vrzel poiščemo prek Rayleighovega kvocienta. Če je \(A\) sosednostna matrika grafa je Rayleighov kvocient
+    \begin{align*}
+        R(A, v) = \frac{v^\top Av}{v^\top v}.
+    \end{align*}
+    Vemo že, da je vektor samih enic lastni vektor sosednostne matrike za največjo lastno vrednost \(d\). Če torej želimo drugo največjo lastno vrednost, lahko poiščemo maksimum Rayleighovega kvocienta po vseh vektorjih, ki so pravokotni na vektor samih enic. Da pokažemo želeno neenakost izberemo specifičen vektor \(v\) in izračunamo njegov Rayleighov kvocient. Druga največja lastna vrednost bo večja ali enaka od izračunanega kvocienta, spektralna vrzel pa zato manjša.
+
+    Izberemo vektor \(v\) tako, da ima elemente enake \(\frac{1}{\lvert S\rvert}\) na indeksih, ki pripadajo elementom iz \(S\) ter ostale elemente (tiste, ki pripadajo indeksom za \(\overline S\)) enake \(-\frac{1}{\lvert \overline S \rvert}\). Ta vektor je pravokoten na vektor samih enic.
+    Sedaj izračunamo Rayleighov kvocient.
+    \begin{align*}
+        Av = \left(\sum_{j=1}^{\lvert V(G)\rvert} v_j \cdot A_{i,j}\right)_{i=1}^{\lvert V(G)\rvert}\\
+        v^\top Av = \sum_{i=1}^{\lvert V(G)\rvert} \sum_{j=1}^{\lvert V(G)\rvert} v_i v_j A_{i,j} = \sum_{i\sim j} v_i v_j\\
+    \end{align*}
+    \begin{align*}
+        R(A, v) &= \frac{\sum_{i\sim j} v_i v_j}{\sum_{i=1}^{\lvert V(G)\rvert}v_i^2}\\
+        &= \frac{\sum_{i\sim j} v_i^2 + v_j^2 - \left(v_i - v_j\right)^2}{2 \sum_{i=1}^{\lvert V(G)\rvert}v_i^2}\\
+        &= \frac{\sum_{i\sim j} v_i^2}{\sum_{i=1}^{\lvert V(G)\rvert}v_i^2} - \frac{\sum_{i\sim j}\left(v_i - v_j\right)^2}{2 \sum_{i=1}^{\lvert V(G)\rvert}v_i^2}\\
+        &= \frac{d\cdot \sum_{i=1}^{\lvert V(G)\rvert}v_i^2}{\sum_{i=1}^{\lvert V(G)\rvert}v_i^2} -  \frac{2\cdot \sum_{i\in S \land j \in \overline S}\left(v_i - v_j\right)^2}{2 \sum_{i=1}^{\lvert V(G)\rvert}v_i^2}\\
+        &= d - \frac{\lvert \partial S \rvert \cdot \left(\frac{1}{\lvert S \rvert} + \frac{1}{\lvert \overline S \rvert}\right)^2}{\lvert S\rvert \frac{1}{\lvert S \rvert^2} + \lvert \overline S\rvert \frac{1}{\lvert \overline S \rvert^2}}\\
+        &= d - \lvert \partial S \rvert\left(\frac{1}{\lvert S \rvert} + \frac{1}{\lvert \overline S \rvert}\right) \\ 
+        &= d - \frac{ \lvert \partial S \rvert}{\lvert S \rvert}\frac{\left( \lvert S \rvert + \lvert \overline S \rvert\right)}{ \lvert \overline S \rvert}\\
+        &= d- c(G) \frac{V(G)}{\lvert \overline S \rvert}\\
+        &\geq d - 2c(G)
+    \end{align*}
+    Torej velja
+    \begin{align*}
+        \lambda_2 \geq R(A,v) \geq d-2c(G)\\
+        2c(G) \geq d-\lambda_2 = s(G)
+    \end{align*}
+\end{dokaz}
 \subsection{Alon-Boppanov izrek}
 \subsection{Ramanujanovi grafi}

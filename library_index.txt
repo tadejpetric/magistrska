@@ -1,0 +1,6 @@
+
+https://mathweb.ucsd.edu/~fan/research/cb/ch2.pdf
+Cheeger inequality proof
+h(G)= c(G) / d
+and he's using laplacian instead of adjacency L = I-A/d
+the eigenvalues are l * d = d-a =s(G)
