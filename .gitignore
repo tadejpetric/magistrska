@@ -21,4 +21,5 @@
 
 *.pdf
 
+compute/__pycache__
 .venv

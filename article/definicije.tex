@@ -1,6 +1,7 @@
 % naložite dodatne pakete, ki jih potrebujete
 \usepackage{algpseudocode}  % za psevdokodo
 \usepackage{algorithm}      % za algoritme
+\usepackage{mathtools}
 \usepackage{tikz}
 \usepackage{pgfplots}
 \floatname{algorithm}{Algoritem}
@@ -22,3 +23,27 @@
 % V tem primeru namesto ukaza \newcommand uporabite \renewcommand
 \newcommand{\C}{\mathbb C}
 \newcommand{\Q}{\mathbb Q}
+
+
+% https://tex.stackexchange.com/questions/43008/absolute-value-symbols
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+%
+\let\oldceil\ceil
+\def\ceil{\@ifstar{\oldceil}{\oldceil*}}
+%
+\let\oldfloor\floor
+\def\floor{\@ifstar{\oldfloor}{\oldfloor*}}
+\makeatother
