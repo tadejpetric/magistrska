@@ -291,7 +291,21 @@ Kljub temu pa lahko povezavo med konceptoma Cheegerjeve neenakosti in spektralne
         2c(G) \geq s(G) \geq \frac{c(G)^2}{2d}
     \end{align*}    
 \end{izrek}
+Za dokaz izreka potrebujemo naslednjo lemo.
+\begin{lema}\label{cheegerLema}
+    Za poljubna \(a, b, c, d > 0\) velja
+    \begin{align*}
+        \frac{a+b}{c+d} \geq \min\left(\frac{a}{c}, \frac{b}{d}\right).
+    \end{align*}
+\end{lema}
 \begin{dokaz}
+    \begin{align*}
+        a+b &= c\cdot\frac{a}{c} + d\cdot \frac{a}{d}\\
+        a+b &\geq (c+d) \min\left(\frac{a}{c}, \frac{b}{d}\right)\\
+        \frac{a+b}{c+d} &\geq \min\left(\frac{a}{c}, \frac{b}{d}\right)
+    \end{align*}
+\end{dokaz}
+\begin{dokaz}[Dokaz Cheegerjeve neenakosti]
     Dokažimo najprej \(2c(G) \geq s(G)\). Naj bo \(S\subset V(G)\) tak, da zadosti minimumu iz definicije Cheegerjeve konstante, torej \(0<\abs{S} \leq \frac12\abs{V(G)}\) in 
     \begin{align*}
         c(G) = \frac{\abs{\partial S}}{\abs{S }}.
@@ -339,16 +353,16 @@ Kljub temu pa lahko povezavo med konceptoma Cheegerjeve neenakosti in spektralne
         v^+_i = \begin{cases}
             v_i - v_r & v_i \geq v_r \\
             0 & v_i < v_r
-        \end{cases}
+        \end{cases}\\
         v^-_i = \begin{cases}
             v_r - v_i & v_i \leq v_r \\
             0 & v_i > v_r
         \end{cases}.
     \end{align*}
     Predpostavimo, da velja \(R(A, v^+) \geq R(A, v^-)\), sicer lastni vektor \(v\) pomnožimo z \(-1\). Izbrali smo \(r\) tako, da bosta vedno oba vektorja (\(v^+\) in \(v^-\)) imela kvečjemu \(r\) pozitivnih elementov, kar se ohrani, če zamenjamo predznake v vektorju \(v\), kot zahteva predpostavka. Vozlišča, ki pripadajo pozitivnim elementom \(v^+\) bomo uporabili pri vpeljavi \(\alpha(G)\), ki pa zahteva podgraf velikosti največ \(r\). Predpostavko lahko zapišemo tudi drugače:
-    \begin{align*}
+    \begin{align}\label{eq:cheegerPredpostavka}
         \frac{\sum_{i\sim j}(v^+_i - v^+_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2} \leq \frac{\sum_{i\sim j} (v^-_i - v^-_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^-_i)^2} 
-    \end{align*}
+    \end{align}
 
     Podobno kot v prvem delu dokaza preko Rayleighovega kvocienta izrazimo spektralno luknjo.
     \begin{align*}
@@ -381,19 +395,56 @@ Kljub temu pa lahko povezavo med konceptoma Cheegerjeve neenakosti in spektralne
     \end{align*}
     Enako velja v primeru \(v_i \leq v_r \leq v_j\), torej je
     \begin{align*}
-        s(G) &\geq \frac{\sum_{i\sim j}(v_i - v_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2 + 2\sum_{i=1}^{\abs{V(G)}} (v^-_i)^2}
+        s(G) &\geq \frac{\sum_{i\sim j}(v_i - v_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2 + 2\sum_{i=1}^{\abs{V(G)}} (v^-_i)^2}\\
         &\geq \frac{\sum_{i\sim j}(v^+_i - v^+_j)^2 + (v^-_i - v^-_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2 + 2\sum_{i=1}^{\abs{V(G)}} (v^-_i)^2}
     \end{align*}
     
-    % spremeni v lemo
-    Na predpostavki uporabimo neenakost, ki velja za poljubna \(a, b, c, d > 0\)
+    Zgornjo neenakost lahko, s pomočjo predpostavke \eqref{eq:cheegerPredpostavka} in leme \ref{cheegerLema} spremenimo v
+
     \begin{align*}
-        \frac{a+b}{c+d}\geq \min\left(\frac ac, \frac bd\right),
+        s(G) \geq  \frac{\sum_{i\sim j}(v^+_i - v^+_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2}.
+    \end{align*}
+    Od tod sledi
+    \begin{align*}
+        s(G) &\geq  \frac{\sum_{i\sim j}(v^+_i - v^+_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2} \frac{\sum_{i\sim j}(v^+_i + v^+_j)^2}{\sum_{i\sim j}(v^+_i + v^+_j)^2}\\
+        &= \frac{\sum_{i\sim j}(v^+_i - v^+_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2} \frac{\sum_{i\sim j}(v^+_i + v^+_j)^2}{\sum_{i\sim j}(v^+_i)^2 + (v^+_j)^2 + 2v^+_i v^+_j}\\
+        &= \frac{\sum_{i\sim j}(v^+_i - v^+_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2} \frac{\sum_{i\sim j}(v^+_i + v^+_j)^2}{2d\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2 + 2\sum_{i\sim j}v^+_i v^+_j}
+    \end{align*}
+    Uporabimo Cauchy-Schwarzovo neenakost ločeno na števcu in na delu imenovalca.
+    \begin{align*}
+        s(G) &\geq  \frac{\left(\sum_{i\sim j}(v^+_i - v^+_j)(v^+_i + v^+_j)\right)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2\left(2d\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2 + 2\sqrt{\sum_{i\sim j}(v^+_i)^2 \sum_{i\sim j} (v^+_j)^2}\right)}\\
+        &= \frac{\left(\sum_{i\sim j}\abs{(v^+_i)^2 - (v^+_j)^2} \right)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2 \left(2d\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2 + 2d \sum_{i=1}^{\abs{V(G)}}(v^+_i)^2 \right)}\\
+        &= \frac{\left(\sum_{i\sim j}\abs{(v^+_i)^2 - (v^+_j)^2} \right)^2}{8d\left(\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2\right)^2}\\
+        &= \frac{\left(2\sum_{i\sim j \land i< j}(v^+_i)^2 - (v^+_j)^2 \right)^2}{8d\left(\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2\right)^2} \\
+        &= \frac{\left(\sum_{i\sim j \land i< j}(v^+_i)^2 - (v^+_j)^2 \right)^2}{2d\left(\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2\right)^2}
+    \end{align*}
+    Vsak sumand \((v^+_i)^2 - (v^+_j)^2\) lahko teleskopsko razpišemo kot
+    \begin{align*}
+        (v^+_i)^2 &- (v^+_{i+1})^2\\
+        + (v^+_{i+1})^2 &- (v^+_{i+2})^2\\
+        + &\cdots\\
+        + (v^+_{j-1})^2 &- (v^+_{j})^2,
     \end{align*}
     da dobimo
     \begin{align*}
-        s(G) \geq 
+        s(G) &\geq \frac{\left(\sum_{i=1}^{\abs{V(G)}}\abs{\partial S_i}\left((v^+_i)^2 - (v^+_{i+1})^2\right) \right)^2}{2d\left(\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2\right)^2}
+        &=\frac{\left(\sum_{i=1}^{r}\abs{\partial S_i}\left((v^+_i)^2 - (v^+_{i+1})^2\right) \right)^2}{2d\left(\sum_{i=1}^{r} (v^+_i)^2\right)^2}
     \end{align*}
+    Po definiciji za vsak \(i\leq r\) velja \(\abs{\partial S_i} \geq \abs{S_i} \alpha(G)\).
+    \begin{align*}
+        s(G) &\geq \frac{\left(\sum_{i=1}^{r} \abs{S_i} \alpha(G)\left((v^+_i)^2 - (v^+_{i+1})^2\right) \right)^2}{2d\left(\sum_{i=1}^{r} (v^+_i)^2\right)^2}\\
+        &= \frac{\alpha(G)^2}{2d} \frac{\left(\sum_{i=1}^{r} \abs{S_i}\left((v^+_i)^2 - (v^+_{i+1})^2\right) \right)^2}{\left(\sum_{i=1}^{r} (v^+_i)^2\right)^2}\\
+        &= \frac{\alpha(G)^2}{2d} \frac{\left(\sum_{i=1}^{r} i\cdot (v^+_i)^2 - \sum_{i=1}^{r} (i-1) \cdot (v^+_{i})^2 \right)^2}{\left(\sum_{i=1}^{r} (v^+_i)^2\right)^2}\\
+        &= \frac{\alpha(G)^2}{2d} \frac{\left(\sum_{i=1}^{r} i\cdot (v^+_i)^2 - \sum_{i=1}^{r} (i-1) \cdot (v^+_{i})^2 \right)^2}{\left(\sum_{i=1}^{r} (v^+_i)^2\right)^2}\\
+        &= \frac{\alpha(G)^2}{2d} \frac{\left(\sum_{i=1}^{r} \cdot (v^+_i)^2 \right)^2}{\left(\sum_{i=1}^{r} (v^+_i)^2\right)^2}\\
+        &= \frac{\alpha(G)^2}{2d}\\
+    \end{align*}
+    Tako dobimo
+    \begin{align*}
+        s(G) \geq \frac{\alpha(G)^2}{2d} \geq \frac{h(G)^2}{2d}
+    \end{align*}
+
+
 
 \end{dokaz}
 \subsection{Alon-Boppanov izrek}
