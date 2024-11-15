@@ -280,7 +280,7 @@ Opazili smo, da se Cheegerjeva konstanta in spektralna vrzel obnašata podobno. 
     Spektralna vrzel grafa je približno \(3.706\), če pa odstranimo povezavo med vozliščema \(1\) in \(2\) dobimo spektralno vrzel približno \(3.766\). Tako smo graf naredili slabše povezanega, spektralno vrzel pa vseeno povišali. Cheegerjeva konstanta pa je v obeh primerih enaka \(2\) (kjer za \(S\) lahko vzamemo vozlišča \(1\), \(2\) in \(5\)).
 \end{primer}
 
-Kljub temu pa lahko povezavo med konceptoma Cheegerjeve neenakosti in spektralne vrzeli vseeno formaliziramo.
+Kljub temu pa lahko povezavo med konceptoma Cheegerjeve konstante in spektralne vrzeli vseeno formaliziramo\cite{chung-cheeger}.
 \begin{izrek}[Cheegerjeva neenakost]
     Za \(d\)-regularen graf \(G\) velja 
     \begin{align*}
@@ -289,7 +289,7 @@ Kljub temu pa lahko povezavo med konceptoma Cheegerjeve neenakosti in spektralne
     oziroma
     \begin{align*}
         2c(G) \geq s(G) \geq \frac{c(G)^2}{2d}
-    \end{align*}    
+    \end{align*} 
 \end{izrek}
 Za dokaz izreka potrebujemo naslednjo lemo.
 \begin{lema}\label{cheegerLema}
@@ -363,6 +363,7 @@ Za dokaz izreka potrebujemo naslednjo lemo.
     \begin{align}\label{eq:cheegerPredpostavka}
         \frac{\sum_{i\sim j}(v^+_i - v^+_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2} \leq \frac{\sum_{i\sim j} (v^-_i - v^-_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^-_i)^2} 
     \end{align}
+    % Ali napišem da primer če je v+ ali v- = 0 je trivialno
 
     Podobno kot v prvem delu dokaza preko Rayleighovega kvocienta izrazimo spektralno luknjo.
     \begin{align*}
@@ -441,11 +442,37 @@ Za dokaz izreka potrebujemo naslednjo lemo.
     \end{align*}
     Tako dobimo
     \begin{align*}
-        s(G) \geq \frac{\alpha(G)^2}{2d} \geq \frac{h(G)^2}{2d}
+        s(G) \geq \frac{\alpha(G)^2}{2d} \geq \frac{h(G)^2}{2d}.
     \end{align*}
-
-
-
 \end{dokaz}
 \subsection{Alon-Boppanov izrek}
+Prvotna motivacija je bila, da želimo grafe, ki so čim bolje povezani. Cheegerjeva neenakost je pokazala, da je upravičeno, da poskušamo maksimizirati spektralno vrzel oziroma minimizirati drugo največjo lastno vrednost. Izkaže pa se, da druga največja lastna vrednost ne more biti poljubno majhna, kar opisuje Alon-Boppanov izrek. Izrek, kot ga je dokazal Alon omeji drugo največjo lastno vrednost \(d\)-regularnega grafa. Če je \(\lambda_2\) druga največja lastna vrednost \(d\)-regularnega grafa in obstajata dve povezavi, ki sta oddaljeni vsaj \(2(k+1)\) (najkrajša pot v grafu, ki povezuje krajišča povezav teh dveh povezav je \(2(k+1)\)), potem se Alon-Boppanov\cite{alon-boppana-original} izrek glasi 
+\begin{align*}
+    \lambda_2 \geq 2\sqrt{d-1} - \frac{\sqrt{d-1}}{2(k+1)^2}.
+\end{align*}
+Vidimo da bolj kot povečamo število vozlišč v grafu, večji je lahko \(k\). Različica izreka, ki zanima nas je ravno ta, kjer gledamo asimptotično obnašanje druge največje lastne vrednosti, ko gre število vozlišč grafa proti neskončno. Priročno bo tudi, da namesto druge največje lastne vrednosti gledamo po absolutni vrednosti največjo netrivialno lastno vrednost, izrek bi pa sicer deloval tudi brez tega. Kot trivialno lastno vrednost štejemo \(d\), ker je vedno enaka v vseh \(d\)-regularnih grafih, prav tako pa \(-d\) za dvodelne \(d\)-regularne grafe\cite{lps-ramanujan}.
+
+\begin{izrek}[Alon-Boppanova meja]
+    Naj bo \(\{G_n\}\) neskončna družina \(d\)-regularnih grafov, kjer ima \(G_n\) \(n\) vozlišč in \(\lambda(G)\) absolutna vrednost druge največje lastne vrednosti grafa po absolutni vrednosti. Potem velja
+    \begin{align*}
+        \lim_{n\to\infty} \lambda(G_n) \geq 2\sqrt{d-1}
+    \end{align*}
+\end{izrek}
+V dokazu bomo velikost lastnih vrednosti primerjali s številom sprehodov določene dolžine v grafu. Sprehodi, v poljubnem \(d\)-regularnem grafu \(G\) pa so tesno povezani s sprehodi v \(d\)-regularnem neskončnem drevesu. Vsako vozlišče lahko uporabimo kot koren drevesa, torej si oglejmo sprehode iz korena ter jih primerjamo s sprehodi iz poljubnega vozlišča \(x\) grafa. Vsakemu vozlišču drevesa bomo podali (ne nujno unikatno) oznako, ki opisuje kateremu vozlišču \(G\) pripada. Koren drevesa poimenujemo \(x\), njegove sosede pa poimenujemo enolično po sosedih \(x\) v \(G\). Ta proces induktivno ponavljamo ter otroke vozlišča \(v\) v drevesu poimenujemo po sosedih vozlišča \(v\) v \(G\), ki niso enaki staršu \(v\) v drevesu. Če v tako označenem drevesu naredimo sprehod, bo zaporedje obiskanih vozlišč opisovalo sprehod v \(G\). Bolj specifično, vsak sprehod iz korena \(x\) do korena \(x\) v drevesu unikatno opisuje tudi sprehod iz \(x\) do \(x\) v \(G\), ne pa nujno tudi obratno (vsi taki sprehodi v drevesu bodo bili sode dolžine, očitno pa niso vsi cikli vseh grafov sodi). Število sprehodov dolžine \(l\) v drevesu, ki se začnejo in končajo v istem vozlišču, bomo poimenovali \(\rho(l)\). Če pa štejemo le sprehode dolžine \(l\), ki se začnejo in končajo v istem vozlišču, med sprehodom pa, razen na krajiščih, nikoli ne obiščejo tega vozlišča, pa to označimo \(\rho'(l)\). Seveda je \(\rho(l)\geq \rho'(l)\), oba pa sta manjša od števila sprehodov v grafu \(G\) dolžine \(l\) iz poljubnega vozlišča do samega sebe. Vedno pa velja \(\rho(2l+1)=0\). Kasneje bomo ta koncept posplošili na pojem krova in pokazali, da je \(d\)-regularno drevo univerzalni krov \(d\)-regularnega drevesa. Za dokaz Alon-Boppanove meje pa potrebujemo izračunati \(\rho'(l)\), s čimer bomo lahko omejili velikost lastnih vrednosti\cite{polatajko}.
+\begin{lema}[Sprehodi v drevesu]\label{alon:drevesa-meja}
+    V \(d\)-regularnem drevesu \(T\) obstaja
+    \begin{align*}
+        \frac{1}{l}\binom{2l-2}{l-1}k(k-1)^{l-1} = \rho'(2l)
+    \end{align*}
+    različnih sprehodov dolžine \(2l\), ki se začnejo in končajo v istem vozlišču, med sprehodom pa to vozlišče obiščejo samo na začetku in koncu.
+\end{lema}
+\begin{dokaz}
+    x
+\end{dokaz}
+\begin{dokaz}[Dokaz Alon-Boppanovega izreka]
+    Naj bo \(A_n\) sosednostna matrika \(G_n\). Potem je \((i,j)\)-ti element matrike \(A_n^k\) število poti od \(i\) do \(j\) dolžine \(k\), označimo ga \(\delta_{(i,j)}^k\). Če so lastne vrednosti matrike \(A_n\) enake \(d=\lambda_1\geq \lambda_2 \geq \cdots \geq \lambda_n\), potem so lastne vrednosti \(A_n^k\) enake \(\lambda_j^k\) za \(1\leq j \leq n\). Sled matrike je neodvisna od baze torej, če matriko napišemo v lastni bazi vidimo
+    \begin{align*}
+        \sum{j=1}^n \lambda_j^k = \sum_{j=1}^n \delta_{(j, j)}^k
+    \end{align*}
+\end{dokaz}
 \subsection{Ramanujanovi grafi}
