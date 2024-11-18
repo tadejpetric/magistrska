@@ -467,7 +467,29 @@ V dokazu bomo velikost lastnih vrednosti primerjali s številom sprehodov določ
     različnih sprehodov dolžine \(2l\), ki se začnejo in končajo v istem vozlišču, med sprehodom pa to vozlišče obiščejo samo na začetku in koncu.
 \end{lema}
 \begin{dokaz}
-    x
+    Oglejmo si sprehod dolžine \(2l\) iz korena drevesa. Vsak tak sprehod naredi \(l\) korakov iz vozlišča k njegovemu otroku ter \(l\) korakov iz vozlišča proti njegovemu staršu. 
+    
+    Najprej si poglejmo v kakšnem zaporedju si sledijo te koraki. Vsak korak k potomcu predstavimo s \(+1\), k staršu pa k \(-1\). Če izpustimo prvi in zadnji korak (saj sta vedno \(+1\) in \(-1\)), imamo \(l-1\) enic in \(l-1\) minus enic. Vseh takih zaporedij je
+    \begin{align*}
+        \binom{2(l-1)}{l-1}.
+    \end{align*}
+    Ker ne želimo priti do korena pred koncem sprehoda, želimo da je ob vsakem dodanem številu seštevek vseh števil nenegativen. Oglejmo si zaporedja ki prekršijo to pravilo. Za taka zaporedja \((a_1, \ldots, a_{2l-2})\) obstaja nek najmanjši \(k\), da je \(a_{2k+1}=-1\) in \(\sum_{i=1}^{2k} a_i = 0\). Definiramo si funkcijo \(f\) na takih zaporedjih, ki bo na prvih \(2k+1\) elementih spremenila predznak, ostalo pa pustila nespremenjeno. Ker je na prvih \(2k\) elementih enako število \(+1\) in \(-1\), bo tam uravnoteženo tudi, ko zamenjamo predznak. Ker je število \(+1\) in \(-1\) enako tudi v celotnem zaporedju dolžine \(2l-2\), pomeni, da je število \(+1\) in \(-1\) v prvotnem zaporedju enako tudi na zadnjih \(2l-2-2k\) elementih; ker pa smo zamenjali element \(a_{2k+1}\) iz \(-1\) na \(+1\) bo v transformiranem zaporedju \(f(a)\) zato na zadnjih \(2l-2-2k\) elementih \(l-2-k\) elementov \(-1\) in \(l-k\) elementov \(+1\). Če to damo skupaj, dobimo, da je v \(f(a)\) natanko \(l\) elementov \(+1\) in \(l-2\) elementov \(-1\). 
+    
+    Trdimo, da je \(f\) bijekcija med zaporedji, ki imajo nekje negativno delno vsoto ter zaporedji z \(l\) enicami in \(l-2\) minus enicami. Inverz funkcije \(f\) poišče prvi element, kjer je delna vsota \(+1\) ter zamenja predznake tega elementa in vseh elementov pred njim. Pokažemo, da je \(f\) res inverz. Če imamo dva zaporedja \(x\) in \(y\) z \(f(x)=f(y)\), ta inverz očitno pokaže, da je \(x=y\) torej je \(f\) injektivna. Za surjektivnost je potrebno opaziti, da je v zaporedjih iz kodomene več elementov \(+1\) kot \(-1\), tako da je očitno res neka delna vsota \(+1\) in lahko uporabimo inverz. Zaporedij iz kodomene je \(\binom{2l-2}{l}\), torej je toliko tudi zaporedij, ki prekršijo pravilo, da je delna vsota vedno nenegativna.
+    
+    Sedaj poračunamo, koliko je elementov, ki ustrezajo prvotnim zahtevam (torej zaporedij, ki nimajo negativne delne vsote) tako, da od števila vseh zaporedij dolžine \(2l-2\) z enakim številom \(+1\) in \(-1\) odštejemo število teh, z negativno delno vsoto. 
+    \begin{align*}
+        &\binom{2l-2}{l-1} - \binom{2l-2}{l}\\
+        =& \frac{(2l-2)!}{(l-1)!(l-1)!} - \frac{(2l-2)!}{l!(l-2)!}\\
+        =& \frac{(2l-2)!}{(l-1)!(l-2)!}\left(\frac{1}{l-1} - \frac1l \right)\\
+        =& \frac{(2l-2)!}{{l-1}!(l-2)!}\frac{1}{l(l-1)}\\
+        =& \frac{1}{l}\binom{2l-2}{l-1}
+    \end{align*}
+    
+    V vsakem koraku k potomcu pa nimamo le ene izbire. Prvi korak je proti kateremu koli izmed \(d\) potomcev. Pri vseh naslednjih \(l-1\) korakih k potomcem imamo \(d-1\) možnih izbir. Da dobimo skupno število vseh sprehodov le zmnožimo ta števila, da dobimo
+    \begin{align*}
+        \frac{1}{l}\binom{2l-2}{l-1} d (d-1)^{l-1}.
+    \end{align*}
 \end{dokaz}
 \begin{dokaz}[Dokaz Alon-Boppanovega izreka]
     Naj bo \(A_n\) sosednostna matrika \(G_n\). Potem je \((i,j)\)-ti element matrike \(A_n^k\) število poti od \(i\) do \(j\) dolžine \(k\), označimo ga \(\delta_{(i,j)}^k\). Če so lastne vrednosti matrike \(A_n\) enake \(d=\lambda_1\geq \lambda_2 \geq \cdots \geq \lambda_n\), potem so lastne vrednosti \(A_n^k\) enake \(\lambda_j^k\) za \(1\leq j \leq n\). Sled matrike je neodvisna od baze torej, če matriko napišemo v lastni bazi vidimo

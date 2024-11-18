@@ -1,0 +1,6 @@
+adjacency matrika
+spektrum
+d-regularen graf
+drevo
+    starš
+    otrok
