@@ -462,7 +462,7 @@ V dokazu bomo velikost lastnih vrednosti primerjali s številom sprehodov določ
 \begin{lema}[Sprehodi v drevesu]\label{alon:drevesa-meja}
     V \(d\)-regularnem drevesu \(T\) obstaja
     \begin{align*}
-        \frac{1}{l}\binom{2l-2}{l-1}k(k-1)^{l-1} = \rho'(2l)
+        \frac{1}{l}\binom{2l-2}{l-1}d(d-1)^{l-1} = \rho'(2l)
     \end{align*}
     različnih sprehodov dolžine \(2l\), ki se začnejo in končajo v istem vozlišču, med sprehodom pa to vozlišče obiščejo samo na začetku in koncu.
 \end{lema}
@@ -488,13 +488,35 @@ V dokazu bomo velikost lastnih vrednosti primerjali s številom sprehodov določ
     
     V vsakem koraku k potomcu pa nimamo le ene izbire. Prvi korak je proti kateremu koli izmed \(d\) potomcev. Pri vseh naslednjih \(l-1\) korakih k potomcem imamo \(d-1\) možnih izbir. Da dobimo skupno število vseh sprehodov le zmnožimo ta števila, da dobimo
     \begin{align*}
-        \frac{1}{l}\binom{2l-2}{l-1} d (d-1)^{l-1}.
+        \rho'(2l) = \frac{1}{l}\binom{2l-2}{l-1} d (d-1)^{l-1}.
     \end{align*}
 \end{dokaz}
 \begin{dokaz}[Dokaz Alon-Boppanovega izreka]
-    Naj bo \(A_n\) sosednostna matrika \(G_n\). Potem je \((i,j)\)-ti element matrike \(A_n^k\) število poti od \(i\) do \(j\) dolžine \(k\), označimo ga \(\delta_{(i,j)}^k\). Če so lastne vrednosti matrike \(A_n\) enake \(d=\lambda_1\geq \lambda_2 \geq \cdots \geq \lambda_n\), potem so lastne vrednosti \(A_n^k\) enake \(\lambda_j^k\) za \(1\leq j \leq n\). Sled matrike je neodvisna od baze torej, če matriko napišemo v lastni bazi vidimo
+    Naj bo \(A_n\) sosednostna matrika \(G_n\). Potem je \((i,j)\)-ti element matrike \(A_n^k\) število poti od \(i\) do \(j\) dolžine \(l\), označimo ga \(\delta_{(i,j)}(l)\). Če so lastne vrednosti matrike \(A_n\) enake \(d=\lambda_1\geq \lambda_2 \geq \cdots \geq \lambda_n\), potem so lastne vrednosti \(A_n^l\) enake \(\lambda_j^l\) za \(1\leq j \leq n\). Sled matrike je neodvisna od baze torej, če matriko napišemo v lastni bazi vidimo
     \begin{align*}
-        \sum{j=1}^n \lambda_j^k = \sum_{j=1}^n \delta_{(j, j)}^k
+        \sum{j=1}^n \lambda_j^l = \sum_{j=1}^n \delta_{(j, j)}(l).
+    \end{align*}
+    Če je \(\rho(l)\) število poti dolžine \(l\) iz vozlišča do samega sebe v \(d\)-regularnem drevesu, \(\rho'(l)\) pa število poti dolžine \(l\) iz vozlišča do samega sebe, ki ne obiščejo izvornega vozlišča predčasno, velja, kot smo omenili v orisu dokaza, \(\rho'(l) \leq \rho(l)\leq \delta_{(j,j)}(l)\) neodvisno od \(j\). Zato lahko poenostavimo izraz v
+    \begin{align*}
+        \sum{j=1}^n \lambda_j^l \geq n \rho'(l).
+    \end{align*}
+    Če si ogledamo le poti sode dolžine in upoštevamo, da so vse lastne vrednosti razen največje (\(d\)) in morda najmanjše (kvečjemu \(d\) po absolutni vrednosti) manjše od \(\lambda(G)\), dobimo
+    \begin{align*}
+        (n-2)\lambda(G)^{2l} + 2d^{2l} \geq \sum{j=1}^n \lambda_j^l \\
+        (n-2)\lambda(G)^{2l} \geq n\rho'(2l) - 2d^{2l}\\
+        \lambda(G)^{2l} \geq \frac{n}{n-2}\rho'(2l) - \frac{2d^{2l}}{n-2}
+        \lambda(G)^{2l} \geq \rho'(2l) - \frac{2d^{2l}}{n-2}
+    \end{align*}
+    Sedaj na izrazu uporabimo lemo \ref{alon:drevesa-meja}.
+    \begin{align*}
+        \lambda(G)^{2l} \geq \frac{1}{l}\binom{2l-2}{l-1}d(d-1)^{l-1} - \frac{2d^{2l}}{n-2} \\
+        \lambda(G)^{2l} \geq \frac{1}{l}\binom{2l-2}{l-1}(d-1)^{l} - \frac{2d^{2l}}{n-2}
+        \lim_{n\to\infty} \lambda(G)^{2l} \geq \frac{1}{l}\binom{2l-2}{l-1}(d-1)^{l}\\
+        \lim_{n\to\infty} \lambda(G) \geq \sqrt[2l]{\frac{1}{l}}\cdot \sqrt[2l]{\binom{2l-2}{l-1}}\cdot \sqrt[2l]{(d-1)^{l}}
+    \end{align*}
+    Neenakost velja za vse \(l\) torej velja tudi v limiti \(l\to\infty\). Ko poračunamo limite\cite{polatajko} dobimo
+    \begin{align*}
+        \lim_{n\to\infty} \lambda(G) \geq 1 \cdot 2 \cdot \sqrt{d-1}.
     \end{align*}
 \end{dokaz}
 \subsection{Ramanujanovi grafi}
