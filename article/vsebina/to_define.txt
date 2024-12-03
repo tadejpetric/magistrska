@@ -4,3 +4,6 @@ d-regularen graf
 drevo
     starš
     otrok
+
+Grafi nimajo izoliranih vozlišč in so vedno povezani
+lastna vrednost grafa (=lv adj)
