@@ -1,0 +1,114 @@
+\section{Konstrukcije Ramanujanovih grafov poljubne stopnje}
+Preko prejšne konstrukcije lahko dobimo neskončne družine Ramanujanovih grafov, vendar ne za poljubno stopnjo regularnosti grafa. V tem razdelku si ogledamo konstrukcijo grafov poljubne stopnje regularnosti.
+
+Opisali bomo postopek, s katerim lahko začnemo z nekim dvodelnim Ramanujanovim grafom z \(n\) vozlišči in ga uporabimo, da poiščemo dvodelni Ramanujanov graf z \(2n\) vozlišči. Tako lahko začnemo z polnim dvodelnim grafom poljubne stopnje regularnosti, saj za te vemo, da so Ramanujanovi, in poiščemo večji Ramanujanov graf z enako stopnjo regularnosti. Nato lahko postopek induktivno ponavljamo in dobimo neskončno družino Ramanujanovih grafov poljubne stopnje regularnosti.
+
+Ker so dvodelni grafi v osrednjem delu tega poglavja, si poglejmo nekaj osnovnih pojmov in lastnosti dvodelnih grafov.
+\subsection{Dvodelni grafi}
+% Verjetno prestavimo to nekam na začetek
+\begin{definicija}[Dvodelen graf]
+    Graf \(G = (V, E)\) je dvodelen, če lahko množico vozlišč \(V\) razdelimo na dve disjunktni množici \(V_1\) in \(V_2\), tako da nobeni dve vozlišči iz iste množice nista sosednji.
+\end{definicija}
+
+% TODO: ekvivalenca: -d => graf je dvodelen
+\begin{izrek}[Najmanjša lastna vrednost]
+    Najmanjša lastna vrednost dvodelnega \(d\)-regularnega grafa je \(-d\).
+\end{izrek}
+\begin{dokaz}
+    Kot v definiciji, graf razdelimo na dve disjunktni množici \(V_1\) in \(V_2\).
+
+    Za lastni vektor \(v\) izberemo vektor, ki ima vrednosti \(+1\) na mestih, ki pripadajo \(V_1\) in vrednosti \(-1\) na mestih, ki pripadajo \(V_2\). Če si pogledamo neko vrstico sosednostne matrike, ki pripada elementu iz \(V_1\), vidimo, da ima vseh \(d\) vrednosti \(1\) na mestih, ki pripadajo \(V_2\) - ta pa so \(-1\) v vektorju \(v\). Tako bo v vektorju \(v\) na takih mestih pred množenjem s sosednostno matriko vrednost \(1\), po množenju pa \(-d\). Podobno velja za vozlišča iz \(V_2\).
+\end{dokaz}
+
+\subsection{Dvig grafa}
+Konstrukcija, ki jo bomo uporabili, da bomo naredili večji Ramanujanov graf se imenuje dvig, oziroma v našem primeru, 2-dvig. Idejno 2-dvig grafa \(G\) predstavlja nov graf, ki ima dvakrat več vozlišč in povezav, te povezave pa so izbrane tako, da ohranimo določene lastnosti grafa. Vsako vozlišče \(v\) bo imelo v dvigu dve kopiji, \(v_1\) in \(v_2\), če pa imamo povezavo \(u\sim v\) v prvotnem grafu, ima dvig dve novi povezavi, ki povežeta \(v_1\) in \(v_2\) z \(u_1\) in \(u_2\) (ni pa določeno ali je povezan \(v_1\sim u_1\) ali \(v_1\sim u_2\)). Pomembno je, da na tak način ohranimo stopnjo regularnosti grafa.
+
+\begin{definicija}[2-dvig grafa]
+    Naj bo \(G = (V, E)\) graf. Rečemo, da je \(G'= (V', E')\) 2-dvig grafa \(G\), če je \(V' = V + V\) (vsaj do izomorfizma natančno), za vsako povezavo \(u\sim v\) v \(G\) pa imamo v \(E'\) ali povezavi \(\{\iota_1(v)\sim \iota_1(u), \iota_2(v)\sim \iota_2(u)\}\) (povezavi prvega tipa) ali povezavi \(\{\iota_1(v)\sim \iota_2(u), \iota_2(v)\sim \iota_1(u)\}\) (povezavi drugega tipa). Drugih povezav v \(E'\) ni.
+\end{definicija}
+
+Posebej poudarimo, da \(2\)-dvig ni nujno povezan graf. Če so vse povezave v dvigu prvega tipa, potem je \(2\)-dvig disjunktna unija dveh kopij prvotnega grafa. Če so vse povezave v dvigu drugega tipa, dvig imenujemo \emph{dvojni krov} grafa. V konstrukciji ni pomembno, vendar je zanimivo, da je konstrukcija dvodelnih Ramanujanovih grafov poljubne stopnje regularnosti kvečjemu lažja kot konstrukcija takih Ramanujanovih grafov, ki niso dvodelni; dvojni krov grafa bo namreč vedno dvodelen, dvojni krov Ramanujanovega pa bo spet Ramanujanov.
+
+Ime izvira iz teorije kategorij. Homomorfizmi grafov preslikajo vozlišča v vozlišča in povezave v povezave. Enostavno lahko definiramo projekcijo iz \(2\)-dviga \(\pi: G'\to G\) tako, da \(\iota_i(v)\mapsto v\), prav tako pa \(\iota_i(u)\sim\iota_j(v)\mapsto u\sim v\) za \(i, j\in \{1,2\}\). Sedaj če imamo poljuben homomorfizem \(\phi: H\to G\) ga lahko faktoriziramo preko \(\pi\). Vsako preslikavo povezav \(\phi\) lahko razumemo kot kompozitum dveh preslikav; prvo \(\phi'\), ki preslika \(u\sim v\) v \(\iota_i(\phi(u)) \sim \iota_j(\phi(v))\) (za primerno izbiro \(i\) in \(j\)) in projekcije \(\pi\). Tako lahko vsak homomorfizem \(\phi: H\to G\) zapišemo kot \(\phi = \pi\circ \phi'\) in kategorično bi bil \(\phi'\) dvig preslikave \(\phi\) na \(G'\).
+
+\begin{definicija}[Značenje dviga]
+    Značenje grafa \(G = (V, E)\) je preslikava \(s: E\to \{-1, +1\}\).
+
+    Značenje, ki pripada \(2\)-dvigu \(G'\) grafa \(G\) je preslikava \(s': E \to \{-1, +1\}\), kjer \(u\sim v \mapsto 1\), če povezavi \(u\sim v\) v dvigu pripada povezava prvega tipa in \(-1\), če pripada povezava drugega tipa.
+\end{definicija}
+
+Seveda lahko vidimo, da vsako značenje tudi enolično definira \(2\)-dvig grafa.
+
+Sedaj lahko definiramo sosednostno matriko glede na značenje grafa. Ta bo na ničelnih vrednostih enaka navadni sosednostni matriki, kjer pa je v sosednostni matriki \(1\) bo v značeni sosednostni matriki vrednost, ki jo definira značenje.
+
+\begin{definicija}[Značena sosednostna matrika]
+    Naj bo \(G = (V, E)\) graf in \(s: E\to \{-1, +1\}\) značenje grafa. Značena sosednostna matrika \(A_s\) je \(\abs{V}\times \abs{V}\) matrika, ki ima na mestu \((u,v)\) vrednost \(0\), če \((u,v)\notin E\) in vrednost \(s(u\sim v)\), če \((u,v)\in E\).
+\end{definicija}
+
+Ta definicija ima presenetljive posledice, saj lastne vrednosti sosednostne matrike grafa in značene sosednostne matrike za značenje, ki pripada dvigu natanko določajo lastne vrednosti dviga\cite{bilu2004constructingexpandergraphs2lifts}.
+\begin{izrek}[Lastne vrednosti dviga]
+    Naj bo \(G\) graf, \(G'\) \(2\)-dvig grafa in \(s\) značenje, ki pripada \(G'\). Potem so lastne vrednosti \(G'\) enake uniji lastnih vrednosti \(G\) in lastnih vrednosti \(A_s\) (skupaj z večkratnostjo).
+\end{izrek}
+\begin{dokaz}
+    Povezave grafa razdelimo na dva dela, na povezave, ki v dvigu postanejo povezave prvega tipa in na povezave, ki postanejo povezave drugega tipa
+    \begin{align*}
+        E_1 = s^{-1}(1) & E_2 = s^{-1}(-1).
+    \end{align*}
+    Te dve podmnožici definirata podgrafa \((V, E_1)\) in \((V, E_2)\) grafa \(G\). Z \(A_1\) in \(A_2\) označimo njuni sosednostni matriki (torej \(A = A_1 + A_2\) in \(A_s = A_1 - A_2\)).
+
+    Vozlišča \(G'\) sestavljajo dve kopiji vozliš iz \(G\). Če jih uredimo zaporedno (torej najprej vsa vozlišča prve kopije in nato vsa vozlišča druge kopije), lahko napišemo sosednostno matriko dviga \(G'\) kot
+    \begin{align*}
+        A' = \begin{bmatrix}
+                 A_1 & A_2 \\
+                 A_2 & A_1
+             \end{bmatrix}.
+    \end{align*}
+
+    Sedaj lahko uganimo lastne vektorje. Če je \(\lambda\) lastna vrednost \(A\) za lastni vektor \(v\), potem je \((v, v)\) lastni vektor za lastno vrednost \(\lambda\) matrike \(A'\). Podobno, če je \(\mu\) lastna vrednost \(A_s\) za lastni vektor \(u\), potem je \((u, -u)\) lastni vektor za lastno vrednost \(\mu\) matrike \(A'\). Če izračunamo skalarni produkt, vidimo, da so vsi lastni vektorji pravokotni med seboj, torej so to res vse lastne vrednosti matrike \(A'\).
+\end{dokaz}
+Seveda iz izreka tudi sledi, da je \(2\)-dvig dvodelnega grafa \(d\)-regularnega grafa spet dvodelen \(d\)-regularni graf, saj ohrani lastne vrednosti \(d\) in \(-d\).
+% TODO: omeni da As nima lastnih vrednosti izven [-d, d]
+
+Potrebujemo še zadnji izrek, ki bo razložil uporabo dvodelnih grafov v konstrukciji. V konstrukciji bomo omejili drugo največjo netrivialno lastno vrednost grafa, ne bomo pa omejili najmanjše netrivialne lastne vrednosti. Tako bi bila lahko druga največja lastna vrednost po absolutni vrednosti ravno druga najmanjša lastna vrednost, ta bi pa lahko presegla mejo za Ramanujanove grafe. Dvodelni grafi pa imajo lastne vrednosti simetrične okoli ničle, torej zadošča, da omejimo samo drugo največjo lastno vrednost\cite{godsil}.
+
+\begin{izrek}
+    Če je \(G\) dvodelen graf in \(\lambda\) njegova lastna vrednost, potem je tudi \(-\lambda\) njegova lastna vrednost z isto večkratnostjo.
+\end{izrek}
+\begin{dokaz}
+    Naj bo \(G\) dvodelen graf z particijo vozlišč \(V_1, V_2\) in naj bo \(v\) njegov lastni vektor za lastno vrednost \(\lambda\). Označimo kandidata za lastni vektor za \(-\lambda\) z \(w\). Vektor definiramo kot
+    \begin{align*}
+        w_i = \begin{cases}
+                  v_i, & i\in V_1 \\
+                  -v_i, & i\in V_2
+              \end{cases}
+    \end{align*}
+    Ker je \(v\) lastni vektor velja
+    \begin{align*}
+        \lambda v_i = \sum_{j\sim i} v_j.
+    \end{align*}
+    Vsi sosedi vozlišč iz \(V_1\) pa so v \(V_2\) in obratno, zato imajo v \(w_j\) vsi obraten predznak. Ta predznak izpostavimo in zapišemo
+    \begin{align*}
+        -\lambda w_i = \sum_{j\sim i} w_j.
+    \end{align*}
+\end{dokaz}
+
+\subsection{Prirejanja v grafih}
+% Matching [in graph theory]
+Prirejanja v grafu opisujejo kako lahko izbiramo povezave v grafu tako, da si niso incidenčne. Število vseh možnih prirejanj določene velikosti bomo uporabili kot koeficiente polinoma. Ta polinom pa ima dve ključni lastnosti, ki sta pomembni za konstrukcijo: njegove ničle znamo omejiti in polinom znamo povezati s karakteristično funkcijo značene sosednostne matrike. Od prej pa že vemo, da lastne vrednosti značene sosednostne matrike določajo lastne vrednosti dviga. Na ta način bomo lahko omejili lastne vrednosti dviga in s tem dobili Ramanujanove grafe.
+
+\begin{definicija}[Prirejanje]
+    Prirejanje velikosti \(i\) v grafu \(G\) je množica povezav \(M\subseteq E\) z \(\abs{M} = i\), za katero velja, da nobeni dve povezavi nista incidentni.
+
+    Število vseh prirejanj velikosti \(i\) v grafu \(G\) označimo z \(m_i(G)\).
+\end{definicija}
+
+\begin{definicija}[Polinom prirejanja]
+    Polinom prirejanja grafa \(G\) je
+    \begin{align*}
+        \mu_G(x) = \sum_{i\geq 0} (-1)^i m_i x^{n-2i}.
+    \end{align*}
+\end{definicija}
+
+
+
+
