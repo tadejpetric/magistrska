@@ -105,9 +105,38 @@ Prirejanja v grafu opisujejo kako lahko izbiramo povezave v grafu tako, da si ni
 \begin{definicija}[Polinom prirejanja]
     Polinom prirejanja grafa \(G\) je
     \begin{align*}
-        \mu_G(x) = \sum_{i\geq 0} (-1)^i m_i x^{n-2i}.
+        \mu_G(x) = \sum_{i\geq 0} (-1)^i m_i(G) x^{n-2i}.
     \end{align*}
 \end{definicija}
+
+Dokazi lastnosti polinoma prirejanja potekajo po indukciji na število vozlišč v grafu. Poglejmo si izrek, ki nam omogoči to indukcijo.
+\begin{izrek}[Rekurzivna definicija polinoma prirejanja]
+    Za poljubno vozlišče \(v\) v grafu \(G\) polinom prirejanja sledi rekurzivni zvezi
+    \begin{align*}
+        \mu_G(x) = x \mu_{G-\{v\}}(x) - \sum_{u\sim v} \mu_{G-\{u, v\}}(x).
+    \end{align*}
+    Če je \(G\) prazen graf pa je \(\mu_G(x) = 1\).
+    % TODO: definiraj G-v in G-uv
+    % TODO: nekje napiši |V(G)| = n
+\end{izrek}
+\begin{dokaz}
+    Oglejmo si poljubno prirejanje v grafu. Če dano vozlišče \(v\) ni incidentno nobeni povezavi v prirejanju, potem je to prirejanje del \(m_i(G)\) in \(m_i({G-\{v\}})\). V nasprotnem primeru pa ima prirejanje povezavo \(u\sim v\). Potem je prirejanje brez te povezave del \(m_{i-1}({G-\{u, v\}})\). Seveda velja tudi obratno in tako dobimo rekurzivno zvezo
+    \begin{align*}
+        m_i(G) = m_i({G-\{v\}}) + \sum_{u\sim v} m_{i-1}({G-\{u, v\}}).
+    \end{align*}
+    Sedaj to zvezo vstavimo v definicijo polinoma prirejanja.
+    \begin{align*}
+        \mu_G(x) &= \sum_{i\geq 0} (-1)^i m_i x^{n-2i} \\
+                 &= \sum_{i\geq 0} (-1)^i \left( m_i({G-\{v\}}) + \sum_{u\sim v} m_{i-1}({G-\{u, v\}}) \right) x^{n-2i} \\
+                 &= \sum_{i\geq 0} (-1)^i m_i({G-\{v\}}) x\cdot x^{(n-1)-2i} + \sum_{u\sim v} \sum_{i\geq 0} (-1)^i m_{i-1}({G-\{u, v\}}) x^{n-2i} \\
+                 &= x \mu_{G-\{v\}}(x) + \sum_{u\sim v} \sum_{i \geq -1} -(-1)^i m_{i}(G-\{u, v\}) x^{(x-2)-2i}
+    \end{align*}
+    Upoštevamo, da je \(m_{-1} = 0\) in poenostavimo do konca.
+    \begin{align*}
+        \mu_G(x) &= x \mu_{G-\{v\}}(x) + \sum_{u\sim v} \sum_{i \geq 0} -(-1)^i m_{i}(G-\{u, v\}) x^{(x-2)-2i} \\
+                 &= x \mu_{G-\{v\}}(x) - \sum{u\sim v} \mu_{G-\{u, v\}}(x)
+    \end{align*}
+\end{dokaz}
 
 
 
