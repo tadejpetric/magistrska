@@ -3,6 +3,7 @@
 \usepackage{algorithm}      % za algoritme
 \usepackage{mathtools}
 \usepackage{tikz}
+\usetikzlibrary{positioning}
 \usepackage{pgfplots}
 \floatname{algorithm}{Algoritem}
 \renewcommand{\listalgorithmname}{Kazalo algoritmov}
@@ -47,3 +48,6 @@
 \let\oldfloor\floor
 \def\floor{\@ifstar{\oldfloor}{\oldfloor*}}
 \makeatother
+
+
+\DeclareMathOperator{\sgn}{sgn}

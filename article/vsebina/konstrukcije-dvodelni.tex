@@ -78,7 +78,7 @@ Potrebujemo še zadnji izrek, ki bo razložil uporabo dvodelnih grafov v konstru
     Naj bo \(G\) dvodelen graf z particijo vozlišč \(V_1, V_2\) in naj bo \(v\) njegov lastni vektor za lastno vrednost \(\lambda\). Označimo kandidata za lastni vektor za \(-\lambda\) z \(w\). Vektor definiramo kot
     \begin{align*}
         w_i = \begin{cases}
-                  v_i, & i\in V_1 \\
+                  v_i,  & i\in V_1 \\
                   -v_i, & i\in V_2
               \end{cases}
     \end{align*}
@@ -110,6 +110,7 @@ Prirejanja v grafu opisujejo kako lahko izbiramo povezave v grafu tako, da si ni
 \end{definicija}
 
 % https://math.berkeley.edu/~nikhil/courses/270/lec1.pdf ali pa njegov source, Theory of Monomer-Dimer Systems
+% v 2. viru stran 11
 Dokazi lastnosti polinoma prirejanja potekajo po indukciji na število vozlišč v grafu. Poglejmo si izrek, ki nam omogoči to indukcijo.
 \begin{izrek}[Rekurzivna definicija polinoma prirejanja]
     Za poljubno vozlišče \(v\) v grafu \(G\) polinom prirejanja sledi rekurzivni zvezi
@@ -127,17 +128,117 @@ Dokazi lastnosti polinoma prirejanja potekajo po indukciji na število vozlišč
     \end{align*}
     Sedaj to zvezo vstavimo v definicijo polinoma prirejanja.
     \begin{align*}
-        \mu_G(x) &= \sum_{i\geq 0} (-1)^i m_i x^{n-2i} \\
-                 &= \sum_{i\geq 0} (-1)^i \left( m_i({G-\{v\}}) + \sum_{u\sim v} m_{i-1}({G-\{u, v\}}) \right) x^{n-2i} \\
-                 &= \sum_{i\geq 0} (-1)^i m_i({G-\{v\}}) x\cdot x^{(n-1)-2i} + \sum_{u\sim v} \sum_{i\geq 0} (-1)^i m_{i-1}({G-\{u, v\}}) x^{n-2i} \\
-                 &= x \mu_{G-\{v\}}(x) + \sum_{u\sim v} \sum_{i \geq -1} -(-1)^i m_{i}(G-\{u, v\}) x^{(x-2)-2i}
+        \mu_G(x) & = \sum_{i\geq 0} (-1)^i m_i x^{n-2i}                                                                                             \\
+                 & = \sum_{i\geq 0} (-1)^i \left( m_i({G-\{v\}}) + \sum_{u\sim v} m_{i-1}({G-\{u, v\}}) \right) x^{n-2i}                            \\
+                 & = \sum_{i\geq 0} (-1)^i m_i({G-\{v\}}) x\cdot x^{(n-1)-2i} + \sum_{u\sim v} \sum_{i\geq 0} (-1)^i m_{i-1}({G-\{u, v\}}) x^{n-2i} \\
+                 & = x \mu_{G-\{v\}}(x) + \sum_{u\sim v} \sum_{i \geq -1} -(-1)^i m_{i}(G-\{u, v\}) x^{(x-2)-2i}
     \end{align*}
     Upoštevamo, da je \(m_{-1} = 0\) in poenostavimo do konca.
     \begin{align*}
-        \mu_G(x) &= x \mu_{G-\{v\}}(x) + \sum_{u\sim v} \sum_{i \geq 0} -(-1)^i m_{i}(G-\{u, v\}) x^{(x-2)-2i} \\
-                 &= x \mu_{G-\{v\}}(x) - \sum{u\sim v} \mu_{G-\{u, v\}}(x)
+        \mu_G(x) & = x \mu_{G-\{v\}}(x) + \sum_{u\sim v} \sum_{i \geq 0} -(-1)^i m_{i}(G-\{u, v\}) x^{(x-2)-2i} \\
+                 & = x \mu_{G-\{v\}}(x) - \sum{u\sim v} \mu_{G-\{u, v\}}(x)
     \end{align*}
 \end{dokaz}
 
-Oglejmo si ničle polinoma.
+Prva pomembna lastnost polinoma prirejanja je, da znamo omejiti njegove ničle torej, da so vse ničle po absolutni vrednosti manjše od neke konstante. Da to dokažemo, pa si moremo najprej ogledati prepletene družine polinomov. Dva polinoma z realnimi ničlami sta prepletena, če si izmenjujeta ničle. Za vsako ničlo prvega polinoma obstaja manjša ničla drugega polinoma (ki je večja kot naslednja manjša ničla prvega polinoma), prav tako pa večja ničla drugega polinoma (ki je manjša kot naslednja večja ničla prvega polinoma). Pokazali bomo, da je polinom prirejanja grafa prepleten s polinomom prirejanja grafa z odstranjenim vozliščem.
+
+\begin{definicija}[Prepletena polinoma]
+    Naj bosta \(n\) in \(m\) naravni števili z \(n=m\) ali \(n=m+1\). Naj bosta \(p(x) = C_1 \prod_{i=1}^n (x-\lambda_i)\) in \(q(x) = C_2 \prod_{i=1}^m (x-\nu_i)\) polinoma z realnimi ničlami \(\lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_n\) in \(\nu_1 \leq \nu_2 \leq \cdots \leq \nu_m\). V primeru \(n=m\) rečemo, da polinom \(q\) prepleta polinom \(p\), če velja
+    \begin{align*}
+        \nu_1 \leq \lambda_1 \leq \nu_2 \leq \lambda_2 \leq \cdots \leq \nu_n \leq \lambda_n.
+    \end{align*}
+    Če pa je \(n=m+1\) pa rečemo, da polinom \(q\) prepleta polinom \(p\), če velja
+    \begin{align*}
+        \lambda_1 \leq \nu_1 \leq \lambda_2 \leq \nu_2 \leq \cdots \leq \lambda_m \leq \nu_m \leq \lambda_{m+1}.
+    \end{align*}
+
+    Če so vse neenakost stroge rečemo, da polinom \(q\) strogo prepleta polinom \(p\).
+    % Manjši polinom prepleta večjega
+\end{definicija}
+
+\begin{izrek}
+    Za polinom prepletanja \(\mu_G\) veljajo dve lastnosti:
+    \begin{enumerate}
+        \item Vse ničle polinoma \(\mu_G\) so različne med seboj in realne.
+        \item Za poljubno vozlišče \(v\) grafa \(G\), polinom \(\mu_{G-\{v\}}\) strogo prepleta polinom \(\mu_G\).
+    \end{enumerate}
+\end{izrek}
+\begin{dokaz}
+    % Ne vem zakaj članek nikhil predpostavi da je G = Kn
+    Dokaz bo potekal po indukciji. Predpostavimo, da za vsak graf \(H\) z manj kot \(n\) vozlišči velja, da ima polinom prirejanja realne ničle, ki so med seboj različne in da za vsako vozlišče \(v\in H\), polinom \(\mu_{H-\{v\}}\) strogo prepleta polinom \(\mu_H\).
+
+    Naj bo \(v\in G\) in naj bodo \(\lambda_1 < \cdots < \lambda_{n-1}\) ničle \(\mu_{G-\{v\}}\). Po indukciji za poljubno vozlišče \(u\in G-\{v\}\) polinom \(\mu_{G-\{v, u\}}\) strogo prepleta polinom \(\mu_{G-\{v\}}\). Polinomi prirejanja so monični, torej zavzemajo le pozitivne vrednosti desno od njihove največje ničle. Po definiciji prepletanja je \(\lambda_{n-1}\) večja od največje ničle \(\mu_{G-\{v, u\}}\), torej velja \(\mu_{G-\{v, u\}}(\lambda_{n-1}) > 0\). Dodatno, vsak interval \((\lambda_i, \lambda_{i+1})\) vsebuje natanko eno ničlo \(\mu_{G-\{v, u\}}\), torej vemo kakšne predznake ima \(\mu_{G-\{v, u\}}\) na vseh ničlah \(\lambda_i\) -- največja ničla je pozitivna, druga največja negativna, nato spet pozitivna in tako naprej. Tako za poljuben \(u\neq v\) velja
+    \begin{align*}
+        \sgn\left({\mu_{G-\{v, u\}}(\lambda_i)}\right) = (-1)^{i-(n-1)},
+    \end{align*}
+    iz česar sledi
+    \begin{align*}
+        \sgn\left({\sum_{u\sim v} \mu_{G-\{u, v\}}(\lambda_i)}\right) = (-1)^{i - (n-1)}.
+    \end{align*}
+
+    Sedaj lahko uporabimo rekurzivno definicijo \(\mu_G\), da si pogledamo predznake \(\mu_G\) na ničlah \(\lambda_i\).
+    \begin{align*}
+        \mu_G(\lambda_i) = \lambda_i \mu_{G-\{v\}}(\lambda_i) - \sum_{u\sim v} \mu_{G-\{u, v\}}(\lambda_i) \\
+        \sgn\left({\mu_G(\lambda_i)}\right) = 0 - (-1)^{i-(n-1)} (\lambda_i).
+    \end{align*}
+    Ker ima torej \(\mu_G\) različne predznake na \(\lambda_i\) in \(\lambda_{i+1}\) je med njima ničla. To nam da \(n-2\) različnih ničel. Ker je \(\mu_G\) moničen (torej gre spet proti \(+\infty\) ko gre \(x\to \infty\)) in \(\mu_G(\lambda_{n-1}) < 0\), obstaja še ena ničla \(\mu_G\), ki je večja od \(\lambda_{n-1}\). Podoben argument velja za ničlo manjšo od \(\lambda_1\), torej ima \(\mu_G\) \(n\) različnih ničel.
+\end{dokaz}
+
+Nadaljujemo z izrekom, ki nam bo omejil ničle polinoma prirejanja. Ta rezultat spet poteka v dveh korakih. Najprej bomo pokazali, da so ničle polinoma prirejanja grafa omejene z lastnimi vrednostmi ustreznega drevesa. Nato bomo pa pokazali, da so lastne vrednosti tega drevesa tudi omejene in sicer ravno z konstanto \(2\sqrt{d-1}\) - enako konstanto, kot v definiciji Ramanujanovih grafov. Ta izrek pokaže še dodatno pomembnost vrednosti \(2\sqrt{d-1}\), saj določa spektralni radij drevesa; neskončno \(d\)-regularno drevo je univerzalni krov vsakega \(d\)-regularnega grafa, spektralni radij univerzalnega krova pa je ravno \([-2\sqrt{d-1}, 2\sqrt{d-1}]\). Ramanujanovi grafi imajo torej vse netrivialne lastne vrednosti zajete v spektralnem radiju svojega univerzalnega krova\cite{hoory}.
+
+\begin{definicija}[Drevo poti]
+    Naj bo \(G=(V, E)\) graf. Drevo poti grafa \(G\) z izhodiščem v \(v\) je graf \(T_v(G)\), katerega vozlišča predstavljajo poti v grafu \(G\), ki se začnejo v \(v\) in ne vsebujejo nobenega vozlišča dvakrat, dva vozlišča pa sta povezana, če je pot za eno vozlišče enaka kot pot za drugo vozlišče, le skrajšana za en korak
+\end{definicija}
+\begin{primer}\hspace{0em}\vspace{1em}
+    Za graf \(G\) vzamemo slednji graf.
+    % TikZ for the graph on the left
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[node distance=1.5cm and 1cm, every node/.style={draw, circle}]
+            % Nodes
+            \node (a) {a};
+            \node[above right=of a] (b) {b};
+            \node[below right=of a] (c) {c};
+            \node[below right=of b] (d) {d};
+            \node[below right=of c] (e) {e};
+
+            % Edges
+            \draw (a) -- (b);
+            \draw (a) -- (c);
+            \draw (b) -- (d);
+            \draw (c) -- (d);
+            \draw (c) -- (e);
+        \end{tikzpicture}
+        \caption{Graf \(G\)}
+    \end{figure}
+    Potem je njegov graf poti \(T_a(G)\)
+
+    % TikZ for the paths on the right
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[node distance=1.5cm and 1.5cm]
+            % Nodes
+            \node (a) {a};
+            \node[above right=of a] (ab) {ab};
+            \node[below right=of a] (ac) {ac};
+            \node[right=of ab] (abd) {abd};
+            \node[right=of abd] (abdc) {abdc};
+            \node[right=of abdc] (abdce) {abdce};
+            \node[right=of ac] (acd) {acd};
+            \node[right=of acd] (acdb) {acdb};
+            \node[below right=of acd] (ace) {ace};
+
+            % Edges
+            \draw (a) -- (ab);
+            \draw (a) -- (ac);
+            \draw (ab) -- (abd);
+            \draw (abd) -- (abdc);
+            \draw (abdc) -- (abdce);
+            \draw (ac) -- (acd);
+            \draw (acd) -- (acdb);
+            \draw (acd) -- (ace);
+        \end{tikzpicture}
+        \caption{Drevo poti \(T_a(G)\)}
+    \end{figure}
+\end{primer}
 

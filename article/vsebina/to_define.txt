@@ -7,3 +7,5 @@ drevo
 
 Grafi nimajo izoliranih vozlišč in so vedno povezani
 lastna vrednost grafa (=lv adj)
+
+Bilo bi priročno če definiram v\in G in (v~u)\in G
