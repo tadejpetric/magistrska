@@ -242,3 +242,115 @@ Nadaljujemo z izrekom, ki nam bo omejil ničle polinoma prirejanja. Ta rezultat 
     \end{figure}
 \end{primer}
 
+\begin{lema}
+    Ta vsak graf \(G\) in vsako vozlišče \(v\) velja
+    \begin{align*}
+        \frac{\mu_G(x)}{\mu_{G-\{v\}}(x)} = \frac{\mu_{T_v(G)}(x)}{\mu_{T_v(G)-\{v\}}(x)}.
+    \end{align*}
+\end{lema}
+\begin{dokaz}
+    Dokaz bo potekal po indukciji na številu vozlišč v grafu \(G\). Enostavno je preveriti, da izrek velja na vseh grafih z manj kot tremi vozlišči. Predpostavimo torej, da velja na vseh grafih z manj vozlišč kot jih ima \(G\).
+
+    Sedaj razpišemo levo stran enačbe z uporabo rekurzivne definicije \(\mu\)
+
+    \begin{align*}
+        \frac{\mu_G(x)}{\mu_{G-\{v\}}(x)} &= \frac{x \mu_{G-\{v\}}(x) - \sum_{u\sim v}\mu_{G-\{u, v\}(x)}}{\mu_{G-\{v\}}(x)}\\
+        &= x - \sum_{u\sim v}\frac{\mu_{G-\{u, v\}(x)}}{\mu_{G-\{v\}}(x)}
+    \end{align*}
+    V izrazu v vsoti lahko opazimo recipročno trditev izreka za graf \(G-\{v\}\). Na temu izrazu lahko uporabimo indukcijsko predpostavko.
+    \begin{align}\label{lemamatching}
+        x - \sum_{u\sim v}\frac{\mu_{T_u(G-\{v\}) - \{u\}}(x)}{\mu_{T_u(G-\{v\})}(x)}
+    \end{align}
+    Če drevesu \(T_v(G)\) odstranimo korensko vozlišče \(v\), dobimo (disjunktno) unijo dreves \(T_u(G-\{v\})\) za vsak \(u\sim v\). To lahko zapišemo kot
+    \begin{align*}
+        T_v(G) - \{v\} = \bigcup_{u\sim v} T_u(G-\{v\}) \\
+        T_u(G - \{v\}) - \{u\} = \bigcup_{w\sim u, w\neq v} T_w(G-\{u, v\}).
+    \end{align*}
+    Spomnimo se, da koeficienti polinoma prirejanja štejejo število prirejanj. Če je graf nepovezan, kot je v primeru zgornje disjunktne unije, lahko prirejanja v vsaki komponenti izberemo neodvisno. Na primer, če ima graf dve komponenti in želimo poiskati prirejanje velikosti \(j\), lahko poiščemo vsa prirejanja velikosti \(i\) v prvi komponenti in vsa prirejanja velikosti \(j-i\) v drugi komponenti. Dobljeni števili zmnožimo, nato pa seštejemo za vse možne vrednosti \(i\). Opazimo, da to ravno ustreza množenju polinomov prirejanja! Seveda to velja v splošnem in lahko zapišemo
+    \begin{align*}
+        \mu_{T_v(G) - \{v\}}(x) = \prod_{u\sim v} \mu_{T_u(G-\{v\}) - \{u\}}(x).
+    \end{align*}
+
+    Z \(vu\) poimenujemo vozlišče v \(T_v(G)\), ki predstavlja pot od \(v\) do \(u\). Drevo \(T_v(G) - \{v\} - \{vu\}\) kot prej razpišemo kot unija vseh dreves poti, ki se začnejo v sosedih \(v\). Nato iz te unije vzamemo drevo s korenom \(vu\) in tudi tega spremenimo v unijo, da dobimo
+    \begin{align*}
+        T_v(G) - \{v\} - \{vu\} &= \left(\bigcup_{w\sim v, w\neq u} T_w(G-\{v\})\right) \cup \left(\bigcup_{w\sim u, w\neq v} T_w(G-\{v,u\})\right)\\
+        &= \left(\bigcup_{w\sim v, w\neq u} T_w(G-\{v\})\right) \cup (T_u(G-\{v\}) - \{u\})
+    \end{align*}
+    Spet so ta drevesa disjunktnam torej velja 
+    \begin{align*}
+        \mu_{T_v(G) - \{v\} - \{vu\}}(x) = \left(\prod_{w\sim v, w\neq u} \mu_{T_w(G-\{v\})}(x)\right) \mu_{T_u(G-\{v\}) - \{u\}}(x) \\ 
+        \mu_{T_u(G-\{v\}) - \{u\}}(x) = \frac{\mu_{T_v(G) - \{v\} - \{vu\}}(x)}{\prod_{w\sim v, w\neq u} \mu_{T_w(G-\{v\})}(x)}
+    \end{align*}
+
+    Zdaj lahko dobljeni produkt vstavimo v izraz \ref{lemamatching}.
+    \begin{align*}
+        \frac{\mu_G(x)}{\mu_{G-\{v\}}(x)} &=x - \sum_{u\sim v}\frac{\mu_{T_v(G) - \{v\} - \{vu\}}(x)}{(\prod_{w\sim v, w\neq u} \mu_{T_w(G-\{v\})}(x))(\mu_{T_u(G-\{v\})}(x))}\\
+        &= x - \sum_{u\sim v}\frac{\mu_{T_v(G) - \{v\} - \{vu\}}(x)}{(\prod_{w\sim v} \mu_{T_w(G-\{v\})}(x))}\\
+        &= x - \sum_{u\sim v}\frac{\mu_{T_v(G) - \{v\} - \{vu\}}(x)}{\mu_{T_v(G-\{v\})}(x)}\\
+        &= \frac{x \mu_{T_v(G-\{v\})}(x) - \sum_{u\sim v} \mu_{T_v(G) - \{v\} - \{vu\}}(x)}{\mu_{T_v(G-\{v\})}(x)}
+    \end{align*}
+    Da zaključimo dokaz le uporabimo rekurzivno definicijo polinoma prirejanja.
+    \begin{align*}
+        \frac{\mu_G(x)}{\mu_{G-\{v\}}(x)} = \frac{\mu_{T_v(G)}(x)}{\mu_{T_v(G-\{v\})}(x)}
+    \end{align*}
+\end{dokaz}
+
+To lemo uporabimo, da pokažemo, da so ničle polinoma prirejanja nekega grafa tudi ničle polinoma prirejanja njegovega grafa poti.
+% https://www.cs.yale.edu/homes/spielman/561/lect26-18.pdf
+
+\begin{izrek}
+    Za poljubno vozlišče \(v\in G\), polinom \(\mu_G\) deli polinom \(\mu_{T_v(G)}\).
+\end{izrek}
+\begin{dokaz}
+    Dokaz poteka po indukciji na številu vozlišč grafa \(G\). Enostavno je preveriti za grafe z manj kot tremi vozlišči. Predpostavimo torej, da izrek velja za vse grafe z manj vozlišči kot jih ima \(G\), torej za poljubno povezavo \(u\sim v\), \(\mu_{G-\{v\}}\) deli \(\mu_{T_u(G-\{v\})}\).
+
+    Ker je
+    \begin{align*}
+        T_v(G) - \{v\} = \bigcup_{w\sim v} T_w(G-\{v\})\\
+        \mu_{T_v(G) - \{v\}} = \prod_{w\sim v} \mu_{T_w(G-\{v\})},
+    \end{align*}
+    vemo, da \(\mu_{T_u(G-\{v\})}\) deli \(\mu_{T_v(G) - \{v\}}\). Torej tudi \(\mu_{G-\{v\}}\) deli \(\mu_{T_v(G) - \{v\}}\) in izraz
+    \begin{align*}
+        \frac{\mu_{T_v(G) - \{v\}}(x)}{\mu_{G-\{v\}}(x)}
+    \end{align*}
+    je polinom v \(x\). Po lemi pa je enak izrazu
+    \begin{align*}
+        \frac{\mu_{T_v(G)}(x)}{\mu_{G}(x)},
+    \end{align*}
+    torej \(\mu_G\) deli \(\mu_{T_v(G)}\).
+\end{dokaz}
+
+Trditev izreka lahko izrazimo tudi drugače: vse ničle polinoma prirejanja grafa \(G\) so tudi ničle polinoma prirejanja njegovega grafa poti. Če torej znamo omejiti ničle polinoma prirejanja grafa poti, znamo omejiti tudi ničle polinoma prirejanja grafa. Dokaz, da so te ničle res omejene, bo potekal v dveh korakih. Najprej pokažemo, da je polinom prirejanja drevesa enak kot njegov karakteristični polinom, nato pa pokažemo, da so ničle karakterističnega polinoma drevesa omejene.
+
+\begin{izrek}
+    Če je \(T\) drevo in \(A\) njegova sosednostna matrika, potem je
+    \begin{align*}
+        \mu_T(x) = \chi_A(x).
+    \end{align*}
+\end{izrek}
+\begin{dokaz}
+    Po definiciji razpišemo karakteristični polinom
+    \begin{align*}
+        \chi_A(x) &= \det(xI - A)\\
+        &= \sum_{\pi \in S_n}\sgn(\pi)x^{\abs{\{v \mid \pi(v) = v\}}}\prod_{v \mid \pi(v)\neq v}(-A)_{v,\pi(v)}.
+    \end{align*}
+
+    Pokazali bomo, da so za vsote pomembne le involucije, torej permutacije \(\pi\), za katere velja \(\pi(\pi(v)) = v\) za vsak \(v\). Če je \(\pi\) permutacija, za katero obstaja \(v\), da \(\pi(\pi(v))\neq v\), potem ima ta permutacija nek cikel dolžine \(k\geq 3\). Da je sumand, ki pripada tej permutaciji neničelen morajo biti vsi elementi sosednostne matrike, ki pripadajo cilku, enaki \(1\). To bi pa pomenilo, da ima tudi graf cikel, kar pa ni mogoče, saj je \(T\) drevo.
+
+    Involucije v grafu pa definirajo prirejanja. Imajo samo fiksne točke in cikle dolžine \(2\). Da to pokažemo vzamemo neko involucijo, ki pripada neničelnemu sumandu. Ker je involucija ima le cikle dolžine 2 in fiksne točke, vsi cikli pa pripadajo elementom, ki so neničelni v sosednostni matriki - torej sta vozlišči povezani in vsak cikel predstavlja povezavo. V permutaciji pa niste predstavljeni dve incidentni povezavi, saj bi to pomenilo, da imamo cikel, ki je daljši od 2. To pa je ravno definicija prirejanja. Če ima involucija \(k\) ciklov, potem jo prištejemo k koeficientu \(x^{n-2k}\), znak permutacije pa je \((-1)^k\), oboje ravno kot v definiciji polinoma prirejanja.
+\end{dokaz}
+
+Sedaj lahko izračunamo lastne vrednosti drevesa.
+
+\begin{izrek}
+    Naj bo \(T\) drevo, v katerem so vsa vozlišča stopnje kvečjemu \(d\). Potem so vse lastne vrednosti \(T\) po absolutni vrednosti kvečjemu \(2\sqrt{d-1}\).
+\end{izrek}
+\begin{dokaz}
+    Naj bo \(A\) sosednostna matrika \(T\). Vzamemo poljubno vozlišče \(v\in T\) za koren drevesa in definiramo funkcijo \(h\) na vozliščih \(T\) kot razdalja vozlišča do korena.
+
+    Definiramo še diagonalno matriko \(D\) kot
+    \begin{align*}
+        D_{v, v} = \sqrt{d-1}^{h(v)}.
+    \end{align*}
+    Matrika je seveda obrnljiva in lastne vrednosti \(A\) so enake lastnim vrednostim \(D A D^{-1}\)
+\end{dokaz}

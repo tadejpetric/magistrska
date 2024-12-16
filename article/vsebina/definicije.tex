@@ -224,11 +224,22 @@ Računanje lastnih vrednosti regularnega grafa nam olajša tudi lastnost, da je 
 \begin{izrek}[Največja vrednost \(d\)-regularnega grafa]
     Največja lastna vrednost \(d\)-regularnega grafa je \(d\).
 \end{izrek}
-\begin{dokaz}
-    Lastni vektor \(d\)-regularnega grafa \(G\) za lastno vrednost \(d\) je vedno vektor samih enic, saj ima vsaka vrstica sosednostne matrike natanko \(n\) enic.
 
-    Večje lastne vrednosti ne obstaja, saj so elementi sosednostne matrike samo \(0\) in \(1\). Če bi obstajala lastna vrednost \(\lambda > d\), potem si ogledamo največji element lastnega vektorja za to lastno vrednost, \(x\). Ker ima matrika natanko \(d\) enic v vsaki vrstici (in ostale vrednosti \(0\)), bi moralo obstajati \(d\) elementov vektorja, ki se skupaj sešteje v \(\lambda x\). Ker pa je vsak element manjši ali enak \(x\), imamo jih pa \(d\) lahko dosežemo kvečjemu \(d \times x\), torej večja lastna vrednost ne obstaja.
+Izrek bomo malo posplošili, kar nam bo v pomoč kasneje
+\begin{izrek}[NI PERON FROBENIUSOV ]\ref{perron-frobenius}
+    Naj bo \(A\) matrika z nenegativnimi vrednostmi, ki ima vsoto elementov v vsaki kvečjemu \(d\). Potem je največja lastna vrednost \(A\) manjša ali enaka \(d\).
+\end{izrek}
+\begin{dokaz}
+    Naj bo \(v\) lastni vektor za lastno vrednost \(\lambda\) matrike \(A\). Naj bo \(v_i\) maksimalen element vektorja \(v\). Sedaj izračunamo \(i\)-to vrstico produkta \(Av\).
+    \begin{align*}
+        (Av)_i = \sum_{k=1}^n A_{i,k}v_k \leq \sum_{k=1}^n A_{i,k}v_i \leq d\cdot v_i
+    \end{align*}
 \end{dokaz}
+%\begin{dokaz}
+%    Lastni vektor \(d\)-regularnega grafa \(G\) za lastno vrednost \(d\) je vedno vektor samih enic, saj ima vsaka vrstica sosednostne matrike natanko \(n\) enic.
+%
+%    Večje lastne vrednosti ne obstaja, saj so elementi sosednostne matrike samo \(0\) in \(1\). Če bi obstajala lastna vrednost \(\lambda > d\), potem si ogledamo največji element lastnega vektorja za to lastno vrednost, \(x\). Ker ima matrika natanko \(d\) enic v vsaki vrstici (in ostale vrednosti \(0\)), bi moralo obstajati \(d\) elementov vektorja, ki se skupaj sešteje v \(\lambda x\). Ker pa je vsak element manjši ali enak \(x\), imamo jih pa \(d\) lahko dosežemo kvečjemu \(d \times x\), torej večja lastna vrednost ne obstaja.
+%\end{dokaz}
 Če je graf regularen torej, potrebujemo le izračunati njegovo drugo največjo lastno vrednost.
 \subsection{Cheegerjeva neenakost}
 Opazili smo, da se Cheegerjeva konstanta in spektralna vrzel obnašata podobno. Definiciji pa nista enakovredni - obstajajo na primer grafi, kjer lahko dodamo povezave ampak znižamo spektralno vrzel (medtem, ko bo Cheegerjeva konstanta ne more postati nižja).
