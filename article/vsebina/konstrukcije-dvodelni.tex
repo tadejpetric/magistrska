@@ -32,7 +32,7 @@ Posebej poudarimo, da \(2\)-dvig ni nujno povezan graf. Če so vse povezave v dv
 Ime izvira iz teorije kategorij. Homomorfizmi grafov preslikajo vozlišča v vozlišča in povezave v povezave. Enostavno lahko definiramo projekcijo iz \(2\)-dviga \(\pi: G'\to G\) tako, da \(\iota_i(v)\mapsto v\), prav tako pa \(\iota_i(u)\sim\iota_j(v)\mapsto u\sim v\) za \(i, j\in \{1,2\}\). Sedaj če imamo poljuben homomorfizem \(\phi: H\to G\) ga lahko faktoriziramo preko \(\pi\). Vsako preslikavo povezav \(\phi\) lahko razumemo kot kompozitum dveh preslikav; prvo \(\phi'\), ki preslika \(u\sim v\) v \(\iota_i(\phi(u)) \sim \iota_j(\phi(v))\) (za primerno izbiro \(i\) in \(j\)) in projekcije \(\pi\). Tako lahko vsak homomorfizem \(\phi: H\to G\) zapišemo kot \(\phi = \pi\circ \phi'\) in kategorično bi bil \(\phi'\) dvig preslikave \(\phi\) na \(G'\).
 
 \begin{definicija}[Značenje dviga]
-    Značenje grafa \(G = (V, E)\) je preslikava \(s: E\to \{-1, +1\}\).
+    Značenje grafa \(G = (V, E)\) je preslikava \(s: E\to \{-1, +1\}\). Če imamo povezave oštevilčene od \(1\) do \(m\) lahko ekvivalentno definiramo \(s\in \{-1, +1\}^m\).
 
     Značenje, ki pripada \(2\)-dvigu \(G'\) grafa \(G\) je preslikava \(s': E \to \{-1, +1\}\), kjer \(u\sim v \mapsto 1\), če povezavi \(u\sim v\) v dvigu pripada povezava prvega tipa in \(-1\), če pripada povezava drugega tipa.
 \end{definicija}
@@ -52,7 +52,7 @@ Ta definicija ima presenetljive posledice, saj lastne vrednosti sosednostne matr
 \begin{dokaz}
     Povezave grafa razdelimo na dva dela, na povezave, ki v dvigu postanejo povezave prvega tipa in na povezave, ki postanejo povezave drugega tipa
     \begin{align*}
-        E_1 = s^{-1}(1) & E_2 = s^{-1}(-1).
+        E_1 = s^{-1}(1) &  & E_2 = s^{-1}(-1).
     \end{align*}
     Te dve podmnožici definirata podgrafa \((V, E_1)\) in \((V, E_2)\) grafa \(G\). Z \(A_1\) in \(A_2\) označimo njuni sosednostni matriki (torej \(A = A_1 + A_2\) in \(A_s = A_1 - A_2\)).
 
@@ -184,7 +184,7 @@ Prva pomembna lastnost polinoma prirejanja je, da znamo omejiti njegove ničle t
     Ker ima torej \(\mu_G\) različne predznake na \(\lambda_i\) in \(\lambda_{i+1}\) je med njima ničla. To nam da \(n-2\) različnih ničel. Ker je \(\mu_G\) moničen (torej gre spet proti \(+\infty\) ko gre \(x\to \infty\)) in \(\mu_G(\lambda_{n-1}) < 0\), obstaja še ena ničla \(\mu_G\), ki je večja od \(\lambda_{n-1}\). Podoben argument velja za ničlo manjšo od \(\lambda_1\), torej ima \(\mu_G\) \(n\) različnih ničel.
 \end{dokaz}
 
-Nadaljujemo z izrekom, ki nam bo omejil ničle polinoma prirejanja. Ta rezultat spet poteka v dveh korakih. Najprej bomo pokazali, da so ničle polinoma prirejanja grafa omejene z lastnimi vrednostmi ustreznega drevesa. Nato bomo pa pokazali, da so lastne vrednosti tega drevesa tudi omejene in sicer ravno z konstanto \(2\sqrt{d-1}\) - enako konstanto, kot v definiciji Ramanujanovih grafov. Ta izrek pokaže še dodatno pomembnost vrednosti \(2\sqrt{d-1}\), saj določa spektralni radij drevesa; neskončno \(d\)-regularno drevo je univerzalni krov vsakega \(d\)-regularnega grafa, spektralni radij univerzalnega krova pa je ravno \([-2\sqrt{d-1}, 2\sqrt{d-1}]\). Ramanujanovi grafi imajo torej vse netrivialne lastne vrednosti zajete v spektralnem radiju svojega univerzalnega krova\cite{hoory}.
+Nadaljujemo z izrekom, ki nam bo omejil ničle polinoma prirejanja. Ta rezultat spet poteka v dveh korakih. Najprej bomo pokazali, da so ničle polinoma prirejanja grafa omejene z lastnimi vrednostmi ustreznega drevesa. Nato bomo pa pokazali, da so lastne vrednosti tega drevesa tudi omejene in sicer ravno z konstanto \(2\sqrt{d-1}\) - enako konstanto, kot v definiciji Ramanujanovih grafov. Ta izrek pokaže še dodatno pomembnost vrednosti \(2\sqrt{d-1}\), saj omejuje spektralni radij drevesa; neskončno \(d\)-regularno drevo je univerzalni krov vsakega \(d\)-regularnega grafa, spektralni radij univerzalnega krova pa je ravno \(2\sqrt{d-1}\). Ramanujanovi grafi imajo torej vse netrivialne lastne vrednosti zajete v spektralnem radiju svojega univerzalnega krova\cite{hoory}.
 
 \begin{definicija}[Drevo poti]
     Naj bo \(G=(V, E)\) graf. Drevo poti grafa \(G\) z izhodiščem v \(v\) je graf \(T_v(G)\), katerega vozlišča predstavljajo poti v grafu \(G\), ki se začnejo v \(v\) in ne vsebujejo nobenega vozlišča dvakrat, dva vozlišča pa sta povezana, če je pot za eno vozlišče enaka kot pot za drugo vozlišče, le skrajšana za en korak
@@ -243,7 +243,7 @@ Nadaljujemo z izrekom, ki nam bo omejil ničle polinoma prirejanja. Ta rezultat 
 \end{primer}
 
 \begin{lema}
-    Ta vsak graf \(G\) in vsako vozlišče \(v\) velja
+    Za vsak graf \(G\) in vsako vozlišče \(v\) velja
     \begin{align*}
         \frac{\mu_G(x)}{\mu_{G-\{v\}}(x)} = \frac{\mu_{T_v(G)}(x)}{\mu_{T_v(G)-\{v\}}(x)}.
     \end{align*}
@@ -254,8 +254,8 @@ Nadaljujemo z izrekom, ki nam bo omejil ničle polinoma prirejanja. Ta rezultat 
     Sedaj razpišemo levo stran enačbe z uporabo rekurzivne definicije \(\mu\)
 
     \begin{align*}
-        \frac{\mu_G(x)}{\mu_{G-\{v\}}(x)} &= \frac{x \mu_{G-\{v\}}(x) - \sum_{u\sim v}\mu_{G-\{u, v\}(x)}}{\mu_{G-\{v\}}(x)}\\
-        &= x - \sum_{u\sim v}\frac{\mu_{G-\{u, v\}(x)}}{\mu_{G-\{v\}}(x)}
+        \frac{\mu_G(x)}{\mu_{G-\{v\}}(x)} & = \frac{x \mu_{G-\{v\}}(x) - \sum_{u\sim v}\mu_{G-\{u, v\}(x)}}{\mu_{G-\{v\}}(x)} \\
+                                          & = x - \sum_{u\sim v}\frac{\mu_{G-\{u, v\}(x)}}{\mu_{G-\{v\}}(x)}
     \end{align*}
     V izrazu v vsoti lahko opazimo recipročno trditev izreka za graf \(G-\{v\}\). Na temu izrazu lahko uporabimo indukcijsko predpostavko.
     \begin{align}\label{lemamatching}
@@ -273,21 +273,21 @@ Nadaljujemo z izrekom, ki nam bo omejil ničle polinoma prirejanja. Ta rezultat 
 
     Z \(vu\) poimenujemo vozlišče v \(T_v(G)\), ki predstavlja pot od \(v\) do \(u\). Drevo \(T_v(G) - \{v\} - \{vu\}\) kot prej razpišemo kot unija vseh dreves poti, ki se začnejo v sosedih \(v\). Nato iz te unije vzamemo drevo s korenom \(vu\) in tudi tega spremenimo v unijo, da dobimo
     \begin{align*}
-        T_v(G) - \{v\} - \{vu\} &= \left(\bigcup_{w\sim v, w\neq u} T_w(G-\{v\})\right) \cup \left(\bigcup_{w\sim u, w\neq v} T_w(G-\{v,u\})\right)\\
-        &= \left(\bigcup_{w\sim v, w\neq u} T_w(G-\{v\})\right) \cup (T_u(G-\{v\}) - \{u\})
+        T_v(G) - \{v\} - \{vu\} & = \left(\bigcup_{w\sim v, w\neq u} T_w(G-\{v\})\right) \cup \left(\bigcup_{w\sim u, w\neq v} T_w(G-\{v,u\})\right) \\
+                                & = \left(\bigcup_{w\sim v, w\neq u} T_w(G-\{v\})\right) \cup (T_u(G-\{v\}) - \{u\})
     \end{align*}
-    Spet so ta drevesa disjunktnam torej velja 
+    Spet so ta drevesa disjunktnam torej velja
     \begin{align*}
-        \mu_{T_v(G) - \{v\} - \{vu\}}(x) = \left(\prod_{w\sim v, w\neq u} \mu_{T_w(G-\{v\})}(x)\right) \mu_{T_u(G-\{v\}) - \{u\}}(x) \\ 
+        \mu_{T_v(G) - \{v\} - \{vu\}}(x) = \left(\prod_{w\sim v, w\neq u} \mu_{T_w(G-\{v\})}(x)\right) \mu_{T_u(G-\{v\}) - \{u\}}(x) \\
         \mu_{T_u(G-\{v\}) - \{u\}}(x) = \frac{\mu_{T_v(G) - \{v\} - \{vu\}}(x)}{\prod_{w\sim v, w\neq u} \mu_{T_w(G-\{v\})}(x)}
     \end{align*}
 
     Zdaj lahko dobljeni produkt vstavimo v izraz \ref{lemamatching}.
     \begin{align*}
-        \frac{\mu_G(x)}{\mu_{G-\{v\}}(x)} &=x - \sum_{u\sim v}\frac{\mu_{T_v(G) - \{v\} - \{vu\}}(x)}{(\prod_{w\sim v, w\neq u} \mu_{T_w(G-\{v\})}(x))(\mu_{T_u(G-\{v\})}(x))}\\
-        &= x - \sum_{u\sim v}\frac{\mu_{T_v(G) - \{v\} - \{vu\}}(x)}{(\prod_{w\sim v} \mu_{T_w(G-\{v\})}(x))}\\
-        &= x - \sum_{u\sim v}\frac{\mu_{T_v(G) - \{v\} - \{vu\}}(x)}{\mu_{T_v(G-\{v\})}(x)}\\
-        &= \frac{x \mu_{T_v(G-\{v\})}(x) - \sum_{u\sim v} \mu_{T_v(G) - \{v\} - \{vu\}}(x)}{\mu_{T_v(G-\{v\})}(x)}
+        \frac{\mu_G(x)}{\mu_{G-\{v\}}(x)} & =x - \sum_{u\sim v}\frac{\mu_{T_v(G) - \{v\} - \{vu\}}(x)}{(\prod_{w\sim v, w\neq u} \mu_{T_w(G-\{v\})}(x))(\mu_{T_u(G-\{v\})}(x))} \\
+                                          & = x - \sum_{u\sim v}\frac{\mu_{T_v(G) - \{v\} - \{vu\}}(x)}{(\prod_{w\sim v} \mu_{T_w(G-\{v\})}(x))}                                \\
+                                          & = x - \sum_{u\sim v}\frac{\mu_{T_v(G) - \{v\} - \{vu\}}(x)}{\mu_{T_v(G-\{v\})}(x)}                                                  \\
+                                          & = \frac{x \mu_{T_v(G-\{v\})}(x) - \sum_{u\sim v} \mu_{T_v(G) - \{v\} - \{vu\}}(x)}{\mu_{T_v(G-\{v\})}(x)}
     \end{align*}
     Da zaključimo dokaz le uporabimo rekurzivno definicijo polinoma prirejanja.
     \begin{align*}
@@ -306,7 +306,7 @@ To lemo uporabimo, da pokažemo, da so ničle polinoma prirejanja nekega grafa t
 
     Ker je
     \begin{align*}
-        T_v(G) - \{v\} = \bigcup_{w\sim v} T_w(G-\{v\})\\
+        T_v(G) - \{v\} = \bigcup_{w\sim v} T_w(G-\{v\}) \\
         \mu_{T_v(G) - \{v\}} = \prod_{w\sim v} \mu_{T_w(G-\{v\})},
     \end{align*}
     vemo, da \(\mu_{T_u(G-\{v\})}\) deli \(\mu_{T_v(G) - \{v\}}\). Torej tudi \(\mu_{G-\{v\}}\) deli \(\mu_{T_v(G) - \{v\}}\) in izraz
@@ -322,17 +322,17 @@ To lemo uporabimo, da pokažemo, da so ničle polinoma prirejanja nekega grafa t
 
 Trditev izreka lahko izrazimo tudi drugače: vse ničle polinoma prirejanja grafa \(G\) so tudi ničle polinoma prirejanja njegovega grafa poti. Če torej znamo omejiti ničle polinoma prirejanja grafa poti, znamo omejiti tudi ničle polinoma prirejanja grafa. Dokaz, da so te ničle res omejene, bo potekal v dveh korakih. Najprej pokažemo, da je polinom prirejanja drevesa enak kot njegov karakteristični polinom, nato pa pokažemo, da so ničle karakterističnega polinoma drevesa omejene.
 
-\begin{izrek}
+\begin{izrek}\label{drevo-karakteristicni}
     Če je \(T\) drevo in \(A\) njegova sosednostna matrika, potem je
     \begin{align*}
         \mu_T(x) = \chi_A(x).
     \end{align*}
 \end{izrek}
 \begin{dokaz}
-    Po definiciji razpišemo karakteristični polinom
+    Po definiciji razpišemo karakteristični polinom in upoštevamo, da je \(A\) na diagonali ničelna.
     \begin{align*}
-        \chi_A(x) &= \det(xI - A)\\
-        &= \sum_{\pi \in S_n}\sgn(\pi)x^{\abs{\{v \mid \pi(v) = v\}}}\prod_{v \mid \pi(v)\neq v}(-A)_{v,\pi(v)}.
+        \chi_A(x) & = \det(xI - A)                                                                                         \\
+                  & = \sum_{\pi \in S_n}\sgn(\pi)x^{\abs{\{v \mid \pi(v) = v\}}}\prod_{v \mid \pi(v)\neq v}(-A)_{v,\pi(v)}
     \end{align*}
 
     Pokazali bomo, da so za vsote pomembne le involucije, torej permutacije \(\pi\), za katere velja \(\pi(\pi(v)) = v\) za vsak \(v\). Če je \(\pi\) permutacija, za katero obstaja \(v\), da \(\pi(\pi(v))\neq v\), potem ima ta permutacija nek cikel dolžine \(k\geq 3\). Da je sumand, ki pripada tej permutaciji neničelen morajo biti vsi elementi sosednostne matrike, ki pripadajo cilku, enaki \(1\). To bi pa pomenilo, da ima tudi graf cikel, kar pa ni mogoče, saj je \(T\) drevo.
@@ -352,5 +352,142 @@ Sedaj lahko izračunamo lastne vrednosti drevesa.
     \begin{align*}
         D_{v, v} = \sqrt{d-1}^{h(v)}.
     \end{align*}
-    Matrika je seveda obrnljiva in lastne vrednosti \(A\) so enake lastnim vrednostim \(D A D^{-1}\)
+    Matrika je seveda obrnljiva in lastne vrednosti \(A\) so enake lastnim vrednostim \(D A D^{-1}\). Matrika \(DAD^{-1}\) ima vse elemente nenegativne, torej je njena največja lastna vrednost manjša ali enaka največji vsoti njene vrstice\ref{def-najvecja-lv}. Če pokežamo torej, da so vsote vseh vrstic manjše od \(2\sqrt{d-1}\), bomo dokazali trditev. Ločimo tri primere: vrstica, ki pripada korenu, vrstice, ki pripadajo listom in vrstice, ki pripadajo ostalim vozliščem.
+
+    Najprej si oglejmo vrstico, ki pripada korenu. Matrika \(A\) ima v tej vrstici kvečjemu \(d\) elementov, vsak od njih pa se zmnoži z \(\sqrt{d-1}^{-1}\), ko množimo iz desne z \(D^{-1}\) in z \(1\) ko množimo z \(D\) iz leve. Torej je vsota elementov v tej vrstici kvečjemu \(d/\sqrt{d-1}\), kar je manjše od \(2\sqrt{d-1}\) za \(d\geq 2\).
+
+    Nato si oglejmo vrstice, ki pripadajo listom. Naj bo \(v\) ta list. Ima le enega soseda, ta pa ima višino manjšo za ena. Ko množimo \(A\) iz desne torej dobimo vrstico, ki ima le en element neničelen, ta pa postane \(sqrt{d-1}^{-h(v)+1}\). Ko to vrstico množimo iz leve dobimo vrstico, ki ima le en element neničeln, ta pa je \(sqrt{d-1}^{-h(v)+1}\sqrt{d-1}^{h(v)}\) oziroma \(\sqrt{d-1}\), spet manjše od \(2\sqrt{d-1}\)
+
+    Preostala vozlišča \(v\) imajo en element, ki ima višino manjšo za ena in kvečjemu \(d-1\) elementov, ki pa imajo višino večjo za ena. Torej bo po množenju z desne v vrstici en element \(\sqrt{d-1}^{-h(v)+1}\) in kvečjemu \(d-1\) elementov \(\sqrt{d-1}^{-h(v)-1}\). Ko množimo iz leve se vsi elementi pomnožijo z \(\sqrt{d-1}^{h(v)}\). Vsota je toraj kvečjemu \(\sqrt{d-1} + (d-1)/\sqrt{d-1}\) oziroma \(2\sqrt{d-1}\).
 \end{dokaz}
+
+Zdaj ko imamo informacije o ničlah polinoma prirejanja lahko povemo kako so le te povezane z značeno sosednostno matriko dviga.
+
+
+
+\begin{izrek}\label{znacenje-prirejanje}
+    Za značenje \(s\) in značeno sosednostno matriko \(A_s\) naj bo \(f_s(x) = \det(xI - A_s)\) karakteristični polinom. Potem velja
+    \begin{align*}
+        \mathbb{E}_{s\in \{\pm 1\}^m} f_s(x) = \mu_G(x).
+    \end{align*}
+\end{izrek}
+\begin{dokaz}
+    Z \(\mathrm{sym}(S)\) označimo množico vseh permutacij na množici \(S\) in z \(\abs{\pi}\) označimo število inverzij permutacije \(\pi\). Z \(n\) označimo število vozlišč. Determinanto najprej razpišemo kot vsoto po permutacijah \(\sigma\in \mathrm{sym}([n])\), nato pa to vsoto spremenimo v vsoto po vseh permutacijah, ki imajo \(k\) fiksnih točk (ter seštejemo vse \(k\)). Zaradi preglednosti uporabimo zapis \(\mathrm{fix(S)} = \{\sigma \in \mathrm{sym}([n]) \mid \forall i\in S.\, \sigma(i) = i \}\).
+    \begin{align*}
+        \det(xI - A_s) & = \sum_{\sigma\in \mathrm{sym}([n])}\sgn(\sigma)\prod_{i=1}^n(xI-A_s)_{i, \sigma(i)} \\
+                       & = \sum_{k=0}^n \sum_{\substack{S \subseteq [n]                                       \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{fix(S)}}\sgn(\sigma)\prod_{i=1}^n(xI-A_s)_{i, \sigma(i)}\\
+                       & = \sum_{k=0}^n \sum_{\substack{S \subseteq [n]                                       \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{fix(S)}}\sgn(\sigma) x^{k} \prod_{i\in \overline{S}} (-A_s)_{i, \sigma(i)}\\
+    \end{align*}
+    Na produkt lahko gledamo kot produkt po določenih povezavah v grafu. Iteriramo po vseh možnih vrednostih \(i\), ki niso fiksne točke permutacije. Če \((i, \sigma(i))\) ni povezava v grafu je ta produkt enak \(0\), torej upoštevamo le tiste permutacije, kjer je ali \(i\) fiksna točka ali pa \((i, \sigma(i))\) povezava v grafu. To označimo z \(\mathrm{efix}(S) = \{\sigma \in \mathrm{fix(S)} \mid \forall i\in \overline{S}.\, (i, \sigma(i))\in E \}\).
+    \begin{align*}
+        \det(xI - A_s) = \sum_{k=0}^n x^{k} \sum_{\substack{S \subseteq [n] \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{efix(S)}}\sgn(\sigma)  \prod_{(i, \sigma(i))\in E} (-A_s)_{i, \sigma(i)}
+    \end{align*}
+    Na povezavah pa je vrednost značene sosednostne matrike enaka značenju \(s\).
+    \begin{align*}
+        \det(xI - A_s) = \sum_{k=0}^n x^{k} \sum_{\substack{S \subseteq [n] \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{efix(S)}}\sgn(\sigma)  \prod_{(i, \sigma(i))\in E} -s(i, \sigma(i))
+    \end{align*}
+
+    Zdaj si ogledamo pričakovano vrednost.
+    \begin{align*}
+        \mathbb{E}_{s\in \{\pm 1\}^m} \det(xI - A_s) & = \mathbb{E}_{s\in \{\pm 1\}^m} \sum_{k=0}^n x^{k} \sum_{\substack{S \subseteq [n] \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{efix(S)}}\sgn(\sigma)  \prod_{(i, \sigma(i))\in E} -s(i, \sigma(i)) \\
+                                                     & = \sum_{k=0}^n x^{k} \sum_{\substack{S \subseteq [n]                               \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{efix(S)}} \sgn(\sigma)  \mathbb{E}_{s\in \{\pm 1\}^m}  \prod_{(i, \sigma(i))\in E} -s(i, \sigma(i)) \\
+    \end{align*}
+    Najprej si oglejmo produkt \(\prod s\) (brez predznakov). Ker računamo pričakovano vrednost po vseh možnih značenjih je \(\mathbb{E}(s(i,j)) = 0\). Če izberemo \((i,j)\) in \(A\subset [n]\times [n]\), kjer \((i,j) \notin A\) in \((j,i)\notin A\), potem je \(s(i,j)\) neodvisen od vseh ostalih \(s(k,l)\) (za \((k,l)\in A\)), saj lahko značenje vsakega robova izberemo neodvisno od ostalih. Torej je 
+    \begin{align*}
+        \mathbb{E}\left(s(i,j) \prod_{(k,l)\in A} s(k,l)\right) &= \mathbb{E}(s(i,j))\mathbb{E}\left(\prod_{(k,l)\in A} s(k,l)\right)\\
+        &= 0.
+    \end{align*}
+    To se ne zgodi v primeru \(2\)-cikla, kjer je \(\mathbb{E}(s(i,j)s(j,i)) = 1\). Torej bodo vsi produkti ničelni, razen tisti, ki jih sestavljajo samo \(2\)-cikli in fiksne točke. Kot smo pa že videli v dokazu izreka \ref{drevo-karakteristicni} take permutacije predstavljajo prirejanja v grafu. Produkt bo torej \(1\), če permutacija predstavlja prirejanje in \(0\) sicer.
+    
+    Zdaj določimo še predznak sumanda. Znak permutacije je določen s številom inverzij, ki je enako številu povezav v prirejanju (vsaka inverzija predstavlja krajišča povezave). Imamo \(n-k\) vozlišč, ki so del prirejanja, torej imamo \(\frac{n-k}{2}\) povezav. Tako je predznak \(\sgn{\sigma} = (-1)^{\frac{n-k}{2}}\). Produkt \(\prod -s\) množi sodo mnogo elementov (saj je sestavljen iz samih \(2\)-ciklov), torej se negativni predznaki \(-s\) pokrajšajo.
+    \begin{align*}
+        \mathbb{E}_{s\in \{\pm 1\}^m} \det(xI - A_s) & =\sum_{k=0}^n x^{k} \sum_{\substack{S \subseteq [n]        \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{efix(S)}} (-1)^{\frac{n-k}{2}} \\
+                                                     & =\sum_{k=0}^n x^{k} m_{\frac{n-k}{2}} (-1)^{\frac{n-k}{2}} \\
+                                                     & = \sum_{i \geq 0} m_i (-1)^{i} x^{n-2i}
+    \end{align*}
+\end{dokaz}
+
+Preden se lotimo glavnega dela dokaza potrebujemo še lemo, ki opisuje ničle značenih karakterističnih polinomov.
+
+\subsection{Realno stabilni polinomi}
+Cilj tega poglavja sprva gleda malo nenavaden. Dokazati želimo, da so, za poljubna števila \(p_1, \ldots, p_m \in [0,1]\) ničle polinoma
+\begin{align*}
+    \sum_{s\in \{\pm 1\}^m} \left(\prod_{\substack{i\\s_i=1}} p_i\right) \left(\prod_{\substack{i\\s_i=-1}} 1- p_i\right) f_s(x)
+\end{align*}
+realne.
+% TODO: povej zakaj želimo to pokazati
+
+Za dokaz potrebujemo še nekaj definicij in lem. Želimo posplošiti pojem realne ničle na polinome večih spremenljivk.
+\begin{definicija}[Realno stabilen polinom]
+    Polinom \(f\in \mathbb R[z_1, \ldots, z_n]\) je realno stabilen, če je ničelen polinom ali pa
+    \begin{align*}
+        \forall i.\, \Im(z_i) > 0 \implies f(z_1, \ldots, z_n) \neq 0.
+    \end{align*}
+\end{definicija}
+V literaturi pogosto uporabljajo tudi drugačne definicije. V našem primeru morajo biti ničle na spodnji kompleksni polravnini, lahko bi pa definirali, da so vse ničle na levi kompleksni polravnini ali nekem kvadrantu. Definicije imajo skupno, da prepovedujejo ničle na določenem delu kompleksne ravnine, ker pa lahko ta del preoblikujemo s pomočjo Möbiusove transformacije, lahko vsako trditev, ki uporablja eno definicijo, preoblikujemo v trditev, ki uporablja drugo\cite{mckenzie}.
+
+Sedaj si lahko pogledamo družino realno stabilnih polinomov, ki jo bomo potrebovali v našem izreku\cite{JuliusPetter}.
+\begin{izrek}\label{matrike-realnostabilna}
+    Za \(1\leq j \leq n\) naj bodo \(A_j\) pozitivne semidefinitne matrike. Potem je polinom
+    \begin{align*}
+        f(z_1, \ldots, z_n) = \det\left(\sum_{j=1}^n z_j A_j\right)
+    \end{align*}
+    realno stabilen.
+\end{izrek}
+Za dokaz izreka potrebujemo Hurwitzev izrek\cite{freitag1}.
+\begin{izrek}[Hurwitzev izrek]
+    Naj bo \(D\) domena v \(\mathbb C^n\) in \((f_k)_{k=1}^\infty\) zaporedje analitičnih funkcij na \(D\) brez ničle, ki konvergirajo enakomerno proti funkciji \(f\) na kompaktnih podmnožicah \(D\). Potem je \(f\) nima ničle na \(D\) ali pa je identična \(0\).
+\end{izrek}
+Hurwitzevega izreka ne bomo dokazali, saj je standarden rezultat iz kompleksne analize. Lahko pa si ogledamo dokaz izreka \ref{matrike-realnostabilna}.
+\begin{dokaz}
+\end{dokaz}
+
+Potrebovali bomo še manjšo lemo, ki nam pomaga izračunati determinanto\cite{matrix-determinant-lemma}.
+\begin{lema}\label{matrix-det-lemma}
+    Če je \(A\in \mathbb C^{n\times n}\) obrnljiva matrika in \(u, v \in \mathbb C^n\) vektorja potem velja
+    \begin{align*}
+        \det(A + uv^\top) = \det(A) (1 + v^top A^{-1} u).
+    \end{align*}
+\end{lema}
+\begin{dokaz}
+    Najprej predpostavimo \(A=I\). Velja enakost
+    \begin{align*}
+        \begin{bmatrix}
+            I & 0 \\
+            v^\top & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            I + uv^\top & u \\
+            0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            I & 0 \\
+            -v^\top & 1
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            I & u \\
+            0 & 1 + v^\top u
+        \end{bmatrix}
+    \end{align*}
+    Ker je determinanta odvisna le od diagonalnih blokov, dobimo želeno enakost.
+
+    Sedaj posplošimo na primer za splošen \(A\). Ker je \(A+uv^\top= A(I + A^{-1}uv^\top)\) je
+    \begin{align*}
+        \det(A + uv^\top) &= \det(A) \det(I + (A^{-1}u)v^\top)\\
+         &= \det(A) (1 + v^\top A^{-1} u).
+    \end{align*}
+\end{dokaz}
+
+\subsection{Prepletena značenja}
+Prepletene polinome smo že srečali v dokazih za prirejanja v grafih. Izkazalo se je, da polinom prirejanja grafa prepleta polinom prirejanja istega grafa z dodanim vozliščem. Sedaj si bomo ogledali drugačno družino prepletenih polinomov, družino \(\{f_s\}_{s\in \{\pm 1\}^m}\). Pokazali bomo, da je družina prepletena in, da imajo prepletene družine polinomov vsaj en polinom, ki ima največjo ničlo manjšo od največje ničle pričakovane vrednosti cele družine. Ker pa zaradi izreka \ref{znacenje-prirejanje} že poznamo dobro oceno za pričakovano vrednost bo to pokazalo obstoj nekega polinoma, ki ima največjo ničlo dovolj majhno. To pa je ravno zahteva za ramanujanov graf, kot bomo povzeli po vseh potrebnih dokazih.
+
+Najprej posplošimo definicijo prepletenih polinomov na družino polinomov.
+
+\begin{definicija}[Prepletena družina]
+
+    Družina polinomov \(\{f_s\}_{s\in \{\pm 1\}^m}\) je prepletena, če za vsak \(s\in \{\pm 1\}^m\) in vsak \(i\in [m]\) velja
+    \begin{align*}
+        f_s(x) = f_{s^i}(x).
+    \end{align*}
+\end{definicija}
