@@ -436,10 +436,20 @@ Sedaj si lahko pogledamo družino realno stabilnih polinomov, ki jo bomo potrebo
 \end{izrek}
 Za dokaz izreka potrebujemo Hurwitzev izrek\cite{freitag1}.
 \begin{izrek}[Hurwitzev izrek]
-    Naj bo \(D\) domena v \(\mathbb C^n\) in \((f_k)_{k=1}^\infty\) zaporedje analitičnih funkcij na \(D\) brez ničle, ki konvergirajo enakomerno proti funkciji \(f\) na kompaktnih podmnožicah \(D\). Potem je \(f\) nima ničle na \(D\) ali pa je identična \(0\).
+    Naj bo \(D\) domena v \(\mathbb C^n\) in \((f_k)_{k=1}^\infty\) zaporedje analitičnih funkcij na \(D\) brez ničle, ki konvergirajo enakomerno proti funkciji \(f\) na kompaktnih podmnožicah \(D\). Potem \(f\) ali nima ničle na \(D\) ali pa je identična \(0\).
 \end{izrek}
 Hurwitzevega izreka ne bomo dokazali, saj je standarden rezultat iz kompleksne analize. Lahko pa si ogledamo dokaz izreka \ref{matrike-realnostabilna}.
 \begin{dokaz}
+    Zaradi Hurwitzevega izreka lahko predpostavimo, da so vse \(A_j\) pozitivno definitne. Definiramo si funkcijo \(z: \mathbb C\to \mathbb C\) kot \(z(t) = \alpha + \lambda t\), kjer je \(\alpha\in \mathbb R^n\) in \(\lambda \in \mathbb R_+^n\). Lastnost te funkcije je, da če pa ima katerakoli komponenta slike \(\Im(z(t))>0\) potem tudi \(\Im(t)>0\). Lahko pa dobimo poljuben element iz \(\mathbb C_+^n\), za primerno izbiro \(\alpha\), \(\lambda\) in \(t\), torej, če je vse ničle \(f(z(t))\) ampak nobena nima \(\Im(t)>0\), potem je \(f\) realno stabilen. 
+    
+    Matrika \(P = \sum_j \lambda_j A_j\) je pozitivno definitna, torej je obrnljiva in ima kvadraten koren, ki je tudi sam definiten. Definiramo si še \(H = \sum_j \alpha_j A_j\). Sedaj razpišemo \(f(z(t))\).
+    \begin{align*}
+        f(z(t)) &= \det\left(\sum_{j=1}^n (\alpha_j + \lambda_j t) A_j\right)\\
+        &= \det\left(\sum_{j=1}^n \alpha_j A_j + t\sum_{j=1}^n \lambda_j A_j\right)\\
+        &= \det\left(H+ tP\right)\\
+        &= \det\left(P\right)\det\left(P^{-1/2}HP^{-1/2} + tI\right) \det\left(P\right)\\
+    \end{align*}
+    Ker sta matriki \(H\) in \(P^{-1/2}\) definitni je tudi \(P^{-1/2}HP^{-1/2}\) definiten. Torej je izraz enak skalarnemu večkratniku (\(\det(P)\)) karakterističnega polinoma pozitivno definitne matrike. Ta pa ima same realne ničle, torej je \(\Im(t)=0\).
 \end{dokaz}
 
 Potrebovali bomo še manjšo lemo, ki nam pomaga izračunati determinanto\cite{matrix-determinant-lemma}.
