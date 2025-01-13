@@ -410,7 +410,7 @@ Zdaj ko imamo informacije o ničlah polinoma prirejanja lahko povemo kako so le 
 Preden se lotimo glavnega dela dokaza potrebujemo še lemo, ki opisuje ničle značenih karakterističnih polinomov.
 
 \subsection{Realno stabilni polinomi}
-Cilj tega poglavja sprva gleda malo nenavaden. Dokazati želimo, da so, za poljubna števila \(p_1, \ldots, p_m \in [0,1]\) ničle polinoma
+Cilj tega poglavja izgleda malo nenavaden. Dokazati želimo, da so, za poljubna števila \(p_1, \ldots, p_m \in [0,1]\) ničle polinoma
 \begin{align*}
     \sum_{s\in \{\pm 1\}^m} \left(\prod_{\substack{i\\s_i=1}} p_i\right) \left(\prod_{\substack{i\\s_i=-1}} 1- p_i\right) f_s(x)
 \end{align*}
@@ -435,12 +435,12 @@ Sedaj si lahko pogledamo družino realno stabilnih polinomov, ki jo bomo potrebo
     realno stabilen.
 \end{izrek}
 Za dokaz izreka potrebujemo Hurwitzev izrek\cite{freitag1}.
-\begin{izrek}[Hurwitzev izrek]
+\begin{izrek}[Hurwitzev izrek]\label{hurwitz}
     Naj bo \(D\) domena v \(\mathbb C^n\) in \((f_k)_{k=1}^\infty\) zaporedje analitičnih funkcij na \(D\) brez ničle, ki konvergirajo enakomerno proti funkciji \(f\) na kompaktnih podmnožicah \(D\). Potem \(f\) ali nima ničle na \(D\) ali pa je identična \(0\).
 \end{izrek}
 Hurwitzevega izreka ne bomo dokazali, saj je standarden rezultat iz kompleksne analize. Lahko pa si ogledamo dokaz izreka \ref{matrike-realnostabilna}.
 \begin{dokaz}
-    Zaradi Hurwitzevega izreka lahko predpostavimo, da so vse \(A_j\) pozitivno definitne. Definiramo si funkcijo \(z: \mathbb C\to \mathbb C\) kot \(z(t) = \alpha + \lambda t\), kjer je \(\alpha\in \mathbb R^n\) in \(\lambda \in \mathbb R_+^n\). Lastnost te funkcije je, da če pa ima katerakoli komponenta slike \(\Im(z(t))>0\) potem tudi \(\Im(t)>0\). Lahko pa dobimo poljuben element iz \(\mathbb C_+^n\), za primerno izbiro \(\alpha\), \(\lambda\) in \(t\), torej, če je vse ničle \(f(z(t))\) ampak nobena nima \(\Im(t)>0\), potem je \(f\) realno stabilen. 
+    Zaradi Hurwitzevega izreka lahko predpostavimo, da so vse \(A_j\) pozitivno definitne. Definiramo si funkcijo \(z: \mathbb C\to \mathbb C\) kot \(z(t) = \alpha + \lambda t\), kjer je \(\alpha\in \mathbb R^n\) in \(\lambda \in \mathbb R_+^n\). Lastnost te funkcije je, da če pa ima katerakoli komponenta slike \(\Im(z(t))>0\) potem tudi \(\Im(t)>0\). Lahko pa dobimo poljuben element iz \(\mathbb C_+^n\), za primerno izbiro \(\alpha\), \(\lambda\) in \(t\), torej, če poyiščemo vse ničle \(f(z(t))\) ampak nobena nima \(\Im(t)>0\), potem je \(f\) realno stabilen. 
     
     Matrika \(P = \sum_j \lambda_j A_j\) je pozitivno definitna, torej je obrnljiva in ima kvadraten koren, ki je tudi sam definiten. Definiramo si še \(H = \sum_j \alpha_j A_j\). Sedaj razpišemo \(f(z(t))\).
     \begin{align*}
@@ -452,11 +452,39 @@ Hurwitzevega izreka ne bomo dokazali, saj je standarden rezultat iz kompleksne a
     Ker sta matriki \(H\) in \(P^{-1/2}\) definitni je tudi \(P^{-1/2}HP^{-1/2}\) definiten. Torej je izraz enak skalarnemu večkratniku (\(\det(P)\)) karakterističnega polinoma pozitivno definitne matrike. Ta pa ima same realne ničle, torej je \(\Im(t)=0\).
 \end{dokaz}
 
-Potrebovali bomo še manjšo lemo, ki nam pomaga izračunati determinanto\cite{matrix-determinant-lemma}.
+Sedaj potrebujemo še nekaj načinov, kako konstruiramo nove realno stabilne polinome iz že-znanih. Očitno je, da če imamo dva realno stabilna polinoma je tudi njun produkt realno stabilen. Imamo pa še dve drugi konstrukciji, ki jih bomo potrebovali\cite{wagner-multivariate}.
+\begin{izrek}[Specializacija realno stabilnih polinomov]
+    Naj bo \(f(z_1, \ldots, z_n)\) realno stabilen polinom. Potem je za poljuben \(a\in \mathbb C\) z \(\Im(a)\geq 0\) polinom \(g(z_2, \ldots, z_n) = f(a, z_2, \ldots, z_n)\) realno stabilen.
+\end{izrek}
+\begin{dokaz}
+    Rezultat je očiten, če je \(Im(a) > 0\). Za \(\Im(a) = 0\) pa uporabimo Hurwitzev izrek.Naj bo torej \(a\in \mathbb R\). Za domeno vzamemo 
+    \begin{align*}
+        D=\{(z_2,\ldots,z_n) \in \mathbb C^{n-1}\mid \forall 2\leq j \leq n.\, \Im(z_j)> 0\}.
+    \end{align*}
+    Nato za \(a_k = a + i 2^{-k}\) definiramo zaporedje polinomov
+    \begin{align*}
+        g_k(z_2, \ldots, z_n) = f(a_k, z_2, \ldots, z_n).
+    \end{align*}
+    Te polinomi seveda konvergirajo lokalno enakomerno proti \(g(z_2, \ldots, z_n)\) in so realno stabilni. Po Hurwitzevem izreku je \(g\) realno stabilen.
+\end{dokaz}
+Če za konstanto vzamemo \(a=1\) vidimo, da so tudi polinomi oblike \(\det(B + \sum A_i z_i)\) realno stabilni.
+Posebaj bomo potrebovali primer, kjer je \(a = 0\). Tako definiramo operator \(Z_j\), da vzame realno stabilen polinom v \(n\) spremenljivkah, zamenja spremenljivko \(z_j\) z konstanto \(0\) in vrne realno stabilen polinom v \(n-1\) spremenljivkah.
+
+Potrebovali bomo še način, kako dobimo nov realno stabilen polinom preko odvodov. Z \(\partial_j\) označimo delni odvod po \(j\)-ti spremenljivki\cite{Borcea_2010}.
+\begin{izrek}[Odvajanje realno stabilnih polinomov]
+    Naj bo \(f(z_1, \ldots, z_n)\) realno stabilen polinom, \(p, q\in \mathbb R\) in \(1\leq i, j \leq n\). Potem je polinom
+    \begin{align*}
+        1+p\partial_i + q\partial_j
+    \end{align*}
+    realno stabilen.
+\end{izrek}
+Izreka ne bomo dokazali, ga pa potrebujemo v nadaljevanju.
+
+Da se lotimo izrekov, ki zagotavljajo, da imajo določeni polinomi realne ničle potrebujemo še dve manjši lemi. Prva je standardni rezultat iz linearne algebre, ki nam pomaga izračunati determinanto\cite{matrix-determinant-lemma}, z drugo pa izračunamo rezultat zgoraj-definiranih operatorjev na določenih polinomih dobljenih iz determinant.
 \begin{lema}\label{matrix-det-lemma}
     Če je \(A\in \mathbb C^{n\times n}\) obrnljiva matrika in \(u, v \in \mathbb C^n\) vektorja potem velja
     \begin{align*}
-        \det(A + uv^\top) = \det(A) (1 + v^top A^{-1} u).
+        \det(A + uv^\top) = \det(A) (1 + v^\top A^{-1} u).
     \end{align*}
 \end{lema}
 \begin{dokaz}
@@ -487,6 +515,57 @@ Potrebovali bomo še manjšo lemo, ki nam pomaga izračunati determinanto\cite{m
         \det(A + uv^\top) &= \det(A) \det(I + (A^{-1}u)v^\top)\\
          &= \det(A) (1 + v^\top A^{-1} u).
     \end{align*}
+\end{dokaz}
+
+\begin{lema}
+    Naj bo \(A\) obrnljiva matrika, \(a,b\) vektorja in \(p\in [0,1]\) število. Potem velja
+    \begin{align*}
+        Z_iZ_j(1+p\partial_i + (1-p)\partial_j)\det(A + z_i aa^\top+ z_j bb^\top) \\
+        = p\det(A + aa^\top) + (1-p)\det(A+bb^\top).
+    \end{align*}
+\end{lema}
+\begin{dokaz}
+    S prejšno lemo izračunamo odvod determinante.
+    \begin{align*}
+        \partial_i \det(A + z_i aa^\top +z_j bb^\top) &=\partial_i \left(\det(A + z_j bb^\top) (1+ z_i a^\top (A + z_j bb^\top)^{-1} a)\right)\\
+        &= \det(A + z_j bb^\top) a^\top (A + z_j bb^\top)^{-1} a\\
+        \partial_j \det(A + z_i aa^\top +z_j bb^\top) &= \det(A + z_i aa^\top) b^\top (A + z_i aa^\top)^{-1} b
+    \end{align*}
+    tako lahko izračunamo rezultat operatorja \((1+p\partial_i + (1-p)\partial_j)\).
+    \begin{align*}
+        &(1+p\partial_i + (1-p)\partial_j)\det(A + z_i aa^\top + z_j bb^\top) = \\
+        &= \det(A + z_i aa^\top + z_j bb^\top) \\
+        &+ p\det(A + z_j bb^\top) a^\top (A + z_j bb^\top)^{-1} a \\
+        &+ (1-p)\det(A + z_i aa^\top) b^\top (A + z_i aa^\top)^{-1} b
+    \end{align*}
+    Sedaj pa uporabimo operatorja \(Z_i\) in \(Z_j\), ki vse \(z_i\) in \(z_j\) zamenjata z \(0\).
+    \begin{align*}
+        &Z_iZ_j(1+p\partial_i + (1-p)\partial_j)\det(A + z_i aa^\top+ z_j bb^\top) =\\
+        &=\det(A) + p\det(A) a^\top A^{-1} a + (1-p)\det(A) b^\top A^{-1} b\\
+        &= p(1+\det(A) a^\top A^{-1}a) + (1-p)(1+\det(A)b^\top A^{-1} b)
+    \end{align*}
+    Sedaj lahko dvakrat ponovno uporabimo prejšno lemo, da zaključimo dokaz
+    \begin{align*}
+        p \det(A + aa^\top) + (1-p)\det(A+bb^\top).
+    \end{align*}
+\end{dokaz}
+
+Sedaj si ogledamo še zadnja dva izreka. Oba opisujeta, da ima določena družina polinomov same realne ničle, kar pa je ravno cilj trenutnega poglavja.
+\begin{izrek}
+    Naj bodo \(a_1, \ldots, a_m\) in \(b_1, \ldots, b_m\) vektorji v \(\mathbb R^n\), \(p_1,\ldots, p_m \in [0,1]\) in \(A\) pozitivno definitna matrika. Potem ima polinom
+    \begin{align*}
+        P(x) = \sum_{S\subseteq [m]} \left(\prod_{i\in S} p_i\right)\left(\prod_{i\notin S} \left(1-p_i\right)\right) \det\left(xI + A + \sum_{i\in S} a_i a_i^\top + \sum_{i\notin S} b_i b_i^\top\right)
+    \end{align*}
+    same realne ničle.
+\end{izrek}
+\begin{dokaz}
+    Za spremenljivke \(u_1,\ldots, u_m\) in \(v_1,\ldots, v_m\) definiramo polinom
+    \begin{align*}
+        Q(x, u_1, \ldots, u_m, v_1, \ldots, v_m) = \det\left(xI + A + \sum_{i=1}^m u_i a_i a_i^\top + \sum_{i=1}^m v_i b_i b_i^\top\right).
+    \end{align*}
+    Kot vemo iz leme \ref{matrike-realnostabilna} je ta polinom realno stabilen.
+
+    Definiramo si \(T_i = 1+p_i\partial_{1+i} + (1-p_i)\partial_{1+m+i}\) (odvajamo po spremenljivki \(u_i\) in \(v_i\))
 \end{dokaz}
 
 \subsection{Prepletena značenja}
