@@ -12,3 +12,4 @@ Bilo bi priročno če definiram v\in G in (v~u)\in G
 
 [n] = {1, 2, ..., n}
 fix(pi)
+pozitivne semidefinitne matrike imajo realne koeficiente (sicer real stable polynomials poglavje ne dela)
