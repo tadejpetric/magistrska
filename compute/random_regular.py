@@ -15,6 +15,7 @@ from utils import is_regular, is_connected
 class S:
     edge_options: list[tuple[int, int]]
     weights: list[float]
+    degrees: list[int]
 
     @staticmethod
     def get_S(A: np.array, d: int) -> "S":
@@ -24,48 +25,56 @@ class S:
 
         degrees = []
         for v in range(n):
-            degrees.append(np.sum(A[v]))
+            degrees.append(0)
 
-            # Select only vertices that need more edges
-            if degrees[-1] == d:
-                continue
             for u in range(v):
-                # Don't add edges to adjacent vertices
-                if A[u, v] == 1:
-                    continue
                 edge_options.append((u, v))
-                weights.append((d - degrees[u]) * (d - degrees[v]))
+                weights.append(d*d)
 
-        return S(edge_options, weights)
+        return S(edge_options, weights, degrees)
+    
+    def update_S(self, selected_u:int, selected_v:int, d:int) -> None:
+        # We remove the selected edge from the list of options entirely
+        self.degrees[selected_u] += 1
+        self.degrees[selected_v] += 1
+
+        new_weights = []
+        new_edge_options = []
+        for u, v in self.edge_options:
+            if u == selected_u and v == selected_v:
+                continue
+            
+            if self.degrees[u] == d or self.degrees[v] == d:
+                continue
+
+            new_weights.append((d - self.degrees[v]) * (d - self.degrees[u]))
+            new_edge_options.append((u, v))
+        
+        self.weights = new_weights
+        self.edge_options = new_edge_options
 
     def is_empty(self) -> bool:
         return len(self.edge_options) == 0
-    
-    def zero_weights(self) -> bool:
-        return all(w < np.finfo(np.float32).eps for w in self.weights)
+
 
 
 def random_regular(n_vertices: int, d: int, max_attempts=10000) -> Optional[np.array]:
     # https://users.monash.edu.au/~nwormald/papers/randgen.pdf
     # Algorithm 2, no reusing S
 
+    A = np.zeros((n_vertices, n_vertices), np.int8)
     def attempt() -> np.array:
-        A = np.zeros((n_vertices, n_vertices), np.int8)
+        A.fill(0)
+        options = S.get_S(A, d)
 
         while True:
-            options = S.get_S(A, d)
-
             if options.is_empty():
-                return A
-
-            # All weights can be zero if all the neighbors of a vertex already have degree d
-            # The graph will not be regular, so another attempt will be made.
-            if options.zero_weights():
                 return A
 
             u, v = random.choices(options.edge_options, options.weights)[0]
             A[u, v] = 1
             A[v, u] = 1
+            options.update_S(u, v, d)
 
     A = attempt()
     nr_attempts = 1
@@ -77,3 +86,7 @@ def random_regular(n_vertices: int, d: int, max_attempts=10000) -> Optional[np.a
         nr_attempts += 1
 
     return A
+
+if __name__ == "__main__":
+    A = random_regular(10, 3)
+    print(A)
