@@ -392,13 +392,13 @@ Zdaj ko imamo informacije o ničlah polinoma prirejanja lahko povemo kako so le 
         \mathbb{E}_{s\in \{\pm 1\}^m} \det(xI - A_s) & = \mathbb{E}_{s\in \{\pm 1\}^m} \sum_{k=0}^n x^{k} \sum_{\substack{S \subseteq [n] \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{efix(S)}}\sgn(\sigma)  \prod_{(i, \sigma(i))\in E} -s(i, \sigma(i)) \\
                                                      & = \sum_{k=0}^n x^{k} \sum_{\substack{S \subseteq [n]                               \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{efix(S)}} \sgn(\sigma)  \mathbb{E}_{s\in \{\pm 1\}^m}  \prod_{(i, \sigma(i))\in E} -s(i, \sigma(i)) \\
     \end{align*}
-    Najprej si oglejmo produkt \(\prod s\) (brez predznakov). Ker računamo pričakovano vrednost po vseh možnih značenjih je \(\mathbb{E}(s(i,j)) = 0\). Če izberemo \((i,j)\) in \(A\subset [n]\times [n]\), kjer \((i,j) \notin A\) in \((j,i)\notin A\), potem je \(s(i,j)\) neodvisen od vseh ostalih \(s(k,l)\) (za \((k,l)\in A\)), saj lahko značenje vsakega robova izberemo neodvisno od ostalih. Torej je 
+    Najprej si oglejmo produkt \(\prod s\) (brez predznakov). Ker računamo pričakovano vrednost po vseh možnih značenjih je \(\mathbb{E}(s(i,j)) = 0\). Če izberemo \((i,j)\) in \(A\subset [n]\times [n]\), kjer \((i,j) \notin A\) in \((j,i)\notin A\), potem je \(s(i,j)\) neodvisen od vseh ostalih \(s(k,l)\) (za \((k,l)\in A\)), saj lahko značenje vsakega robova izberemo neodvisno od ostalih. Torej je
     \begin{align*}
-        \mathbb{E}\left(s(i,j) \prod_{(k,l)\in A} s(k,l)\right) &= \mathbb{E}(s(i,j))\mathbb{E}\left(\prod_{(k,l)\in A} s(k,l)\right)\\
-        &= 0.
+        \mathbb{E}\left(s(i,j) \prod_{(k,l)\in A} s(k,l)\right) & = \mathbb{E}(s(i,j))\mathbb{E}\left(\prod_{(k,l)\in A} s(k,l)\right) \\
+                                                                & = 0.
     \end{align*}
     To se ne zgodi v primeru \(2\)-cikla, kjer je \(\mathbb{E}(s(i,j)s(j,i)) = 1\). Torej bodo vsi produkti ničelni, razen tisti, ki jih sestavljajo samo \(2\)-cikli in fiksne točke. Kot smo pa že videli v dokazu izreka \ref{drevo-karakteristicni} take permutacije predstavljajo prirejanja v grafu. Produkt bo torej \(1\), če permutacija predstavlja prirejanje in \(0\) sicer.
-    
+
     Zdaj določimo še predznak sumanda. Znak permutacije je določen s številom inverzij, ki je enako številu povezav v prirejanju (vsaka inverzija predstavlja krajišča povezave). Imamo \(n-k\) vozlišč, ki so del prirejanja, torej imamo \(\frac{n-k}{2}\) povezav. Tako je predznak \(\sgn{\sigma} = (-1)^{\frac{n-k}{2}}\). Produkt \(\prod -s\) množi sodo mnogo elementov (saj je sestavljen iz samih \(2\)-ciklov), torej se negativni predznaki \(-s\) pokrajšajo.
     \begin{align*}
         \mathbb{E}_{s\in \{\pm 1\}^m} \det(xI - A_s) & =\sum_{k=0}^n x^{k} \sum_{\substack{S \subseteq [n]        \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{efix(S)}} (-1)^{\frac{n-k}{2}} \\
@@ -412,7 +412,7 @@ Preden se lotimo glavnega dela dokaza potrebujemo še lemo, ki opisuje ničle zn
 \subsection{Realno stabilni polinomi}
 Cilj tega poglavja sprva izgleda malo nenavaden. Dokazati želimo, da so, za poljubna števila \(p_1, \ldots, p_m \in [0,1]\) ničle polinoma
 \begin{align*}
-    \sum_{s\in \{\pm 1\}^m} \left(\prod_{\substack{(i,j)\\s(i,j)=1}} p_{i,j}\right) \left(\prod_{\substack{(i,j)\\s(i,j)=-1}} (1- p_{i,j})\right) f_s(x)
+    \sum_{s\in \{\pm 1\}^m} \left(\prod_{\substack{(i,j) \\s(i,j)=1}} p_{i,j}\right) \left(\prod_{\substack{(i,j)\\s(i,j)=-1}} (1- p_{i,j})\right) f_s(x)
 \end{align*}
 realne. Iz te trditve bomo kasneje lahko sklepali, da so polinomi \(f_s\) prepleteni, podobno, kot so bili prepleteni polinomi prirejanja. Prepletene družine pa nosijo veliko informacij o ničlah funkcij, ki jo tvorijo.
 
@@ -439,14 +439,14 @@ Za dokaz izreka potrebujemo Hurwitzev izrek\cite{freitag1}.
 \end{izrek}
 Hurwitzevega izreka ne bomo dokazali, saj je standarden rezultat iz kompleksne analize. Lahko pa si ogledamo dokaz izreka \ref{matrike-realnostabilna}.
 \begin{dokaz}
-    Zaradi Hurwitzevega izreka lahko predpostavimo, da so vse \(A_j\) pozitivno definitne. Definiramo si funkcijo \(z: \mathbb C\to \mathbb C\) kot \(z(t) = \alpha + \lambda t\), kjer je \(\alpha\in \mathbb R^n\) in \(\lambda \in \mathbb R_+^n\). Lastnost te funkcije je, da če pa ima katerakoli komponenta slike \(\Im(z(t))>0\) potem tudi \(\Im(t)>0\). Lahko pa dobimo poljuben element iz \(\mathbb C_+^n\), za primerno izbiro \(\alpha\), \(\lambda\) in \(t\), torej, če poyiščemo vse ničle \(f(z(t))\) ampak nobena nima \(\Im(t)>0\), potem je \(f\) realno stabilen. 
-    
+    Zaradi Hurwitzevega izreka lahko predpostavimo, da so vse \(A_j\) pozitivno definitne. Definiramo si funkcijo \(z: \mathbb C\to \mathbb C\) kot \(z(t) = \alpha + \lambda t\), kjer je \(\alpha\in \mathbb R^n\) in \(\lambda \in \mathbb R_+^n\). Lastnost te funkcije je, da če pa ima katerakoli komponenta slike \(\Im(z(t))>0\) potem tudi \(\Im(t)>0\). Lahko pa dobimo poljuben element iz \(\mathbb C_+^n\), za primerno izbiro \(\alpha\), \(\lambda\) in \(t\), torej, če poyiščemo vse ničle \(f(z(t))\) ampak nobena nima \(\Im(t)>0\), potem je \(f\) realno stabilen.
+
     Matrika \(P = \sum_j \lambda_j A_j\) je pozitivno definitna, torej je obrnljiva in ima kvadraten koren, ki je tudi sam definiten. Definiramo si še \(H = \sum_j \alpha_j A_j\). Sedaj razpišemo \(f(z(t))\).
     \begin{align*}
-        f(z(t)) &= \det\left(\sum_{j=1}^n (\alpha_j + \lambda_j t) A_j\right)\\
-        &= \det\left(\sum_{j=1}^n \alpha_j A_j + t\sum_{j=1}^n \lambda_j A_j\right)\\
-        &= \det\left(H+ tP\right)\\
-        &= \det\left(P\right)\det\left(P^{-1/2}HP^{-1/2} + tI\right) \det\left(P\right)\\
+        f(z(t)) & = \det\left(\sum_{j=1}^n (\alpha_j + \lambda_j t) A_j\right)                   \\
+                & = \det\left(\sum_{j=1}^n \alpha_j A_j + t\sum_{j=1}^n \lambda_j A_j\right)     \\
+                & = \det\left(H+ tP\right)                                                       \\
+                & = \det\left(P\right)\det\left(P^{-1/2}HP^{-1/2} + tI\right) \det\left(P\right) \\
     \end{align*}
     Ker sta matriki \(H\) in \(P^{-1/2}\) definitni je tudi \(P^{-1/2}HP^{-1/2}\) definiten. Torej je izraz enak skalarnemu večkratniku (\(\det(P)\)) karakterističnega polinoma pozitivno definitne matrike. Ta pa ima same realne ničle, torej je \(\Im(t)=0\).
 \end{dokaz}
@@ -456,7 +456,7 @@ Sedaj potrebujemo še nekaj načinov, kako konstruiramo nove realno stabilne pol
     Naj bo \(f(z_1, \ldots, z_n)\) realno stabilen polinom. Potem je za poljuben \(a\in \mathbb C\) z \(\Im(a)\geq 0\) polinom \(g(z_2, \ldots, z_n) = f(a, z_2, \ldots, z_n)\) realno stabilen.
 \end{izrek}
 \begin{dokaz}
-    Rezultat je očiten, če je \(Im(a) > 0\). Za \(\Im(a) = 0\) pa uporabimo Hurwitzev izrek.Naj bo torej \(a\in \mathbb R\). Za domeno vzamemo 
+    Rezultat je očiten, če je \(Im(a) > 0\). Za \(\Im(a) = 0\) pa uporabimo Hurwitzev izrek.Naj bo torej \(a\in \mathbb R\). Za domeno vzamemo
     \begin{align*}
         D=\{(z_2,\ldots,z_n) \in \mathbb C^{n-1}\mid \forall 2\leq j \leq n.\, \Im(z_j)> 0\}.
     \end{align*}
@@ -490,20 +490,20 @@ Da se lotimo izrekov, ki zagotavljajo, da imajo določeni polinomi realne ničle
     Najprej predpostavimo \(A=I\). Velja enakost
     \begin{align*}
         \begin{bmatrix}
-            I & 0 \\
+            I      & 0 \\
             v^\top & 1
         \end{bmatrix}
         \begin{bmatrix}
             I + uv^\top & u \\
-            0 & 1
+            0           & 1
         \end{bmatrix}
         \begin{bmatrix}
-            I & 0 \\
+            I       & 0 \\
             -v^\top & 1
         \end{bmatrix}
         =
         \begin{bmatrix}
-            I & u \\
+            I & u            \\
             0 & 1 + v^\top u
         \end{bmatrix}
     \end{align*}
@@ -511,8 +511,8 @@ Da se lotimo izrekov, ki zagotavljajo, da imajo določeni polinomi realne ničle
 
     Sedaj posplošimo na primer za splošen \(A\). Ker je \(A+uv^\top= A(I + A^{-1}uv^\top)\) je
     \begin{align*}
-        \det(A + uv^\top) &= \det(A) \det(I + (A^{-1}u)v^\top)\\
-         &= \det(A) (1 + v^\top A^{-1} u).
+        \det(A + uv^\top) & = \det(A) \det(I + (A^{-1}u)v^\top) \\
+                          & = \det(A) (1 + v^\top A^{-1} u).
     \end{align*}
 \end{dokaz}
 
@@ -526,22 +526,22 @@ Da se lotimo izrekov, ki zagotavljajo, da imajo določeni polinomi realne ničle
 \begin{dokaz}
     S prejšno lemo izračunamo odvod determinante.
     \begin{align*}
-        \partial_i \det(A + z_i aa^\top +z_j bb^\top) &=\partial_i \left(\det(A + z_j bb^\top) (1+ z_i a^\top (A + z_j bb^\top)^{-1} a)\right)\\
-        &= \det(A + z_j bb^\top) a^\top (A + z_j bb^\top)^{-1} a\\
-        \partial_j \det(A + z_i aa^\top +z_j bb^\top) &= \det(A + z_i aa^\top) b^\top (A + z_i aa^\top)^{-1} b
+        \partial_i \det(A + z_i aa^\top +z_j bb^\top) & =\partial_i \left(\det(A + z_j bb^\top) (1+ z_i a^\top (A + z_j bb^\top)^{-1} a)\right) \\
+                                                      & = \det(A + z_j bb^\top) a^\top (A + z_j bb^\top)^{-1} a                                 \\
+        \partial_j \det(A + z_i aa^\top +z_j bb^\top) & = \det(A + z_i aa^\top) b^\top (A + z_i aa^\top)^{-1} b
     \end{align*}
     tako lahko izračunamo rezultat operatorja \((1+p\partial_i + (1-p)\partial_j)\).
     \begin{align*}
-        &(1+p\partial_i + (1-p)\partial_j)\det(A + z_i aa^\top + z_j bb^\top) = \\
-        &= \det(A + z_i aa^\top + z_j bb^\top) \\
-        &+ p\det(A + z_j bb^\top) a^\top (A + z_j bb^\top)^{-1} a \\
-        &+ (1-p)\det(A + z_i aa^\top) b^\top (A + z_i aa^\top)^{-1} b
+         & (1+p\partial_i + (1-p)\partial_j)\det(A + z_i aa^\top + z_j bb^\top) = \\
+         & = \det(A + z_i aa^\top + z_j bb^\top)                                  \\
+         & + p\det(A + z_j bb^\top) a^\top (A + z_j bb^\top)^{-1} a               \\
+         & + (1-p)\det(A + z_i aa^\top) b^\top (A + z_i aa^\top)^{-1} b
     \end{align*}
     Sedaj pa uporabimo operatorja \(Z_i\) in \(Z_j\), ki vse \(z_i\) in \(z_j\) zamenjata z \(0\).
     \begin{align*}
-        &Z_iZ_j(1+p\partial_i + (1-p)\partial_j)\det(A + z_i aa^\top+ z_j bb^\top) =\\
-        &=\det(A) + p\det(A) a^\top A^{-1} a + (1-p)\det(A) b^\top A^{-1} b\\
-        &= p(1+\det(A) a^\top A^{-1}a) + (1-p)(1+\det(A)b^\top A^{-1} b)
+         & Z_iZ_j(1+p\partial_i + (1-p)\partial_j)\det(A + z_i aa^\top+ z_j bb^\top) = \\
+         & =\det(A) + p\det(A) a^\top A^{-1} a + (1-p)\det(A) b^\top A^{-1} b          \\
+         & = p(1+\det(A) a^\top A^{-1}a) + (1-p)(1+\det(A)b^\top A^{-1} b)
     \end{align*}
     Sedaj lahko dvakrat ponovno uporabimo prejšno lemo, da zaključimo dokaz
     \begin{align*}
@@ -564,34 +564,34 @@ Sedaj si ogledamo še zadnja dva izreka. Oba opisujeta, da ima določena družin
     \end{align*}
     Kot vemo iz leme \ref{matrike-realnostabilna} je ta polinom realno stabilen.
 
-    Definiramo si \(T_i = 1+p_i\partial_{1+i} + (1-p_i)\partial_{1+m+i}\) (odvajamo po spremenljivki \(u_i\) in \(v_i\) v \(Q\)). Sedaj želimo dokazati, da 
+    Definiramo si \(T_i = 1+p_i\partial_{1+i} + (1-p_i)\partial_{1+m+i}\) (odvajamo po spremenljivki \(u_i\) in \(v_i\) v \(Q\)). Sedaj želimo dokazati, da
     \begin{align*}
         P(x) = \left(\prod_{i=1}^m Z_{1+i}Z_{1+m+i}T_i\right)Q(x, u_1, \ldots, u_m, v_1, \ldots, v_m).
     \end{align*}
 
-    To pokažemo tako, da dokažemo, da je izraz 
+    To pokažemo tako, da dokažemo, da je izraz
     \begin{align*}
         \left(\prod_{i=1}^k Z_{1+i}Z_{1+m+i}T_i\right)Q(x, u_1, \ldots, u_m, v_1, \ldots, v_m)
     \end{align*}
     enak izrazu
     \begin{align*}
-        \sum_{S\subseteq [k]} &\left(\prod_{i\in S} p_i\right)\left(\prod_{i\in [k]\setminus S} \left(1-p_i\right)\right)\\
-        &\cdot\det\left(xI + A + \sum_{i\in S} a_i a_i^\top + \sum_{i\in [k]\setminus S} b_i b_i^\top + \sum_{i>k} \left( u_i a_i a_i^\top + v_i b_i b_i^\top\right)\right)
+        \sum_{S\subseteq [k]} & \left(\prod_{i\in S} p_i\right)\left(\prod_{i\in [k]\setminus S} \left(1-p_i\right)\right)                                                                         \\
+                              & \cdot\det\left(xI + A + \sum_{i\in S} a_i a_i^\top + \sum_{i\in [k]\setminus S} b_i b_i^\top + \sum_{i>k} \left( u_i a_i a_i^\top + v_i b_i b_i^\top\right)\right)
     \end{align*}
     za vsak \(k\). Dokaza se lotimo induktivno po \(k\). Za \(k=0\) je izraz enak po definiciji. Za induktivni korak pa uporabimo lemo \ref{zizj-odvod-determinante}. Oglejmo si le prvi korak, ostali sledijo analogno.
     \begin{align*}
-        &Z_{1+i} Z_{1+m+i} T_i Q\\
-        &=Z_{1+i} Z_{1+m+i} T_i \det\left(xI + A + \sum_{i=1}^m u_i a_i a_i^\top + \sum_{i=1}^m v_i b_i b_i^\top\right)\\
-        &=Z_{1+i} Z_{1+m+i} T_i \det\left(\left(xI + A + \sum_{i=2}^m u_i a_i a_i^\top + \sum_{i=2}^m v_i b_i b_i^\top\right) + u_1 a_1 a_1^\top + v_1 b_1 b_1^\top\right) \\
-        &= p_i \det\left(xI + A + \sum_{i=2}^m u_i a_i a_i^\top + \sum_{i=2}^m v_i b_i b_i^\top + a_i+1 a_1^\top\right) \\
-        &+ (1-p_i) \det\left(xI + A + \sum_{i=2}^m u_i a_i a_i^\top + \sum_{i=2}^m v_i b_i b_i^\top + b_i b_i^\top\right)\\
+         & Z_{1+i} Z_{1+m+i} T_i Q                                                                                                                                           \\
+         & =Z_{1+i} Z_{1+m+i} T_i \det\left(xI + A + \sum_{i=1}^m u_i a_i a_i^\top + \sum_{i=1}^m v_i b_i b_i^\top\right)                                                    \\
+         & =Z_{1+i} Z_{1+m+i} T_i \det\left(\left(xI + A + \sum_{i=2}^m u_i a_i a_i^\top + \sum_{i=2}^m v_i b_i b_i^\top\right) + u_1 a_1 a_1^\top + v_1 b_1 b_1^\top\right) \\
+         & = p_i \det\left(xI + A + \sum_{i=2}^m u_i a_i a_i^\top + \sum_{i=2}^m v_i b_i b_i^\top + a_i+1 a_1^\top\right)                                                    \\
+         & + (1-p_i) \det\left(xI + A + \sum_{i=2}^m u_i a_i a_i^\top + \sum_{i=2}^m v_i b_i b_i^\top + b_i b_i^\top\right)                                                  \\
     \end{align*}
     To pa lahko zapišemo v obliki, ki je enaka željenemu izrazu.
     \begin{align*}
-        \sum_{S\subseteq \{1\}} &\left(\prod_{i\in S} p_i\right)\left(\prod_{i\in \{1\}\setminus S} \left(1-p_i\right)\right)\\
-        &\cdot \det\left(xI + A + \sum_{i > 1} (u_i a_i a_i^\top v_i b_i b_i^\top) + \sum_{i\in S}a_ia_i^\top \sum_{i\in \{1\}\setminus S} b_i b_i^\top\right)
+        \sum_{S\subseteq \{1\}} & \left(\prod_{i\in S} p_i\right)\left(\prod_{i\in \{1\}\setminus S} \left(1-p_i\right)\right)                                                          \\
+                                & \cdot \det\left(xI + A + \sum_{i > 1} (u_i a_i a_i^\top v_i b_i b_i^\top) + \sum_{i\in S}a_ia_i^\top \sum_{i\in \{1\}\setminus S} b_i b_i^\top\right)
     \end{align*}
-    Naslednje korake izvedemo enako, saj lahko operator prinesemo znotraj vsote in produktov. V zadnjem koraku, \(k=m\) dobimo željeno enakost. Vemo pa, da operatorji \(Z_i\) in \(T_i\) ohranjajo realno stabilnost, torej, ker je \(Q\) realno stabilen, je tudi \(P\) realno stabilen. Ker ima pa le eno spremenljivko in realne koeficiente, so njegove kompleksne ničle prisotne v konjungiranih parih; če ima kakšno ničlo z \(\Im(z_0)<0\), ima tudi ničlo z \(\Im(z_o)>0\), kar je pa v protislovju z realno stabilnostjo. Torej so v se ničle realne. 
+    Naslednje korake izvedemo enako, saj lahko operator prinesemo znotraj vsote in produktov. V zadnjem koraku, \(k=m\) dobimo željeno enakost. Vemo pa, da operatorji \(Z_i\) in \(T_i\) ohranjajo realno stabilnost, torej, ker je \(Q\) realno stabilen, je tudi \(P\) realno stabilen. Ker ima pa le eno spremenljivko in realne koeficiente, so njegove kompleksne ničle prisotne v konjungiranih parih; če ima kakšno ničlo z \(\Im(z_0)<0\), ima tudi ničlo z \(\Im(z_o)>0\), kar je pa v protislovju z realno stabilnostjo. Torej so v se ničle realne.
 \end{dokaz}
 
 Sedaj izrek uporabimo, da zaključimo poglavje, in dokažemo, trditev iz začetka poglavja o realni stabilnosti.
@@ -599,22 +599,22 @@ Sedaj izrek uporabimo, da zaključimo poglavje, in dokažemo, trditev iz začetk
 \begin{izrek}\label{nicle-prepletenih-so-realne}
     Za vsako povezavo \((i,j)\) grafa naj bo \(p_{i,j}\in [0,1]\).Potem ima polinom
     \begin{align*}
-        \sum_{s\in \{\pm 1\}^m} \left(\prod_{\substack{(i,j)\\s(i,j)=1}} p_{i,j}\right) \left(\prod_{\substack{(i,j)\\s(i,j)=-1}} (1- p_{i,j})\right) f_s(x)
+        \sum_{s\in \{\pm 1\}^m} \left(\prod_{\substack{(i,j) \\s(i,j)=1}} p_{i,j}\right) \left(\prod_{\substack{(i,j)\\s(i,j)=-1}} (1- p_{i,j})\right) f_s(x)
     \end{align*}
     same realne ničle.
 \end{izrek}
 \begin{dokaz}
     Najprej razpišemo \(f_s\) po definiciji
     \begin{align*}
-        \sum_{s\in \{\pm 1\}^m} \left(\prod_{\substack{(i,j)\\s(i,j)=1}} p_{i,j}\right) \left(\prod_{\substack{(i,j)\\s(i,j)=-1}} (1- p_{i,j})\right) \det(xI - A_s).
+        \sum_{s\in \{\pm 1\}^m} \left(\prod_{\substack{(i,j) \\s(i,j)=1}} p_{i,j}\right) \left(\prod_{\substack{(i,j)\\s(i,j)=-1}} (1- p_{i,j})\right) \det(xI - A_s).
     \end{align*}
-    Seveda, če ima polinom \(f(x)\) realne ničle, ima tudi zamaknjen polinom \(f(x+d)\) (za poljuben \(d\in \mathbb R\)) same realne ničle. Za \(d\) izberemo maksimalno stopnjo vozlišča v grafu (oziroma največji seštevek absolutnih vrednosti elementov vrstic \(A_s\)). Tako si ogledamo polinom 
+    Seveda, če ima polinom \(f(x)\) realne ničle, ima tudi zamaknjen polinom \(f(x+d)\) (za poljuben \(d\in \mathbb R\)) same realne ničle. Za \(d\) izberemo maksimalno stopnjo vozlišča v grafu (oziroma največji seštevek absolutnih vrednosti elementov vrstic \(A_s\)). Tako si ogledamo polinom
     \begin{align*}
-        \sum_{s\in \{\pm 1\}^m} \left(\prod_{\substack{(i,j)\\s(i,j)=1}} p_{i,j}\right) \left(\prod_{\substack{(i,j)\\s(i,j)=-1}} (1- p_{i,j})\right) \det(xI + dI - A_s).
+        \sum_{s\in \{\pm 1\}^m} \left(\prod_{\substack{(i,j) \\s(i,j)=1}} p_{i,j}\right) \left(\prod_{\substack{(i,j)\\s(i,j)=-1}} (1- p_{i,j})\right) \det(xI + dI - A_s).
     \end{align*}
     Strukturo tega polinoma želimo zapisati tako, da lahko uporabimo trditev prejšnega izreka. Za to si moremo ogledati strukturo matrike \(dI - A_s\). Za vsako povezavo \((i,j)\) v grafu definiramo matriki
     \begin{align*}
-        L_{i,j}^1 = (e_i-e_j)(e_i-e_j)^\top\\
+        L_{i,j}^1 = (e_i-e_j)(e_i-e_j)^\top \\
         L_{i,j}^{-1} = (e_i+e_j)(e_i+e_j)^\top.
     \end{align*}
     Obe matriki imata vrednost \(1\) na mestih \((i,i)\) in \((j,j)\). Prva matrika ima vrednost \(-1\) na mestih \((i,j)\) in \((j,i)\), druga pa ima tudi tam vrednost \(1\). Če seštejemo matrike za vsa vozlišča, bodo na diagonali ravno stopnje vozlišč, s pravilno izbiro pa lahko opišemo tudi značenje povezav. Tako lahko zapišemo
@@ -631,21 +631,105 @@ Najprej posplošimo definicijo \ref{prepletena-polinoma} prepletenih polinomov n
 \begin{definicija}[Skupno prepletanje]
     Polinomi \(f_1, \ldots, f_k\) imajo skupno prepletanje, če obstaja polinom \(g\), ki prepleta vse polinome \(f_i\).
 \end{definicija}
-\begin{definicija}[Prepletena družina]
+\begin{definicija}[Prepletena družina]\label{prepletena-druzina}
     Naj bodo \(S_1, \ldots, S_m\) končne množice in, za vsak \((s_1, \ldots, s_m)\in S_1\times \ldots \times S_m\), naj bo \(f_{s_1, \ldots, s_m}\) polinom stopnje \(n\) z realnimi ničlami in pozitivnim vodilnim koeficientom.
 
-    Za \(0\leq k<m\) definiramo 
+    Za \(0\leq k<m\) definiramo
     \begin{align*}
         f_{(s_1, \ldots, s_k)}(x) = \sum_{(s_{k+1}, \ldots, s_m)\in S_{k+1}\times \ldots \times S_m} f_{s_1, \ldots, s_m}(x).
     \end{align*}
 
     Množica \(\{f_{s_1,\ldots, s_m}\}_{s_1,\ldots, s_m\in S_1\times \ldots \times S_m}\) tvori prepleteno družino, če imajo za vsak \(0\leq k<m-1\) in \(s_1, \ldots, s_k\in S_1\times \ldots \times S_k\) polinomi \(\{f_{(s_1, \ldots, s_k, t)}\}_{t\in S_{k+1}}\) imajo skupno prepletanje.
 \end{definicija}
-V definiciji seštevamo po vseh možnih vrednostih parametrov, indeksi pa nam indeksi fiksirajo parametre. V skrajnosti, \(f_{()}\) sešteje kar vse polinome v družini. 
+V definiciji seštevamo po vseh možnih vrednostih parametrov, indeksi pa nam indeksi fiksirajo parametre. V skrajnosti, \(f_{()}\) sešteje kar vse polinome v družini.
 
 Za nas bo zanimiv primer, ko so vsi \(S_i=\{\pm 1\}\), posamezni \(s_i\) pa predstavljajo značenje določenega robova. Polinom \(f_{s_1, \ldots, s_m}\) bo predstavljal značeni karakteristični polinom, za značenje \((s_1,\ldots, s_m) \in \{\pm\}^m\). Primer \(f_{()}\) sešteje vsa možna značenja, torej je do skalarja natančno enak pričakovani vrednosti vseh značenih karakterističnih polinomov (seveda ima tudi enake ničle). Družina značenih karakterističnih polinomov bo pa prepletena če, ne glede na to kako definiramo značenje robova (imamo pa fiksirano značenje za robove, ki imajo manjši indeks) obstaja nek polinom, ki prepleta pričakovani polinom po nefiksiranih spremenljivkah. To pa omejuje koliko se lahko spremenijo ničle, saj morajo biti ničle prepletenega polinoma med ničlami pričakovanega polinoma.
 
-Najprej bomo dokazali, da značeni karakteristični polinomi res tvorijo prepleteno družino.
+Najprej bomo dokazali, da značeni karakteristični polinomi res tvorijo prepleteno družino. Za to potrebujemo drugačno karakterizacijo skupnih prepletanj\cite{DEDIEU1992269}.
 \begin{izrek}\label{konveksne-kombinacije-prepletenih}
     Naj bodo \(f_1, \ldots, f_k\) polinomi v eni spremenljivki enake stopnje s pozitivnimi vodilnimi koeficienti. Potem imajo polinomi skupno prepletanje natanko takrat, ko ima \(\sum_{i=1}^k \lambda_i f_i\) realne ničle za vse konveksne kombinacije \(\lambda_i\) (torej \(\lambda_i\geq 0\) in \(\sum_{i=1}^k \lambda_i=1\)).
 \end{izrek}
+Dokazali bomo le za nas pomembno smer, da imajo polinomi skupno prepletanje, če ima vsaka konveksna kombinacija realne ničle. Zaradi enostavnosti predpostavimo tudi, da je \(k=2\). Dokaz poteka enako tudi v primeru \(k>2\).
+\begin{dokaz}
+    Naj bosta \(f = \prod_{i=1}^n k_1 (x-a_i)\) in \(g = \prod_{i=1}^n k_2 (x-b_i)\) polinoma. Ker je primer \(n=1\) trivialen, predpostavimo \(n>2\). Kot v trditvi izreka predpostavimo, da ima polinom \(h = \lambda f + (1-\lambda) g\) realne ničle za poljubno vrednost \(\lambda\). Za začetek še predpostavimo splošno lego: vse ničle polinomov \(f\) in \(g\) so različne.
+
+    Polinoma imata skupno prepletanje, če obstaja polinom \(p\) stopnje \(n-1\), ki prepleta oba polinoma. To lahko enostavno karakteriziramo, če si ogledamo zaporedje ničel. Če je \(a_i < b_{i+1}\) so možne kombinacije ničel
+    \begin{itemize}
+        \item \(a_i < b_i < a_{i+1} < b_{i+1}\)
+        \item \(a_i < b_i < b_{i+1} < a_{i+1}\)
+        \item \(a_i < a_{i+1} < b_i < b_{i+1}\)
+    \end{itemize}
+    Podobno dobimo, če je \(b_i < b_{i+1}\). V prvem primeru lahko za ničlo polinoma \(p\) izberemo poljubno vrednost med \(b_{i}\) in \(a_{i+1}\), v drugem pa med \(b_i\) in \(b_{i+1}\). Če so vse ničle torej prve ali druge oblike lahko polinom \(p\) enostavno določimo. Dokazati moremo torej le, da če so vse ničle konveksne kombinacije realne potem ni mogoče, da si ničle \(f\) in \(g\) sledijo kot v tretjem primeru (za katerikoli \(i\)). Lažje bo dokaz s kontrapozitivno obliko: dokazali bomo, da če so ničle kot v tretjem primeru ima konveksna kombinacija ničel kompleksno ničlo.
+
+    Predpostavimo torej, da je \(a_i < a_{i+1} < b_i < b_{i+1}\). Izberemo si najmanjši tak \(i\), to bo zagotovilo, da ne obstaja nek \(j<i\) za katerega bi veljalo \(a_i < b_j < b_i\). S to izbiro zagotovimo, da \(g\) ne spremeni predznaka med \(a_i\) in \(b_i\). Ker pa sta oba polinoma \(f\) in \(g\) monična in enake stopnje se predznaki med ničlami alternirajo enako. Recimo, če ima \(f\) med \(a_i\) in \(a_{i+1}\) pozitiven predznak ima tudi \(g\) med \(b_i\) in \(b_{i+1}\) pozitiven predznak. To skupaj povzamemo v tabeli (kjer predpostavimo, da ima \(f(x)\) pozitiven predznak pred \(b_i\) in, da je \(\varepsilon\) dovolj majhen).
+    \begin{center}
+        \begin{align*}
+            \begin{array}{|c|c|c|c|c|c|}
+                \hline
+                     & (a_i - \varepsilon, a_i) & (a_i, a_{i+1}) & (a_{i+1}, b_i) & (b_i, b_{i+1}) & (b_{i+1}, b_{i+1} + \varepsilon) \\ \hline
+                g(x) & +                        & +          & +          & -          & +                        \\ \hline
+                f(x) & +                        & -          & +          & +          & +                        \\ \hline
+            \end{array}
+        \end{align*}
+    \end{center}
+    Torej naš \(h(x)=\lambda f(x) + (1-\lambda) g(x)\) ima za \(\lambda = 1\) ničlo na \(a_i\) in \(a_{i+1}\), ko zmanjšujemo \(\lambda\) pa se mu na \((a_i, a_{i+1})\) prištevajo same pozitivne vrednosti. Za \(\lambda=1\) ima na temu intervalu same negativne vrednosti, za \(\lambda=0\) pa same pozitivne. Vrednosti izven intervala so začele pozitivne in končale pozitivne. Ker je proces zvezen v \(\lambda\) in za vsak \(\lambda\) polinom to pomeni, da je za nek \(\lambda\) dvojna. Če temu \(\lambda\) odštejemo še dovolj majhen \(\varepsilon>0\) dobimo kompleksno ničlo.
+
+    Tako smo dokazali, da če so ničle \(f\) in \(g\) v nezaželeni obliki je nekje ničla konveksne kombinacije kompleksna. Ker pa je predpostavka izreka, da so vse ničle konveksne kombinacije realne, to pomeni, da so vse ničle \(f\) in \(g\) v taki obliki, da znamo izbrati ničle polinoma \(p\) da ju prepleta.
+
+    Rezultat v izrojenih primerih, kjer imata \(f\) ali \(g\) večkratne ničle dobimo tako, da polinoma zamaknemo za \(\varepsilon\) (tako, da nima več večkratnih ničel) in pošljemo \(\varepsilon\to 0\). Če pa si še \(f\) in \(g\) delita ničlo, torej \(f(x) = (x-a)^{m_f} f_1(x)\) in \(g(x) = (x-a)^{m_g} g_1(x)\) lahko to ničlo izpostavimo iz konveksne kombinacije in nadaljujemo kot v splošni legi. 
+\end{dokaz}
+
+V temu izreku pa vidimo nekaj zanimivega: pojem prepletenosti je povezan s obstojem realne ničle. V izreku \ref{nicle-prepletenih-so-realne} pa smo pokazali ravno, da imajo določeni polinomi realne ničle. To lahko uporabimo, da pokažemo, da značeni karakteristični polinomi tvorijo prepleteno družino.
+
+\begin{izrek}\ref{karakteristicni-so-prepleteni}
+    Družina polinomov \(\{f_s\}_{s\in \{\pm 1\}^m}\) tvori prepleteno družino.
+\end{izrek}
+\begin{dokaz}
+    Zaradi izreka \ref{konveksne-kombinacije-prepletenih} moremo le pokazati, da imajo polinomi
+    \begin{align*}
+        \lambda f_{s_1, \ldots s_k, 1} + (1-\lambda)f_{s_1,\ldots, s_k, -1}(x)
+    \end{align*}
+    realne ničle za vse \(\lambda\in [0,1]\) in \(s_1, \ldots, s_k\in \{\pm 1\}\). Fiksirajmo zdaj \(s_1, \ldots, s_k\) in dokažimo, da so ničle realne.
+
+    V izreku \ref{nicle-prepletenih-so-realne} pa smo videli, da so ničle polinoma
+    \begin{align*}
+        \sum_{s\in \{\pm 1\}^m} \left(\prod_{\substack{i \\s_i=1}} p_{i}\right) \left(\prod_{\substack{i\\s_i=-1}} (1- p_{i})\right) f_s(x)
+    \end{align*}
+    realne. Za koeficiente izberemo \(p_{k+1}=\lambda\), \(p_{k+2},\ldots, p_m=1/2\) in \(p_i = (1+s_i)/2\) za \(1\leq i\leq k\). Iz \(p_{k+1}\) dobimo koeficient \(\lambda\), ko prištevamo polinom z \(s_{k+1}=1\) in \(1-\lambda\) ko prištevamo polinom z \(s_{k+1} = -1\). Preko \(p_i = (1+s_i)/2\) poskrbimo, da ohranimo le člene, ki imajo pravilno značenje (torej, da so \(s_i\) kot smo izbrali na začetku) - ostali členi se zmnožijo v \(0\). Nazadnje pa z \(p_i = 1/2\) ne uničimo ničesar; v vsakem seštevku bomo dobili le \((1/2)^{m-(k+2)}\), kar pa ne vpliva na ničle saj lahko ta faktor izpostavimo. Dobimo torej 
+    \begin{align*}
+        \left(\frac12\right)^{m-(k+2)}\left(\lambda \sum_{s\in \{\pm 1\}^{m-(k+2)}}f_{s1, \ldots, s_k, 1, s}(x) +(1-\lambda) \sum_{s\in \{\pm 1\}^{m-(k+2)}}f_{s1, \ldots, s_k, -1, s}(x)\right)
+    \end{align*}
+    Oziroma, po definiciji,
+    \begin{align*}
+        \left(\frac12\right)^{m-(k+2)}(\lambda f_{s_1, \ldots, s_k, 1} + (1-\lambda)f_{s_1,\ldots, s_k, -1}(x)).
+    \end{align*}
+    Torej so ničle konveksne kombinacije realne in družina \(f_s\) je prepletena.
+\end{dokaz}
+
+Sedaj lahko zaključimo z zadnjim izrekom, ki bo pokazal obstoj polinoma z dovolj majhno največjo ničlo.
+
+\begin{lema}\label{obstaja-nicla-manjsa}
+    Naj bodo \(f_1, \ldots, f_k\) polinomi enake stopnje s pozitivnim vodilnim koeficientom in skupnim prepletanjem. Potem obstaja \(i\), da ima polinom \(f_i\) največjo ničlo manjšo ali enako največji ničli polinoma \(f=\sum_{i=1}^k f_i\).
+\end{lema}
+\begin{dokaz}
+    Naj bodo polinomi stopnje \(n\) in naj \(g\) prepleta vse \(f_i\). Dodatno naj bo \(\alpha_{n-1}\) največja ničla \(g\). 
+    
+    Polinomi \(f_i\) imajo po definiciji prepletanja največ eno ničlo večjo od \(\alpha_{n-1}\). Ker polinom \(g\) prepleta vse \(f_i\) je \(f_i(\alpha_{n-1})\leq0\) za vse \(i\). Ker imajo polinomi pozitiven vodilni koeficient so sčasoma pozitivni, torej je tudi njihov seštevek sčasoma pozitiven in ima ničlo \(\beta_n > \alpha_{n-1}\).
+
+    Dokažimo zdaj s protislovjem. Če bi vsi polinomi imeli največjo ničlo strogo večjo od \(\beta_n\), potem lahko izberemo tisti \(i\), ki ima najmanjšo največjo ničlo (ki pa je še vedno večja od \(\beta_n\)). To ničlo poimenujmo \(\gamma_n\). Za njo velja, da je \(f_i(\gamma_n) \leq 0\) za vse \(i\) ampak \(f(\gamma_n) > 0\). Ker pa seštevek nepozitivnih števil ne more biti pozitiven smo v protislovju in torej obstaja neka ničla, ki je manjša ali enaka največji ničli polinoma \(f\).
+\end{dokaz}
+
+\begin{izrek}
+    Obstaja značenje \(s\) za katerega ima polinom \(f_s\) največjo ničlo manjšo od največje ničle pričakovane vrednosti
+\end{izrek}
+\begin{dokaz}
+    Družina polinomov \(\{f_s\}_{s\in\{\pm1\}^m}\) je, kot vemo iz izreka \label{karakteristicni-so-prepleteni}, prepletena družina. Seštevek te družine je \(f_{()}\), ki ima enake ničle kot pričakovana vrednost \(\mathbb E_{s}(f(s))\) (saj sta do skalarnega večkratnika natančno enaka polinoma). Sedaj lahko induktivno določimo značenja robov.
+
+    Začnemo z množico \(\{f_{(1)}, f_{(-1)}\}\), (spomnimo se definicije \ref{prepletena-druzina}, ki definira \(f_{(1)}\) kot seštevek vseh značenih karakterističnih polinomov, ki imajo značenje za prvi rob fiksirano na \(1\); enako seveda za \(f_{(-1)}\) in fiksiranje robova na \(-1\)). Polinoma imata skupno prepletanje, saj je družina \(\{f_s\}\) prepletena. Zaradi leme \ref{obstaja-nicla-manjsa} pa ima eden od njiju največjo ničlo manjšo od njunega seštevka \(f_{()}\). Za \(s_1\) vzamemo značenje robova, ki ga je fiksiral ta polinom. Nato nadaljujemo induktivno z množico \(\{f_{s_1, 1}, f_{s_1, -1}\}\) in tako naprej, dokler ne določimo značenja za vse robove. Seštevek množice v vsakem koraku bo ravno polinom iz prejšnjega koraka, za katerega pa vemo, da ima največjo ničlo dovolj majhno. 
+\end{dokaz}
+
+
+\subsection{Konstrukcija}
+Sedaj imamo vse potrebne izreke, da pokažemo konstrukcijo Ramanujanovih grafov.
+
+Začnemo z dvodelnim \(d\)-regularnim Ramanujanovim grafom. Za vsak graf lahko poiščemo njegov \(2\)-dvig, ki ima dvakrat več vozlišč in ohranja dvodelnost. Vsakemu \(2\)-dvigu pripada značenje in ga lahko opišemo z značeno sosednostno matriko. Lastne vrednosti \(2\)-dviga so ravno unija lastnih vrednosti prvotnega grafa in lastnih vrednosti značene sosednostne matrike. Če začnemo z Ramanujanovim grafom so njegove lastne vrednosti že dovolj majhne in, da je njegov \(2\)-dvig Ramanujanov, potrebujemo le pokazati, da je največja lastna vrednost značene sosednostne matrike dovolj majhna. Največja lastna vrednost značene sosednostne matrike pa je ravno največja ničla značenega karakterističnega polinoma. Preko polinomov prirejanja smo pokazali, da je \(\mathbb E_{s}f_s(x) = \mu_G(x)\). Ker si polinomi prirejanja grafa delijo ničle z karakterističnimi polinomi dreves poti istega grafa in, ker za vsa drevesa znamo omejiti lastne vrednosti z \(2\sqrt{d-1}\) dobimo, da je največja ničla \(\mathbb E_{s}f_s(x)\) manjša od \(2\sqrt{d-1}\). Preko prepletenih družin pa smo pokazali, da obstaja neko specifično značenje, ki ima največjo ničlo karakterističnega polinoma manjšo od največje ničle \(\mathbb E_{s}f_s(x)\), torej tudi od \(2\sqrt{d-1}\). Če sedaj izberemo za novi graf \(2\)-dvig ki pripada temu značenju dobimo, da so vse netrivialne lastne vrednosti manjše od \(2\sqrt{d-1}\) in, ker je graf dvodelen, manjše tudi po absolutni vrednosti. To pa je ravno definicija Ramanujanovega grafa.
