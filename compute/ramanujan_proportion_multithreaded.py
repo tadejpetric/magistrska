@@ -12,8 +12,11 @@ attempts_per_size = 10
 vertex_step = 2
 max_size = 100
 d = 10
+starting_vertices = d + 1
+assert starting_vertices > d
+
 processes = 4
-total=attempts_per_size * (max_size - d) // vertex_step
+total=attempts_per_size * (max_size - starting_vertices+1) // vertex_step
 
 # output of form (n, proportion)
 
@@ -28,7 +31,7 @@ def proportion_mp(d: Optional[int] = None):
     return prop
 
 def iterate():
-    vertices = d + 1
+    vertices = starting_vertices
     while vertices < max_size:
         for _attempt in range(attempts_per_size):
             yield vertices
@@ -36,7 +39,11 @@ def iterate():
         vertices += vertex_step
 
 def coalesce(results: dict[int, list[float]]):
+    all_results = []
     for n, res in results.items():
+        all_results.append((n, mean(res)))
+    sorted(all_results, key=lambda x: x[0])
+    for n, res in all_results:
         print(f"({n}, {mean(res)})")
 
 
