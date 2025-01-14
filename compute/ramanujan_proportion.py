@@ -46,5 +46,5 @@ def average_second():
         vertices += vertex_step
 
 pass
-#average_second()
-proportion()
+average_second()
+#proportion()
