@@ -29,11 +29,11 @@ class S:
 
             for u in range(v):
                 edge_options.append((u, v))
-                weights.append(d*d)
+                weights.append(d * d)
 
         return S(edge_options, weights, degrees)
-    
-    def update_S(self, selected_u:int, selected_v:int, d:int) -> None:
+
+    def update_S(self, selected_u: int, selected_v: int, d: int) -> None:
         # We remove the selected edge from the list of options entirely
         self.degrees[selected_u] += 1
         self.degrees[selected_v] += 1
@@ -43,13 +43,13 @@ class S:
         for u, v in self.edge_options:
             if u == selected_u and v == selected_v:
                 continue
-            
+
             if self.degrees[u] == d or self.degrees[v] == d:
                 continue
 
             new_weights.append((d - self.degrees[v]) * (d - self.degrees[u]))
             new_edge_options.append((u, v))
-        
+
         self.weights = new_weights
         self.edge_options = new_edge_options
 
@@ -57,12 +57,12 @@ class S:
         return len(self.edge_options) == 0
 
 
-
 def random_regular(n_vertices: int, d: int, max_attempts=10000) -> Optional[np.array]:
     # https://users.monash.edu.au/~nwormald/papers/randgen.pdf
     # Algorithm 2, no reusing S
 
     A = np.zeros((n_vertices, n_vertices), np.int8)
+
     def attempt() -> np.array:
         A.fill(0)
         options = S.get_S(A, d)
@@ -86,6 +86,7 @@ def random_regular(n_vertices: int, d: int, max_attempts=10000) -> Optional[np.a
         nr_attempts += 1
 
     return A
+
 
 if __name__ == "__main__":
     A = random_regular(10, 3)
