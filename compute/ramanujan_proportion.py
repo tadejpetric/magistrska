@@ -2,16 +2,20 @@ from random_regular import random_regular
 from utils import is_ramanujan, second_eigenvalue
 
 
-attempts_per_size = 10
-vertex_step = 2
-max_size = 100
+attempts_per_size = 1
+vertex_step = 10
+max_size = 1201
 d = 10
+starting_vertices = 1200
+assert starting_vertices > d
 
+processes = 10
+total=attempts_per_size * (max_size - starting_vertices+1) // vertex_step
 
 # output of form (n, proportion)
 
 def proportion():
-    vertices = d + 1
+    vertices = starting_vertices
     while vertices < max_size:
         n_ramanujan = 0
         curr_attempts = 0
@@ -28,7 +32,7 @@ def proportion():
 
 
 def average_second():
-    vertices = d + 1
+    vertices = starting_vertices
     while vertices < max_size:
         curr_attempts = 0
         eival_sum = 0
@@ -46,5 +50,6 @@ def average_second():
         vertices += vertex_step
 
 pass
-average_second()
-#proportion()
+
+#average_second()
+proportion()

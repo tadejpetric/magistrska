@@ -9,14 +9,15 @@ from utils import is_ramanujan, second_eigenvalue
 from tqdm import tqdm
 
 attempts_per_size = 10
-vertex_step = 2
-max_size = 100
+vertex_step = 10
+max_size = 1501
 d = 10
-starting_vertices = d + 1
+starting_vertices = 1500
 assert starting_vertices > d
 
 processes = 4
-total=attempts_per_size * (max_size - starting_vertices+1) // vertex_step
+total = ((max_size - starting_vertices + vertex_step - 1) // vertex_step) * attempts_per_size
+
 
 # output of form (n, proportion)
 
@@ -42,9 +43,11 @@ def coalesce(results: dict[int, list[float]]):
     all_results = []
     for n, res in results.items():
         all_results.append((n, mean(res)))
+    
     sorted(all_results, key=lambda x: x[0])
+
     for n, res in all_results:
-        print(f"({n}, {mean(res)})")
+        print(f"({n}, {res})")
 
 
 def proportion_body_mp(n: int) -> tuple[int, Optional[float]]:
@@ -56,9 +59,10 @@ def proportion_body_mp(n: int) -> tuple[int, Optional[float]]:
 def proportion():
     with Pool(processes) as pool:
         results = defaultdict(list)
-        for result in tqdm(pool.imap_unordered(proportion(d), iterate()),  total=total):
+        for result in tqdm(pool.imap_unordered(proportion_body_mp, iterate()),  total=total):
+            print(result)
             if result[1] is not None:
-                results[results[0]].append(result[1])
+                results[result[0]].append(result[1])
 
         coalesce(results)
 
@@ -79,5 +83,5 @@ def average_second():
         coalesce(results)
 
 pass
-average_second()
-#proportion()
+#average_second()
+proportion()

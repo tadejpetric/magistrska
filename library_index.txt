@@ -4,3 +4,7 @@ Cheeger inequality proof
 h(G)= c(G) / d
 and he's using laplacian instead of adjacency L = I-A/d
 the eigenvalues are l * d = d-a =s(G)
+
+
+https://arxiv.org/pdf/2412.20263
+ramanujan graphs are ~69%

@@ -41,7 +41,7 @@ def is_ramanujan(A: np.array, d: Optional[int] = None) -> bool:
     cntr = 0
     for ev in reversed(evals):
         # Find all eigenvalues that are roughly d
-        if ev > d - np.finfo(np.float32).eps:
+        if ev > d - 0.001:
             cntr += 1
             continue
         if cntr == 0:
