@@ -6,7 +6,7 @@ from typing import Optional
 
 import numpy as np
 
-from utils import is_regular, is_connected
+from utils import is_ramanujan, is_regular, is_connected
 
 
 def random_regular(n_vertices: int, d: int, max_attempts=10000) -> Optional[np.array]:
@@ -59,3 +59,10 @@ def random_regular(n_vertices: int, d: int, max_attempts=10000) -> Optional[np.a
 if __name__ == "__main__":
     A = random_regular(10, 3)
     print(A)
+
+def is_random_ramanujan(n_vertices: int, d: int):
+    A = random_regular(n_vertices, d)
+    if A is None:
+        return 0
+
+    return is_ramanujan(A, d)

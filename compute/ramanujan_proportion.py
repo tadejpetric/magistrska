@@ -1,12 +1,12 @@
-from random_regular_naive import random_regular
-from utils import is_ramanujan, second_eigenvalue
+from random_regular_networkx import random_regular, is_random_ramanujan
+from utils import second_eigenvalue
 
 
-attempts_per_size = 1
-vertex_step = 10
-max_size = 2001
-d = 10
-starting_vertices = 2000
+attempts_per_size = 1000
+vertex_step = 10000
+max_size = 100001
+d = 5
+starting_vertices = 10000
 assert starting_vertices > d
 
 processes = 10
@@ -20,36 +20,11 @@ def proportion():
         n_ramanujan = 0
         curr_attempts = 0
         for _ in range(attempts_per_size):
-            print("attempt", _)
-            A = random_regular(vertices, d)
-            if A is None:
-                continue
-
+            n_ramanujan += is_random_ramanujan(vertices, d)
             curr_attempts += 1
-            if is_ramanujan(A, d):
-                n_ramanujan += 1
+
         print(f"({vertices}, {n_ramanujan/curr_attempts})")
         vertices += vertex_step
-
-
-def proportion2():
-    from networkx import random_regular_graph, to_numpy_array
-    vertices = starting_vertices
-    while vertices < max_size:
-        n_ramanujan = 0
-        curr_attempts = 0
-        for _ in range(attempts_per_size):
-            print("attempt", _)
-            A = to_numpy_array(random_regular_graph(d, vertices))
-            if A is None:
-                continue
-
-            curr_attempts += 1
-            if is_ramanujan(A, d):
-                n_ramanujan += 1
-        print(f"({vertices}, {n_ramanujan/curr_attempts})")
-        vertices += vertex_step
-
 
 def average_second():
     vertices = starting_vertices

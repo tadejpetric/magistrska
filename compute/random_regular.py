@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from utils import is_regular, is_connected
+from utils import is_ramanujan, is_regular, is_connected
 
 
 @dataclass
@@ -100,6 +100,13 @@ def random_regular(n_vertices: int, d: int, max_attempts=10000) -> Optional[np.a
 
     return A
 
+
+def is_random_ramanujan(n_vertices: int, d: int):
+    A = random_regular(n_vertices, d)
+    if A is None:
+        return 0
+
+    return is_ramanujan(A, d)
 
 if __name__ == "__main__":
     A = random_regular(10, 3)

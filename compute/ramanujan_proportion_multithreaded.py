@@ -3,19 +3,19 @@ from typing import Optional
 from multiprocessing import Pool
 from statistics import mean
 
-from random_regular import random_regular
+from random_regular_networkx import random_regular
 from utils import is_ramanujan, second_eigenvalue
 
 from tqdm import tqdm
 
-attempts_per_size = 10
-vertex_step = 10
-max_size = 1501
+attempts_per_size = 200
+vertex_step = 50
+max_size = 3001
 d = 10
-starting_vertices = 1500
+starting_vertices = 100
 assert starting_vertices > d
 
-processes = 4
+processes = 10
 total = ((max_size - starting_vertices + vertex_step - 1) // vertex_step) * attempts_per_size
 
 
@@ -60,7 +60,6 @@ def proportion():
     with Pool(processes) as pool:
         results = defaultdict(list)
         for result in tqdm(pool.imap_unordered(proportion_body_mp, iterate()),  total=total):
-            print(result)
             if result[1] is not None:
                 results[result[0]].append(result[1])
 
@@ -83,5 +82,8 @@ def average_second():
         coalesce(results)
 
 pass
-#average_second()
+
+print("Second eigenvalue")
+average_second()
+print("Proportion")
 proportion()
