@@ -1,11 +1,9 @@
 """
 Function that creates a random d-regular graph on n vertices.
 """
-
-from collections import defaultdict
+import logging
 from typing import Optional
 from dataclasses import dataclass
-import random
 
 import numpy as np
 
@@ -14,73 +12,52 @@ from utils import is_regular, is_connected
 
 @dataclass
 class S:
-    edge_to_weights: dict[tuple[int, int], int]
-    degrees: list[int]
+    probabilities: np.ndarray
+    inv_degrees: np.ndarray
+    n: int
 
     @staticmethod
     def get_S(A: np.array, d: int) -> "S":
         n = len(A)
-        edge_to_weights = {}
 
-        degrees = []
-        for v in range(n):
-            degrees.append(0)
+        probabilities = np.full((n,n), d*d, np.int32)
+        np.fill_diagonal(probabilities, 0)
+        inv_degrees = np.full(n, d, np.int32)
 
-            for u in range(v):
-                edge_to_weights[(u, v)] = d*d
-
-        return S(edge_to_weights, degrees)
-
-    def get_pairs(self, indices: np.array, other: int) -> np.array:
-        for index in indices:
-            index_i = int(index)
-
-            # KeyError happens if one vertex u gets degree d without getting connected to v
-            # (hence the edge (u, v) is not in the dictionary)
-            # Once v also reaches degree d, we try to remove the edge again
-            if other == index_i:
-                continue
-            if other < index_i:
-                if (other, index_i) not in self.edge_to_weights:
-                    continue
-                yield (other, index_i)
-            else:
-                if (index_i, other) not in self.edge_to_weights:
-                    continue
-                yield (index_i, other)
-
-    def delete_from(self, first, indices: np.array) -> None:
-        for a, b in self.get_pairs(indices, first):
-            self.edge_to_weights.pop((a, b))
+        return S(probabilities, inv_degrees, n)
 
 
     def update_S(self, A: np.array, selected_u: int, selected_v: int, d: int) -> None:
         # We remove the selected edge from the list of options entirely
-        self.degrees[selected_u] += 1
-        self.degrees[selected_v] += 1
+        self.inv_degrees[selected_u] -= 1
+        self.inv_degrees[selected_v] -= 1
 
-        u_neighbors = np.where(A[selected_u] == 0)[0]
-        v_neighbors = np.where(A[selected_v] == 0)[0]
+        assert self.inv_degrees[selected_u] >= 0
+        assert self.inv_degrees[selected_v] >= 0
 
-        if self.degrees[selected_u] == d:
-            self.delete_from(selected_u, u_neighbors)
+        if self.inv_degrees[selected_u] == 0:
+            self.probabilities[:, selected_u] = 0
+            self.probabilities[selected_u, :] = 0
         else:
-            for a, b in self.get_pairs(u_neighbors, selected_u):
-                self.edge_to_weights[(a, b)] = (d - self.degrees[a]) * (d - self.degrees[b])
+            selected_degree = self.inv_degrees[selected_u]
+            mask = self.probabilities[:, selected_u] != 0
+            self.probabilities[mask, selected_u] = selected_degree * self.inv_degrees[mask]
+            self.probabilities[selected_u, mask] = selected_degree * self.inv_degrees[mask]
 
-        if self.degrees[selected_v] == d:
-            self.delete_from(selected_v, v_neighbors)
+        if self.inv_degrees[selected_v] == 0:
+            self.probabilities[:, selected_v] = 0
+            self.probabilities[selected_v, :] = 0
         else:
-            for a, b in self.get_pairs(v_neighbors, selected_v):
-                self.edge_to_weights[(a, b)] = (d - self.degrees[a]) * (d - self.degrees[b])
+            selected_degree = self.inv_degrees[selected_v]
+            mask = self.probabilities[:, selected_v] != 0
+            self.probabilities[mask, selected_v] = selected_degree * self.inv_degrees[mask]
+            self.probabilities[selected_v, mask] = selected_degree * self.inv_degrees[mask]
 
-        self.edge_to_weights.pop((selected_u, selected_v))
+        self.probabilities[selected_u, selected_v] = 0
+        self.probabilities[selected_v, selected_u] = 0
 
-    def is_empty(self) -> bool:
-        return len(self.edge_to_weights) == 0
-
-    def get_choices(self) -> tuple[list[tuple[int, int]], list[int]]:
-        return list(self.edge_to_weights.keys()), list(self.edge_to_weights.values())
+    def to_indices(self, number: int) -> tuple[int, int]:
+        return divmod(number, self.n)
 
 
 def random_regular(n_vertices: int, d: int, max_attempts=10000) -> Optional[np.array]:
@@ -88,19 +65,29 @@ def random_regular(n_vertices: int, d: int, max_attempts=10000) -> Optional[np.a
     # Algorithm 2, no reusing S
 
     A = np.zeros((n_vertices, n_vertices), np.int8)
+    rng = np.random.default_rng()
 
     def attempt() -> np.array:
         A.fill(0)
         options = S.get_S(A, d)
 
-        while True:
-            if options.is_empty():
-                return A
+        weights_sum: float = np.sum(options.probabilities.reshape(-1))
+        eps = np.finfo(np.float32).eps
+        
+        while weights_sum > eps:
+            u_and_v = rng.choice(options.n*options.n, replace=False, p=options.probabilities.reshape(-1) / weights_sum)
+            u, v = options.to_indices(u_and_v)
+            while u == v or A[u, v] == 1:
+                logging.warning("Somehow chose the same thing, probability: ", options.probabilities[u, v])   
+                u_and_v = rng.choice(options.n*options.n, replace=False, p=options.probabilities.reshape(-1) / weights_sum)
+                u, v = options.to_indices(u_and_v)
 
-            u, v = random.choices(*options.get_choices())[0]
             A[u, v] = 1
             A[v, u] = 1
             options.update_S(A, u, v, d)
+            weights_sum = np.sum(options.probabilities.reshape(-1))
+        
+        return A
 
     A = attempt()
     nr_attempts = 1
