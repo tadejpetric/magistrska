@@ -4,9 +4,11 @@
 \usepackage{mathtools}
 \usepackage{tikz}
 \usetikzlibrary{positioning}
+\usepackage{pgf}
 \usepackage{pgfplots}
 \floatname{algorithm}{Algoritem}
 \renewcommand{\listalgorithmname}{Kazalo algoritmov}
+\usepackage{layouts}
 
 % deklarirajte vse matematične operatorje, da jih bo LaTeX pravilno stavil
 % \DeclareMathOperator{\conv}{conv}
@@ -51,3 +53,14 @@
 
 
 \DeclareMathOperator{\sgn}{sgn}
+
+\def\mathdefault#1{#1}
+\everymath=\expandafter{\the\everymath\displaystyle}
+\IfFileExists{scrextend.sty}{
+\usepackage[fontsize=10.000000pt]{scrextend}
+}{
+\renewcommand{\normalsize}{\fontsize{10.000000}{12.000000}\selectfont}
+\normalsize
+}
+
+\makeatletter\@ifpackageloaded{underscore}{}{\usepackage[strings]{underscore}}\makeatother
