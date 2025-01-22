@@ -54,6 +54,13 @@ def is_ramanujan(A: np.array, d: Optional[int] = None) -> bool:
         # Check if the next eigenvalue (first nontrivial one) is within the bounds
         return ev <= 2 * math.sqrt(d - 1)
 
+def is_ramanujan_simp(A: np.array, d: Optional[int] = None) -> bool:
+    sorted_ev = sorted(np.linalg.eigvalsh(A))
+    second_ev = max(abs(sorted_ev[-2]), abs(sorted_ev[0]))
+    if d is None:
+        d = round(sorted_ev[-1])
+    return second_ev <= 2 * math.sqrt(d - 1)
+
 def second_eigenvalue(A: np.array, d: Optional[int] = None) -> float:
     # Works on regular graphs
     evals = sorted(map(lambda x: abs(x), np.linalg.eigvalsh(A)))

@@ -3,10 +3,10 @@ from utils import second_eigenvalue
 
 
 attempts_per_size = 1000
-vertex_step = 4
-max_size = 1020
-d = 7
-starting_vertices = 300# d + 1 
+vertex_step = 20
+max_size = 1021
+d = 5
+starting_vertices =  966#d + 1 
 assert starting_vertices > d
 
 processes = 10
