@@ -1,0 +1,53 @@
+\section{Konstrukcija splošnih Ramanujanovih grafov}
+Ogledali si bomo še zadnjo konstrukcijo Ramanujanovih grafov, ki pa je pravzaprav bila kronološko prva. Ta nam bo poiskala neskončno družino ramanujanovih grafov stopnje \(p+1\) za poljubno praštevilo \(p\). Za razliko od prejšne konstrukcije pa ne bomo dobili samih dvodelnih grafov.
+
+Glavni razlog, da si bomo ogledali to konstrukcijo pa je, da je zanimiva in uporablja povsem drugačne pristope kot prej. Skica konstrukcije je sledeča: poiskali bomo družino matričnih grup, ki ima \(p+1\) generatorjev. Za vsako grupo lahko poiščemo njen Caylejev graf, ki ima enako stopnjo regularnosti kot je število generatorjev grupe, torej dobimo \((p+1)\)-regularen graf. Za te grafe pa se bo izkazalo, da so Ramanujanovi.
+
+Vsi rezultati, če ni citirano drugače, so iz članka \cite{lps-ramanujan}. % TODO: nekako polepšaj ta stavek
+
+\subsection{Teorija števil}
+Začnemo z nekaj osnovnimi definicijami in izreki iz teorije števil, ki jih bomo potrebovali v konstrukciji grafov.
+
+Prva definicija generalizira pojem popolnega kvadrata na končna polja. V celih številih so popolni kvadrati števila oblike \(k^2\), kjer je \(k\) celo število. Če pa to gledamo v kolobarju \(\mathbb Z/n\mathbb Z\) dobimo enako definicijo, samo modulo \(n\).
+\begin{definicija}[Kvadratni ostanek]
+    Število \(a\in \mathbb Z\) je kvadratni ostanek modulo \(n\), če obstaja takšno takšno število \(k\in \mathbb Z\), da velja \(a\equiv k^2 \pmod n\). 
+\end{definicija}
+
+Sedaj lahko definiramo Legendrejev simbol.
+\begin{definicija}[Legendrejev simbol]
+    Za število \(a\in \mathbb Z\) in \(p>2\) praštevilo. Legendrejev simbol je definiran kot
+    \begin{align*}
+        \legendre{a}{p} = 
+        \begin{cases}
+            1 &a \neq 0 \text{ in } a \text{ je kvadratni ostanek modulo } p\\
+            0 &a \equiv 0 \pmod p \\
+            -1 & a \text{ ni kvadratni ostanek modulo } p
+        \end{cases}
+    \end{align*} 
+\end{definicija}
+
+\begin{primer}
+    Oglejmo si kvadratne ostanke modulo 5.
+    Velja
+    \begin{align*}
+        0 \equiv 0^2 \pmod 5\\
+        1^2 \equiv 4^2 \equiv 1 \pmod 5\\
+        2^2 \equiv 3^2 \equiv 4 \pmod 5.
+    \end{align*} 
+    Če vzamemo število večje od \(5\) ga lahko zapišemo kot \(k\cdot 5 + r\) (za \(0\leq r <5\)), kvadrat tega izraza pa je enak \(k^2\cdot 5^2 + 2kr\cdot 5 + r^2\). Ko ga gledamo modulo \(5\) pa ostane le sumand \(r^2\) in ne moremo zapisati novih opcij. Torej so kvadratni ostanki modulo \(5\) števila oblike \(5\cdot k\), \(5\cdot k + 1\) in \(5\cdot k + 4\).
+
+    Tako lahko napišemo tudi Legendrejeve simbole. Recimo
+    \begin{align*}
+        \legendre{5k}{7} = 0 \\
+        \legendre{5k + 1}{7} = \legendre{5k + 4}{7} = 1\\
+        \legendre{5k + 2}{7} = \legendre{5k + 3}{7} = -1.
+    \end{align*}
+\end{primer}
+
+Izbiro grupe bomo pogojevali glede na Legendrejev simbol. Če bomo želeli narediti \(p+1\)-regularen graf bomo izbrali še dodatno praštevilo \(q\). Nato bomo, v primeru \(\legendre{p}{q}=1\) izbrali grupo \(\PSL(2, \modZ{q})\), če je pa \(\legendre{p}{q}=-1\) pa grupo \(\PGL(2, \modZ{q})\). Te grupi si bomo kasneje ogledali bolj podrobno, za nas pa bo pomembno, da imata obe grupi \(p+1\) generatorjev. Da bi to dokazali, potrebujemo še en izrek iz teorije števil.
+
+\begin{izrek}[Jacobijev izrek o štirih kvadratih]
+    
+\end{izrek}
+
+\subsection{Caylejevi grafi}
