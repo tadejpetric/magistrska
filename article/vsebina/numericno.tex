@@ -110,6 +110,8 @@ Algoritem je sicer pravilen, vendar pa je zelo počasen. Velikokrat se zgodi, da
     \end{algorithmic}
 \end{algorithm}
 
+Za naše potrebe je algoritem zadovoljivo hiter in ga bomo uporabljali v nadaljevanju. Algoritem je tudi implementiran v Python knjižnici za delo z grafi, NetworkX. Kljub temu, da grafe ne genrira enakomerno naključno, pa je porazdelitev enakomerna asimptotično in je za večje število vozlišč v praksi enakomerna. Z algoritmom lahko na osebnih računalnikih generiramo grafe z do \(100 000\) vozlišči v nekaj sekundah.
+
 Omenimo še bolj enostaven, naiven pristop za generiranje regularnih grafov. Tu je implementacija zelo enostavna in program dela razmeroma hitro, je pa daleč stran od enakomerne porazdelitve.
 
 \begin{algorithm}[ht]
@@ -135,102 +137,358 @@ Omenimo še bolj enostaven, naiven pristop za generiranje regularnih grafov. Tu 
     \end{algorithmic}
 \end{algorithm}
 
+\subsection{Statistika}
+Zdaj imamo učinkovit način generiranja regularnih grafov, torej si lahko ogledamo nekaj njihovih lastnosti povezanih z Ramanujanovimi grafi. Ogledali si bomo povprečno spektralno vrzel grafov ter delež grafov, ki so Ramanujanovi. To bomo pogojevali na število vozlišč in stopnjo regularnosti grafa. Zaključili pa bomo še s sliko, ki nam prikaže pomembnost meje \(2\sqrt{d-1}\).
+
+\subsubsection{Spektralna vrzel}
+Za začetek si oglejmo kako se spreminja spektralna vrzel glede na ostale parametre grafa. Seveda je ekvivalentno gledati drugo največjo netrivialno lastno vrednost po absolutni vrednosti; v preostanku poglavja to vrednost imenujemo druga največja lastna vrednost. Uporabljali bomo algoritem za hitro generiranje regularnih grafov\ref{enakomerno-nakljucni-hitro}. Nato bomo za vsako izbrano število vozlišč in stonjo regularnosti generirali 1000 grafov, in izračunali povprečje njihovih drugih največjih lastnih vrednosti. Ogledali si bomo tri različne stopnje regularnosti: \(d=5\), \(d=11\) in \(d=21\).
+
+Najprej si oglejmo graf za \(d=5\). Tukaj je meja za Ramanujanove grafe \(2\sqrt{5-1} = 4\). Začnemo pri grafu s šestimi vozlišči in izračunamo povprečje drugih največjih lastnih vrednosti. Nato povečamo število vozlišč za \(20\) in ponovimo postopek. To ponavljamo dokler imajo grafi manj kot \(600\) vozlišč. Rezultate prikažemo na grafu, dodamo pa še horizontalno črto pri vrednosti \(4\).
+
+\begin{figure}[H]
+    \label{fig:5-regular}
+    \centering
+    \begin{tikzpicture}
+        \definecolor{pleasantred}{rgb}{0.85, 0.2, 0.2}
+        \begin{axis}[
+            xlabel={število vozlišč},
+            width=0.9\textwidth,
+            ylabel={Druga največja lastna vrednost},
+                grid=major,
+                ymin=0, ymax=4.3,
+                xmin=1, xmax=600,
+                xtick={0,100,...,600},
+                ytick={1,2,3,4},
+                thick
+            ]
+            \draw[draw=pleasantred] (axis cs:0,4) -- (axis cs:600,4);
+            \addplot coordinates {
+                (6, 1.0000000000000002)
+                (26, 3.6469425449844923)
+                (46, 3.79963239469457)
+                (66, 3.8590979945057677)
+                (86, 3.8900142704961667)
+                (106, 3.9116565426594128)
+                (126, 3.9238905598334965)
+                (146, 3.9325600246589594)
+                (166, 3.938855777384826)
+                (186, 3.944147515902753)
+                (206, 3.9498671033019517)
+                (226, 3.9552616354117065)
+                (246, 3.957467810537496)
+                (266, 3.959490001307144)
+                (286, 3.9618796798493063)
+                (306, 3.9644616694659205)
+                (326, 3.9676602186376644)
+                (346, 3.9692542741810946)
+                (366, 3.9698360851495904)
+                (386, 3.9698257500021206)
+                (406, 3.97181111813395)
+                (426, 3.972473010011027)
+                (446, 3.975603794486935)
+                (466, 3.9756303352387716)
+                (486, 3.9766439267420317)
+                (506, 3.977488063510781)
+                (526, 3.9776682760947293)
+                (546, 3.978964750149576)
+                (566, 3.979531750065059)
+                (586, 3.9794685667065974)
+                (606, 3.9811456508027763)
+                };
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Graf povprečij druge največje lastne vrednosti \(5\) regularnih grafov v odvisnosti od števila vozlišč}
+\end{figure}
+
+Na sliki \ref{fig:5-regular} vidimo, da se povprečje lastnih vrednosti približuje ravno meji za Ramanujanove grafe! Podobno lahko opazimo pri grafih za \(d=11\) na sliki \ref{fig:11-regular} in za \(d=21\) na sliki \ref{fig:11-regular}.
+
+\begin{figure}[H]
+    \label{fig:11-regular}
+    \centering
+    \begin{tikzpicture}
+        \definecolor{pleasantred}{rgb}{0.85, 0.2, 0.2}
+        \begin{axis}[
+            xlabel={število vozlišč},
+            width=0.9\textwidth,
+            ylabel={Druga največja lastna vrednost},
+                grid=major,
+                ymin=0, ymax=6.5,
+                xmin=1, xmax=600,
+                xtick={0,100,...,600},
+                ytick={1,2,3,4,5,6},
+                thick
+            ]
+            \draw[draw=pleasantred] (axis cs:0,6.324555320336759) -- (axis cs:600,6.324555320336759);
+            \addplot coordinates {
+                (12, 1.0000000000000002)
+                (32, 5.198156377614785)
+                (52, 5.643885284747165)
+                (72, 5.829117444893516)
+                (92, 5.923172524513979)
+                (112, 5.998622178810724)
+                (132, 6.042619064245882)
+                (152, 6.079957685856226)
+                (172, 6.11026242602795)
+                (192, 6.125752222542846)
+                (212, 6.14580019144193)
+                (232, 6.159810079904397)
+                (252, 6.168875088596623)
+                (272, 6.18128569012168)
+                (292, 6.189017996514279)
+                (312, 6.197667854719561)
+                (332, 6.203055775141022)
+                (352, 6.210376446059419)
+                (372, 6.2170465023897865)
+                (392, 6.221533675435159)
+                (412, 6.226668634957975)
+                (432, 6.23348367206533)
+                (452, 6.234805834700305)
+                (472, 6.23927709112199)
+                (492, 6.244446713350618)
+                (512, 6.24568687387802)
+                (532, 6.248511105653832)
+                (552, 6.25088144542781)
+                (572, 6.251713414323658)
+                (592, 6.253516933929778)
+                (612, 6.254946081316828)
+                };
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Graf povprečij druge največje lastne vrednosti \(11\) regularnih grafov v odvisnosti od števila vozlišč}
+\end{figure}
+
+\begin{figure}[H]
+    \label{fig:21-regular}
+    \centering
+    \begin{tikzpicture}
+        \definecolor{pleasantred}{rgb}{0.85, 0.2, 0.2}
+        \begin{axis}[
+            xlabel={število vozlišč},
+            width=0.9\textwidth,
+            ylabel={Druga največja lastna vrednost},
+                grid=major,
+                ymin=0, ymax=9.3,
+                xmin=1, xmax=600,
+                xtick={0,100,...,600},
+                ytick={1,2,3,4,5,6,7,8,9},
+                thick
+            ]
+            \draw[draw=pleasantred] (axis cs:0,8.94427190999916) -- (axis cs:600,8.94427190999916);
+            \addplot coordinates {
+                (22, 1.0000000000000016)
+                (42, 6.457762460689075)
+                (62, 7.34267381875069)
+                (82, 7.749182706134452)
+                (102, 7.9826028554188175)
+                (122, 8.144251955483162)
+                (142, 8.256172883115111)
+                (162, 8.33681314660636)
+                (182, 8.400759701073772)
+                (202, 8.456929688398343)
+                (222, 8.50117677868208)
+                (242, 8.536147098061887)
+                (262, 8.562439059545776)
+                (282, 8.584384770184979)
+                (302, 8.609496150772358)
+                (322, 8.627941976386401)
+                (342, 8.649075592875864)
+                (362, 8.664258721715953)
+                (382, 8.680621349648668)
+                (402, 8.691973426726586)
+                (422, 8.69812122565171)
+                (442, 8.709986877027816)
+                (462, 8.72164670988282)
+                (482, 8.729634460708713)
+                (502, 8.741916828498463)
+                (522, 8.748384221744477)
+                (542, 8.75275208966012)
+                (562, 8.757330480876565)
+                (582, 8.764164575308484)
+                (602, 8.771656193932213)
+                };
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Graf povprečij druge največje lastne vrednosti \(21\) regularnih grafov v odvisnosti od števila vozlišč}
+\end{figure}
+
+\subsection{Delež Ramanujanovih grafov}
+Nadaljujemo z deležom Ramanujanovih grafov. Postopek bo enak kot prej, le da rišemo vse hkrati na enem grafu. Da dobimo boljše rezultate si tokrat ogledamo tudi grafe z večimi vozlišči. Začnemo z grafi, ki imajo manj kot \(1000\) vozlišč, za tem pa tudi izračunamo delež Ramanujanovih grafov za grafe z do \(100 000\) vozlišči. Zaradi časovne zahtevnosti, za tako velike grafe izračunamo delež v korakih po \(10 000\) vozlišč.
+
 \begin{figure}[h!]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
-                xlabel={$n$},
+                xlabel={število vozlišč},
                 width=0.9\textwidth,
-                ylabel={Spektralna vrzel},
+                ylabel={Delež Ramanujanovih grafov},
                 grid=major,
                 ymin=0, ymax=1.3,
-                xmin=1, xmax=2000,
-                xtick={0,300,...,2000},
+                xmin=1, xmax=1000,
+                xtick={0,200,...,1000},
                 ytick={0.2,0.4,0.6,0.8,1,1.2},
                 thick
             ]
             \addplot coordinates {
-                    (100, 0.92)
-                    (150, 0.875)
-                    (200, 0.915)
-                    (250, 0.845)
-                    (300, 0.88)
-                    (350, 0.86)
-                    (400, 0.83)
-                    (450, 0.795)
-                    (500, 0.84)
-                    (550, 0.845)
-                    (600, 0.82)
-                    (650, 0.84)
-                    (700, 0.795)
-                    (750, 0.785)
-                    (800, 0.82)
-                    (850, 0.81)
-                    (900, 0.79)
-                    (950, 0.78)
-                    (1000, 0.785)
-                    (1050, 0.76)
-                    (1100, 0.795)
-                    (1150, 0.785)
-                    (1200, 0.78)
-                    (1250, 0.765)
-                    (1300, 0.815)
-                    (1350, 0.835)
-                    (1400, 0.81)
-                    (1450, 0.835)
-                    (1500, 0.775)
-                    (1550, 0.8)
-                    (1600, 0.78)
-                    (1650, 0.785)
-                    (1700, 0.82)
-                    (1750, 0.74)
-                    (1800, 0.825)
-                    (1850, 0.76)
-                    (1900, 0.74)
-                    (1950, 0.76)
-                    (2000, 0.75)
+                (6, 1.0)
+                (26, 0.98)
+                (46, 0.97)
+                (66, 0.952)
+                (86, 0.929)
+                (106, 0.933)
+                (126, 0.92)
+                (146, 0.917)
+                (166, 0.901)
+                (186, 0.891)
+                (206, 0.902)
+                (226, 0.899)
+                (246, 0.888)
+                (266, 0.886)
+                (286, 0.885)
+                (306, 0.888)
+                (326, 0.898)
+                (346, 0.889)
+                (366, 0.891)
+                (386, 0.867)
+                (406, 0.881)
+                (426, 0.864)
+                (446, 0.865)
+                (466, 0.86)
+                (486, 0.865)
+                (506, 0.878)
+                (526, 0.853)
+                (546, 0.863)
+                (566, 0.86)
+                (586, 0.856)
+                (606, 0.842)
+                (626, 0.858)
+                (646, 0.855)
+                (666, 0.864)
+                (686, 0.865)
+                (706, 0.843)
+                (726, 0.836)
+                (746, 0.836)
+                (766, 0.83)
+                (786, 0.846)
+                (806, 0.842)
+                (826, 0.864)
+                (846, 0.847)
+                (866, 0.853)
+                (886, 0.842)
+                (906, 0.839)
+                (926, 0.853)
+                (946, 0.841)
+                (966, 0.825)
+                (986, 0.848)
+                (1006, 0.835)
                 };
+            \addlegendentry{\(d=5\)}
             \addplot coordinates {
-                    (100, 0.945)
-                    (150, 0.919)
-                    (200, 0.896)
-                    (250, 0.884)
-                    (300, 0.895)
-                    (350, 0.886)
-                    (400, 0.863)
-                    (450, 0.855)
-                    (500, 0.876)
-                    (550, 0.878)
-                    (600, 0.849)
-                    (650, 0.866)
-                    (700, 0.862)
-                    (750, 0.857)
-                    (800, 0.835)
-                    (850, 0.858)
-                    (900, 0.836)
-                    (950, 0.844)
-                    (1000, 0.854)
-                    (1050, 0.837)
-                    (1100, 0.857)
-                    (1150, 0.82)
-                    (1200, 0.825)
-                    (1250, 0.83)
-                    (1300, 0.836)
-                    (1350, 0.839)
-                    (1400, 0.818)
-                    (1450, 0.848)
-                    (1500, 0.834)
-                    (1550, 0.812)
-                    (1600, 0.824)
-                    (1650, 0.838)
-                    (1700, 0.797)
-                    (1750, 0.815)
-                    (1800, 0.808)
-                    (1850, 0.809)
-                    (1900, 0.812)
-                    (1950, 0.804)
-                    (2000, 0.826)
+                (12, 1.0)
+                (32, 1.0)
+                (52, 0.999)
+                (72, 0.996)
+                (92, 0.993)
+                (112, 0.992)
+                (132, 0.983)
+                (152, 0.987)
+                (172, 0.979)
+                (192, 0.98)
+                (212, 0.979)
+                (232, 0.984)
+                (252, 0.978)
+                (272, 0.974)
+                (292, 0.97)
+                (312, 0.972)
+                (332, 0.976)
+                (352, 0.968)
+                (372, 0.964)
+                (392, 0.963)
+                (412, 0.963)
+                (432, 0.966)
+                (452, 0.955)
+                (472, 0.958)
+                (492, 0.954)
+                (512, 0.952)
+                (532, 0.948)
+                (552, 0.945)
+                (572, 0.959)
+                (592, 0.947)
+                (612, 0.953)
+                (632, 0.948)
+                (652, 0.938)
+                (672, 0.939)
+                (692, 0.94)
+                (712, 0.944)
+                (732, 0.935)
+                (752, 0.934)
+                (772, 0.931)
+                (792, 0.928)
+                (812, 0.939)
+                (832, 0.929)
+                (852, 0.942)
+                (872, 0.932)
+                (892, 0.94)
+                (912, 0.929)
+                (932, 0.926)
+                (952, 0.938)
+                (972, 0.932)
+                (992, 0.931)
+                (1012, 0.923)
                 };
+                \addlegendentry{\(d=11\)}
+                \addplot coordinates {
+                    (22, 1.0)
+                    (42, 1.0)
+                    (62, 1.0)
+                    (82, 1.0)
+                    (102, 1.0)
+                    (122, 1.0)
+                    (142, 1.0)
+                    (162, 1.0)
+                    (182, 1.0)
+                    (202, 1.0)
+                    (222, 0.997)
+                    (242, 1.0)
+                    (262, 0.999)
+                    (282, 0.998)
+                    (302, 0.997)
+                    (322, 0.995)
+                    (342, 0.999)
+                    (362, 0.996)
+                    (382, 0.996)
+                    (402, 1.0)
+                    (422, 0.994)
+                    (442, 0.998)
+                    (462, 0.992)
+                    (482, 0.995)
+                    (502, 0.995)
+                    (522, 0.991)
+                    (542, 0.991)
+                    (562, 0.997)
+                    (582, 0.994)
+                    (602, 0.995)
+                    (622, 0.99)
+                    (642, 0.989)
+                    (662, 0.995)
+                    (682, 0.993)
+                    (702, 0.99)
+                    (722, 0.99)
+                    (742, 0.988)
+                    (762, 0.994)
+                    (782, 0.993)
+                    (802, 0.988)
+                    (822, 0.992)
+                    (842, 0.99)
+                    (862, 0.989)
+                    (882, 0.979)
+                    (902, 0.982)
+                    (922, 0.983)
+                    (942, 0.988)
+                    (962, 0.984)
+                    (982, 0.981)
+                    (1002, 0.986)
+                    };
+                    \addlegendentry{\(d=21\)}   
         \end{axis}
     \end{tikzpicture}
     \caption{Graf proporcije Ramanujanovih grafov od 1 do 300}
@@ -304,83 +562,12 @@ Omenimo še bolj enostaven, naiven pristop za generiranje regularnih grafov. Tu 
     \caption{Graf proporcije Ramanujanovih grafov od 1000 do 10000}
 \end{figure}
 
-\begin{figure}[h!]
-    \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-                xlabel={$n$},
-                width=0.9\textwidth,
-                ylabel={Spektralna vrzel},
-                grid=major,
-                ymin=0, ymax=6.5,
-                xmin=1, xmax=300,
-                xtick={1,30,...,300},
-                ytick={1,2,3,4,5,6},
-                thick
-            ]
-            \addplot coordinates {
-                    (11, 1.000000000000002)
-                    (16, 3.9222400439343685)
-                    (21, 4.538860013159836)
-                    (26, 4.808216830193524)
-                    (31, 4.959790573039687)
-                    (36, 5.052688498284467)
-                    (41, 5.277523254626809)
-                    (46, 5.332807138620655)
-                    (51, 5.37442486437986)
-                    (56, 5.405097185918946)
-                    (61, 5.498571934186495)
-                    (66, 5.575938409277276)
-                    (71, 5.657944175537072)
-                    (76, 5.498418778423789)
-                    (81, 5.602860389811621)
-                    (86, 5.593469989602875)
-                    (91, 5.6184462225220955)
-                    (96, 5.755892359656839)
-                    (101, 5.692360968966922)
-                    (106, 5.680076900644869)
-                    (111, 5.702246521366402)
-                    (116, 5.687849569151763)
-                    (121, 5.7477099188934355)
-                    (126, 5.786041727310356)
-                    (131, 5.689452187703263)
-                    (136, 5.744546954992545)
-                    (141, 5.797192510119292)
-                    (146, 5.794721314474317)
-                    (151, 5.794856354446884)
-                    (156, 5.7450428693297475)
-                    (161, 5.830087183980121)
-                    (166, 5.819987775195498)
-                    (171, 5.773037906395612)
-                    (176, 5.8442881137227465)
-                    (181, 5.796921259614794)
-                    (186, 5.7826092969682374)
-                    (191, 5.856437633170694)
-                    (196, 5.871746814293452)
-                    (201, 5.815647264915688)
-                    (206, 5.844111155403364)
-                    (211, 5.82553111614388)
-                    (216, 5.870565933769311)
-                    (221, 5.830291882849532)
-                    (226, 5.825318465358029)
-                    (231, 5.8827281797714175)
-                    (236, 5.84361148217756)
-                    (241, 5.856540765886825)
-                    (246, 5.869304300978469)
-                    (251, 5.8758368544626185)
-                    (256, 5.890130266065601)
-                    (261, 5.8691466815061935)
-                    (266, 5.842566144716664)
-                    (271, 5.857769806232399)
-                    (276, 5.893678696498535)
-                    (281, 5.866955967785748)
-                    (286, 5.89999683489138)
-                    (291, 5.878019228343736)
-                    (296, 5.901828771475102)
-                };
-            \addplot[red, thick] coordinates {(0, 6) (300, 6)};
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Graf spektralnih vrzeli za \(n\) od 1 do 300}
+
+
+\begin{figure}
+    \begin{center}
+        \input{images/proportion_plot.pgf}
+    \end{center}
+    \caption{A PGF histogram from \texttt{matplotlib}.}
 \end{figure}
 
