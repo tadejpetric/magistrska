@@ -18,6 +18,7 @@
 *.ind
 *.xmpdata
 *.xmpi
+*.pyc
 
 *.pdf
 
