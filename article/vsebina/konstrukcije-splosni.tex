@@ -5,49 +5,226 @@ Glavni razlog, da si bomo ogledali to konstrukcijo pa je, da je zanimiva in upor
 
 Vsi rezultati, če ni citirano drugače, so iz članka \cite{lps-ramanujan}. % TODO: nekako polepšaj ta stavek
 
-\subsection{Teorija števil}
-Začnemo z nekaj osnovnimi definicijami in izreki iz teorije števil, ki jih bomo potrebovali v konstrukciji grafov.
+\subsection{Konstrukcija}
+\subsubsection{Caylejevi grafi}
+Začnimo z definicijo Caylejevih grafov, saj nam ta pojem pove največ o konstrukciji, ki jo bomo uporabili. Kot vemo, je grupa sestavljena iz elementov ter operacije množenja, ki zadošča določene pogoje. Vsaka grupa pa ima množico generatorjev. To so elementi, ki so potrebni, da dosežemo kateri koli element grupe le preko množenja s temi elementi.
 
-Prva definicija generalizira pojem popolnega kvadrata na končna polja. V celih številih so popolni kvadrati števila oblike \(k^2\), kjer je \(k\) celo število. Če pa to gledamo v kolobarju \(\mathbb Z/n\mathbb Z\) dobimo enako definicijo, samo modulo \(n\).
+\begin{definicija}[Generatorji]
+    Naj bo \(G\) grupa in \(S\) simetrična (\(S=S^{-1}\)) podmnožica elementov grupe \(G\), ki ne vključuje enote. Elementi \(S\) so generatorji grupe \(G\), če lahko poljuben element grupe \(G\) zapišemo kot produkt elementov iz \(S\) ali njihovih inverzov.
+\end{definicija}
+Običajno se v definiciji generatorjev izpusti zahtevo, da je množica simetrična in da ne vsebuje enote. V našem primeru pa to definicijo potrebujemo le v kontekstu Caylejevih grafov in je naša definicija bolj priročna.
+
+\begin{definicija}[Caylejev graf]
+    Naj bo \(G\) grupa in \(S\) množica generatorjev grupe \(G\). Caylejev graf grupe \(G\) glede na množico generatorjev \(S\) graf, katerega vozlišča so elementi grupe \(G\), vozlišče \(v\) je povezano z vozliščem \(u\) natanko takrat, ko obstaja tak \(s\in S\), da je \(v\cdot s = u\).
+\end{definicija}
+Dobljena struktura je res graf. Ker \(S\) nima enote ni nobeno vozlišče povezano s samim sabo. Ker je \(S\) tudi simetrična, pa je definicija povezav dobro definirana. To vidimo, ker če je med \(v\) in \(u\) povezava to pomeni, da obstaja \(s\in S\), da \(vs=u\), kar pa je ekvivalentno \(v = u s^{-1}\). Po definicija pa je tudi \(s^{-1}\in S\), torej je tudi, simetrično, med \(u\) in \(v\) povezava. Če množica \(S\) ni množica generatorjev, še vedno dobimo graf, le da ta ni nujno povezan.
+
+Naši Ramanujanovi grafi bodo dobljeni kot Caylejevi grafi. Ker so Ramanujanovi grafi regularni si torej želimo tudi, da so tudi Caylejevi grafi regularni.
+\begin{izrek}[Caylejevi grafi so regularni]
+    Če je \(S\) množica generatorjev brez enote, potem je Caylejev graf glede na to množico \(\abs{S}\)-regularen.
+\end{izrek}
+\begin{dokaz}
+    Po definiciji je lahko sosedov poljubnega vozlišča kvečjemu toliko kot je elementov v množici generatorjev. Dokazati moremo le, da ne moreta dva elementa \(S\) predstavljati iste povezave.
+
+    Najprej fiksiramo vozlišče \(v\) katerega sosede bomo gledali. Recimo, da je povezan z vozliščem \(u\), torej \(v\cdot s = u\). Če bi lahko to napisali še drugače, torej \(v\cdot t = u = v\cdot s\) lahko, zaradi pravila krajšanja v grupi, sklepamo \(s=t\). Torej nam vsak element \(S\) da drugo povezavo in je graf zares \(\abs{S}\)-regularen.
+\end{dokaz}
+
+Sedaj, ko smo si ogledali, kako dobiti graf iz poljubne grupe je potrebno le ugotoviti katero grupo izbrati in kako izbrati množico generatorjev. Začnemo z izbiro grupe.
+
+\subsubsection{Projektivne linearne grupe}
+Konstrukcija uporablja dve družini grup, obe pa ste različica matričnih grup. Z \(\GL(n,\mathbb F)\) označimo grupo \(n\times n\) obrnljivih matrik nad poljem \(mathbb F\), z \(\SL(n, \mathbb F)\) pa podgrupo \(\GL(n, \mathbb F)\), kjer imajo elementi determinanto \(1\). Z \(Z(n, \mathbb F)\) označimo množico obrnljivih \(n\times n\) matrik, ki so skalarni večkratnik identitete (torej so oblike \(kI\), kjer je \(k\in \mathbb F \setminus \{0\}\)).
+
+\begin{definicija}[Projektivna linearna grupa]
+    Projektivna linearna grupa \(\PGL(n, \mathbb F)\) je definirana kot kvocientna grupa 
+    \begin{align*}
+        \PGL(n, \mathbb F) = \GL(n, \mathbb F)/Z(n, \mathbb F)
+    \end{align*}
+
+    Projektivna specialna linearna grupa \(\PSL(n, \mathbb F)\) je definirana kot kvocientna grupa 
+    \begin{align*}
+        \PSL(n, \mathbb F) = \SL(n, \mathbb F)/(Z(n, \mathbb F)\cap Z(n, \mathbb F))
+    \end{align*}.
+    Na grupo \(\PSL(n, \mathbb F)\) lahko gledamo kot podgrupo \(\PGL(n, \mathbb F)\).
+\end{definicija}
+
+Za konstrukcijo bomo uporabili polje \(\modZ{q}\) in naši grafi bodo konstruirani kot Caylejevi grafi grup \(\PSL(2, \modZ{q})\) in \(\PGL(2, \modZ{q})\).
+
+Za Caylejeve grafe pa potrebujemo definirati še generatorje, za to si bomo pa ogledali še nekaj teorije števil. Tu bomo tudi dobili kriterij, ki nam pove, katero izmed obeh grup izbrati.
+
+\subsubsection{Teorija števil}
+Prva definicija generalizira pojem popolnega kvadrata na končne kolobarje. V celih številih so popolni kvadrati števila oblike \(k^2\), kjer je \(k\) celo število. Če pa to gledamo v kolobarju \(\mathbb Z/n\mathbb Z\) dobimo enako definicijo, samo modulo \(n\).
 \begin{definicija}[Kvadratni ostanek]
-    Število \(a\in \mathbb Z\) je kvadratni ostanek modulo \(n\), če obstaja takšno takšno število \(k\in \mathbb Z\), da velja \(a\equiv k^2 \pmod n\). 
+    Število \(a\in \mathbb Z\) je kvadratni ostanek modulo \(n\), če obstaja takšno takšno število \(k\in \mathbb Z\), da velja \(a\equiv k^2 \pmod n\).
 \end{definicija}
 
 Sedaj lahko definiramo Legendrejev simbol.
 \begin{definicija}[Legendrejev simbol]
     Za število \(a\in \mathbb Z\) in \(p>2\) praštevilo. Legendrejev simbol je definiran kot
     \begin{align*}
-        \legendre{a}{p} = 
+        \legendre{a}{p} =
         \begin{cases}
-            1 &a \neq 0 \text{ in } a \text{ je kvadratni ostanek modulo } p\\
-            0 &a \equiv 0 \pmod p \\
+            1  & a \not\equiv 0\pmod p \text{ in } a \text{ je kvadratni ostanek modulo } p \\
+            0  & a \equiv 0 \pmod p                                            \\
             -1 & a \text{ ni kvadratni ostanek modulo } p
         \end{cases}
-    \end{align*} 
+    \end{align*}
 \end{definicija}
 
 \begin{primer}
     Oglejmo si kvadratne ostanke modulo 5.
     Velja
     \begin{align*}
-        0 \equiv 0^2 \pmod 5\\
-        1^2 \equiv 4^2 \equiv 1 \pmod 5\\
+        0 \equiv 0^2 \pmod 5            \\
+        1^2 \equiv 4^2 \equiv 1 \pmod 5 \\
         2^2 \equiv 3^2 \equiv 4 \pmod 5.
-    \end{align*} 
+    \end{align*}
     Če vzamemo število večje od \(5\) ga lahko zapišemo kot \(k\cdot 5 + r\) (za \(0\leq r <5\)), kvadrat tega izraza pa je enak \(k^2\cdot 5^2 + 2kr\cdot 5 + r^2\). Ko ga gledamo modulo \(5\) pa ostane le sumand \(r^2\) in ne moremo zapisati novih opcij. Torej so kvadratni ostanki modulo \(5\) števila oblike \(5\cdot k\), \(5\cdot k + 1\) in \(5\cdot k + 4\).
 
     Tako lahko napišemo tudi Legendrejeve simbole. Recimo
     \begin{align*}
-        \legendre{5k}{7} = 0 \\
-        \legendre{5k + 1}{7} = \legendre{5k + 4}{7} = 1\\
+        \legendre{5k}{7} = 0                            \\
+        \legendre{5k + 1}{7} = \legendre{5k + 4}{7} = 1 \\
         \legendre{5k + 2}{7} = \legendre{5k + 3}{7} = -1.
     \end{align*}
 \end{primer}
 
-Izbiro grupe bomo pogojevali glede na Legendrejev simbol. Če bomo želeli narediti \(p+1\)-regularen graf bomo izbrali še dodatno praštevilo \(q\). Nato bomo, v primeru \(\legendre{p}{q}=1\) izbrali grupo \(\PSL(2, \modZ{q})\), če je pa \(\legendre{p}{q}=-1\) pa grupo \(\PGL(2, \modZ{q})\). Te grupi si bomo kasneje ogledali bolj podrobno, za nas pa bo pomembno, da imata obe grupi \(p+1\) generatorjev. Da bi to dokazali, potrebujemo še en izrek iz teorije števil.
+Izbiro grupe bomo pogojevali glede na Legendrejev simbol. Če bomo želeli narediti \(p+1\)-regularen graf bomo izbrali še dodatno praštevilo \(q\). Nato bomo, v primeru \(\legendre{p}{q}=1\) izbrali grupo \(\PSL(2, \modZ{q})\), če je pa \(\legendre{p}{q}=-1\) pa grupo \(\PGL(2, \modZ{q})\). Te grupi si bomo kasneje ogledali bolj podrobno, za nas pa bo pomembno, da imata obe grupi \(p+1\) generatorjev. Da bi to dokazali, potrebujemo še en izrek iz teorije števil\cite{Hirschhorn_1982}.
 
 \begin{izrek}[Jacobijev izrek o štirih kvadratih]
-    
-\end{izrek}
+    naj bo \(r(n)\) število možnih zapisov števila \(n\) kot vsote štirih kvadratov celih števil (kjer upoštevamo, da sta dva zapisa različna tudi, če sta drugače urejena).
 
-\subsection{Caylejevi grafi}
+    Potem velja
+    \begin{align*}
+        r(n) = 8\sum_{d\mid n, 4\nmid d} d.
+    \end{align*}
+\end{izrek}
+\begin{primer}
+    Oglejmo si \(r(1)\).
+    Lahko ga zapišemo kot
+    \begin{align*}
+        1 = 1^2 + 0^2 + 0^2 + 0^2    \\
+        1 = 0^2 + 1^2 + 0^2 + 0^2    \\
+        1 = 0^2 + 0^2 + 1^2 + 0^2    \\
+        1 = 0^2 + 0^2 + 0^2 + 1^2    \\
+        1 = (-1)^2 + 0^2 + 0^2 + 0^2 \\
+        1 = 0^2 + (-1)^2 + 0^2 + 0^2 \\
+        1 = 0^2 + 0^2 + (-1)^2 + 0^2 \\
+        1 = 0^2 + 0^2 + 0^2 + (-1)^2
+    \end{align*}
+    Torej je \(r(1) = 8 \cdot 1\). Za \(n=2\) je številka že večja, saj moremo napisati vse različne permutacije \(1^2 + 1^2+0^2+0^2\), \(1^2 + (-1)^2+0^2+0^2\) in \((-1)^2 + (-1)^2+0^2+0^2\). Od prve in zadnje dobimo \(6\) različnih ureditev zapisa, od druge pa lahko še mešamo vrstni red \(-1\) in \(1\), torej od le-te dobimo \(12\). Skupaj je to torej \(24\) načinov zapisa. Če si ogledamo formulo, število \(2\) delita števili \(1\) in \(2\), torej dobimo \(8\cdot 3 = 24\).
+\end{primer}
+\begin{dokaz}
+    Dokaza ne bomo pogledali do konca, ogledali si pa bomo kako je lahko izrek prevedemo na identiteto \(\theta\) vrst\cite{kato3}. Od tam naprej je dokaz sicer dolg ampak le računski\cite{Hirschhorn_1982}; lahko se ga pa lotimo tudi preko modularnih form\cite{kato3}.
+
+    Najprej definirajmo funkcijo \(\theta\).
+    \begin{align*}
+        \theta(z) = \sum_{n=-\infty}^\infty e^{-\pi i n^2 z}
+    \end{align*}
+    S substitucijo \(q = e^{2\pi i z}\) dobimo
+    \begin{align*}
+        \theta(q) = \sum_{n=-\infty}^\infty q^{n^2/2}.
+    \end{align*}
+    Sedaj si oglejmo potence te vrste.
+    \begin{align*}
+        \theta(q)^k & = \left(\sum_{n=-\infty}^\infty q^{n^2}\right)^k                                                           \\
+                    & = \left(\sum_{n_1=-\infty}^\infty q^{n_1^2}\right) \cdots \left(\sum_{n_k=-\infty}^\infty q^{n_k^2}\right) \\
+                    & = \sum_{n_1, \ldots, n_k = -\infty}^\infty q^{(n_1^2 + \cdots + n_k^2)/2}.
+    \end{align*}
+    To vrsto pa lahko poenostavimo tako, da združimo sumande, ki imajo enako potenco, koeficient pred združinim sumandom pa nam bo štel koliko takih sumandov imamo. Na ta način ravno štejemo, na koliko načinov lahko zapišemo neko število kot vsota kvadratov. V primeru \(k=4\) dobimo
+    \begin{align*}
+        \theta(q)^4 = \sum_{n=0}^\infty r_4(n) q^{n^2/2}.
+    \end{align*}
+
+    Da dokažemo izrek moremo torej dokazati
+    \begin{align*}
+        \theta(q)^4 = 1+\sum_{n=1}^\infty \left(8\sum_{d\mid n, 4\nmid d} d \right) q^{n/2}.
+    \end{align*}
+
+    Sedaj se osredotočimo na desno stran enačbe. Najprej \(q^{n/2}\) prinesemo znotraj notranje vsote.
+    \begin{align*}
+        \sum_{n=1}^\infty \left(8\sum_{d\mid n, 4\nmid d} d \right) q^{n/2} & =  8\sum_{n=1}^\infty \sum_{d\mid n, 4\nmid d} d  q^{n/2}
+    \end{align*}
+    Ker \(d \mid n\) lahko sedaj \(n\) zapišemo v obliki \(n = dm\). Lahko gledamo tudi obratno - vsak produkt \(d\cdot m\) z \(4\nmid d\) bo predstavljal en \(n\). Torej lahko, namesto seštevanja po \(d\) in \(n\) seštevamo kar po \(d\) in \(m\). Ker sta sedaj \(d\) in \(m\) neodvisna lahko vrstni red seštevanja zamenjamo.
+    \begin{align*}
+        \sum_{n=1}^\infty \left(8\sum_{d\mid n, 4\nmid d} d \right) q^{n/2} & =  8\sum_{d\nmid 4} \sum_{m = 1}^\infty d  q^{dm/2}
+    \end{align*}
+    Ostane le še, da vsoto po \(m\) izračunamo kot geometrijsko vrsto.
+    \begin{align*}
+        \sum_{n=1}^\infty \left(8\sum_{d\mid n, 4\nmid d} d \right) q^{n/2} & = 8\sum_{d\nmid 4} \frac{d q^{d/2}}{1-q^{d/2}}
+    \end{align*}
+
+    Jacobijev izrek štirih kvadratov je torej ekvivalenten identiteti
+    \begin{align*}
+        \theta(q)^4 = 1+8\sum_{d\nmid 4} \frac{d q^{d/2}}{1-q^{d/2}}.
+    \end{align*}
+
+    Dokaz bi sedaj lahko nadaljevali na več načinov. Lahko se opiramo na Jacobijevo identiteto o treh produktih ter enakost dokažemo z elementarnimi metodami, ki so pa sicer zelo dolge in ne uporabljajo metod, ki jih bi potrebovali v nadaljevanju. Alternativni pristop pa pokaže, da sta obe strani enačbe pravzaprav modularne forme z enako utežjo. Dokaz enakosti pri le-teh pa je zelo lahek, če razvijemo dovolj teorije modularnih form.
+\end{dokaz}
+
+Za nas bo pomemben primer, ko je \(n\) praštevilo. Dobimo torej \(p=a_0^2 + a_1^2 + a_2^2 + a_3^2\). Edini števili, ki delita \(p\) sta \(p\) in \(1\), njun seštevek je \(p+1\) in število načinov kako lahko zapišemo \(p\) kot vsoto štirih kvadratov je \(8(p+1)\). V tej množici pa je še dodatna struktura - izkaže se, da je to dejansko \(8\) ``kopij'' \(p+1\) rešitev. Z uporabo kvaternionov bomo lahko iz te množice izbrali kanoničnih \(p+1\) rešitev, ki bodo predstavljale generatorje grupe.
+
+\subsubsection{Kvaternioni}
+Kvaternioni so razširitev kompleksnih števil. Namesto le imaginarne enote \(i\) imamo tukaj tudi enote \(j\) in \(k\). To definira štiri dimenzionalen prostor. Koeficienti so, kot za kompleksna števila, lahko realni ampak za konstrukcijo naših grafov potrebujemo le celoštevilske kvaternione.
+
+\begin{definicija}[Kvaternioni]
+    Kvaternioni so definirani kot množica
+    \begin{align*}
+        \bH(R) = \{\alpha = a + bi + cj + dk \mid a, b, c, d \in R\},
+    \end{align*}
+    kjer so \(\{\pm 1, \pm i, \pm j, \pm k\} = \bH(R)^\times\) kvaternionske enote, ki zadoščajo relacijam
+    \begin{align*}
+        i^2 = j^2 = k^2 = ijk = -1.
+    \end{align*}
+
+    Vsakemu elementu \(\alpha = a + bi + cj + dk\) lahko priredimo konjungiran element \(\overline{\alpha} = a - bi - cj - dk\). S to operacijo definiramo normo kot
+    \begin{align*}
+        \abs{\alpha} = \alpha \cdot \overline{\alpha}
+    \end{align*}
+
+    Definiramo še \(\bH = \bH(\Z)\).
+\end{definicija}
+
+Kvaternione lahk predstavimo tudi kot matrike. Vsak kvaternion oblike \(a + bi + cj + dk\) lahko predstavimo kot \(2\times 2\) kompleksno matriko.
+\begin{align*}
+    \begin{bmatrix}
+        a+bi  & c+di \\
+        -c+di & a-bi
+    \end{bmatrix}.
+\end{align*}
+Lahko bi jih predstavili tudi kot \(4\times 4\) realne matrike. V vsakem primeru pa je to enostavno preveriti, samo poračunamo produkt kvaternionov in vidimo, da se ujema z matričnim produktom. Če bodo naši kvaternioni nad kolobarjem \(\Z\), potem bodo imele matrike elemente iz \(\Z[i]\). Če pa delamo kvaternione nad končnim poljem \(\modZ{q}\) pa se izkaže, da je element \(i\) (ki je definiran tako, da je \(i^2 = -1\)) že del polja. Recimo, če si ogledamo \(\modZ{5}\) je \(-1 = 4 = 2^2\), torej je \(i=2\). V primeru kvaternionov nad \(\modZ{q}\), torej, jih lahko torej predstavimo kar kot \(2\times 2\) matrike nad \(\modZ{q}\).
+
+% TODO: odstrani
+\begin{definicija}[Nerazcepni kvaternioni]
+    Celoštevilski kvaternion \(\alpha\in \bH(\Z)\) je nerazcepen, če ni enak \(0\) ali katerikoli kvaternionski enoti, poleg tega ga pa ne moremo napisati kot produkt večih celoštevilskih kvaternionov, ki niso enote.
+\end{definicija}
+Preko Evklidovega algoritma lahko vidimo, da je celoštevilski kvaternion nerazcepen natanko takrat, ko je njegova norma praštevilo.
+
+Sedaj lahko določimo kanonično izbiro rešitev enačbe \(p=a_0^2 + a_1^2 + a_2^2 + a_3^2\). Potrebovali bomo še nekaj dodatnih predpostavk. Prva je, da je, da imamo še drugo praštevilo \(q>p\); to bomo kasneje uporabili, da si ogledamo rešitve v \(\modZ{q}\). Druga pa je, da velja \(p,q \equiv 1 \pmod 4\). To omejitev bomo potrebovali, saj imajo kvadrati celih števil lastnost, da so lahko enaki le \(0\) ali \(1\) modulo 4. Dokaz tega je enostaven, le ogledamo si kvadrate števil \(4k\), \(4k+1\), \(4k+2\) in \(4k+3\). Ker pa je \(p\equiv 1 \pmod 4\) in vsak posamičen \(a_i^2\) je lahko le \(0\) ali \(1\pmod 4\) sledi, da je natanko eden enak \(1\pmod4\), ostali pa so enaki \(0\pmod 4\). Tisti element, ki je enak \(1\pmod4\) je seveda lih in za našo kanonično reprezentacijo bo ta element \(a_0\), ostali členi \(a_1, a_2, a_3\) pa bodo sodi. Definiramo lahko tudi, da je \(a_0>0\). Ko zahtevamo, da je \(a_0>0\) se znebimo polovice rešitev (druga polovica je enaka prvi, le z zamenjanim predznakom \(a_0\)). Dodatnega faktorja \(4\) se znebimo tako, da zahtevamo, da je \(a_0\) lih (primer ko je liha številka na drugem mestu je naslednja četrtina rešitev, če je na tretjem mestu tretja četrtina rešitev in če je na zadnjem mestu zadnja četrtina rešitev). Tako dobimo kanonično reprezentacijo, \(p\) kot vsote štirih kvadratov.
+
+Te rešitve si zdaj želimo ogledati v polju \(\modZ{q}\) namesto \(\Z\). Ker so vsi \(a_i<p\) so manjši tudi od \(q\) in lahko pozitivne rešitve enačbe trivialno gledamo kot elemente polja \(\modZ{q}\). Ker pa je \(q\) dovolj velik se bodo tudi negativne rešitve unikatno preslikale (ne more se pozitivno število \(x\) preslikati v enako število kot neko drugo število \(-y\)), te v polje \(\modZ{q}\) preslikamo preko \(-x\mapsto q-x\). Tako dobimo \(p+1\) rešitev enačbe \(p=a_0^2 + a_1^2 + a_2^2 + a_3^2\) v polju \(\modZ{q}\). Štiriterico \((a_0, a_1, a_2, a_3)\) pa lahko zapišemo tudi kot kvaternion \(\alpha = a_0 + a_1i + a_2j + a_3k\), tokrat je ta kvaternion element \(\bH(\modZ{q})\). Kot smo videli lahko kvaternione enolično napišemo kot matrike, ker pa delamo nad končnim poljem \(\modZ{q}\) pa ne potrebujemo dodati novega elementa \(i\), saj je ta že del polja \(\modZ{q}\). Tako smo dobili \(p+1\) matrik oblike
+\begin{align*}
+    \begin{bmatrix}
+        a_0 +ia_1 & a_2+ia_3 \\
+        -a_2+ia_3 & a_0-ia_1
+    \end{bmatrix}.
+\end{align*}
+
+Determinanta te matrike je
+\begin{align*}
+    (a_0+ia_1)(a_0-ia_1) - (a_2+ia_3)(-a_2+ia_3)\\
+    = a_0^2 + a_1^2 + a_2^2 + a_3^2 = p,
+\end{align*}
+torej je matrika obrnljiva in jo lahko gledamo kot element grupe \(\PGL(2, \modZ{q})\). Inverz kvaterniona lahko enostavno poiščemo preko konjungacije. Če je \(\alpha\) kvaternion je \(\overline{\alpha}/\abs{\alpha}\) njegov inverz. Konjungiran element pa tudi reši enačbo in je torej eden izmed elementov naših matrik. Deljenje z normo ne povzroča težav, saj delujemo v grupi \(\PGL\), kjer so elementi enaki, če se razlikujejo do skalarja natančno - torej \(\overline{\alpha}/\abs{\alpha}\) in \(\overline{\alpha}\) predstavljata isti element grupe, oba inverz elementa \(\alpha\). Množica teh matrik je torej simetrična. Če je \(\legendre{p}{q}=-1\), identiteta ni element te množice. V \(\PGL\) je identiteta matrika, ki ima na diagonali same iste elemente, zunaj diagonale pa je enaka \(0\). Determinanta te matrike je \(k^2\) za nek \(k\), izračunali pa smo že, da je determinanta tudi enaka \(p\). Torej bi bil \(k^2 \equiv p \pmod q\), kar pa pomeni, da je \(p\) kvadratni ostanek in bi moralo biti \(\legendre{p}{q}=-1\). Torej imamo \(p+1\) matrik, ki tvorijo simetrično množico brez identitete in jih lahko uporabimo kot generatorje Caylejevega grafa. Grupa \(\PGL(2, \modZ{q})\) ima \(q(q^2-1)\) elementov, torej dobimo \(p+1\)-regularen graf na \(q(q^2-1)\) vozliščih. Kasneje bomo dokazali, da so te grafi povezani in da so Ramanujanovi. Izkaže pa se, da so dvodelni; ena particija pripada podmnožici \(\PSL\), druga pa njenemu komplementu.
+
+Če pa velja \(\legendre{p}{q} = 1\) pa k konstrukciji pristopimo z uporabo grup \(\PSL\). V tem primeru obstaja tak \(k\), da velja \(p\equiv k^2 \pmod q\). Potem seveda obstaja tudi \(k^{-1}\) in lahko napišemo \(k^{-2} \equiv p^{-1}\pmod q\). Vsako matriko od prej lahko pomnožimo z skalarno matriko
+\begin{align*}
+    \begin{bmatrix}
+        k^{-1} & 0 \\
+        0 & k^{-1}
+    \end{bmatrix}\in Z(n, \mathbb F)
+\end{align*}
+in dobimo matrike, ki imajo determinanto \(1\). Tako vidimo, da so vse matrike pravzaprav del podgrupe \(\PSL(2, \modZ{q})\) in ne le \(\PGL\). Ker je množenje elementov iz podgrupe zaprto, lahko iz elementov \(\PSL\) pridemo le do drugih elementov \(\PSL\), če uporabimo le izbrane matrike. Tako bi bil graf nepovezan, če za vozlišča uporabimo celotno grupo \(\PGL\). Namesto tega, kot rečeno uporabimo grupo \(\PSL(2, \modZ{q})\). Kot prej je množica še vedno simetrična, potrebno pa je še preveriti, da ne vsebuje identitete. V tem primeru bi dobili matriko, pri kateri je \(a_0 +ia_1 \equiv a_0 - ia_1 \pmod q\), torej \(a_1 \equiv 0 \pmod q\) oziroma \(a_1 = n\cdot q\). Ker je \(p<q\) in smo \(a_1\) izbrali iz rešitev enačbe \(p=a_1^2 + \cdots\) v \(\Z\) je torej \(a_1=0\). Da bi dobili skalarno matriko torej rabimo, da velja \(a_0^2 = p\) (v polju \(\Z\), saj smo tam izbirali rešitve enačbe). Ker pa je \(p\) praštevilo to ni mogoče. Torej smo dobili simetrično množico brez identitete, ki jo bomo uporabili kot množico generatorjev za \(\PSL(2, \modZ{q})\). Grupa \(\PSL(2, \modZ{q})\) pa ima \(q(q^2-1)/2\) elementov.
+
+Če torej povzamemo konstrukcijo, poiščemo rešitve enačbe \(p = a_0^2 + a_1^2 + a_2^2 + a_3^2\), in iz njih dobimo \(p+1\) matrik v \(\PGL(2, \modZ{q})\), če je \(\legendre{p}{q}=1\) in v \(\PSL(2, \modZ{q})\), če je \(\legendre{p}{q}=-1\). Te matrike služijo kot generatorji za Caylejev graf, vsak tak graf pa je Ramanujanov. Če fiksiramo \(p\) in povečujemo \(q\) (z enakimi omejitvami kot prej) dobimo neskončno družino Ramanujanovih grafov stopnje \(p+1\).
+
+To zaključi konstrukcijo, potrebno pa je pokazati, da je ta konstrukcija pravilna in da so vsi dobljeni grafi Ramanujanovi.

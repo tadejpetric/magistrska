@@ -26,7 +26,7 @@
 % V tem primeru namesto ukaza \newcommand uporabite \renewcommand
 \newcommand{\C}{\mathbb C}
 \newcommand{\Q}{\mathbb Q}
-
+\newcommand{\bH}{\mathbb H}
 
 % https://tex.stackexchange.com/questions/43008/absolute-value-symbols
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
@@ -65,6 +65,8 @@
 
 \makeatletter\@ifpackageloaded{underscore}{}{\usepackage[strings]{underscore}}\makeatother
 
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
 \DeclareMathOperator{\PSL}{PSL}
 \DeclareMathOperator{\PGL}{PGL}
 
