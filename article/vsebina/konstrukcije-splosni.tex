@@ -201,7 +201,7 @@ Preko Evklidovega algoritma lahko vidimo, da je celoštevilski kvaternion nerazc
 
 Sedaj lahko določimo kanonično izbiro rešitev enačbe \(p=a_0^2 + a_1^2 + a_2^2 + a_3^2\). Potrebovali bomo še nekaj dodatnih predpostavk. Prva je, da je, da imamo še drugo praštevilo \(q>p\); to bomo kasneje uporabili, da si ogledamo rešitve v \(\modZ{q}\). Druga pa je, da velja \(p,q \equiv 1 \pmod 4\). To omejitev bomo potrebovali, saj imajo kvadrati celih števil lastnost, da so lahko enaki le \(0\) ali \(1\) modulo 4. Dokaz tega je enostaven, le ogledamo si kvadrate števil \(4k\), \(4k+1\), \(4k+2\) in \(4k+3\). Ker pa je \(p\equiv 1 \pmod 4\) in vsak posamičen \(a_i^2\) je lahko le \(0\) ali \(1\pmod 4\) sledi, da je natanko eden enak \(1\pmod4\), ostali pa so enaki \(0\pmod 4\). Tisti element, ki je enak \(1\pmod4\) je seveda lih in za našo kanonično reprezentacijo bo ta element \(a_0\), ostali členi \(a_1, a_2, a_3\) pa bodo sodi. Definiramo lahko tudi, da je \(a_0>0\). Ko zahtevamo, da je \(a_0>0\) se znebimo polovice rešitev (druga polovica je enaka prvi, le z zamenjanim predznakom \(a_0\)). Dodatnega faktorja \(4\) se znebimo tako, da zahtevamo, da je \(a_0\) lih (primer ko je liha številka na drugem mestu je naslednja četrtina rešitev, če je na tretjem mestu tretja četrtina rešitev in če je na zadnjem mestu zadnja četrtina rešitev). Tako dobimo kanonično reprezentacijo, \(p\) kot vsote štirih kvadratov.
 
-Te rešitve si zdaj želimo ogledati v polju \(\modZ{q}\) namesto \(\Z\). Ker so vsi \(a_i<p\) so manjši tudi od \(q\) in lahko pozitivne rešitve enačbe trivialno gledamo kot elemente polja \(\modZ{q}\). Ker pa je \(q\) dovolj velik se bodo tudi negativne rešitve unikatno preslikale (ne more se pozitivno število \(x\) preslikati v enako število kot neko drugo število \(-y\)), te v polje \(\modZ{q}\) preslikamo preko \(-x\mapsto q-x\). Tako dobimo \(p+1\) rešitev enačbe \(p=a_0^2 + a_1^2 + a_2^2 + a_3^2\) v polju \(\modZ{q}\). Štiriterico \((a_0, a_1, a_2, a_3)\) pa lahko zapišemo tudi kot kvaternion \(\alpha = a_0 + a_1i + a_2j + a_3k\), tokrat je ta kvaternion element \(\bH(\modZ{q})\). Kot smo videli lahko kvaternione enolično napišemo kot matrike, ker pa delamo nad končnim poljem \(\modZ{q}\) pa ne potrebujemo dodati novega elementa \(i\), saj je ta že del polja \(\modZ{q}\). Tako smo dobili \(p+1\) matrik oblike
+Te rešitve si zdaj želimo ogledati v polju \(\modZ{q}\) namesto \(\Z\). Ker so vsi \(a_i<p\) so manjši tudi od \(q\) in lahko pozitivne rešitve enačbe trivialno gledamo kot elemente polja \(\modZ{q}\). Ker pa je \(q\) dovolj velik se bodo tudi negativne rešitve unikatno preslikale (ne more se pozitivno število \(x\) preslikati v enako število kot neko drugo število \(-y\)). Tako dobimo \(p+1\) rešitev enačbe \(p=a_0^2 + a_1^2 + a_2^2 + a_3^2\) v polju \(\modZ{q}\). Štiriterico \((a_0, a_1, a_2, a_3)\) pa lahko zapišemo tudi kot kvaternion \(\alpha = a_0 + a_1i + a_2j + a_3k\), tokrat je ta kvaternion element \(\bH(\modZ{q})\). Kot smo videli lahko kvaternione enolično napišemo kot matrike, ker pa delamo nad končnim poljem \(\modZ{q}\) pa ne potrebujemo dodati novega elementa \(i\), saj je ta že del polja \(\modZ{q}\). Tako smo dobili \(p+1\) matrik oblike
 \begin{align*}
     \begin{bmatrix}
         a_0 +ia_1 & a_2+ia_3 \\
@@ -228,3 +228,66 @@ in dobimo matrike, ki imajo determinanto \(1\). Tako vidimo, da so vse matrike p
 Če torej povzamemo konstrukcijo, poiščemo rešitve enačbe \(p = a_0^2 + a_1^2 + a_2^2 + a_3^2\), in iz njih dobimo \(p+1\) matrik v \(\PGL(2, \modZ{q})\), če je \(\legendre{p}{q}=1\) in v \(\PSL(2, \modZ{q})\), če je \(\legendre{p}{q}=-1\). Te matrike služijo kot generatorji za Caylejev graf, vsak tak graf pa je Ramanujanov. Če fiksiramo \(p\) in povečujemo \(q\) (z enakimi omejitvami kot prej) dobimo neskončno družino Ramanujanovih grafov stopnje \(p+1\).
 
 To zaključi konstrukcijo, potrebno pa je pokazati, da je ta konstrukcija pravilna in da so vsi dobljeni grafi Ramanujanovi.
+
+\subsection{Pravilnost konstrukcije}
+Dokazali bomo, da naši grafi od zgoraj zadoščajo določenim lastnostim, med drugim tudi mejo za drugo največjo lastno vrednost, ki definira Ramanujanove grafe. Poleg tega bomo pa pokazali še nekaj drugih lastnosti.
+
+\subsubsection{Konstante za grafe}
+Ogledali si bomo nekaj konstant, ki jih lahko priredimo vsakemu grafu\cite{ramanujan-construction-book}.
+
+\begin{definicija}[Kromatično število]
+    Kromatično število \(\chi(G)\) grafa \(G\) je najmanjše število barv, ki jih priredimo vozliščem grafa \(G\), da nobeni dve sosednji vozlišči nista enake barve.
+\end{definicija}
+\begin{definicija}[Neodvisnostno število]
+    Neodvisnostno število \(i(G)\) grafa \(G\) je velikost največje podmnožice vozlišč, v kateri si nobena dva vozlišča nista sosednja
+\end{definicija}
+\begin{definicija}[Obseg grafa]
+    Obseg \(g(G)\) grafa \(G\) je dolžina najkrajšega cikla.
+\end{definicija}
+
+Oglejmo si, kako so te konstante povezane z drugo največjo lastno vrednostjo grafa.
+% stran 31
+\begin{izrek}
+    Naj bo \(G\) \(d\)-regularen graf na \(n\) vozliščih. Potem velja
+    \begin{align*}
+        i(G) \leq \frac{n}{d} \lambda_2(G) 
+    \end{align*}
+    % TODO: preveri, če je \lambda_2 definiran
+\end{izrek}
+\begin{dokaz}
+    Naj bo \(G=(V, E)\) graf in, kot v definiciji \(i\), naj bo \(F\subseteq V\) množica kardinalnosti \(i(G)\), v kateri nista nobena dva vozlišča sosednja.
+
+    Definiramo funkcijo \(f:V\to \R\) kot
+    \begin{align*}
+        v_j = \begin{cases}
+            \abs{V-F} & j\in F \\
+            -\abs{F} & j\not\in F
+        \end{cases}.
+    \end{align*}
+    Seštevek kvadratov lahko omejimo z neodvisnostnim številom.
+    \begin{align*}
+        \sum_{j\in V} v_i+j^2 &= \abs{F}\abs{V-F}^2 + \abs{V-F}\abs{F}^2 \\
+                             &= \abs{F}\abs{V-F}(\abs{F}+\abs{V-F}) \\
+                             &= \abs{F}\abs{V-F}n \\
+                             &\leq i(G) n^2
+    \end{align*}
+    Izračunamo lahko še produkt \(v_j\) s sosednostno matriko \(A\).
+    \begin{align*}
+        (Av)_j = \sum_{k\sim j} v_k
+    \end{align*}
+    Če je \(j\in F\), potem vemo, da so vsi njegovi sosedi izven \(F\). Ker je \(d\)-regularen pa je takih sosedov \(d\). Torej za tak \(j\) velja
+    \begin{align*}
+        (Av)_j = -d \abs{F} = -d i(G).
+    \end{align*}
+    Takih vozlišč \(j\) je pa ravno \(i(G)\). S tem lahko omejimo seštevek kvadratov produkta \(A v\).
+    \begin{align*}
+        \sum_{j\in V} (Av)_j^2 \geq d^2 i(G)^3
+    \end{align*}
+    Ker je seštevek \(\sum_{j\in V} v_j\) enak \(0\) vemo, da je vektor \(v\) pravokoten na vektor samih enic, ki je lastni vektor za lastno vrednost \(d\). Torej je razmerje \(\norm{A v} / \norm{ v} \leq \lambda_2(G)\). Če vstavimo izračunane norme dobimo
+    \begin{align*}
+        \frac{\norm{A v}}{\norm v} \leq \lambda_2(G) \\
+        \norm{A v} \leq \lambda_2(G) \norm v \\   
+        d^2 i(G)^3 \leq \lambda_2(G)^2 i(G) n^2\\
+        i(G) \leq \frac{n}{d} \lambda_2(G).
+    \end{align*}
+\end{dokaz}
