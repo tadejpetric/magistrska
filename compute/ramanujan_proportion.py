@@ -1,12 +1,12 @@
 from random_regular_networkx import random_regular, is_random_ramanujan
 from utils import second_eigenvalue
-
+from tqdm import tqdm
 
 attempts_per_size = 1000
 vertex_step = 10_000
 max_size = 100_001
-d = 5
-starting_vertices =  10_000#d + 1 
+d = 21
+starting_vertices =  90_000#d + 1 
 assert starting_vertices > d
 
 processes = 10
@@ -19,7 +19,7 @@ def proportion():
     while vertices < max_size:
         n_ramanujan = 0
         curr_attempts = 0
-        for _ in range(attempts_per_size):
+        for _ in tqdm(range(attempts_per_size)):
             n_ramanujan += is_random_ramanujan(vertices, d)
             curr_attempts += 1
 
