@@ -22,7 +22,7 @@ V tem primeru je bil problem, da ne moremo povezati vozlišča s samim seboj, la
 Za vse pristope bomo uporabljali funkcijo, ki ponavlja klice na naš algoritem, dokler ne dobimo regularnega grafa.
 \begin{algorithm}[ht]
     \caption{Generiranje naključnih regularnih grafov}
-    \label{enakomerno-nakljucni-pocasi}
+    \label{enakomerno-nakljucni-pomozno}
     \raggedright
     \textbf{Vhod:} Števili \(n, d \in n, d \in \mathbb N\). \\
     \textbf{Izhod:} Sosednostna matrika \(A\) \(d\)-regularnega grafa na \(n\) vozliščih.
@@ -116,7 +116,6 @@ Omenimo še bolj enostaven, naiven pristop za generiranje regularnih grafov. Tu 
 
 \begin{algorithm}[ht]
     \caption{Enostavno generiranje naključnih regularnih grafov}
-    \label{enakomerno-nakljucni-hitro}
     \raggedright
     \textbf{Vhod:} Števili \(n, d \in n, d \in \mathbb N\). \\
     \textbf{Izhod:} Sosednostna matrika \(A\) \(d\)-regularnega grafa na \(n\) vozliščih.
@@ -312,9 +311,9 @@ Na sliki \ref{fig:5-regular} vidimo, da se povprečje lastnih vrednosti približ
 \end{figure}
 
 \subsection{Delež Ramanujanovih grafov}
-Nadaljujemo z deležom Ramanujanovih grafov. Postopek bo enak kot prej, le da rišemo vse hkrati na enem grafu. Da dobimo boljše rezultate si tokrat ogledamo tudi grafe z večimi vozlišči. Začnemo z grafi, ki imajo manj kot \(1000\) vozlišč, za tem pa tudi izračunamo delež Ramanujanovih grafov za grafe z do \(100 000\) vozlišči. Zaradi časovne zahtevnosti, za tako velike grafe izračunamo delež v korakih po \(10 000\) vozlišč.
+Nadaljujemo z deležom Ramanujanovih grafov. Postopek bo enak kot prej, le da rišemo vse hkrati na enem grafu. Da dobimo boljše rezultate si tokrat ogledamo tudi grafe z večimi vozlišči. Začnemo z grafi, ki imajo manj kot \(1000\) vozlišč, za tem pa tudi izračunamo delež Ramanujanovih grafov za grafe z do \(100 000\) vozlišči. Zaradi časovne zahtevnosti, za tako velike grafe izračunamo delež v korakih po \(10 000\) vozlišč. Pri tako velikih velikostih je za sosednostne matrike potrebno uporabljati razpršene matrike, da prostorska zahtevnost raste linearno namesto kvadratično. Brez razpršenih matrik bi v primeru \(n=100 000\) in \(d=21\) program zavzel okoli \(40\)GB pomnilnika, če pa uporabimo razpršene matrike pa le okoli \(10\)MB.
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
@@ -493,10 +492,7 @@ Nadaljujemo z deležom Ramanujanovih grafov. Postopek bo enak kot prej, le da ri
     \end{tikzpicture}
     \caption{Graf proporcije Ramanujanovih grafov od 1 do 300}
 \end{figure}
-
----
-
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
@@ -562,11 +558,16 @@ Nadaljujemo z deležom Ramanujanovih grafov. Postopek bo enak kot prej, le da ri
     \end{tikzpicture}
     \caption{Graf proporcije Ramanujanovih grafov od 10000 do 100000}
 \end{figure}
+Na grafih vidimo, da se delež Ramanujanovih grafov z večanjem števila vozlišč zmanjšuje. Vidimo pa tudi, da se ta delež zmanjšuje hitreje za nižje stopnje regularnosti. Najbolj pomembno pa je, da se ta delež ne približuje \(0\), ne glede na stopnjo regularnosti, na grafih vidimo, da se delež približuje približno \(70\%\), vendar je težko trditi, saj kljub velikemu številu vozlišč, rezultati še vedno niso dokončno konvergirali. Dokaza za to trditev si ne bomo ogledali, je bilo pa nedavno dokazano, da je delež Ramanujanovih grafov asimptotično neodvisen od stopnje regularnosti in se približuje približno \(69\%\)\cite{huang2024ramanujanpropertyedgeuniversality}. Ramanujanovi grafi so torej dovolj pogosti, da so naši algoritmi za generiranje učinkoviti - ne glede na velikost grafa, bomo z naključnim izbiranjem hitro našli Ramanujanov graf.
 
-\begin{figure}
+Zaključimo še s tem, da si ogledamo kakšen bi bil delež grafov, če za drugo največjo lastno vrednost vzamemo neko drugo konstanto, namesto \(2\sqrt{d-1}\) vzamemo \(2\sqrt{d-1} + c\), izračunamo delež Ramanujanovih grafov in ga prikažemo na grafu. Na grafu abscisna os predstavlja število vozlišč, ordinatna o predstavlja \(c\), barva na koordinati \((n,c)\) pa predstavlja delež grafov na \(n\) vozliščih, ki imajo drugo največjo lastno vrednost večjo od \(2\sqrt{d-1}+c\); bolj temna barva kot je, večji je ta delež.
+\begin{figure}[H]
     \begin{center}
         \input{images/proportion_plot.pgf}
     \end{center}
-    \caption{A PGF histogram from \texttt{matplotlib}.}
+    \caption{Delež grafov, ki so skoraj Ramanujanovi za \(d=5\)}
 \end{figure}
+Na sliki je jasno vidna pomembnost konstante \(2\sqrt{d-1}\). Če bi bila manjša, bi se delež grafov približal \(0\) ko povečujemo število vozlišč. Če bi bila večja, se delež grafov približuje \(1\). V kritični meji z \(c=0\), pa bo ta delež okoli \(0.69\), kot smo omenili prej.
+
+Kljub temu, da so Ramanujanovi grafi zelo pogosti, si bomo vseeno ogledali dva eksplicitna načina konstrukcije. Oba sta računsko zelo zahtevna; prvi je za računske namene neuporaben, drugega bi pa lahko uporabili, če bi bilo Ramanujanovih grafov premalo (kar pa ni res in je v praksi bolj učinkovito naključno poskušanje). Zagotovita pa, da Ramanujanovi grafi zares obstajajo za vsako stopnjo regularnosti in določena števila vozlišč, kar iz naključnih konstrukcij ni očitno kljub visokemu deležu. Glavni razlog, da si jih bomo mi ogledali pa ni računski; za nas bo pomembno, da iz eksplicitnih konstrukcij sledi mnogo pomembnih lastnosti Ramanujanovih grafov in opazimo kako povezujejo različna področja matematike. V konstrukciji bomo uporabljali namreč teorijo grafov, teorijo števil, abstraktno algebro, kompleksno analizo in še marsikaj drugega.
 
