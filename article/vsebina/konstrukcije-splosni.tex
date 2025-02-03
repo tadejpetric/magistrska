@@ -291,3 +291,27 @@ Oglejmo si, kako so te konstante povezane z drugo največjo lastno vrednostjo gr
         i(G) \leq \frac{n}{d} \lambda_2(G).
     \end{align*}
 \end{dokaz}
+
+Oglejmo si še povezavo med kromatičnim številom in drugo največjo lastno vrednostjo.
+\begin{izrek}
+    Naj bo \(G\) graf z \(n\) vozlišči. Potem velja
+    \begin{align*}
+        n \leq i(G) \chi(G)
+    \end{align*}
+\end{izrek}
+\begin{dokaz}
+    Naj bo \(V = V_1\cup V_2 \cup \cdots \cup V_{\chi(G)}\) barvanje grafa \(G\) z \(\chi(G)\) barvami. Po definiciji si vozlišča znotraj vsakega \(V_i\) niso sosedna, torej \(\abs{V_i} \leq i(G)\). Tako dobimo
+    \begin{align*}
+        n = \sum_{i=1}^{\chi(G)} \abs{V_i} \leq i(G) \chi(G).
+    \end{align*}
+\end{dokaz}
+\begin{posledica}
+    Za \(d\)-regularen graf \(G\) velja
+    \begin{align*}
+        \chi(G) \geq \frac{d}{\lambda_2(G)}.
+    \end{align*}
+    Če je graf Ramanujanov, potem velja
+    \begin{align*}
+        \chi(G) \geq \frac{d}{2\sqrt{d-1}} \approx \frac{\sqrt d}{2}.
+    \end{align*}
+\end{posledica}
