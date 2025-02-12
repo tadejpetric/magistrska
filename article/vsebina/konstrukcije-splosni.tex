@@ -159,7 +159,7 @@ Izbiro grupe bomo pogojevali glede na Legendrejev simbol. Če bomo želeli nared
         \theta(q)^4 = 1+8\sum_{d\nmid 4} \frac{d q^{d/2}}{1-q^{d/2}}.
     \end{align*}
 
-    Dokaz bi sedaj lahko nadaljevali na več načinov. Lahko se opiramo na Jacobijevo identiteto o treh produktih ter enakost dokažemo z elementarnimi metodami, ki so pa sicer zelo dolge in ne uporabljajo metod, ki jih bi potrebovali v nadaljevanju. Alternativni pristop pa pokaže, da sta obe strani enačbe pravzaprav modularne forme z enako utežjo. Dokaz enakosti pri le-teh pa je zelo lahek, če razvijemo dovolj teorije modularnih form.
+    Dokaz bi sedaj lahko nadaljevali na več načinov. Lahko se opiramo na Jacobijevo identiteto o treh produktih ter enakost dokažemo z elementarnimi metodami, ki so pa sicer zelo dolge in ne uporabljajo metod, ki jih bi potrebovali v nadaljevanju. Alternativni pristop pa pokaže, da sta obe strani enačbe pravzaprav modularne forme z enako utežjo. Dokaz enakosti pri le-teh pa je zelo lahek, če razvijemo dovolj teorije modularnih form. Kljub temu, da bi teorijo modularnih form lahko uporabili tudi v nadaljevanju, dokaz ob tej točki zaključimo, ker bi bilo potrebno razviti preveč, da bi v popolnosti dokazali katero koli trditev v sklopu te naloge.
 \end{dokaz}
 
 Za nas bo pomemben primer, ko je \(n\) praštevilo. Dobimo torej \(p=a_0^2 + a_1^2 + a_2^2 + a_3^2\). Edini števili, ki delita \(p\) sta \(p\) in \(1\), njun seštevek je \(p+1\) in število načinov kako lahko zapišemo \(p\) kot vsoto štirih kvadratov je \(8(p+1)\). V tej množici pa je še dodatna struktura - izkaže se, da je to dejansko \(8\) ``kopij'' \(p+1\) rešitev. Z uporabo kvaternionov bomo lahko iz te množice izbrali kanoničnih \(p+1\) rešitev, ki bodo predstavljale generatorje grupe.
@@ -321,7 +321,7 @@ Oglejmo si še povezavo med kromatičnim številom in drugo največjo lastno vre
 Za naše grafe bomo tako pokazali, da imajo več lastnosti, kot samo to, da so Ramanujanovi. Kot posledica sledi tudi meja za kromatično število in neodvisnostno število, poleg tega bomo pa izpeljali še mejo za obseg grafa.
 
 \subsubsection{Kvocienti dreves}
-Iz prejšne konstrukcije smo do meje \(2\sqrt{d-1}\) prišli preko dreves poti, za katere smo lahko izračunali lastne vrednosti v izreku \ref{lastne-vrednosti-drevesa}. V tej konstrukciji bomo naredili nekaj sorodnega ter pokazali, da so naši grafi kvocienti dreves. Tako ni preveč presenetljivo, da tudi tukaj pride v upoštev meja \(2\sqrt{d-1}\), vidimo pa, da so drevesa tesno povezana z izbiro konstante.
+Iz prejšne konstrukcije smo do meje \(2\sqrt{d-1}\) prišli preko dreves poti, za katere smo lahko izračunali lastne vrednosti v izreku \ref{lastne-vrednosti-drevesa}. V tej konstrukciji bomo naredili nekaj sorodnega ter pokazali, da so naši grafi kvocienti dreves. Tako ni preveč presenetljivo, da tudi tukaj pride v upoštev meja \(2\sqrt{d-1}\), vidimo pa, da so drevesa tesno povezana s konstanto \(2\sqrt{d-1}\).
 
 Definiramo si pomožno podmnožico \(\Lambda' \subset \bH(\Z)\) kot
 \begin{align*}
@@ -403,13 +403,30 @@ Jedro tega homomorfizma označimo z \(\Lambda(q)\) in, po prvem izreku o izomorf
 
 Izkaže se, da sta grafa \(X^{p,q}\) in \(Y^{p,q}\) izomorfna. Rezultat ni preveč presenetljiv, saj obe konstrukciji izvirata iz kvaternionov. To lahko dokažemo na več načinov, najbolj elemenentaren se zanaša na klasifikacijo podgrup grupe \(\PSL(2, \modZ{q})\). Imamo kanoničen izomorfizem \(\beta:\bH(\modZ{q})^\times /Z_q\to \PGL_2(q)\); s to preslikavo lahko dobimo tudi \(\beta(T)=S\). Pokazati je potrebno le, da je slika \(\Lambda/\Lambda(q)\) enaka \(PSL(2, \modZ{q})\) ali \(\PGL(2, \modZ{q})\) (odvisno od \(\legendre{p}{q}\)).  Vse stroge podgrupe \(\PSL(2, \modZ{q})\) razen dveh pa imajo lastnost, da imajo normalno podgrupo \(N\), za katero sta \(N\) in \(G/N\) abelovi. Te dve izjemi pa sta kvečjemu velikosti 60 (v primeru alternirajoče grupe \(A_5\)). Če si ogledamo lastnosti slike vidimo, da je večja od \(60\) (zaradi zahteve \(q>p^8\)), grupa pa nima omenjene lastnosti - torej ne more biti podgrupa in je slika kar enaka \(\PSL(2, \modZ{q})\). Podrobnega dokaza si ne bomo ogledali
 
-\subsubsection{Polinomi Čebiševa}
-Da si ogledamo spekter grafov si bomo, podobno kot pri dokazu za Alon-Boppanovo mejo (\ref{alon-boppanova-meja-izrek}), morali ogledati sled grafa oziroma število poti, ki vodijo od vozlišča do samega sebe. Sled lahko izrazimo tudi na drugače. Prvi pristop nam jo izrazi kot število rešitev določene kvadratne forme, podobno kot pri Jacobijovem izreku o štirih kvadratih (\ref{jacobi-four-squares}). Drugi pristop pa nam jo izrazi s pomočjo polinomov Čebiševa. Če pristopa združimo, lahko izrazimo število rešitev kvadratne forme z uporabo polinomov Čebiševa. Začnemo najprej s kvadratno formo.
+\subsubsection{Ramanujanova domneva}
+Da si ogledamo spekter grafov si bomo, podobno kot pri dokazu za Alon-Boppanovo mejo (\ref{alon-boppanova-meja-izrek}), morali ogledati sled grafa oziroma število poti, ki vodijo od vozlišča do samega sebe. Sled lahko izrazimo tudi na drugače, s številom rešitev enačbe, ki je podobna enačbi v Jacobijovem izreku o štirih kvadratih (\ref{jacobi-four-squares}). Enačba v Jacobijovem izreku je bila \(p=a^2+b^2+c^2+d^2\), tu bomo pa uporabili enačbo oblike \(p^m = a^2 + 4q^2(b^2+c^2+d^2)\). Število teh rešitev pa ni tako enostavno poiskati; tu nam pomaga Ramanujanova domneva, iz katere tudi izhaja ime ``Ramanujan'' v Ramanujanovih grafih. Domneva nam opisuje velikost koeficientov modularne forme. Kot smo videli v dokazu Jacobijevega izreka o štirih kvadratih lahko na problem iz teorije števil gledamo tako, da ga prevedemo na enakost \(\theta\) vrst. Koeficienti te vrste štejejo ravno število rešitev, omenili smo pa tudi, da je naša \(\theta\) vrsta tudi modularna forma. Podobno lahko tudi našo novo enakost preoblikujemo v \(\theta\) vrsto, kjer koeficienti štejejo število rešitev, vrsta pa je prav tako modularna forma. Če na dobljeni vrsti uporabimo Ramanujanovo domnevo, dobimo oceno za koeficiente in torej število rešitev enačbe. 
 
 \begin{izrek}
-    
+    Naj bo \(s(p^m)\) število celoštevilskih rešitev enačbe \(p^m = a^2+4q^2(b^2+c^2+d^2)\).
+    Potem velja
+    \begin{align*}
+        s(p^m) = \frac{4}{q(q^2-1)}\frac{p^{m+1}-1}{p-1} + O_\varepsilon \left(p^{\frac{m}{2}(1+\varepsilon)}\right)
+    \end{align*}
 \end{izrek}
+Podobno kot pri dokazu Jacobijevega izreka o štirih kvadratih, tega ne bomo dokazali. Osredotočimo se raje na to, kako ta izraz povežemo z lastnimi vrednostmi. 
 
+Želimo opisati število poti dolžine \(l\) v grafu, ki se začnejo in končajo v vozlišču \(v\), dodatno pa še zahtevamo, da ne obiščejo nobenega vozlišča dvakrat zapored (torej \(v_{i-1}\neq v_{i+1}\) če je \(v_i\) vozlišče, ki ga pot obišče v koraku \(i\)). Pri Caylejevih grafih izraz postane še lažji. Če imamo namreč pot, ki se začne v elementu \(v\) ga lahko pomnožimo z poljubnim elementom grupe \(g\), da dobimo pot v elementu \(g\cdot v\). Torej je število poti neodvisno od začetnega vozlišča in za to uporabimo oznako \(\rho(l)\) za število poti v grafu \(X^{p,q}\) dolžine \(l\) brez zaporedno ponovljenih vozlišč.
+
+\begin{izrek}
+    Za \(m\in \N\) velja
+    \begin{align*}
+        s(p^m) = 2\sum_{0\leq r\leq \frac{m}{2}}\rho(m-2r)
+    \end{align*}
+\end{izrek}
+\begin{dokaz}
+\end{dokaz}
+
+Preko polinomov Čebiševa pa lahko sled zapišemo tako, da bolj eksplicitno uporablja lastne vrednosti grafa.
 \begin{definicija}[Polinomi Čebiševa drugega tipa]
     Za stopnjo \(m\) definiramo polinom Čebiševa drugega tipa kot 
     \begin{align*}
@@ -421,8 +438,16 @@ Da si ogledamo spekter grafov si bomo, podobno kot pri dokazu za Alon-Boppanovo 
     \end{align*}
 \end{definicija}
 
+\begin{izrek}
+    Če so \(\lambda_j\) lastne vrednosti in \(n\) število vozlišč grafa \(X^{p,q}\) potem velja
+    \begin{align*}
+        n\sum_{0\leq r \leq \frac{m}{2}} \rho(m-2r) = p^{\frac{m}{2}}\sum_{j=0}^{n-1} U_m \left(\frac{\lambda_j}{2\sqrt{p}}\right)
+    \end{align*}
+\end{izrek}
 
-
+\begin{dokaz}
+    TODO
+\end{dokaz}
 
 
 
