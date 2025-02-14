@@ -366,6 +366,7 @@ Ta množica vsebuje našo množico generatorjev, dodatno pa še velja, da je zap
 \end{dokaz}
 Oglejmo si analogno trditev v \(\Lambda'\) namesto v \(\bH(\Z)\).
 \begin{posledica}
+    \label{enolicna-faktorizacija-lambdacrtica}
     Vsak element \(\alpha \in \Lambda'\) z \(\abs{\alpha} = p^k\) lahko enolično faktoriziramo kot \(\alpha = \pm p^r w_m\), kjer je \(w_m\) okrajšana beseda dolžine \(m\) nad množico \(S\) in \(k=2r+m\).
 \end{posledica}
 \begin{dokaz}
@@ -413,20 +414,33 @@ Da si ogledamo spekter grafov si bomo, podobno kot pri dokazu za Alon-Boppanovo 
         s(p^m) = \frac{4}{q(q^2-1)}\frac{p^{m+1}-1}{p-1} + O_\varepsilon \left(p^{\frac{m}{2}(1+\varepsilon)}\right)
     \end{align*}
 \end{izrek}
-Podobno kot pri dokazu Jacobijevega izreka o štirih kvadratih, tega ne bomo dokazali. Osredotočimo se raje na to, kako ta izraz povežemo z lastnimi vrednostmi. 
+Podobno kot pri dokazu Jacobijevega izreka o štirih kvadratih, tega ne bomo dokazali. Osredotočimo se raje na to, kako ta izraz uporabimo, da omejimo lastne vrednosti grafa. 
 
 Želimo opisati število poti dolžine \(l\) v grafu, ki se začnejo in končajo v vozlišču \(v\), dodatno pa še zahtevamo, da ne obiščejo nobenega vozlišča dvakrat zapored (torej \(v_{i-1}\neq v_{i+1}\) če je \(v_i\) vozlišče, ki ga pot obišče v koraku \(i\)). Pri Caylejevih grafih izraz postane še lažji. Če imamo namreč pot, ki se začne v elementu \(v\) ga lahko pomnožimo z poljubnim elementom grupe \(g\), da dobimo pot v elementu \(g\cdot v\). Torej je število poti neodvisno od začetnega vozlišča in za to uporabimo oznako \(\rho(l)\) za število poti v grafu \(X^{p,q}\) dolžine \(l\) brez zaporedno ponovljenih vozlišč.
 
 \begin{izrek}
     Za \(m\in \N\) velja
     \begin{align*}
-        s(p^m) = 2\sum_{0\leq r\leq \frac{m}{2}}\rho(m-2r)
+        s(p^m) = 2\sum_{0\leq l\leq \frac{m}{2}}\rho(m-2l)
     \end{align*}
 \end{izrek}
 \begin{dokaz}
+    Kot že vemo sta grafa \(X^{p,q}\) in \(Y^{p,q}\) izomorfna. Namesto v \(X^{p,q}\) bomo torej trditev dokazali za poti v \(Y^{p,q}\). Naj bodo \(1=v_0, v_1, \ldots, v_{l-1}, v_l=1\) vozlišča v poti dolžine \(l\) kot v definiciji \(\rho(l)\). Ker je graf Caylejev ga lahko razpišemo po generatorjih \(t_i\in T\) in preko kvocientne projekcije vsak \(t_i\) zapišemo enolično kot \(t_i = \Pi_q(\gamma_i)\). Ker pot ni obiskala vozlišča dvakrat zapored je beseda \(\gamma_1 \cdots \gamma_l\) okrajšana in, ker velja \(\Pi_q(\gamma_1 \cdots \gamma_l) = t_1\cdots t_l = v_l = 1\), je beseda \(\gamma_1 \cdots \gamma_l\) v \(\Lambda(q)\). Torej \(\rho(l)\) pravzaprav šteje okrajšane v \(\Lambda(q)\), ki so dolžine \(l\) v \(\Lambda\).
+
+    Sedaj si izberemo \(a, b, c, d\in \Z\), ki rešijo enačbo \(p^m = a^2 + 4q^2 (b^2+c^2+d^2)\). To lahko zapišemo tudi kot kvaternion \(\alpha = a + q(b'i+c'j+d'k)\), ki ima normo \(p^m\) in ima sode koeficiente \(b, c\) in \(d\), kar pomeni, da je v \(\Lambda'\) in njegov ekvivalenčni razred v \(\Lambda(q)\). Podobno, kot smo faktor \(4\) uporabili, da smo povedali, da so koeficienti sodi, lahko faktor \(q^2\) uporabimo, da povemo, da so koeficienti deljivi tudi z \(q\). Torej dobimo enakost
+    \begin{align*}
+        s(p^m) = \lvert \{\alpha = a+bi+cj+dk \in \Lambda'\mid \lvert \alpha\rvert = p^m \land\, q\mid b,c,d \}\rvert
+    \end{align*}
+    
+    Sedaj povežemo besede z izrazom na desni. Če je \(\alpha\) nek kvaternion v množici na desni strani enačbe, potem ga lahko po izreku \ref{enolicna-faktorizacija-lambdacrtica} enolično faktoriziramo kot \(\alpha = \pm p^l w_{m-2l}\), kjer je \(w_{m-2l}\) beseda dolžine \(m-2l\) v \(\Lambda\), ekvivalenčni razred pa v \(\Lambda(q)\).
+
+    Obratno, vsaka beseda \(w\) nam da dva kvaterniona te oblike, \(+ p^l w\) in \(-p^l w\).  Dobimo torej
+    \begin{align*}
+        s(p^m) = \lvert \{\alpha\in \Lambda'\mid \alpha \in \Lambda(q)\land \abs{\alpha}=p^m\} \rvert 2 \sum_{0\leq l \leq \frac{m}{2}} \rho(m-2l).
+    \end{align*}
 \end{dokaz}
 
-Preko polinomov Čebiševa pa lahko sled zapišemo tako, da bolj eksplicitno uporablja lastne vrednosti grafa.
+Tako smo število rešitev enačbe povezali z izrazom, za katerega že vemo, da je povezan z lastnimi vrednostmi. Preko polinomov Čebiševa pa lahko sled zapišemo tako, da bolj eksplicitno uporablja lastne vrednosti grafa.
 \begin{definicija}[Polinomi Čebiševa drugega tipa]
     Za stopnjo \(m\) definiramo polinom Čebiševa drugega tipa kot 
     \begin{align*}
@@ -437,17 +451,61 @@ Preko polinomov Čebiševa pa lahko sled zapišemo tako, da bolj eksplicitno upo
         U_{m+1}(x) = 2xU_m(x) - U_{m-1}(x).
     \end{align*}
 \end{definicija}
+Polinome lahko opišemo tudi z generatorsko funkcijo kot
+\begin{align*}
+    \sum_{m=0}^{\infty} U_m(x)t^m = \frac{1}{1-2xt+t^2}
+\end{align*}
+ali, preko substitucije, kot
+\begin{align*}
+    \sum_{m=0}^{\infty} (k-1)^{\frac{m}{2}}U_m\left(\frac{x}{2\sqrt{k-1}}\right)t^m = \frac{1}{1-xt+(k-1)t^2}
+\end{align*}
 
 \begin{izrek}
     Če so \(\lambda_j\) lastne vrednosti in \(n\) število vozlišč grafa \(X^{p,q}\) potem velja
     \begin{align*}
-        n\sum_{0\leq r \leq \frac{m}{2}} \rho(m-2r) = p^{\frac{m}{2}}\sum_{j=0}^{n-1} U_m \left(\frac{\lambda_j}{2\sqrt{p}}\right)
+        n\sum_{0\leq l \leq \frac{m}{2}} \rho(m-2l) = p^{\frac{m}{2}}\sum_{j=0}^{n-1} U_m \left(\frac{\lambda_j}{2\sqrt{p}}\right)
     \end{align*}
 \end{izrek}
 
 \begin{dokaz}
-    TODO
+    Definiramo si matriko, ki opisuje število poti med dvema vozliščema grafa. Vrednosti na diagonali (torej z indeksi \(i, i\)) te matrike \(A_l\) bodo enaki \(\rho(l)\). V splošnem definiramo vrednost \((A_l)_{i,j}\) kot število poti dolžine \(l\) od \(i\) do \(j\), ki ne obiščejo vozlišča dvakrat zapored kot v definiciji \(\rho\).
+
+    Te matrike imajo nekaj enostavnih rekurzivnih lastnosti. Prvi dve sta \(A_1^2 = A_2 + k\cdot I\) in \(A_1 A_l = A_lA_1 = A_{l+1}+(k-1)A_{l-1}\). Preko njih lahko enostavno dobimo tudi generatorsko funkcijo
+    \begin{align*}
+        \sum_{l=0}^\infty A_lt^l = \frac{1-t^2}{1-At+(k-1)t^2}
+    \end{align*}
+    in, preko substitucije \(T_m = \sum_{0\leq l \leq \frac{m}{2}} A_{m-2l}\) dobimo še generatorsko funkcijo za \(T_m\)
+    \begin{align*}
+        \sum_{m=0}^\infty T_m t^m = \frac{1}{1-At+(k-1)t^2}.
+    \end{align*}
+
+    Kot vidimo pa se ta funkcija ujema z generatorsko funkcijo za polinome Čebiševa, torej velja
+    \begin{align*}
+        T_m = (k-1)^{\frac{m}{2}} U_m\left(\frac{A}{2\sqrt{k-1}}\right)
+    \end{align*}
+    Enostavno lahko poiščemo lastne vrednosti polinoma matrike. Namreč, če je \(p\) polinom in \(A\) matrika z lastno vrednostjo \(\lambda\), potem je \(p(\lambda)\) lastna vrednost matrike \(p(A)\). Torej lahko, če so \(\lambda_i\) lastne vrednosti \(A\), sled matrike \(T_m\) napišemo kot
+    \begin{align*}
+        \mathrm{Tr} T_m = (k-1)^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_i}{2\sqrt{k-1}}\right).
+    \end{align*}
+    Namesto zveze z polinoma Čebiševa pa lahko sled \(T_m\) izračunamo tudi po definiciji
+    \begin{align*}
+        \mathrm{Tr} T_m = \sum_{0\leq l\leq \frac{m}{2}} \mathrm{Tr} A_{m-2l}
+    \end{align*}
+    Kot že vemo ima matrika \(A_{m-2l}\) na diagonali vse vrednosti enake, saj smo jo dobili kot Caylejev graf grupe. Torej je izraz enak
+    \begin{align*}
+        \sum_{0\leq l\leq \frac{m}{2}} \rho(m-2l).
+    \end{align*}
+
+    Če to združimo skupaj z izrazom iz polinomov Čebiševa dobimo
+    \begin{align*}
+        \sum_{0\leq l\leq \frac{m}{2}} \rho(m-2l) = (k-1)^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_i}{2\sqrt{k-1}}\right)
+    \end{align*}
 \end{dokaz}
+
+Sedaj lahko združimo oba izreka skupaj, da dobimo enakost, ki povezuje število rešitev enačbe z lastnimi vrednostmi grafa
+\begin{align*}
+    s(p^m) = (k-1)^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_i}{2\sqrt{k-1}}\right)
+\end{align*}
 
 
 
