@@ -407,14 +407,14 @@ Izkaže se, da sta grafa \(X^{p,q}\) in \(Y^{p,q}\) izomorfna. Rezultat ni preve
 \subsubsection{Ramanujanova domneva}
 Da si ogledamo spekter grafov si bomo, podobno kot pri dokazu za Alon-Boppanovo mejo (\ref{alon-boppanova-meja-izrek}), morali ogledati sled grafa oziroma število poti, ki vodijo od vozlišča do samega sebe. Sled lahko izrazimo tudi na drugače, s številom rešitev enačbe, ki je podobna enačbi v Jacobijovem izreku o štirih kvadratih (\ref{jacobi-four-squares}). Enačba v Jacobijovem izreku je bila \(p=a^2+b^2+c^2+d^2\), tu bomo pa uporabili enačbo oblike \(p^m = a^2 + 4q^2(b^2+c^2+d^2)\). Število teh rešitev pa ni tako enostavno poiskati; tu nam pomaga Ramanujanova domneva, iz katere tudi izhaja ime ``Ramanujan'' v Ramanujanovih grafih. Domneva nam opisuje velikost koeficientov modularne forme. Kot smo videli v dokazu Jacobijevega izreka o štirih kvadratih lahko na problem iz teorije števil gledamo tako, da ga prevedemo na enakost \(\theta\) vrst. Koeficienti te vrste štejejo ravno število rešitev, omenili smo pa tudi, da je naša \(\theta\) vrsta tudi modularna forma. Podobno lahko tudi našo novo enakost preoblikujemo v \(\theta\) vrsto, kjer koeficienti štejejo število rešitev, vrsta pa je prav tako modularna forma. Če na dobljeni vrsti uporabimo Ramanujanovo domnevo, dobimo oceno za koeficiente in torej število rešitev enačbe. 
 
-\begin{izrek}
+\begin{izrek}[Ramanujanova domneva]\label{ramanujan-domneva}
     Naj bo \(s(p^m)\) število celoštevilskih rešitev enačbe \(p^m = a^2+4q^2(b^2+c^2+d^2)\).
     Potem velja
     \begin{align*}
         s(p^m) = \frac{4}{q(q^2-1)}\frac{p^{m+1}-1}{p-1} + O_\varepsilon \left(p^{\frac{m}{2}(1+\varepsilon)}\right)
     \end{align*}
 \end{izrek}
-Podobno kot pri dokazu Jacobijevega izreka o štirih kvadratih, tega ne bomo dokazali. Osredotočimo se raje na to, kako ta izraz uporabimo, da omejimo lastne vrednosti grafa. 
+Izrek je pravzaprav neposredna posledica Ramanujanove domneve, kot opisano, vendar ga bomo imenovali kar Ramanujanova domneva. Podobno kot pri dokazu Jacobijevega izreka o štirih kvadratih, ga ne bomo dokazali. Osredotočimo se raje na to, kako ta izraz uporabimo, da omejimo lastne vrednosti grafa. 
 
 Želimo opisati število poti dolžine \(l\) v grafu, ki se začnejo in končajo v vozlišču \(v\), dodatno pa še zahtevamo, da ne obiščejo nobenega vozlišča dvakrat zapored (torej \(v_{i-1}\neq v_{i+1}\) če je \(v_i\) vozlišče, ki ga pot obišče v koraku \(i\)). Pri Caylejevih grafih izraz postane še lažji. Če imamo namreč pot, ki se začne v elementu \(v\) ga lahko pomnožimo z poljubnim elementom grupe \(g\), da dobimo pot v elementu \(g\cdot v\). Torej je število poti neodvisno od začetnega vozlišča in za to uporabimo oznako \(\rho(l)\) za število poti v grafu \(X^{p,q}\) dolžine \(l\) brez zaporedno ponovljenih vozlišč.
 
@@ -470,22 +470,22 @@ ali, preko substitucije, kot
 \begin{dokaz}
     Definiramo si matriko, ki opisuje število poti med dvema vozliščema grafa. Vrednosti na diagonali (torej z indeksi \(i, i\)) te matrike \(A_l\) bodo enaki \(\rho(l)\). V splošnem definiramo vrednost \((A_l)_{i,j}\) kot število poti dolžine \(l\) od \(i\) do \(j\), ki ne obiščejo vozlišča dvakrat zapored kot v definiciji \(\rho\).
 
-    Te matrike imajo nekaj enostavnih rekurzivnih lastnosti. Prvi dve sta \(A_1^2 = A_2 + k\cdot I\) in \(A_1 A_l = A_lA_1 = A_{l+1}+(k-1)A_{l-1}\). Preko njih lahko enostavno dobimo tudi generatorsko funkcijo
+    Te matrike imajo nekaj enostavnih rekurzivnih lastnosti. Prvi dve sta \(A_1^2 = A_2 + (p-1)\cdot I\) in \(A_1 A_l = A_lA_1 = A_{l+1}+pA_{l-1}\). Preko njih lahko enostavno dobimo tudi generatorsko funkcijo
     \begin{align*}
-        \sum_{l=0}^\infty A_lt^l = \frac{1-t^2}{1-At+(k-1)t^2}
+        \sum_{l=0}^\infty A_lt^l = \frac{1-t^2}{1-At+pt^2}
     \end{align*}
     in, preko substitucije \(T_m = \sum_{0\leq l \leq \frac{m}{2}} A_{m-2l}\) dobimo še generatorsko funkcijo za \(T_m\)
     \begin{align*}
-        \sum_{m=0}^\infty T_m t^m = \frac{1}{1-At+(k-1)t^2}.
+        \sum_{m=0}^\infty T_m t^m = \frac{1}{1-At+pt^2}.
     \end{align*}
 
     Kot vidimo pa se ta funkcija ujema z generatorsko funkcijo za polinome Čebiševa, torej velja
     \begin{align*}
-        T_m = (k-1)^{\frac{m}{2}} U_m\left(\frac{A}{2\sqrt{k-1}}\right)
+        T_m = p^{\frac{m}{2}} U_m\left(\frac{A}{2\sqrt{k-1}}\right)
     \end{align*}
-    Enostavno lahko poiščemo lastne vrednosti polinoma matrike. Namreč, če je \(p\) polinom in \(A\) matrika z lastno vrednostjo \(\lambda\), potem je \(p(\lambda)\) lastna vrednost matrike \(p(A)\). Torej lahko, če so \(\lambda_i\) lastne vrednosti \(A\), sled matrike \(T_m\) napišemo kot
+    Enostavno lahko poiščemo lastne vrednosti polinoma matrike. Namreč, če je \(q\) polinom in \(A\) matrika z lastno vrednostjo \(\lambda\), potem je \(q(\lambda)\) lastna vrednost matrike \(q(A)\). Torej lahko, če so \(\lambda_i\) lastne vrednosti \(A\), sled matrike \(T_m\) napišemo kot
     \begin{align*}
-        \mathrm{Tr} T_m = (k-1)^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_i}{2\sqrt{k-1}}\right).
+        \mathrm{Tr} T_m = p^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_i}{2\sqrt{p}}\right).
     \end{align*}
     Namesto zveze z polinoma Čebiševa pa lahko sled \(T_m\) izračunamo tudi po definiciji
     \begin{align*}
@@ -498,16 +498,20 @@ ali, preko substitucije, kot
 
     Če to združimo skupaj z izrazom iz polinomov Čebiševa dobimo
     \begin{align*}
-        \sum_{0\leq l\leq \frac{m}{2}} \rho(m-2l) = (k-1)^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_i}{2\sqrt{k-1}}\right)
+        \sum_{0\leq l\leq \frac{m}{2}} \rho(m-2l) = p^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_i}{2\sqrt{p}}\right)
     \end{align*}
 \end{dokaz}
 
 Sedaj lahko združimo oba izreka skupaj, da dobimo enakost, ki povezuje število rešitev enačbe z lastnimi vrednostmi grafa
 \begin{align*}
-    s(p^m) = (k-1)^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_i}{2\sqrt{k-1}}\right)
+    s(p^m) = p^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_i}{2\sqrt{p}}\right)
 \end{align*}
 
-
+Po definiciji polinomov Čebiševa pa je to kar
+\begin{align*}
+    s(p^m) = \frac{2}{n} p^{m}{2}\sum_{j=0}^{n-1}\frac{\sin((m+1)\theta_j)}{\sin \theta_j}
+\end{align*}
+za \(\lambda_j = 2\sqrt{p}\cos\theta_j\). Če so \(\theta_j\) vsi realni (z izjemo trivialnih vrednosti \(i\log\sqrt p\), ki nam da lastno vrednost \(p+1\) (A je to res??) in \(\pi + i \log\sqrt{p}\), ki nam da \(-(p+1)\)), potem bo \(\lambda_k \leq 2\sqrt{p}\), kar je pogoj za Ramanujanove grafe.
 
 
 
