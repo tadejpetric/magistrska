@@ -1,0 +1,18 @@
+\section{Zeta funkcije grafov in Riemannova hipoteza}
+Večina praktičnih uporab Ramanujanovih grafov prazvaprav ne zahteva, da so grafi točno Ramanujanovi. Običajno imamo nek postopek za katerega velja, da če je naš graf bolje povezan (oziroma, da je druga največja lastna vrednost čim večja), bomo dobili boljše rezultate. Velja sicer, da so Ramanujanovi grafi optimalni na ta kriterij, torej bi za njih dobili najboljše rezultate, niso pa strogo potrebni. Želimo pa si ogledati kakšno uporabo ali lastnost Ramanujanovih grafov, kjer bi bilo zares ključno, da so grafi Ramanujanovi. Zato si bomo ogledali eno izmed najbolj pomembnih domnev v matematiki, Riemannovo hipotezo. Ta opisuje obnašanje ničel določene kompleksne funkcije, vendar se izkaže, da obstaja analog te funkcije na grafih; vsakemu regularnemu grafu pripada neka kompleksna funkcija. Izrek bomo natančno formulirali kasneje, vendar pa dokaza za navadno Riemannovo hipotezo še ne poznamo. Zanimivo pa je, da je za različico z grafi dokaz že znan: izkaže se, da funkcija, ki pripada grafu, zadošča Riemannovi hipotezi natanko takrat, ko je graf Ramanujanov\cite{portablesnowbird}.
+
+\subsection{Riemannova Zeta funkcija}
+Začeli bomo z navadno Riemannovo Zeta funkcijo\cite{freitag1}. Enostavno jo je definirati kot analitično funkcijo na \(\Re(z)>1\) z
+\begin{align*}
+    \zeta(z) &= \sum_{n=1}^\infty \frac{1}{n^z} \\ 
+    &= \prod_{p \text{ praštevilo}} \left(1-p^{-z}\right)^{-1}.
+\end{align*}
+Funkcijo \((1-z)\zeta(z)\) lahko analitično razširimo na celotno kompleksno ravnino, torej lahko tudi \(\zeta\) razširimo v meromorfno funkcijo na \(\C\) z polom v \(z=1\). Že iz alternativnega zapisa funkcije vidimo, da je tesno povezana s praštevili, Riemann pa je razširjeno različico uporabil, da je dokazal praštevilski izrek, ki pravi, da število praštevil manjših od števila \(n\) asimptotsko raste z \(\frac{x}{\log{x}}\). Ničle \(\zeta\) funkcije pa nam o tem izreku lahko povejo še več, z njimi lahko opišemo napako izraza iz praštevilskega izreka in s tem bolje razumemo porazdelitev praštevil.
+
+Ničle Riemannove Zeta funkcije delimo na trivialne in na netrivialne. Najprej si oglejmo trivialne ničle ter območja, kjer je enostavno videti, da funkcija nima ničel. Nerazširjena Zeta funkcija (torej na vrednostih \(\Re z > 1\)) nima ničel. Praštevilski izrek je ekvivalenten temu, da na osi \(\Re z = 1\) ni ničel\cite{harolddiamond}. Za negativno polravnino (\(\Re z \leq 0\)) je enostavno poiskati ničle, tu dobimo ``trivialne ničle'', ki se nahajajo na \(-2k\) za \(k\in\Z^+\). Drugih ničel na tej polravnini ni.
+
+Ostane nam samo še množica \(\{z\in \C\mid 0 < \Re z < 1\}\), ki jo imenujemo kritični trak. Tu se nahajajo netrivialne ničle, točne distribucije pa ne poznamo. Znotraj traka se nahaja kritična premica \(\{z\in \C \mid \Re z = 1/2\}\). Znano je, da se na tej premici nahaja več kot 40\% netrivialnih ničel\cite{Pratt2019}. Računsko smo izračunali že vsaj 100 miljard ničel Zeta funkcije na kritičnem traku in vse so na kritični premici\cite{racunskoniclezeta}. To nas pripelje do Riemannove hipoteze.
+
+\begin{izrek}[Riemannova hipoteza]
+    Vse netrivialne ničle Zeta funkcije se nahajajo na kritični premici.
+\end{izrek}
