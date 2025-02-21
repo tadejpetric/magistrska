@@ -225,7 +225,7 @@ torej je matrika obrnljiva in jo lahko gledamo kot element grupe \(\PGL(2, \modZ
         0 & k^{-1}
     \end{bmatrix}\in Z(n, \mathbb F)
 \end{align*}
-in dobimo matrike, ki imajo determinanto \(1\). Tako vidimo, da so vse matrike pravzaprav del podgrupe \(\PSL(2, \modZ{q})\) in ne le \(\PGL\). Ker je množenje elementov iz podgrupe zaprto, lahko iz elementov \(\PSL\) pridemo le do drugih elementov \(\PSL\), če uporabimo le izbrane matrike. Tako bi bil graf nepovezan, če za vozlišča uporabimo celotno grupo \(\PGL\). Namesto tega, kot rečeno uporabimo grupo \(\PSL(2, \modZ{q})\). Kot prej je množica še vedno simetrična, potrebno pa je še preveriti, da ne vsebuje identitete. V tem primeru bi dobili matriko, pri kateri je \(a_0 +ia_1 \equiv a_0 - ia_1 \pmod q\), torej \(a_1 \equiv 0 \pmod q\) oziroma \(a_1 = n\cdot q\). Ker je \(p<q\) in smo \(a_1\) izbrali iz rešitev enačbe \(p=a_1^2 + \cdots\) v \(\Z\) je torej \(a_1=0\). Da bi dobili skalarno matriko torej rabimo, da velja \(a_0^2 = p\) (v polju \(\Z\), saj smo tam izbirali rešitve enačbe). Ker pa je \(p\) praštevilo to ni mogoče. Torej smo dobili simetrično množico brez identitete, ki jo bomo uporabili kot množico generatorjev za \(\PSL(2, \modZ{q})\). Grupa \(\PSL(2, \modZ{q})\) pa ima \(q(q^2-1)/2\) elementov. Caylejev graf za izbrane parametre \(p\) in \(q\) označimo z \(X^{p,q}\).
+in dobimo matrike, ki imajo determinanto \(1\). Tako vidimo, da so vse matrike pravzaprav del podgrupe \(\PSL(2, \modZ{q})\) in ne le \(\PGL\). Ker je množenje elementov iz podgrupe zaprto, lahko iz elementov \(\PSL\) pridemo le do drugih elementov \(\PSL\), če uporabimo le izbrane matrike. Tako bi bil graf nepovezan, če za vozlišča uporabimo celotno grupo \(\PGL\). Namesto tega, kot rečeno uporabimo grupo \(\PSL(2, \modZ{q})\). Kot prej je množica še vedno simetrična, potrebno pa je še preveriti, da ne vsebuje identitete. V tem primeru bi dobili matriko, pri kateri je \(a_0 +ia_1 \equiv a_0 - ia_1 \pmod q\), torej \(a_1 \equiv 0 \pmod q\) oziroma \(a_1 = n\cdot q\). Ker je \(p<q\) in smo \(a_1\) izbrali iz rešitev enačbe \(p=a_1^2 + \cdots\) v \(\Z\) je torej \(a_1=0\). Da bi dobili skalarno matriko torej rabimo, da velja \(a_0^2 = p\) (v polju \(\Z\), saj smo tam izbirali rešitve enačbe). Ker pa je \(p\) praštevilo to ni mogoče. Torej smo dobili simetrično množico brez identitete, ki jo bomo uporabili kot množico generatorjev za \(\PSL(2, \modZ{q})\). Grupa \(\PSL(2, \modZ{q})\) pa ima \(q(q^2-1)/2\) elementov, dobljeni graf pa ni dvodelen. Caylejev graf za izbrane parametre \(p\) in \(q\) označimo z \(X^{p,q}\).
 
 Če torej povzamemo konstrukcijo, poiščemo rešitve enačbe \(p = a_0^2 + a_1^2 + a_2^2 + a_3^2\), in iz njih dobimo \(p+1\) matrik v \(\PGL(2, \modZ{q})\), če je \(\legendre{p}{q}=1\) in v \(\PSL(2, \modZ{q})\), če je \(\legendre{p}{q}=-1\). Te matrike služijo kot generatorji za Caylejev graf, vsak tak graf pa je Ramanujanov. Če fiksiramo \(p\) in povečujemo \(q\) (z enakimi omejitvami kot prej) dobimo neskončno družino Ramanujanovih grafov stopnje \(p+1\).
 
@@ -405,16 +405,24 @@ Jedro tega homomorfizma označimo z \(\Lambda(q)\) in, po prvem izreku o izomorf
 Izkaže se, da sta grafa \(X^{p,q}\) in \(Y^{p,q}\) izomorfna. Rezultat ni preveč presenetljiv, saj obe konstrukciji izvirata iz kvaternionov. To lahko dokažemo na več načinov, najbolj elemenentaren se zanaša na klasifikacijo podgrup grupe \(\PSL(2, \modZ{q})\). Imamo kanoničen izomorfizem \(\beta:\bH(\modZ{q})^\times /Z_q\to \PGL_2(q)\); s to preslikavo lahko dobimo tudi \(\beta(T)=S\). Pokazati je potrebno le, da je slika \(\Lambda/\Lambda(q)\) enaka \(PSL(2, \modZ{q})\) ali \(\PGL(2, \modZ{q})\) (odvisno od \(\legendre{p}{q}\)).  Vse stroge podgrupe \(\PSL(2, \modZ{q})\) razen dveh pa imajo lastnost, da imajo normalno podgrupo \(N\), za katero sta \(N\) in \(G/N\) abelovi. Te dve izjemi pa sta kvečjemu velikosti 60 (v primeru alternirajoče grupe \(A_5\)). Če si ogledamo lastnosti slike vidimo, da je večja od \(60\) (zaradi zahteve \(q>p^8\)), grupa pa nima omenjene lastnosti - torej ne more biti podgrupa in je slika kar enaka \(\PSL(2, \modZ{q})\). Podrobnega dokaza si ne bomo ogledali
 
 \subsubsection{Ramanujanova domneva}
-Da si ogledamo spekter grafov si bomo, podobno kot pri dokazu za Alon-Boppanovo mejo (\ref{alon-boppanova-meja-izrek}), morali ogledati sled grafa oziroma število poti, ki vodijo od vozlišča do samega sebe. Sled lahko izrazimo tudi na drugače, s številom rešitev enačbe, ki je podobna enačbi v Jacobijovem izreku o štirih kvadratih (\ref{jacobi-four-squares}). Enačba v Jacobijovem izreku je bila \(p=a^2+b^2+c^2+d^2\), tu bomo pa uporabili enačbo oblike \(p^m = a^2 + 4q^2(b^2+c^2+d^2)\). Število teh rešitev pa ni tako enostavno poiskati; tu nam pomaga Ramanujanova domneva, iz katere tudi izhaja ime ``Ramanujan'' v Ramanujanovih grafih. Domneva nam opisuje velikost koeficientov modularne forme. Kot smo videli v dokazu Jacobijevega izreka o štirih kvadratih lahko na problem iz teorije števil gledamo tako, da ga prevedemo na enakost \(\theta\) vrst. Koeficienti te vrste štejejo ravno število rešitev, omenili smo pa tudi, da je naša \(\theta\) vrsta tudi modularna forma. Podobno lahko tudi našo novo enakost preoblikujemo v \(\theta\) vrsto, kjer koeficienti štejejo število rešitev, vrsta pa je prav tako modularna forma. Če na dobljeni vrsti uporabimo Ramanujanovo domnevo, dobimo oceno za koeficiente in torej število rešitev enačbe. 
+Da si ogledamo spekter grafov si bomo, podobno kot pri dokazu za Alon-Boppanovo mejo (\ref{alon-boppanova-meja-izrek}), morali ogledati sled grafa oziroma število poti, ki vodijo od vozlišča do samega sebe. Sled lahko izrazimo tudi na drugače, s številom rešitev enačbe, ki je podobna enačbi v Jacobijovem izreku o štirih kvadratih (\ref{jacobi-four-squares}). Enačba v Jacobijovem izreku je bila \(p=a^2+b^2+c^2+d^2\), tu bomo pa uporabili enačbo oblike \(p^m = a^2 + 4q^2(b^2+c^2+d^2)\). Število teh rešitev pa ni tako enostavno poiskati; tu nam pomaga Ramanujanova domneva, iz katere tudi izhaja ime ``Ramanujan'' v Ramanujanovih grafih. Domneva nam opisuje velikost koeficientov modularne forme. Kot smo videli v dokazu Jacobijevega izreka o štirih kvadratih lahko na problem iz teorije števil gledamo tako, da ga prevedemo na enakost \(\theta\) vrst. Koeficienti te vrste štejejo ravno število rešitev, omenili smo pa tudi, da je naša \(\theta\) vrsta tudi modularna forma. Podobno lahko tudi našo novo enakost preoblikujemo v \(\theta\) vrsto, kjer koeficienti štejejo število rešitev, vrsta pa je prav tako modularna forma. Če na dobljeni vrsti uporabimo Ramanujanovo domnevo, dobimo oceno za koeficiente in torej število rešitev enačbe.
+
+\begin{definicija}[Asimptotska rast]
+    Asimptotska rast \(f(m) = O_\varepsilon(g(m))\) pomeni, da lahko za vsak \(\varepsilon>0\) poiščemo konstante \(C(\varepsilon)\) in \(m_0(\varepsilon)\), da velja
+    \begin{align*}
+        \abs{f(m)} \leq C(\varepsilon) g(m)
+    \end{align*}
+    za \(m>m_0(\varepsilon)\).
+\end{definicija}
 
 \begin{izrek}[Ramanujanova domneva]\label{ramanujan-domneva}
     Naj bo \(s(p^m)\) število celoštevilskih rešitev enačbe \(p^m = a^2+4q^2(b^2+c^2+d^2)\).
-    Potem velja
+    Potem za sode \(m\) velja
     \begin{align*}
-        s(p^m) = \frac{4}{q(q^2-1)}\frac{p^{m+1}-1}{p-1} + O_\varepsilon \left(p^{\frac{m}{2}(1+\varepsilon)}\right)
+        s(p^m) = \frac{4}{q(q^2-1)}\frac{p^{m+1}-1}{p-1} + O_\varepsilon \left(p^{\frac{m}{2}(1+\varepsilon)}\right).
     \end{align*}
 \end{izrek}
-Izrek je pravzaprav neposredna posledica Ramanujanove domneve, kot opisano, vendar ga bomo imenovali kar Ramanujanova domneva. Podobno kot pri dokazu Jacobijevega izreka o štirih kvadratih, ga ne bomo dokazali. Osredotočimo se raje na to, kako ta izraz uporabimo, da omejimo lastne vrednosti grafa. 
+Izrek je pravzaprav neposredna posledica Ramanujanove domneve, kot opisano, vendar ga bomo imenovali kar Ramanujanova domneva. Podobno kot pri dokazu Jacobijevega izreka o štirih kvadratih, ga ne bomo dokazali. Osredotočimo se raje na to, kako ta izraz uporabimo, da omejimo lastne vrednosti grafa. TODO: kdo je dokazal
 
 Želimo opisati število poti dolžine \(l\) v grafu, ki se začnejo in končajo v vozlišču \(v\), dodatno pa še zahtevamo, da ne obiščejo nobenega vozlišča dvakrat zapored (torej \(v_{i-1}\neq v_{i+1}\) če je \(v_i\) vozlišče, ki ga pot obišče v koraku \(i\)). Pri Caylejevih grafih izraz postane še lažji. Če imamo namreč pot, ki se začne v elementu \(v\) ga lahko pomnožimo z poljubnim elementom grupe \(g\), da dobimo pot v elementu \(g\cdot v\). Torej je število poti neodvisno od začetnega vozlišča in za to uporabimo oznako \(\rho(l)\) za število poti v grafu \(X^{p,q}\) dolžine \(l\) brez zaporedno ponovljenih vozlišč.
 
@@ -509,12 +517,62 @@ Sedaj lahko združimo oba izreka skupaj, da dobimo enakost, ki povezuje število
 
 Po definiciji polinomov Čebiševa pa je to kar
 \begin{align*}
-    s(p^m) = \frac{2}{n} p^{m}{2}\sum_{j=0}^{n-1}\frac{\sin((m+1)\theta_j)}{\sin \theta_j}
+    s(p^m) = \frac{2}{n} p^\frac{m}{2}\sum_{j=0}^{n-1}\frac{\sin((m+1)\theta_j)}{\sin \theta_j}
 \end{align*}
-za \(\lambda_j = 2\sqrt{p}\cos\theta_j\). Če so \(\theta_j\) vsi realni (z izjemo trivialnih vrednosti \(i\log\sqrt p\), ki nam da lastno vrednost \(p+1\) (A je to res??) in \(\pi + i \log\sqrt{p}\), ki nam da \(-(p+1)\)), potem bo \(\lambda_k \leq 2\sqrt{p}\), kar je pogoj za Ramanujanove grafe.
+za \(\lambda_j = 2\sqrt{p}\cos\theta_j\). Če so \(\theta_j\) vsi realni (z izjemo trivialnih vrednosti \(i\log\sqrt p\), ki nam da lastno vrednost \(p+1\) in \(\pi + i \log\sqrt{p}\), ki nam da \(-(p+1)\)), potem bo \(\lambda_k \leq 2\sqrt{p}\), kar je pogoj za Ramanujanove grafe. % https://chatgpt.com/c/67b37ad9-7168-800d-b996-661a838a6677
 
+Združimo sedaj naš izraz, ki uporablja polinome Čebiševa z izrazom, ki smo ga dobili iz Ramanujanove domneve.
+\begin{align}\label{ramanujanova-domneva-izraz}
+    \frac{4}{q(q^2-1)}\frac{p^{m+1}-1}{p-1} + O_\varepsilon \left(p^{\frac{m}{2}(1+\varepsilon)}\right) = \frac{2}{n} p^\frac{m}{2}\sum_{j=0}^{n-1}\frac{\sin((m+1)\theta_j)}{\sin \theta_j}
+\end{align}
+Prvi del leve strani enačbe opisuje prispevek trivialnih lastnih vrednosti. To lahko enostavno preverimo, tako da izračunamo del vsote, ki pripada le tej lastni vrednosti.
+\begin{align*}
+    \frac{2}{n} p^\frac{m}{2}\frac{\sin((m+1)\theta_0)}{\sin \theta_0} \\
+    \frac{2}{n}p^\frac{m}{2}\frac{\sin((m+1)i\log\sqrt p)}{\sin i\log\sqrt p} \\
+    \frac{2}{n}p^\frac{m}{2}\frac{i\sinh((m+1)\log\sqrt p)}{i\sinh \log\sqrt p} \\
+    \frac{2}{n}p^\frac{m}{2}\frac{ \sqrt{p}^{m+1} - \sqrt{p}^{-m-1}}{\sqrt{p} - \sqrt{p}^{-1}} \\
+    \frac{2}{n}p^\frac{m}{2}\frac{ \sqrt{p}^{m+2} - \sqrt{p}^{-m}}{p - 1} \\
+    \frac{2}{n}\frac{ \sqrt{p}^{2m+2} - 1}{p - 1} \\ 
+    \frac{2}{n}\frac{ p^{m+1} - 1}{p - 1} 
+\end{align*}
+V temu izrazu \(n\) predstavlja število vozlišč, kar pa že vemo, da je enako \(q(q^2-1)\), če je \(\legendre{p}{q}=1\) in \(q(q^2-1)/2\), če je \(\legendre{p}{q}=-1\). V prvem primeru dobimo dvodelen graf (torej ima še trivialno lastno vrednost \(-(p+1)\)), v drugem primeru pa graf ni dvodelen (in je \(p+1\) edina trivialna lastna vrednost).
 
+Nadaljujmo zgornji račun z predpostavko, da je \(\legendre{p}{q}=1\). V tem primeru dobimo
+\begin{align*}
+    \frac{2}{q(q^2-1)}\frac{ p^{m+1} - 1}{p - 1},
+\end{align*}
+enak račun pa bi lahko izvedli tudi za njegovo trivialno lastno vrednost \(-(p+1)\) in spet dobili enak izraz. Če torej seštejemo oba prispevka trivialnih lastnih vrednosti dobimo
+\begin{align*}
+    \frac{4}{q(q^2-1)}\frac{ p^{m+1} - 1}{p - 1}.
+\end{align*}
+Enak izraz dobimo, če izračunamo primer za \(\legendre{p}{q}\) - ima za polovico manj vozlišč, nima pa druge trivialne lastne vrednosti. Če te vrednosti odstranimo iz enačbe (\ref{ramanujanova-domneva-izraz}) dobimo
+\begin{align*}
+    \frac{2}{n}\sum_{\theta_j \text{ netrivialna}} \frac{\sin((m+1)\theta_j)}{\sin \theta_j} = O_\varepsilon\left(p^{\frac{m}{2}\varepsilon}\right)
+\end{align*}
+% TODO: change varepsilon to have m/2 eps everywhere (not m/2(1+eps))
 
+Spomnimo se, da smo definirali \(\theta_j\) z \(\lambda_j = 2\sqrt{p}\cos\theta_j\). Vemo, da je \(\lambda_j\) vedno realen (saj je lastna vrednost grafa), s tem pa lahko omejimo vrednosti \(\theta_j\). Vemo že, da če so \(\lambda_j\) v ramanujanovem intervalu je \(\theta_j\) realen, če pa je \(\lambda_j\) izven ramanujanovega intervala pa ga lahko zapišemo kot imaginarna vrednost. Tako lahko za take \(\theta_j\) definiramo
+\begin{align*}
+    \begin{cases}
+        \theta_j = i\psi_j & 2\sqrt{p} < \lambda_j < p+1 \\
+        \theta_j = \pi + i\psi_j & -(p+1) < \lambda_j < -2\sqrt{p}
+    \end{cases}
+\end{align*}
+V obeh primerih velja \(0<\psi_j<\log\sqrt{p}\). Če torej nek \(\theta_j\) ni realen lahko ta izraz v vsoti napišemo kot
+\begin{align*}
+    \frac{2}{n}\frac{\sin((m+1)\theta_j)}{\sin\theta_j} = \frac{2}{n}\frac{\sinh((m+1)\psi_j)}{\sinh \psi_j} > 0.
+\end{align*}
+V primeru \(\theta_j = \pi + i\psi_j\) smo potrebovali, da je \(m\) sod.
 
+Vrednost realnih \(\theta_j\) pa lahko omejimo. Velja namreč
+\begin{align*}
+    \abs{\frac{\sin((m+1)\theta_j)}{\sin(\theta_j)}} \leq m+1.
+\end{align*}
+Ker je v vsoti kvečjemu \(n\) členov lahko s trikotniško neenakostjo dobimo
+\begin{align*}
+    \abs{\frac{2}{n}\sum_{\theta_j \text{realni}} \frac{\sin((m+1)\theta_j)}{\sin\theta_j}} \leq 2(m+1).
+\end{align*}
+
+Členi, ki pripadajo realnim \(\theta_j\) torej asimptotsko rastejo linearno, členi za imaginarne \(\theta_j\) pa rastejo eksponentno (neodvisno od \(\varepsilon\)). Imamo pa mejo, da vsota netrivialnih členov \(O_\varepsilon\left(p^{\frac{m}{2}\varepsilon}\right)\). Če izberemo \(\varepsilon\) dovolj majhen, bo prispevek imaginarnih \(\theta_j\) rastel hitreje od te meje, kar pa nas pripelje do protislovja. Torej takih imaginarnih \(\theta_j\) ni, kar pomeni, da so vse netrivialne lastne vrednosti pod Ramanujanovo mejo in grafi \(X^{p,q}\) so Ramanujanovi.
 
 % prostost equiv poti dreves
