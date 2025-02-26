@@ -16,3 +16,40 @@ Ostane nam samo še množica \(\{z\in \C\mid 0 < \Re z < 1\}\), ki jo imenujemo 
 \begin{izrek}[Riemannova hipoteza]
     Vse netrivialne ničle Zeta funkcije se nahajajo na kritični premici.
 \end{izrek}
+
+\subsection{Ihara Zeta funkcija}
+Sedaj bomo definirali Zeta funkcijo, ki pripada grafu. Definicija te funkcije bo analogna definiciji klasične Zeta funkcije, še bolj pa je sorodna Selbergovi Zeta funkciji, katere si ne bomo ogledali\cite{sunada-zetagrafov}.
+
+Z \(s=(v_0, \ldots, v_{l})\) označimo sklenjen okrajšan sprehod v grafu. To je sprehod, ki ne obišče dveh vozlišč zaporedoma (torej \(v_i \neq v_{i+2}\), kot v definiciji \ref{okrajsana-beseda}), začne in konča pa se v istem vozlišču (torej \(v_0 = v_l\)). Z \(L(s)=l\) označimo dolžino takega sprehoda. Bolj kot zaporedje vozlišč nas zanima oblika poti v grafu neodvisno na začetno točko. Če dodamo še zahtevo \(v_1 \neq v_{l-1}\) lahko obravnavamo vse take sprehode kot ekvivalentne (torej dva sprehoda sta ekvivalentna, če se zaporedje vozlišč razlikuje za ciklično permutacijo). To nam definira pojem zaprte geodezijke v grafu. 
+
+\begin{definicija}[Zaprta geodezijka grafa]
+    Zaprta geodezijka grafa je ekvivalenčni razred sprehodov \(s\) dolžine \(l\) za katere velja
+    \begin{align*}
+        v_0 = v_l \\
+        v_i \neq v_{i+2 \pmod l},
+    \end{align*}
+    dva sprehoda \(s=(v_0, \ldots, v_{l})\) in \(s'=(v_0', \ldots, v_{l}')\) pa sta si ekvivalentna, če obstaja ciklična permutacija \(\pi\) na \(l-1\), da \(v_{\pi(i)} = v_i'\). 
+\end{definicija}
+
+Če geodezijke ne moremo dobiti tako, da večkrat ponovimo krajšo pot krajšo pot, je ta geodezijka nerazcepna. Na primer, v 3-ciklu nam pot \((v0, v1, v2, v0)\) definira zaprto nerazcepno geodezijko, pot \((v0, v1, v2, v0, v1, v2, v0)\) pa zaprto razcepno geodezijko. Namesto praštevil v definiciji zeta funkcije bomo iterirali po nerazcepnih geodezijkah.
+
+\begin{definicija}[Ihara zeta funkcija]
+    Ihara Zeta funkcija grafa \(G\) je analitično nadaljevanje funkcije
+    \begin{align*}
+        \zeta_G(z) = \prod_{p}\left(1-z^{L(p)}\right)^{-1},
+    \end{align*}
+    kjer produkt iterira po vseh nerazcepnih geodezijkah grafa \(G\).
+\end{definicija}
+ 
+Z \(\alpha_G\) označimo konvergenčni radij vrste. Za \(d\)-regularne grafe je ta enak kar \(\alpha_G = 1/(d-1)\), Ihara Zeta funkcija pa je kar racionalna funkcija. V primeru regularnih grafov lahko funkcijo opišemo še bolje: izkaže se namreč, da je recipročna funkcija \(\zeta_G^{-1}\) cela funkcija, torej \(\zeta_G\) nima ničel. Od tu naprej bodo vsi grafi regularni.
+
+% https://en.wikipedia.org/wiki/Ihara_zeta_function#cite_note-2
+% Portable snowbird
+\begin{izrek}[Ihara Zeta je racionalna]
+    Za \(d\)-regularen graf \(G\) in \(r(G)-1 = (d-2) n / 2\) je Ihara Zeta funkcija enaka
+    \begin{align*}
+        \zeta_G(z) = \left((1-z^2)^{r(G)-1}\det(I-Az+(d-1)z^2I)\right)^{-1}.
+    \end{align*}
+\end{izrek}
+
+Ker funkcija nima ničel, si bomo ogledali pole Ihara Zeta funkcije (oziroma ničle funkcije \(\zeta_G^{-1}\)). Če ima graf \(m\) povezav je teh polov \(2m\). Podobno kot pri ničlah Zeta funkcije, se tudi poli Ihara Zeta funkcije nahajajo le na določenem delu kompleksne ravnine. Če uporabimo substitucijo \(w = (d-1)^{-z}\), dobimo vrsto, ki nima polov za \(\Re(w)>1\) ter ima pol prvega reda v \(w=1\). Če to navežemo na lastne vrednosti grafov, lastnost, da ni polov z \(\Re(w)>1\) ustreza lastnosti regularnih grafov, da nimajo lastnih vrednosti večjih od \(d\). Imajo pa eno lastno vrednost enako \(d\), kar ustreza polu prvega reda v \(w=1\). Kritični trak je tako, podobno kot pri klasični Riemannovi Zeta funkciji, trak \(0<\Re(w)<1\). Riemannova hipoteza za Ihara Zeta funkcijo pa je analogna klasični Riemannovi hipotezi - da imajo vse ničle, ki se nahajajo na kritičnemu traku, realno komponento enako \(1/2\).
