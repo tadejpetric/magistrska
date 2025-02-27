@@ -490,7 +490,7 @@ Nadaljujemo z deležom Ramanujanovih grafov. Postopek bo enak kot prej, le da ri
                     \addlegendentry{\(d=21\)}   
         \end{axis}
     \end{tikzpicture}
-    \caption{Graf proporcije Ramanujanovih grafov od 1 do 300}
+    \caption{Graf deleža Ramanujanovih grafov od 1 do 300}
 \end{figure}
 \begin{figure}[H]
     \centering
@@ -556,9 +556,9 @@ Nadaljujemo z deležom Ramanujanovih grafov. Postopek bo enak kot prej, le da ri
                 \addlegendentry{\(d=21\)}
     \end{axis}
     \end{tikzpicture}
-    \caption{Graf proporcije Ramanujanovih grafov od 10000 do 100000}
+    \caption{Graf deleža Ramanujanovih grafov od 10000 do 100000}
 \end{figure}
-Na grafih vidimo, da se delež Ramanujanovih grafov z večanjem števila vozlišč zmanjšuje. Vidimo pa tudi, da se ta delež zmanjšuje hitreje za nižje stopnje regularnosti. Najbolj pomembno pa je, da se ta delež ne približuje \(0\), ne glede na stopnjo regularnosti, na grafih vidimo, da se delež približuje približno \(70\%\), vendar je težko trditi, saj kljub velikemu številu vozlišč, rezultati še vedno niso dokončno konvergirali. Dokaza za to trditev si ne bomo ogledali, je bilo pa nedavno dokazano, da je delež Ramanujanovih grafov asimptotično neodvisen od stopnje regularnosti in se približuje približno \(69\%\)\cite{huang2024ramanujanpropertyedgeuniversality}. Ramanujanovi grafi so torej dovolj pogosti, da so naši algoritmi za generiranje učinkoviti - ne glede na velikost grafa, bomo z naključnim izbiranjem hitro našli Ramanujanov graf.
+Na grafih vidimo, da se delež Ramanujanovih grafov z večanjem števila vozlišč zmanjšuje. Vidimo pa tudi, da se ta delež zmanjšuje hitreje za nižje stopnje regularnosti. Najbolj pomembno pa je, da se ta delež ne približuje \(0\), ne glede na stopnjo regularnosti; na grafih vidimo, da se delež približuje približno \(70\%\), vendar je težko trditi, saj kljub velikemu številu vozlišč, rezultati še vedno niso dokončno konvergirali. Dokaza za to trditev si ne bomo ogledali, je bilo pa nedavno dokazano, da je delež Ramanujanovih grafov asimptotično neodvisen od stopnje regularnosti in se približuje približno \(69\%\)\cite{huang2024ramanujanpropertyedgeuniversality}. Ramanujanovi grafi so torej dovolj pogosti, da so naši algoritmi za generiranje učinkoviti - ne glede na velikost grafa, bomo z naključnim izbiranjem hitro našli Ramanujanov graf.
 
 Zaključimo še s tem, da si ogledamo kakšen bi bil delež grafov, če za drugo največjo lastno vrednost vzamemo neko drugo konstanto, namesto \(2\sqrt{d-1}\) vzamemo \(2\sqrt{d-1} + c\), izračunamo delež Ramanujanovih grafov in ga prikažemo na grafu. Na grafu abscisna os predstavlja število vozlišč, ordinatna o predstavlja \(c\), barva na koordinati \((n,c)\) pa predstavlja delež grafov na \(n\) vozliščih, ki imajo drugo največjo lastno vrednost večjo od \(2\sqrt{d-1}+c\); bolj temna barva kot je, večji je ta delež.
 \begin{figure}[H]

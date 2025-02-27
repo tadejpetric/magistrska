@@ -97,15 +97,15 @@ Dobljeni izraz je že dovolj, da vidimo, da je \(\zeta_G^{-q}\) pravzaprav cela 
 \begin{dokaz}[Skica dokaza Bassove formule]
     Definiramo \(n\times dn\) matriko \(S\), \(dn \times n\) matriko \(T\) in \(dn \times dn\) matriko \(B\).
     \begin{align*}
-        S_{w, (u, v)} = \begin{cases}
+        S_{w, (u, v)} &= \begin{cases}
             1 & u = w\\
             0 & \text{sicer}
         \end{cases}\\
-        T_{(u, v), w} = \begin{cases}
+        T_{(u, v), w} &= \begin{cases}
             1 & v = w\\
             0 & \text{sicer}
         \end{cases}\\
-        B_{(u, v), (u', v')} = \begin{cases}
+        B_{(u, v), (u', v')} &= \begin{cases}
             1 & v = u' \text{ in } v' = u\\
             0 & \text{sicer}
         \end{cases}
@@ -118,6 +118,8 @@ Dobljeni izraz je že dovolj, da vidimo, da je \(\zeta_G^{-q}\) pravzaprav cela 
     \end{align*}
     Te relacije povezujejo matriki \(A\) in \(H\), preostanek dokaza pa je le računski.
 \end{dokaz}
+
+\subsection{Riemannova hipoteza}
 
 Zdaj poznamo strukturo Ihara Zeta funkcije grafa in si lahko podrobneje ogledamo njene lastnosti. Ker funkcija nima ničel, si bomo namesto njih ogledali pole (oziroma ničle funkcije \(\zeta_G^{-1}\)). Če ima graf \(m\) povezav je teh polov \(2m\), kot vidimo iz Hashimotove formule, saj je \(H\) dimenzije \(2m\times 2m\). Podobno kot pri ničlah Zeta funkcije, se tudi poli Ihara Zeta funkcije nahajajo le na določenem delu kompleksne ravnine. Če je \(\lambda\) pol \(\zeta_G\), potem je \((d-1)^{-1}\leq \abs{\lambda}\leq 1\). Pol \((d-1)^{-1}\) ustreza lastni vrednosti \(-d\) dvodelnih grafov, pol \(1\) pa ustreza največji lastni vrednosti, \(d\). Ta dva pola sta trivialna, ostali poli pa so netrivialni. To definira različico kritičnega traku za Ihara Zeta funkcijo, kritična premica pa ustreza krožnici \(\abs{\lambda}=\sqrt{d-1}^{-1}\). Riemannova hipoteza v tem primeru pravi, da če je \(\lambda\) netrivialen pol \(\zeta_G\), potem \(\abs{\lambda} = \sqrt{d-1}^{-1}\), hipoteza pa velja natanko takrat, ko je graf \(G\) Ramanujanov\cite{murty-notintro}.
 

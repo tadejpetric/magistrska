@@ -16,37 +16,74 @@
 \mentor{doc.~dr.~Urban Jezernik}
 
 % - leto diplome
-\letnica{2024} 
+\letnica{2025} 
 
 % - povzetek v slovenščini
 %   V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga
 %   organizacije dela, torej v katerem razdelku je kaj, pač pa le opis vsebine.
-\povzetek{V povzetku na kratko opišemo vsebinske rezultate dela. Sem ne sodi
-razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pač pa le opis
-vsebine.}
+\povzetek{V delu si ogledamo definicijo Ramanujanovih grafov, kako jih generiramo z naključnimi metodami, dve načina eksplicitne konstrukcije Ramanujanovih grafov ter dokažemo analog Riemannove hipoteze za teorijo grafov.}
 
 % - povzetek v angleščini
-\abstract{Prevod slovenskega povzetka v angleščino.}
+\abstract{In this thesis we define Ramanujan graphs. Then we use explore different methods to generate them, including stochastic methods and two explicit constructions. Lastly, we prove the analogue of the Riemann hypothesis for graph theory.}
 
 % - klasifikacijske oznake, ločene z vejicami
 %   Oznake, ki opisujejo področje dela, so dostopne na strani https://www.ams.org/msc/
-\klasifikacija{74B05, 65N99}
+\klasifikacija{05C48, 05C50, 05C80}
 
 % - ključne besede, ki nastopajo v delu, ločene s \sep
-\kljucnebesede{integracija\sep kompleks\sep C-algebre}
+\kljucnebesede{Ramanujanovi grafi\sep prepletene družine\sep Ramanujanova domneva \sep Ihara Zeta funkcija \sep Riemannova hipoteza}
 
 % - angleški prevod ključnih besed
-\keywords{integration\sep complex\sep C-algebras}
+\keywords{Ramanujan graphs\sep interlacing families\sep Ramanujan conjecture \sep Ihara Zeta function \sep Riemann hypothesis}
 
 % - angleško-slovenski slovar strokovnih izrazov
 \slovar{
-\geslo{continuous}{zvezen}
-\geslo{uniformly continuous}{enakomerno zvezen}
-\geslo{compact}{kompakten -- metrični prostor je kompakten, če ima v njem vsako zaporedje stekališče; podmnožica evklidskega prostora je kompaktna natanko tedaj, ko je omejena in zaprta  }
-\geslo{glide reflection}{zrcalni zdrs ali zrcalni pomik -- tip ravninske evklidske izometrije, ki je kompozitum zrcaljenja in translacije vzdolž iste premice}  
-\geslo{lattice}{mreža}  
-\geslo{link}{splet}
-\geslo{partition}{\textbf{$\sim$ of a set} razdelitev množice; \textbf{$\sim$ of a number} razčlenitev števila}
+\geslo{graph}{graf}
+\geslo{Cheeger constant}{Cheegerjeva konstanta}
+\geslo{complete graph}{poln graf}
+\geslo{cycle}{cikel}  
+\geslo{bottleneck}{ozko grlo}
+\geslo{eigenvalue}{lastna vrednost}
+\geslo{eigenvector}{lastni vektor}
+\geslo{spectral gap}{spektralna vrzel}
+\geslo{Alon-Boppana bound}{Alon-Boppanova meja}
+\geslo{walk}{sprehod}
+\geslo{path}{pot}
+\geslo{root of a tree}{koren drevesa}
+\geslo{$d$-regular graph}{$d$-regularen graf}
+\geslo{chromatic number}{kromatično število}
+\geslo{independence number}{neodvisnostno število}
+\geslo{bipartite graph}{dvodelen graf}
+\geslo{2-lift of a graph}{2-dvig grafa}
+\geslo{double cover}{dvojni krov}
+\geslo{signing}{značenje}
+\geslo{signed adjacency matrix}{značena sosednostna matrika}
+\geslo{matching}{prirejanje}
+\geslo{interlacing polynomials}{prepleteni polinomi}
+\geslo{interlacing family}{prepletena družina}
+\geslo{path tree}{drevo poti}
+\geslo{real stable polynomial}{realno stabilen polinom}
+\geslo{Cayley graph}{Caylejev graf}
+\geslo{generators}{generatorji}
+\geslo{projective linear group}{projektivna linearna grupa}
+\geslo{projective special linear group}{projektivna specialna linearna grupa}
+\geslo{quadratic residue}{kvadratni ostanek}
+\geslo{Legendre symbol}{Legendrejev simbol}
+\geslo{modular form}{modularna forma}
+\geslo{quaternion}{kvaternion}
+\geslo{prime quaternion}{nerazcepen kvaternion}
+\geslo{quotient}{kvocient}
+\geslo{reduced word}{okrajšana beseda}
+\geslo{without backtracking}{brez povračanja}
+\geslo{free group}{prosta grupa}
+\geslo{asymptotic growth}{asimptotska rast}
+\geslo{Čebyšev polynomial}{polinom Čebiševa}
+\geslo{Riemann Zeta function}{Riemannova Zeta funkcija}
+\geslo{critical strip}{kritični trak}
+\geslo{critical line}{kritična premica}
+\geslo{geodesic}{geodezijka}
+\geslo{prime geodesic}{nerazcepna geodezijka}
+\geslo{Riemann hypothesis}{Riemannova hipoteza}
 }
 
 % - ime datoteke z viri (vključno s končnico .bib), če uporabljate BibTeX
@@ -65,7 +102,6 @@ vsebine.}
 \begin{document}
 
 \input{vsebina/uvod.tex}
-\input{vsebina/zgodovina.tex}
 \input{vsebina/definicije.tex}
 \input{vsebina/numericno.tex}
 \input{vsebina/konstrukcije-dvodelni.tex}
