@@ -31,25 +31,148 @@ Z \(s=(v_0, \ldots, v_{l})\) označimo sklenjen okrajšan sprehod v grafu. To je
     dva sprehoda \(s=(v_0, \ldots, v_{l})\) in \(s'=(v_0', \ldots, v_{l}')\) pa sta si ekvivalentna, če obstaja ciklična permutacija \(\pi\) na \(l-1\), da \(v_{\pi(i)} = v_i'\). 
 \end{definicija}
 
-Če geodezijke ne moremo dobiti tako, da večkrat ponovimo krajšo pot krajšo pot, je ta geodezijka nerazcepna. Na primer, v 3-ciklu nam pot \((v0, v1, v2, v0)\) definira zaprto nerazcepno geodezijko, pot \((v0, v1, v2, v0, v1, v2, v0)\) pa zaprto razcepno geodezijko. Namesto praštevil v definiciji zeta funkcije bomo iterirali po nerazcepnih geodezijkah.
+Če geodezijke ne moremo dobiti tako, da večkrat ponovimo krajšo pot krajšo pot, je ta geodezijka nerazcepna. Na primer, v 3-ciklu nam pot \((v0, v1, v2, v0)\) definira zaprto nerazcepno geodezijko, pot \((v0, v1, v2, v0, v1, v2, v0)\) pa zaprto razcepno geodezijko. Namesto praštevil v definiciji zeta funkcije bomo iterirali po nerazcepnih geodezijkah, množico le-teh pa označimo z \(P\).
 
 \begin{definicija}[Ihara zeta funkcija]
     Ihara Zeta funkcija grafa \(G\) je analitično nadaljevanje funkcije
     \begin{align*}
-        \zeta_G(z) = \prod_{p}\left(1-z^{L(p)}\right)^{-1},
+        \zeta_G(z) = \prod_{p\in P}\left(1-z^{L(p)}\right)^{-1}.
     \end{align*}
-    kjer produkt iterira po vseh nerazcepnih geodezijkah grafa \(G\).
 \end{definicija}
  
 Z \(\alpha_G\) označimo konvergenčni radij vrste. Za \(d\)-regularne grafe je ta enak kar \(\alpha_G = 1/(d-1)\), Ihara Zeta funkcija pa je kar racionalna funkcija. V primeru regularnih grafov lahko funkcijo opišemo še bolje: izkaže se namreč, da je recipročna funkcija \(\zeta_G^{-1}\) cela funkcija, torej \(\zeta_G\) nima ničel. Od tu naprej bodo vsi grafi regularni.
 
 % https://en.wikipedia.org/wiki/Ihara_zeta_function#cite_note-2
 % Portable snowbird
-\begin{izrek}[Ihara Zeta je racionalna]
-    Za \(d\)-regularen graf \(G\) in \(r(G)-1 = (d-2) n / 2\) je Ihara Zeta funkcija enaka
+% https://drops.dagstuhl.de/storage/00lipics/lipics-vol093-fsttcs2017/LIPIcs.FSTTCS.2017.46/LIPIcs.FSTTCS.2017.46.pdf
+\begin{izrek}[Bassova formula Ihara Zeta funkcije]\label{zeta-je-racionalna-bass}
+    Za \(d\)-regularen graf \(G\) z \(n\) vozlišči in \(m=d\cdot n / 2\) povezavami je Ihara Zeta funkcija enaka
     \begin{align*}
-        \zeta_G(z) = \left((1-z^2)^{r(G)-1}\det(I-Az+(d-1)z^2I)\right)^{-1}.
+        \zeta_G(z) = \left((1-z^2)^{m-n}\det(I-Az+(d-1)z^2I)\right)^{-1}.
     \end{align*}
 \end{izrek}
+Oglejmo si dokaz izreka\cite{rangarajan:LIPIcs.FSTTCS.2017.46}, najprej pa potrebujemo še nekaj pomožnih pojmov. Potence sosednostne matrike nam opisujejo število poti, kot smo pa že uporabili v prejšnjih poglavjih (na primer \ref{alon-boppanova-meja-izrek}), nam sled matrike \(A^k\) da število ciklov dolžine \(k\) v grafu. Podobno lahko izračunamo tudi število Geodezijk, le da namesto sosednostne matrike uporabimo Hashimotovo matriko.
+\begin{definicija}[Hashimotova matrika]
+    Hashimotova matrika za \(d\)-regularen graf \(G\) na \(n\) vozliščih je \(\C^{dn\times dn}\) matrika. Elementi te matrike opisujejo obstoj poti brez povračanja. Če imamo urejena para \(e_1 = (u, v)\) in \(e_2= (u', v')\), potem je \(H_{e_1, e_2}=1\), če \(v = u'\) (pot iz \(e_1\) vodi v \(e_2\)) in \(u\neq v'\) (pot je brez povračanja). Vsi ostali elementi so ničelni.
+\end{definicija}
+Matrika ni nujno simetrična. Če z \(\tilde{n}_k\) označimo število ciklov brez povračanja, potem \(\tilde{n}_k = \Tr(T_k)\), podobno kot analogna lastnost pri sosednostni matriki. Vsako razcepno geodezijko lahko dobimo tako, da neko nerazcepno geodezijko večkrat ponovimo. Torej velja
+\begin{align}\label{enakost-l-tilden}
+    \sum_{k=1}^\infty \tilde{n}_k \frac{z^k}{k} = \sum_{p\in P} L(p)\left(\sum_{m=1}^\infty \frac{z^{mL(p)}}{mL(p)}\right),
+\end{align}
+saj v vsoti na levi iteriramo po vseh geodezijkah, na vsoti na desni pa najprej po vseh nerazcepnih geodezijkah, nato pa vseh njihovih ponovitvah. Dobili smo še faktor \(L(p)\), saj en ekvivalenčni razred lahko dobimo na \(L(p)\) načinov (saj lahko začnemo šteti na kateri koli točki cikla). Z ugotovljenim lahko dokažemo naslednjo lemo.
 
-Ker funkcija nima ničel, si bomo ogledali pole Ihara Zeta funkcije (oziroma ničle funkcije \(\zeta_G^{-1}\)). Če ima graf \(m\) povezav je teh polov \(2m\). Podobno kot pri ničlah Zeta funkcije, se tudi poli Ihara Zeta funkcije nahajajo le na določenem delu kompleksne ravnine. Če uporabimo substitucijo \(w = (d-1)^{-z}\), dobimo vrsto, ki nima polov za \(\Re(w)>1\) ter ima pol prvega reda v \(w=1\). Če to navežemo na lastne vrednosti grafov, lastnost, da ni polov z \(\Re(w)>1\) ustreza lastnosti regularnih grafov, da nimajo lastnih vrednosti večjih od \(d\). Imajo pa eno lastno vrednost enako \(d\), kar ustreza polu prvega reda v \(w=1\). Kritični trak je tako, podobno kot pri klasični Riemannovi Zeta funkciji, trak \(0<\Re(w)<1\). Riemannova hipoteza za Ihara Zeta funkcijo pa je analogna klasični Riemannovi hipotezi - da imajo vse ničle, ki se nahajajo na kritičnemu traku, realno komponento enako \(1/2\).
+\begin{lema}[Hashimotova formula Ihara Zeta funkcije]
+    Za graf \(G\) in njegovo Hashimotovo matriko \(H\) velja
+    \begin{align*}
+        \zeta_G(z) = \det(I-Hz)^{-1}
+    \end{align*}
+\end{lema}
+\begin{dokaz}
+    Razpišemo Zeta funkcijo po definiciji.
+    \begin{align*}
+        \zeta_G(z) &= \prod_{p\in P}\frac{1}{1-z^{L(p)}} \\
+        &= \exp\left(-\sum_{p\in P}\log(1-z^{L(p)})\right)
+    \end{align*}
+    Notranjo vrsto lahko po Taylorju razvijemo.
+    \begin{align*}
+        \zeta_G(z) =\exp\left(\sum_{p\in P}\sum_{m=1}^\infty \frac{z^{L(p)m}}{m}\right),
+    \end{align*}
+    nato pa uporabimo enakost \ref{enakost-l-tilden}
+    \begin{align*}
+        \zeta_G(z) =\exp\left(\sum_{k=1}^\infty \tilde{n}_k \frac{z^k}{k}\right).
+    \end{align*}
+    V ta izraz lahko enostavno vpeljemo Hashimotovo matriko.
+    \begin{align*}
+        \zeta_G(z) &= \exp\left(\sum_{k=1}^\infty \Tr(T_k)\frac{z^k}{k}\right)
+        &= \exp\left(-\Tr(\log(I - zH))\right)
+    \end{align*}
+
+    Jacobijeva formula pravi, da \(\det A = \exp \Tr \log A\), torej izraz lahko spremenimo v
+    \begin{align*}
+        \zeta_G(z) = \det(I-zH)^{-1}
+    \end{align*}
+\end{dokaz}
+Dobljeni izraz je že dovolj, da vidimo, da je \(\zeta_G^{-q}\) pravzaprav cela funkcija. Dokaz Bassove formule (\ref{zeta-je-racionalna-bass}) je od tu naprej le računski, zato orišemo le skico postopka. Omenimo pa še, da se da Bassovo formulo dokazati tudi drugače, preko polinomov Čebiševa. Opazimo lahko namreč, da je izraz v formuli zelo podoben generatorski funkciji polinomov Čebiševa.
+
+\begin{dokaz}[Skica dokaza Bassove formule]
+    Definiramo \(n\times dn\) matriko \(S\), \(dn \times n\) matriko \(T\) in \(dn \times dn\) matriko \(B\).
+    \begin{align*}
+        S_{w, (u, v)} = \begin{cases}
+            1 & u = w\\
+            0 & \text{sicer}
+        \end{cases}\\
+        T_{(u, v), w} = \begin{cases}
+            1 & v = w\\
+            0 & \text{sicer}
+        \end{cases}\\
+        B_{(u, v), (u', v')} = \begin{cases}
+            1 & v = u' \text{ in } v' = u\\
+            0 & \text{sicer}
+        \end{cases}
+    \end{align*}
+    Za te matrike veljajo relacije
+    \begin{align*}
+        A = ST, \\ 
+        H = TS - B, \\
+        SBT = dI.
+    \end{align*}
+    Te relacije povezujejo matriki \(A\) in \(H\), preostanek dokaza pa je le računski.
+\end{dokaz}
+
+Zdaj poznamo strukturo Ihara Zeta funkcije grafa in si lahko podrobneje ogledamo njene lastnosti. Ker funkcija nima ničel, si bomo namesto njih ogledali pole (oziroma ničle funkcije \(\zeta_G^{-1}\)). Če ima graf \(m\) povezav je teh polov \(2m\), kot vidimo iz Hashimotove formule, saj je \(H\) dimenzije \(2m\times 2m\). Podobno kot pri ničlah Zeta funkcije, se tudi poli Ihara Zeta funkcije nahajajo le na določenem delu kompleksne ravnine. Če je \(\lambda\) pol \(\zeta_G\), potem je \((d-1)^{-1}\leq \abs{\lambda}\leq 1\). Pol \((d-1)^{-1}\) ustreza lastni vrednosti \(-d\) dvodelnih grafov, pol \(1\) pa ustreza največji lastni vrednosti, \(d\). Ta dva pola sta trivialna, ostali poli pa so netrivialni. To definira različico kritičnega traku za Ihara Zeta funkcijo, kritična premica pa ustreza krožnici \(\abs{\lambda}=\sqrt{d-1}^{-1}\). Riemannova hipoteza v tem primeru pravi, da če je \(\lambda\) netrivialen pol \(\zeta_G\), potem \(\abs{\lambda} = \sqrt{d-1}^{-1}\), hipoteza pa velja natanko takrat, ko je graf \(G\) Ramanujanov\cite{murty-notintro}.
+
+\begin{izrek}[Riemannova hipoteza za grafe]
+    Za \(d\)-regularen graf \(G\) velja, da je Ramanujanov natanko takrat, ko za vsak netrivialen pol \(\lambda\in\C\) njegove Ihara Zeta funkcije \(\zeta_G\) velja
+    \begin{align*}
+        \abs{\lambda} = \frac{1}{\sqrt{d-1}}.
+    \end{align*}
+\end{izrek}
+\begin{dokaz}
+    Zeta funkcijo najprej zapišemo v Bassovi obliki, kot v izreku \ref{zeta-je-racionalna-bass}.
+    \begin{align*}
+        \zeta_G(z) = \left((1-z^2)^{m-n}\det(I-Az+(d-1)z^2I)\right)^{-1}.
+    \end{align*}
+    Zapišemo še karakteristični polinom grafa \(G\)
+    \begin{align*}
+        \chi_G(\lambda ) = \det(\lambda I-A).
+    \end{align*}
+    Če uporabimo substitucijo \(\lambda = (1+(d-1)z^2)/z\), potem dobimo
+    \begin{align*}
+        &\det\left(\frac{(1+(d-1)z^2)}{z} I - A\right)\\
+        =& z^{-n}\det\left((1+(d-1)z^2) I - zA\right) \\
+        =& z^{-n}\det\left((1+(d-1)z^2) I - zA\right) \\
+        =& z^{-n}\det\left(I-Az+(d-1)z^2I\right) 
+    \end{align*}
+    Torej poli \(\zeta_G\) izvirajo iz ničel \(\chi\) oziroma iz lastnih vrednosti grafa \(G\).
+
+    Dokažimo najprej implikacijo v desno, torej predpostavimo, da je \(G\) Ramanujanov graf. Za vsako njegovo netrivialno lastno vrednost\(\lambda_0\) velja \(\abs{\lambda_0} \leq 2\sqrt{d-1}\) in zato tudi \(\lambda_0 \leq 4(d-1)\). Prepišemo substitucijo \(\lambda\) od zgoraj v standardno obliko
+    \begin{align*}
+        \lambda = (1+(d-1)z^2)/z \\
+        (d-1)z^2 - \lambda z + 1 = 0
+    \end{align*}
+    in tako dobimo
+    \begin{align*}
+        z_0 = \frac{\lambda_0 \pm \sqrt{\lambda_0^2-4(d-1)}}{2(d-1)}.
+    \end{align*}
+    Ker je \(\lambda_0^2-4(d-1)\leq 0\), potem je \(z_0\) enak \(\pm 1/\sqrt{d-1}\), ali pa ni realen. V prvem primeru smo končali, saj smo dobili pol na kritični premici. Sicer pa vstavimo dobljeni pol \(z_0\) v substitucijo.
+    \begin{align*}
+        \lambda_0 &= \frac{\lambda_0 \overline{z_0}}{\overline{z_0}}\\
+        &= \frac{(1+(d-1)z_0^2)\overline{z_0}}{z_0\overline{z_0}}\\
+        &= \frac{\overline{z_0} + (d-1)\abs{z_0}^2z_0}{\abs{z_0}^2}
+    \end{align*}
+    Imaginarni del izraza na desni je enak \(-\Im{z_0} + (d-1)\abs{z_0}\Im{z_0}\). Vse lastne vrednosti grafa, vključno z izbrano \(\lambda_0\) pa so realne, torej more biti ta imaginarni del enak nič. To pa pomeni, da je \((d-1)\abs{z_0}^2 = 1\) oziroma \(\abs{z_0} = 1/\sqrt{d-1}\), kot zahteva izrek.
+
+    Podobno sledi tudi izrek v obratno smer. Če je \(z_0\) netrivialen pol, predpostavimo, da velja \((d-1)\abs{z_0}^2 = 1\). Podobno kot prej poračunamo \(\lambda_0\)
+    \begin{align*}
+        \lambda_0 &= \frac{\overline{z_0} + (d-1)\abs{z_0}^2z_0}{\abs{z_0}^2}\\
+        &= (d-1)(\overline{z_0} + z_0)
+    \end{align*}
+    in si ogledamo absolutno vrednost
+    \begin{align*}
+        \abs{\lambda_0} = (d-1)\abs{\overline{z_0} + z_0} \leq 2(d-1)\abs{z_0} = 2\sqrt{d-1}.
+    \end{align*}
+    To zaključi še dokaz v obratno smer.
+\end{dokaz}
+
+
+Če uporabimo substitucijo \(w = (d-1)^{-z}\), dobimo vrsto, ki nima polov za \(\Re(w)>1\) ter ima pol prvega reda v \(w=1\). Če to navežemo na lastne vrednosti grafov, lastnost, da ni polov z \(\Re(w)>1\) ustreza lastnosti regularnih grafov, da nimajo lastnih vrednosti večjih od \(d\). Imajo pa eno lastno vrednost enako \(d\), kar ustreza polu prvega reda v \(w=1\). Kritični trak je tako, podobno kot pri klasični Riemannovi Zeta funkciji, trak \(0<\Re(w)<1\). Riemannova hipoteza za Ihara Zeta funkcijo pa je analogna klasični Riemannovi hipotezi - da imajo vse ničle, ki se nahajajo na kritičnemu traku, realno komponento enako \(1/2\).
