@@ -1,9 +1,9 @@
 \section{Ramanujanovi grafi}
 Koncept ramanujanovih grafov ima enostavno definicijo, vendar njen pomen ni očiten brez predhodne motivacije s sorodnimi definicijami in izreki. Te nam razjasnijo povezavo med lastnimi vrednostmi grafa, ki se pojavijo v definiciji Ramanujanovih grafov, ter povezljivostjo grafa.
 \subsection{Cheegerjeva konstanta}
-Kot v uvodnem primeru nas zanima koliko povezav moremo odstraniti, da graf ni več povezan.
+Kot v uvodnem primeru nas zanima koliko povezav moramo odstraniti, da graf ni več povezan.
 
-Naj bo \(G=(V,E)\) povezan graf in \(S\subseteq V\) podmnožica vozlišč z \(0<\abs{S} \leq \frac{\abs{V}}{2}\). Z \(\partial S\subseteq E\) označimo množico povezav od \(S\) do komplementa vozlišč, \(\overline{S}\). Če iz grafa odstranimo \(\partial S\), potem se graf postane nepovezan.
+Naj bo \(G=(V,E)\) povezan graf in \(S\subseteq V\) podmnožica vozlišč z \(0<\abs{S} \leq \frac{\abs{V}}{2}\). Z \(\partial S\subseteq E\) označimo množico povezav od \(S\) do komplementa vozlišč, \(\overline{S}\). Če iz grafa odstranimo \(\partial S\), potem se graf razdeli na več komponent.
 
 Najbolj problematična so ozka grla grafa. To je majhna množica povezav, ki ločuje dva dela grafa z veliko vozlišči. Da je graf dobro povezan torej želimo, da ni ozkih grl in da je za velik \(\abs{S}\) tudi velik \(\abs{\partial S} \), oziroma da \(\frac{\abs{S}}{\abs{\partial S}}\) ni nikoli majhen.
 
@@ -29,11 +29,11 @@ Večji kot je \(c(G)\), manj ozkih grl ima graf \(G\).
         \end{tikzpicture}
     \end{center}
 
-    Da minimiziramo \(\frac{\abs{\partial S}}{\abs{S}}\) lahko vzamemo sosednja vozlišča. Tako bo vedno \(\abs{\partial S} = 2\), \(S\) pa povečamo do polovice cikla, kot omejuje definicija. Za cikel \(C_{2n}\) torej vzamemo \(\abs{S} = n\), za \(C_{2n+1}\) pa prav tako \(\abs{S} = n\).
+    Da minimiziramo \(\frac{\abs{\partial S}}{\abs{S}}\) lahko vzamemo množico vozlišč, ki so si sosednja. Tako bo vedno \(\abs{\partial S} = 2\), \(S\) pa povečamo do polovice cikla, kot omejuje definicija. Za cikel \(C_{2n}\) torej vzamemo \(\abs{S} = n\), za \(C_{2n+1}\) pa prav tako \(\abs{S} = n\).
     \begin{align*}
         c(C_n) = \frac{2}{\lfloor \frac n2\rfloor}
     \end{align*}
-    Večji kot je \(n\), manjša je Cheegerjeva konstanta in graf je slabše povezan, saj rabimo odstraniti le dve povezavi da ločimo veliko vozlišč od preostanka.
+    Večji kot je \(n\), manjša je Cheegerjeva konstanta, kar pomeni, da je graf slabše povezan, saj rabimo odstraniti le dve povezavi da ločimo graf na dve veliki komponenti.
 \end{primer}
 \begin{primer}[Polni grafi]
     \hspace{0em}
