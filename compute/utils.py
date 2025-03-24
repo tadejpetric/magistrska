@@ -83,6 +83,10 @@ def second_eigenvalue(A: np.array, d: Optional[int] = None) -> float:
         # Check if the next eigenvalue (first nontrivial one) is within the bounds
         return ev
 
+def spectral_gap(A: np.array) -> float:
+    evals = sorted(map(lambda x: abs(x), np.linalg.eigvalsh(A)))
+    return evals[-1] - evals[-2]
+
 if __name__=="__main__":
     nonramanujan = np.array(
     [

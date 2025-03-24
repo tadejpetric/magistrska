@@ -4,7 +4,8 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 from cheeger import cheeger
-    
+from utils import spectral_gap
+
 num_vertices = 6
 edges_to_remove = 10
 
@@ -38,9 +39,6 @@ adj_matrix = np.ones((num_vertices, num_vertices), dtype=np.int8)
 for i in range(num_vertices):
     adj_matrix[i, i] = 0
 
-def spectral_gap(matrix: np.array):
-    eigenvalues = sorted(np.linalg.eigvals(matrix).real)
-    return eigenvalues[-1] - eigenvalues[-2]
 
 gap = spectral_gap(adj_matrix)
 print(f"Initial gap: {gap}")
@@ -58,16 +56,17 @@ for _ in range(edges_to_remove):
                     continue
                 new_gap = spectral_gap(adj_matrix_copy)
 
-                if new_gap > gap:
+                if new_gap > gap and cheeger(adj_matrix_copy) < cheeger(adj_matrix):
                     print(f"Started with gap {gap}, got new gap {new_gap}")
                     print(adj_matrix)
 
                     print(adj_matrix_copy)
                     print("cheeger before", cheeger(adj_matrix))
                     print("cheeger after", cheeger(adj_matrix_copy))
-                    #raise Exception("end")
+                    raise Exception("end")
                 else:
-                    print(f"Smaller new gap {new_gap}")
+                    pass
+                    #print(f"Smaller new gap {new_gap}")
                 
     while True:
         i, j = np.random.randint(0, num_vertices, 2)

@@ -28,6 +28,7 @@ def spectral_gap(A: NDArray[np.float64]) -> float:
         raise ValueError("Matrix must have at least two eigenvalues")
 
     # Return the difference between the largest and second-largest eigenvalue
+    print(sorted_eigenvalues)
     return np.real(sorted_eigenvalues[0] - sorted_eigenvalues[1])
 
 
@@ -53,17 +54,29 @@ def one_connection(n: int) -> np.ndarray:
     # Place the upper-left and lower-right blocks in the matrix
     A[:n, :n] = K_n
     A[n:, n:] = K_n
-    
-    # Connect the two K_n graphs with one edge
-    A[0, n] = 1   # Connection from node 0 to node n
-    A[n, 0] = 1   # Connection from node n to node 0
+
+    # Remove extra edges from Kns
+    A[n-1, n-2] = 0
+    A[n-2, n-1] = 0
+    A[n, n+1] = 0
+    A[n+1, n] = 0
+
+    # Connect the two K_n graphs with two edges
+    A[n-1, n] = 1   
+    A[n-2, n+1] = 1
+    A[n, n-1] = 1   
+    A[n+1, n-2] = 1
     
     return A
 
-n = 21
+n = 31
 
-
-for i in range(1, n):
-    matrix = one_connection(i)
-    gap = spectral_gap(matrix)
-    print(f"({i}, {gap})")
+from utils import is_ramanujan
+matrix = one_connection(6)
+print(matrix)
+print(spectral_gap(matrix))
+print(is_ramanujan(matrix))
+#for i in range(3, n):
+#    matrix = one_connection(i)
+#    gap = spectral_gap(matrix)
+#    print(f"({i}, {gap})")

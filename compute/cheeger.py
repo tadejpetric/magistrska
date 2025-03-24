@@ -91,9 +91,9 @@ K_5 = np.array(
 before = np.array(
     [
         [0, 1, 1, 0, 1, 1],
-        [1, 0, 1, 0, 1, 1],
+        [1, 0, 1, 1, 1, 1],
         [1, 1, 0, 1, 1, 1],
-        [0, 0, 1, 0, 1, 1],
+        [0, 1, 1, 0, 1, 1],
         [1, 1, 1, 1, 0, 0],
         [1, 1, 1, 1, 0, 0],
     ]
@@ -101,17 +101,18 @@ before = np.array(
 
 after = np.array(
     [
-        [0, 0, 1, 0, 1, 1],
-        [0, 0, 1, 0, 1, 1],
+        [0, 1, 1, 0, 0, 1],
+        [1, 0, 1, 1, 1, 1],
         [1, 1, 0, 1, 1, 1],
-        [0, 0, 1, 0, 1, 1],
-        [1, 1, 1, 1, 0, 0],
+        [0, 1, 1, 0, 1, 1],
+        [0, 1, 1, 1, 0, 0],
         [1, 1, 1, 1, 0, 0],
     ]
 )
+from utils import second_eigenvalue, spectral_gap
 
-print("before", cheeger(before))
-print("after", cheeger(after))
+print("before", cheeger(before), spectral_gap(before))
+print("after", cheeger(after), spectral_gap(after))
 
 """
 [[0 1 1 1 1 0 1 1 1]
@@ -133,3 +134,34 @@ print("after", cheeger(after))
  [1 1 1 0 0 1 0 0 0]
  [1 0 1 1 0 1 0 0 0]]
  """
+
+from definicije_spectral_gap_bottleneck import one_connection
+print(cheeger(one_connection(6)))
+print(second_eigenvalue(one_connection(6)), "<----")
+# print(bottleneck)
+# print(cheeger(bottleneck))
+
+# from display_graph import display_graph
+
+# display_graph(bottleneck)
+
+
+# has 2nd eigenvalue 2.48, is ramanujan (under 3.46)
+random_graph = np.array(
+    [
+        [0, 0, 1, 1, 0, 1, 1, 0, 0, 0],
+        [0, 0, 1, 1, 1, 0, 0, 0, 0, 1],
+        [1, 1, 0, 0, 0, 1, 0, 1, 0, 0],
+        [1, 1, 0, 0, 0, 0, 1, 0, 0, 1],
+        [0, 1, 0, 0, 0, 1, 0, 0, 1, 1],
+        [1, 0, 1, 0, 1, 0, 0, 0, 1, 0],
+        [1, 0, 0, 1, 0, 0, 0, 1, 1, 0],
+        [0, 0, 1, 0, 0, 0, 1, 0, 1, 1],
+        [0, 0, 0, 0, 1, 1, 1, 1, 0, 0],
+        [0, 1, 0, 1, 1, 0, 0, 1, 0, 0],
+    ]
+)
+
+# print(cheeger(random_graph))
+from adj_to_tikz import adjacency_to_tikz
+print(adjacency_to_tikz(random_graph))
