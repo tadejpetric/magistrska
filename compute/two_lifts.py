@@ -54,7 +54,7 @@ from utils import is_connected
 from utils import is_ramanujan
 if __name__ == "__main__":
     # Define a simple graph K55
-    n = 4
+    n = 3
     A = np.zeros((2*n, 2*n), dtype=int)
 
     # Connect every vertex in the first partition (vertices 0 to 4)
