@@ -1,38 +1,36 @@
 \section{Konstrukcija splošnih Ramanujanovih grafov}
-Ogledali si bomo še zadnjo konstrukcijo Ramanujanovih grafov, ki pa je pravzaprav bila kronološko prva. Ta nam bo poiskala neskončno družino ramanujanovih grafov stopnje \(p+1\) za poljubno praštevilo \(p\). Za razliko od prejšne konstrukcije pa ne bomo dobili samih dvodelnih grafov.
+Ogledali si bomo še zadnjo konstrukcijo Ramanujanovih grafov, ki pa je pravzaprav bila kronološko prva \cite{lps-ramanujan}. Ta nam bo poiskala neskončno družino Ramanujanovih grafov stopnje \(p+1\) za praštevilo \(p\). Za razliko od prejšnje konstrukcije pa tukaj ne bomo dobili zgolj dvodelnih grafov.
 
-Glavni razlog, da si bomo ogledali to konstrukcijo pa je, da je zanimiva in uporablja povsem drugačne pristope kot prej. Skica konstrukcije je sledeča: poiskali bomo družino matričnih grup, ki ima \(p+1\) generatorjev. Za vsako grupo lahko poiščemo njen Caylejev graf, ki ima enako stopnjo regularnosti kot je število generatorjev grupe, torej dobimo \((p+1)\)-regularen graf. Za te grafe pa se bo izkazalo, da so Ramanujanovi.
-
-Vsi rezultati, če ni citirano drugače, so iz članka \cite{lps-ramanujan}. % TODO: nekako polepšaj ta stavek
+Glavni razlog, da si bomo ogledali to konstrukcijo pa je, da uporablja povsem drugačen pristop. Skica konstrukcije je sledeča: poiskali bomo družino matričnih grup, ki imajo \(p+1\) generatorjev. Za vsako grupo lahko poiščemo njen Cayleyev graf, ki ima stopnjo regularnosti enako številu generatorjev grupe, torej dobimo \((p+1)\)-regularen graf. Za te grafe pa se bo izkazalo, da so Ramanujanovi.
 
 \subsection{Konstrukcija}
-\subsubsection{Caylejevi grafi}
-Začnimo z definicijo Caylejevih grafov, saj nam ta pojem pove največ o konstrukciji, ki jo bomo uporabili. Kot vemo, je grupa sestavljena iz elementov ter operacije množenja, ki zadošča določene pogoje. Vsaka grupa pa ima množico generatorjev. To so elementi, ki so potrebni, da dosežemo kateri koli element grupe le preko množenja s temi elementi.
+\subsubsection{Cayleyevi grafi}
+Začnimo z definicijo Cayleyevih grafov, saj nam ta pojem pove največ o konstrukciji, ki jo bomo uporabili. Kot vemo, je grupa sestavljena iz elementov ter binarne operacije (množenja), ki zadošča določene pogoje. Vsaka grupa pa ima množico generatorjev. To so elementi, ki so potrebni, da dosežemo kateri koli element grupe le preko množenja s temi elementi.
 
 \begin{definicija}[Generatorji]
-    Naj bo \(G\) grupa in \(S\) simetrična (\(S=S^{-1}\)) podmnožica elementov grupe \(G\), ki ne vključuje enote. Elementi \(S\) so generatorji grupe \(G\), če lahko poljuben element grupe \(G\) zapišemo kot produkt elementov iz \(S\) ali njihovih inverzov.
+    Naj bo \(G\) grupa in \(S\) simetrična (\(S=S^{-1}\)) podmnožica elementov grupe \(G\), ki ne vključuje enote. Elementi \(S\) so generatorji grupe \(G\), če lahko poljuben element grupe \(G\) zapišemo kot produkt elementov iz \(S\).
 \end{definicija}
-Običajno se v definiciji generatorjev izpusti zahtevo, da je množica simetrična in da ne vsebuje enote. V našem primeru pa to definicijo potrebujemo le v kontekstu Caylejevih grafov in je naša definicija bolj priročna.
+Običajno se v definiciji generatorjev izpusti zahtevo, da je množica simetrična in da ne vsebuje enote. V našem primeru pa to definicijo potrebujemo le v kontekstu Cayleyevih grafov, kjer je naša definicija bolj priročna.
 
-\begin{definicija}[Caylejev graf]
-    Naj bo \(G\) grupa in \(S\) množica generatorjev grupe \(G\). Caylejev graf grupe \(G\) glede na množico generatorjev \(S\) graf, katerega vozlišča so elementi grupe \(G\), vozlišče \(v\) je povezano z vozliščem \(u\) natanko takrat, ko obstaja tak \(s\in S\), da je \(v\cdot s = u\).
+\begin{definicija}[Cayleyev graf]
+    Naj bo \(G\) grupa in \(S\) množica generatorjev grupe \(G\). Cayleyev graf grupe \(G\) glede na množico generatorjev \(S\) je graf, katerega vozlišča so elementi grupe \(G\), vozlišče \(v\) pa je povezano z vozliščem \(u\) natanko takrat, ko obstaja tak \(s\in S\), da je \(v\cdot s = u\).
 \end{definicija}
-Dobljena struktura je res graf. Ker \(S\) nima enote ni nobeno vozlišče povezano s samim sabo. Ker je \(S\) tudi simetrična, pa je definicija povezav dobro definirana. To vidimo, ker če je med \(v\) in \(u\) povezava to pomeni, da obstaja \(s\in S\), da \(vs=u\), kar pa je ekvivalentno \(v = u s^{-1}\). Po definicija pa je tudi \(s^{-1}\in S\), torej je tudi, simetrično, med \(u\) in \(v\) povezava. Če množica \(S\) ni množica generatorjev, še vedno dobimo graf, le da ta ni nujno povezan.
+Dobljena struktura je res graf. Ker \(S\) nima enote ni nobeno vozlišče povezano s samim sabo. Ker je \(S\) tudi simetrična, je definicija povezav dobro definirana. To vidimo, ker če je med \(v\) in \(u\) povezava, to pomeni, da obstaja \(s\in S\), da \(vs=u\), kar pa je ekvivalentno \(v = u s^{-1}\). Po definiciji pa je tudi \(s^{-1}\in S\), torej je tudi, simetrično, med \(u\) in \(v\) povezava. Če množica \(S\) ne generira cele grupe (obstaja nek element, ki ga ne moremo dobiti kot produkt elementov iz \(S\)), še vedno dobimo graf, le da ta ni nujno povezan.
 
-Naši Ramanujanovi grafi bodo dobljeni kot Caylejevi grafi. Ker so Ramanujanovi grafi regularni si torej želimo tudi, da so tudi Caylejevi grafi regularni.
-\begin{izrek}[Caylejevi grafi so regularni]
-    Če je \(S\) množica generatorjev brez enote, potem je Caylejev graf glede na to množico \(\abs{S}\)-regularen.
+Naši Ramanujanovi grafi bodo dobljeni kot Cayleyevi grafi. Ker so Ramanujanovi grafi regularni, si torej želimo tudi, da so Cayleyevi grafi regularni.
+\begin{izrek}[Cayleyevi grafi so regularni]
+    Če je \(S\) množica generatorjev, potem je Cayleyev graf glede na to množico \(\abs{S}\)-regularen.
 \end{izrek}
 \begin{dokaz}
-    Po definiciji je lahko sosedov poljubnega vozlišča kvečjemu toliko kot je elementov v množici generatorjev. Dokazati moremo le, da ne moreta dva elementa \(S\) predstavljati iste povezave.
+    Po definiciji ima lahko poljubno vozlišče kvečjemu toliko sosedov, kolikor je elementov v množici generatorjev. Dokazati moramo le, da ne moreta dva različna elementa \(S\) predstavljati iste povezave.
 
-    Najprej fiksiramo vozlišče \(v\) katerega sosede bomo gledali. Recimo, da je povezan z vozliščem \(u\), torej \(v\cdot s = u\). Če bi lahko to napisali še drugače, torej \(v\cdot t = u = v\cdot s\) lahko, zaradi pravila krajšanja v grupi, sklepamo \(s=t\). Torej nam vsak element \(S\) da drugo povezavo in je graf zares \(\abs{S}\)-regularen.
+    Najprej fiksiramo vozlišče \(v\), katerega sosede bomo gledali. Recimo, da je povezan z vozliščem \(u\), torej \(v\cdot s = u\). Če bi lahko to napisali še drugače, torej \(v\cdot t = u = v\cdot s\), potem lahko zaradi pravila krajšanja v grupi sklepamo, da velja \(s=t\). Torej nam vsak element \(S\) določa drugo povezavo, zato je graf zares \(\abs{S}\)-regularen.
 \end{dokaz}
 
-Sedaj, ko smo si ogledali, kako dobiti graf iz poljubne grupe je potrebno le ugotoviti katero grupo izbrati in kako izbrati množico generatorjev. Začnemo z izbiro grupe.
+Sedaj, ko smo si ogledali, kako dobiti graf iz poljubne grupe, je potrebno le ugotoviti, katero grupo izbrati in kako izbrati množico generatorjev. Začnimo z izbiro grupe.
 
 \subsubsection{Projektivne linearne grupe}
-Konstrukcija uporablja dve družini grup, obe pa ste različica matričnih grup. Z \(\GL(n,\mathbb F)\) označimo grupo \(n\times n\) obrnljivih matrik nad poljem \(mathbb F\), z \(\SL(n, \mathbb F)\) pa podgrupo \(\GL(n, \mathbb F)\), kjer imajo elementi determinanto \(1\). Z \(Z(n, \mathbb F)\) označimo množico obrnljivih \(n\times n\) matrik, ki so skalarni večkratnik identitete (torej so oblike \(kI\), kjer je \(k\in \mathbb F \setminus \{0\}\)).
+Konstrukcija uporablja dve družini grup, obe pa sta različici matričnih grup. Z \(\GL(n,\mathbb F)\) označimo grupo \(n\times n\) obrnljivih matrik nad poljem \(\mathbb F\), z \(\SL(n, \mathbb F)\) pa podgrupo \(\GL(n, \mathbb F)\), kjer imajo elementi determinanto \(1\). Z \(Z(n, \mathbb F)\) označimo množico obrnljivih \(n\times n\) matrik, ki so skalarni večkratniki identitete (torej so oblike \(kI\), kjer je \(k\in \mathbb F \setminus \{0\}\)).
 
 \begin{definicija}[Projektivna linearna grupa]
     Projektivna linearna grupa \(\PGL(n, \mathbb F)\) je definirana kot kvocientna grupa 
@@ -42,24 +40,24 @@ Konstrukcija uporablja dve družini grup, obe pa ste različica matričnih grup.
 
     Projektivna specialna linearna grupa \(\PSL(n, \mathbb F)\) je definirana kot kvocientna grupa 
     \begin{align*}
-        \PSL(n, \mathbb F) = \SL(n, \mathbb F)/(Z(n, \mathbb F)\cap Z(n, \mathbb F))
-    \end{align*}.
-    Na grupo \(\PSL(n, \mathbb F)\) lahko gledamo kot podgrupo \(\PGL(n, \mathbb F)\).
+        \PSL(n, \mathbb F) = \SL(n, \mathbb F)/(SL(n, \mathbb F)\cap Z(n, \mathbb F)).
+    \end{align*}
+    Na grupo \(\PSL(n, \mathbb F)\) lahko gledamo kot na podgrupo \(\PGL(n, \mathbb F)\).
 \end{definicija}
 
-Za konstrukcijo bomo uporabili polje \(\modZ{q}\) in naši grafi bodo konstruirani kot Caylejevi grafi grup \(\PSL(2, \modZ{q})\) in \(\PGL(2, \modZ{q})\).
+Za konstrukcijo bomo uporabili polje \(\modZ{q}\), kjer je \(q\) praštevilo. Naši grafi bodo konstruirani kot Cayleyevi grafi grup \(\PSL(2, \modZ{q})\) in \(\PGL(2, \modZ{q})\).
 
-Za Caylejeve grafe pa potrebujemo definirati še generatorje, za to si bomo pa ogledali še nekaj teorije števil. Tu bomo tudi dobili kriterij, ki nam pove, katero izmed obeh grup izbrati.
+Za Cayleyeve grafe pa potrebujemo definirati še generatorje, zato si bomo ogledali še nekaj teorije števil. Tu bomo tudi dobili kriterij, ki nam pove, katero izmed obeh grup izbrati.
 
 \subsubsection{Teorija števil}
-Prva definicija generalizira pojem popolnega kvadrata na končne kolobarje. V celih številih so popolni kvadrati števila oblike \(k^2\), kjer je \(k\) celo število. Če pa to gledamo v kolobarju \(\mathbb Z/n\mathbb Z\) dobimo enako definicijo, samo modulo \(n\).
+Prva definicija generalizira pojem popolnega kvadrata na končne kolobarje. V celih številih so popolni kvadrati števila oblike \(k^2\), kjer je \(k\) celo število. Če pa to gledamo v kolobarju \(\mathbb Z/n\mathbb Z\), dobimo enako definicijo, samo modulo \(n\).
 \begin{definicija}[Kvadratni ostanek]
-    Število \(a\in \mathbb Z\) je kvadratni ostanek modulo \(n\), če obstaja takšno takšno število \(k\in \mathbb Z\), da velja \(a\equiv k^2 \pmod n\).
+    Število \(a\in \mathbb Z\) je kvadratni ostanek modulo \(n\), če obstaja takšno število \(k\in \mathbb Z\), da velja \(a\equiv k^2 \pmod n\).
 \end{definicija}
 
 Sedaj lahko definiramo Legendrejev simbol.
 \begin{definicija}[Legendrejev simbol]
-    Za število \(a\in \mathbb Z\) in \(p>2\) praštevilo. Legendrejev simbol je definiran kot
+    Naj bo \(a\in \mathbb Z\) in \(p>2\) praštevilo. Legendrejev simbol je definiran kot
     \begin{align*}
         \legendre{a}{p} =
         \begin{cases}
@@ -78,21 +76,21 @@ Sedaj lahko definiramo Legendrejev simbol.
         1^2 \equiv 4^2 \equiv 1 \pmod 5 \\
         2^2 \equiv 3^2 \equiv 4 \pmod 5.
     \end{align*}
-    Če vzamemo število večje od \(5\) ga lahko zapišemo kot \(k\cdot 5 + r\) (za \(0\leq r <5\)), kvadrat tega izraza pa je enak \(k^2\cdot 5^2 + 2kr\cdot 5 + r^2\). Ko ga gledamo modulo \(5\) pa ostane le sumand \(r^2\) in ne moremo zapisati novih opcij. Torej so kvadratni ostanki modulo \(5\) števila oblike \(5\cdot k\), \(5\cdot k + 1\) in \(5\cdot k + 4\).
+    Če vzamemo število večje od \(5\), ga lahko zapišemo kot \(k\cdot 5 + r\) (za \(0\leq r <5\)), kvadrat tega izraza pa je enak \(k^2\cdot 5^2 + 2kr\cdot 5 + r^2\). Ko ga gledamo modulo \(5\) pa ostane le sumand \(r^2\) in zato ne dobimo novih ostankov. Torej so kvadratni ostanki modulo \(5\) števila oblike \(5\cdot k\), \(5\cdot k + 1\) in \(5\cdot k + 4\).
 
     Tako lahko napišemo tudi Legendrejeve simbole. Recimo
     \begin{align*}
-        \legendre{5k}{7} = 0                            \\
-        \legendre{5k + 1}{7} = \legendre{5k + 4}{7} = 1 \\
-        \legendre{5k + 2}{7} = \legendre{5k + 3}{7} = -1.
+        \legendre{5k}{5} = 0                            \\
+        \legendre{5k + 1}{5} = \legendre{5k + 4}{5} = 1 \\
+        \legendre{5k + 2}{5} = \legendre{5k + 3}{5} = -1.
     \end{align*}
 \end{primer}
 
-Izbiro grupe bomo pogojevali glede na Legendrejev simbol. Če bomo želeli narediti \(p+1\)-regularen graf bomo izbrali še dodatno praštevilo \(q\). Nato bomo, v primeru \(\legendre{p}{q}=1\) izbrali grupo \(\PSL(2, \modZ{q})\), če je pa \(\legendre{p}{q}=-1\) pa grupo \(\PGL(2, \modZ{q})\). Te grupi si bomo kasneje ogledali bolj podrobno, za nas pa bo pomembno, da imata obe grupi \(p+1\) generatorjev. Da bi to dokazali, potrebujemo še en izrek iz teorije števil\cite{Hirschhorn_1982}.
+Izbiro grupe bomo pogojevali glede na Legendrejev simbol. Če bomo želeli narediti \(p+1\)-regularen graf, bomo izbrali še dodatno praštevilo \(q\). Nato bomo, v primeru, da je \(\legendre{p}{q}=1\), bomo izbrali grupo \(\PSL(2, \modZ{q})\), če je pa \(\legendre{p}{q}=-1\) pa grupo \(\PGL(2, \modZ{q})\). Ti dve grupi si bomo kasneje ogledali bolj podrobno, za nas pa bo pomembno, da imata obe grupi \(p+1\) generatorjev. Da bi to dokazali, potrebujemo še en izrek iz teorije števil \cite{Hirschhorn_1982}.
 
 \begin{izrek}[Jacobijev izrek o štirih kvadratih]
     \label{jacobi-four-squares}
-    naj bo \(r(n)\) število možnih zapisov števila \(n\) kot vsote štirih kvadratov celih števil (kjer upoštevamo, da sta dva zapisa različna tudi, če sta drugače urejena).
+    Naj bo \(r(n)\) število možnih zapisov števila \(n\) kot vsote štirih kvadratov celih števil (pri čemer štejemo, da sta dva zapisa različna tudi, če se razlikujeta po vrstnem redu).
 
     Potem velja
     \begin{align*}
@@ -115,11 +113,11 @@ Izbiro grupe bomo pogojevali glede na Legendrejev simbol. Če bomo želeli nared
     Torej je \(r(1) = 8 \cdot 1\). Za \(n=2\) je številka že večja, saj moremo napisati vse različne permutacije \(1^2 + 1^2+0^2+0^2\), \(1^2 + (-1)^2+0^2+0^2\) in \((-1)^2 + (-1)^2+0^2+0^2\). Od prve in zadnje dobimo \(6\) različnih ureditev zapisa, od druge pa lahko še mešamo vrstni red \(-1\) in \(1\), torej od le-te dobimo \(12\). Skupaj je to torej \(24\) načinov zapisa. Če si ogledamo formulo, število \(2\) delita števili \(1\) in \(2\), torej dobimo \(8\cdot 3 = 24\).
 \end{primer}
 \begin{dokaz}
-    Dokaza ne bomo pogledali do konca, ogledali si pa bomo kako je lahko izrek prevedemo na identiteto \(\theta\) vrst\cite{kato3}. Od tam naprej je dokaz sicer dolg ampak le računski\cite{Hirschhorn_1982}; lahko se ga pa lotimo tudi preko modularnih form\cite{kato3}.
+    Dokaza ne bomo pogledali do konca, ogledali si pa bomo kako lahko izrek prevedemo na identiteto \(\theta\) vrst \cite{kato3}. Od tam naprej je dokaz sicer dolg ampak le računski \cite{Hirschhorn_1982}; lahko pa pristopimo tudi preko modularnih form \cite{kato3}.
 
     Najprej definirajmo funkcijo \(\theta\).
     \begin{align*}
-        \theta(z) = \sum_{n=-\infty}^\infty e^{-\pi i n^2 z}
+        \theta(z) = \sum_{n=-\infty}^\infty e^{\pi i n^2 z}
     \end{align*}
     S substitucijo \(q = e^{2\pi i z}\) dobimo
     \begin{align*}
@@ -127,25 +125,24 @@ Izbiro grupe bomo pogojevali glede na Legendrejev simbol. Če bomo želeli nared
     \end{align*}
     Sedaj si oglejmo potence te vrste.
     \begin{align*}
-        \theta(q)^k & = \left(\sum_{n=-\infty}^\infty q^{n^2}\right)^k                                                           \\
-                    & = \left(\sum_{n_1=-\infty}^\infty q^{n_1^2}\right) \cdots \left(\sum_{n_k=-\infty}^\infty q^{n_k^2}\right) \\
+        \theta(q)^k & = \left(\sum_{n=-\infty}^\infty q^{n^2/2}\right)^k \\
+                    & = \left(\sum_{n_1=-\infty}^\infty q^{n_1^2/2}\right) \cdots \left(\sum_{n_k=-\infty}^\infty q^{n_k^2/2}\right) \\
                     & = \sum_{n_1, \ldots, n_k = -\infty}^\infty q^{(n_1^2 + \cdots + n_k^2)/2}.
     \end{align*}
-    To vrsto pa lahko poenostavimo tako, da združimo sumande, ki imajo enako potenco, koeficient pred združinim sumandom pa nam bo štel koliko takih sumandov imamo. Na ta način ravno štejemo, na koliko načinov lahko zapišemo neko število kot vsota kvadratov. V primeru \(k=4\) dobimo
+    To vrsto pa lahko poenostavimo tako, da združimo sumande, ki imajo enako potenco, koeficient pred združenim sumandom pa nam bo štel koliko takih sumandov imamo. Na ta način ravno štejemo, na koliko načinov lahko zapišemo neko število kot vsota kvadratov. V primeru \(k=4\) dobimo
     \begin{align*}
-        \theta(q)^4 = \sum_{n=0}^\infty r_4(n) q^{n^2/2}.
+        \theta(q)^4 = \sum_{n=0}^\infty r_4(n) q^{n/2}.
     \end{align*}
-
-    Da dokažemo izrek moremo torej dokazati
+    Da dokažemo izrek moramo torej pokazati
     \begin{align*}
         \theta(q)^4 = 1+\sum_{n=1}^\infty \left(8\sum_{d\mid n, 4\nmid d} d \right) q^{n/2}.
     \end{align*}
 
-    Sedaj se osredotočimo na desno stran enačbe. Najprej \(q^{n/2}\) prinesemo znotraj notranje vsote.
+    Sedaj se osredotočimo na desno stran enačbe. Najprej prinesemo \(q^{n/2}\) znotraj notranje vsote.
     \begin{align*}
         \sum_{n=1}^\infty \left(8\sum_{d\mid n, 4\nmid d} d \right) q^{n/2} & =  8\sum_{n=1}^\infty \sum_{d\mid n, 4\nmid d} d  q^{n/2}
     \end{align*}
-    Ker \(d \mid n\) lahko sedaj \(n\) zapišemo v obliki \(n = dm\). Lahko gledamo tudi obratno - vsak produkt \(d\cdot m\) z \(4\nmid d\) bo predstavljal en \(n\). Torej lahko, namesto seštevanja po \(d\) in \(n\) seštevamo kar po \(d\) in \(m\). Ker sta sedaj \(d\) in \(m\) neodvisna lahko vrstni red seštevanja zamenjamo.
+    Ker \(d \mid n\), lahko sedaj \(n\) zapišemo v obliki \(n = dm\). Lahko gledamo tudi obratno -- vsak produkt \(d\cdot m\) z \(4\nmid d\) bo predstavljal en \(n\). Torej lahko, namesto seštevanja po \(d\) in \(n\), seštevamo kar po \(d\) in \(m\). Ker sta sedaj \(d\) in \(m\) neodvisna, lahko zamenjamo vrstni red seštevanja.
     \begin{align*}
         \sum_{n=1}^\infty \left(8\sum_{d\mid n, 4\nmid d} d \right) q^{n/2} & =  8\sum_{d\nmid 4} \sum_{m = 1}^\infty d  q^{dm/2}
     \end{align*}
@@ -154,7 +151,7 @@ Izbiro grupe bomo pogojevali glede na Legendrejev simbol. Če bomo želeli nared
         \sum_{n=1}^\infty \left(8\sum_{d\mid n, 4\nmid d} d \right) q^{n/2} & = 8\sum_{d\nmid 4} \frac{d q^{d/2}}{1-q^{d/2}}
     \end{align*}
 
-    Jacobijev izrek štirih kvadratov je torej ekvivalenten identiteti
+    Jacobijev izrek o štirih kvadratih je torej ekvivalenten identiteti
     \begin{align*}
         \theta(q)^4 = 1+8\sum_{d\nmid 4} \frac{d q^{d/2}}{1-q^{d/2}}.
     \end{align*}
@@ -162,10 +159,10 @@ Izbiro grupe bomo pogojevali glede na Legendrejev simbol. Če bomo želeli nared
     Dokaz bi sedaj lahko nadaljevali na več načinov. Lahko se opiramo na Jacobijevo identiteto o treh produktih ter enakost dokažemo z elementarnimi metodami, ki so pa sicer zelo dolge in ne uporabljajo metod, ki jih bi potrebovali v nadaljevanju. Alternativni pristop pa pokaže, da sta obe strani enačbe pravzaprav modularne forme z enako utežjo. Dokaz enakosti pri le-teh pa je zelo lahek, če razvijemo dovolj teorije modularnih form. Kljub temu, da bi teorijo modularnih form lahko uporabili tudi v nadaljevanju, dokaz ob tej točki zaključimo, ker bi bilo potrebno razviti preveč, da bi v popolnosti dokazali katero koli trditev v sklopu te naloge.
 \end{dokaz}
 
-Za nas bo pomemben primer, ko je \(n\) praštevilo. Dobimo torej \(p=a_0^2 + a_1^2 + a_2^2 + a_3^2\). Edini števili, ki delita \(p\) sta \(p\) in \(1\), njun seštevek je \(p+1\) in število načinov kako lahko zapišemo \(p\) kot vsoto štirih kvadratov je \(8(p+1)\). V tej množici pa je še dodatna struktura - izkaže se, da je to dejansko \(8\) ``kopij'' \(p+1\) rešitev. Z uporabo kvaternionov bomo lahko iz te množice izbrali kanoničnih \(p+1\) rešitev, ki bodo predstavljale generatorje grupe.
+Za nas bo pomemben primer, ko je \(n\) praštevilo. Dobimo torej \(p=a_0^2 + a_1^2 + a_2^2 + a_3^2\). Edini števili, ki delita \(p\), sta \(p\) in \(1\), njun seštevek je \(p+1\) in število različnih zapisov števila \(p\) kot vsoto štirih kvadratov je \(8(p+1)\). V tej množici pa je še dodatna struktura - izkaže se, da je to dejansko \(8\) ``kopij'' \(p+1\) rešitev. Z uporabo kvaternionov bomo lahko iz te množice izbrali kanoničnih \(p+1\) rešitev, ki bodo predstavljale generatorje grupe.
 
 \subsubsection{Kvaternioni}
-Kvaternioni so razširitev kompleksnih števil. Namesto le imaginarne enote \(i\) imamo tukaj tudi enote \(j\) in \(k\). To definira štiri dimenzionalen prostor. Koeficienti so, kot za kompleksna števila, lahko realni ampak za konstrukcijo naših grafov potrebujemo le celoštevilske kvaternione.
+Kvaternioni so razširitev kompleksnih števil. Namesto le imaginarne enote \(i\) imamo tukaj tudi enote \(j\) in \(k\). To definira štiridimenzionalen prostor. Koeficienti so, kot pri kompleksnih številih, lahko realni, vendar za konstrukcijo naših grafov potrebujemo samo celoštevilske kvaternione.
 
 \begin{definicija}[Kvaternioni]
     Kvaternioni so definirani kot množica
@@ -177,33 +174,33 @@ Kvaternioni so razširitev kompleksnih števil. Namesto le imaginarne enote \(i\
         i^2 = j^2 = k^2 = ijk = -1.
     \end{align*}
 
-    Vsakemu elementu \(\alpha = a + bi + cj + dk\) lahko priredimo konjungiran element \(\overline{\alpha} = a - bi - cj - dk\). S to operacijo definiramo normo kot
+    Vsakemu elementu \(\alpha = a + bi + cj + dk\) lahko priredimo konjugiran element \(\overline{\alpha} = a - bi - cj - dk\). S to operacijo definiramo normo kot
     \begin{align*}
-        \abs{\alpha} = \alpha \cdot \overline{\alpha}
+        \abs{\alpha} = \alpha \cdot \overline{\alpha}.
     \end{align*}
 
-    Definiramo še \(\bH = \bH(\Z)\).
+    Definiramo še krajšo oznako za celoštevilske kvaternione, \(\bH = \bH(\Z)\).
 \end{definicija}
 
-Kvaternione lahk predstavimo tudi kot matrike. Vsak kvaternion oblike \(a + bi + cj + dk\) lahko predstavimo kot \(2\times 2\) kompleksno matriko.
+Kvaternione lahko predstavimo tudi kot matrike. Vsak kvaternion oblike \(a + bi + cj + dk\) lahko predstavimo kot \(2\times 2\) kompleksno matriko
 \begin{align*}
     \begin{bmatrix}
         a+bi  & c+di \\
         -c+di & a-bi
     \end{bmatrix}.
 \end{align*}
-Lahko bi jih predstavili tudi kot \(4\times 4\) realne matrike. V vsakem primeru pa je to enostavno preveriti, samo poračunamo produkt kvaternionov in vidimo, da se ujema z matričnim produktom. Če bodo naši kvaternioni nad kolobarjem \(\Z\), potem bodo imele matrike elemente iz \(\Z[i]\). Če pa delamo kvaternione nad končnim poljem \(\modZ{q}\) pa se izkaže, da je element \(i\) (ki je definiran tako, da je \(i^2 = -1\)) že del polja. Recimo, če si ogledamo \(\modZ{5}\) je \(-1 = 4 = 2^2\), torej je \(i=2\). V primeru kvaternionov nad \(\modZ{q}\), torej, jih lahko torej predstavimo kar kot \(2\times 2\) matrike nad \(\modZ{q}\).
+Lahko bi jih predstavili tudi preko \(4\times 4\) realnih matrik. V vsakem primeru pa je ta zapis enostavno utemeljiti; če poračunamo produkt kvaternionov vidimo, da se ujema z matričnim produktom. Če bodo naši kvaternioni definirani nad kolobarjem \(\Z\), potem bodo imele matrike elemente iz \(\Z[i]\). Če pa obravnavamo kvaternione nad končnim poljem \(\modZ{q}\), se izkaže, da je element \(i\) (ki je definiran tako, da je \(i^2 = -1\)) že del polja. Recimo, če si ogledamo \(\modZ{5}\) je \(-1 = 4 = 2^2\), torej je \(i=2\). V primeru kvaternionov nad \(\modZ{q}\) jih lahko torej predstavimo kar kot \(2\times 2\) matrike nad \(\modZ{q}\).
 
 % dokaz lahko dobimo v corollary 2.6.10 o ramanujan graphs knjigici
 \begin{definicija}[Nerazcepni kvaternioni]
-    Celoštevilski kvaternion \(\alpha\in \bH(\Z)\) je nerazcepen, če ni enak \(0\) ali katerikoli kvaternionski enoti, poleg tega ga pa ne moremo napisati kot produkt večih celoštevilskih kvaternionov, ki niso enote.
+    Celoštevilski kvaternion \(\alpha\in \bH(\Z)\) je nerazcepen, če ni enak \(0\) ali katerikoli kvaternionski enoti, poleg tega pa ga ne moremo zapisati kot produkt več celoštevilskih kvaternionov, ki niso enote.
 \end{definicija}
 Preko Evklidovega algoritma lahko vidimo, da je celoštevilski kvaternion nerazcepen natanko takrat, ko je njegova norma praštevilo. 
 
 % Glej knjiga stran 114, remark 4.2.3 (a). q>p^8 da so povezani
-Sedaj lahko določimo kanonično izbiro rešitev enačbe \(p=a_0^2 + a_1^2 + a_2^2 + a_3^2\). Potrebovali bomo še nekaj dodatnih predpostavk. Prva je, da je, da imamo še drugo praštevilo \(q>p^8\); to bomo kasneje uporabili, da si ogledamo rešitve v \(\modZ{q}\) in da je graf povezan. Druga pa je, da velja \(p,q \equiv 1 \pmod 4\). To omejitev bomo potrebovali, saj imajo kvadrati celih števil lastnost, da so lahko enaki le \(0\) ali \(1\) modulo 4. Dokaz tega je enostaven, le ogledamo si kvadrate števil \(4k\), \(4k+1\), \(4k+2\) in \(4k+3\). Ker pa je \(p\equiv 1 \pmod 4\) in vsak posamičen \(a_i^2\) je lahko le \(0\) ali \(1\pmod 4\) sledi, da je natanko eden enak \(1\pmod4\), ostali pa so enaki \(0\pmod 4\). Tisti element, ki je enak \(1\pmod4\) je seveda lih in za našo kanonično reprezentacijo bo ta element \(a_0\), ostali členi \(a_1, a_2, a_3\) pa bodo sodi. Definiramo lahko tudi, da je \(a_0>0\). Ko zahtevamo, da je \(a_0>0\) se znebimo polovice rešitev (druga polovica je enaka prvi, le z zamenjanim predznakom \(a_0\)). Dodatnega faktorja \(4\) se znebimo tako, da zahtevamo, da je \(a_0\) lih (primer ko je liha številka na drugem mestu je naslednja četrtina rešitev, če je na tretjem mestu tretja četrtina rešitev in če je na zadnjem mestu zadnja četrtina rešitev). Tako dobimo kanonično reprezentacijo, \(p\) kot vsote štirih kvadratov, vseh takih reprezentacij pa je \(p+1\); množico vseh označimo z \(S\).
+Sedaj lahko določimo kanonično izbiro rešitev enačbe \(p=a_0^2 + a_1^2 + a_2^2 + a_3^2\). Potrebovali bomo še nekaj dodatnih predpostavk. Prva je, da imamo še drugo praštevilo \(q>p^8\); to bomo kasneje uporabili, da si ogledamo rešitve v \(\modZ{q}\) in da je graf povezan. Druga pa je, da velja \(p,q \equiv 1 \pmod 4\). To omejitev bomo potrebovali, saj imajo kvadrati celih števil lastnost, da so lahko enaki le \(0\) ali \(1\) modulo 4. Dokaz tega je enostaven, le ogledamo si kvadrate števil \(4k\), \(4k+1\), \(4k+2\) in \(4k+3\). Ker pa je \(p\equiv 1 \pmod 4\) in vsak posamičen \(a_i^2\) je lahko le \(0\) ali \(1\pmod 4\), sledi, da je natanko eden enak \(1\pmod4\), ostali pa so enaki \(0\pmod 4\). Tisti element, ki je enak \(1\pmod4\), je seveda lih in za našo kanonično reprezentacijo bo ta element \(a_0\). Ostali členi \(a_1, a_2, a_3\) bodo sodi. Na ta način zmanjšamo število rešitev iz \(8(p+1)\) na \(2(p+1)\), saj smo fiksirali lihi element na prvo mesto izmed štirih možnih. Definiramo lahko tudi, da je \(a_0>0\). Ko zahtevamo, da je \(a_0>0\), odstranimo še polovico rešitev (druga polovica je enaka prvi, le z zamenjanim predznakom \(a_0\)). Tako dobimo kanonično reprezentacijo, \(p\) kot vsote štirih kvadratov, vseh takih reprezentacij pa je \(p+1\); množico vseh označimo z \(S\).
 
-Te rešitve si zdaj želimo ogledati v polju \(\modZ{q}\) namesto \(\Z\). Ker so vsi \(a_i<p\) so manjši tudi od \(q\) in lahko pozitivne rešitve enačbe trivialno gledamo kot elemente polja \(\modZ{q}\). Ker pa je \(q\) dovolj velik se bodo tudi negativne rešitve unikatno preslikale (ne more se pozitivno število \(x\) preslikati v enako število kot neko drugo število \(-y\)). Tako dobimo \(p+1\) rešitev enačbe \(p=a_0^2 + a_1^2 + a_2^2 + a_3^2\) v polju \(\modZ{q}\). Štiriterico \((a_0, a_1, a_2, a_3)\) pa lahko zapišemo tudi kot kvaternion \(\alpha = a_0 + a_1i + a_2j + a_3k\), tokrat je ta kvaternion element \(\bH(\modZ{q})\). Kot smo videli lahko kvaternione enolično napišemo kot matrike, ker pa delamo nad končnim poljem \(\modZ{q}\) pa ne potrebujemo dodati novega elementa \(i\), saj je ta že del polja \(\modZ{q}\). Tako smo dobili \(p+1\) matrik oblike
+Namesto v \(\Z\) si rešitve želimo ogledati v polju \(\modZ{q}\). Ker so vsi \(a_i<p\), so manjši tudi od \(q\) in lahko pozitivne rešitve enačbe trivialno gledamo kot elemente polja \(\modZ{q}\). Ker pa je \(q\) dovolj velik se bodo tudi negativne rešitve unikatno preslikale (s kanonično projekcijo se pozitivno število \(x\) ne more preslikati v enako število kot neko drugo število \(-y\)). Tako dobimo \(p+1\) rešitev enačbe \(p=a_0^2 + a_1^2 + a_2^2 + a_3^2\) v polju \(\modZ{q}\). Štiriterico \((a_0, a_1, a_2, a_3)\) pa lahko zapišemo tudi kot kvaternion \(\alpha = a_0 + a_1i + a_2j + a_3k\), tokrat je ta kvaternion element \(\bH(\modZ{q})\). Kot smo videli lahko kvaternione enolično napišemo kot matrike, ker pa delamo nad končnim poljem \(\modZ{q}\), ne potrebujemo dodati novega elementa \(i\), saj je ta že del polja \(\modZ{q}\). Tako smo dobili \(p+1\) matrik oblike
 \begin{align*}
     \begin{bmatrix}
         a_0 +ia_1 & a_2+ia_3 \\
@@ -216,69 +213,72 @@ Determinanta te matrike je
     (a_0+ia_1)(a_0-ia_1) - (a_2+ia_3)(-a_2+ia_3)\\
     = a_0^2 + a_1^2 + a_2^2 + a_3^2 = p,
 \end{align*}
-torej je matrika obrnljiva in jo lahko gledamo kot element grupe \(\PGL(2, \modZ{q})\). Inverz kvaterniona lahko enostavno poiščemo preko konjungacije. Če je \(\alpha\) kvaternion je \(\overline{\alpha}/\abs{\alpha}\) njegov inverz. Konjungiran element pa tudi reši enačbo in je torej eden izmed elementov naših matrik. Deljenje z normo ne povzroča težav, saj delujemo v grupi \(\PGL\), kjer so elementi enaki, če se razlikujejo do skalarja natančno - torej \(\overline{\alpha}/\abs{\alpha}\) in \(\overline{\alpha}\) predstavljata isti element grupe, oba inverz elementa \(\alpha\). Množica teh matrik je torej simetrična. Če je \(\legendre{p}{q}=-1\), identiteta ni element te množice. V \(\PGL\) je identiteta matrika, ki ima na diagonali same iste elemente, zunaj diagonale pa je enaka \(0\). Determinanta te matrike je \(k^2\) za nek \(k\), izračunali pa smo že, da je determinanta tudi enaka \(p\). Torej bi bil \(k^2 \equiv p \pmod q\), kar pa pomeni, da je \(p\) kvadratni ostanek in bi moralo biti \(\legendre{p}{q}=-1\). Torej imamo \(p+1\) matrik, ki tvorijo simetrično množico brez identitete in jih lahko uporabimo kot generatorje Caylejevega grafa. Grupa \(\PGL(2, \modZ{q})\) ima \(q(q^2-1)\) elementov, torej dobimo \(p+1\)-regularen graf na \(q(q^2-1)\) vozliščih. Kasneje bomo dokazali, da so te grafi povezani in da so Ramanujanovi. Izkaže pa se, da so dvodelni; ena particija pripada podmnožici \(\PSL\), druga pa njenemu komplementu.
+torej je matrika obrnljiva in jo lahko gledamo kot element grupe \(\PGL(2, \modZ{q})\). Inverz kvaterniona lahko enostavno poiščemo preko konjungacije. Če je \(\alpha\) kvaternion, je \(\overline{\alpha}/\abs{\alpha}\) njegov inverz. Konjugiran element tudi reši enačbo in je torej eden izmed elementov naših matrik. Deljenje z normo ne povzroča težav, saj delujemo v grupi \(\PGL\), kjer so elementi enaki, če se razlikujejo do skalarja natančno -- torej \(\overline{\alpha}/\abs{\alpha}\) in \(\overline{\alpha}\) predstavljata isti element grupe, oba inverz elementa \(\alpha\). Množica teh matrik je torej simetrična. Če je \(\legendre{p}{q}=-1\), identiteta ni element te množice. V \(\PGL\) je identiteta matrika, ki ima na diagonali same enake elemente, zunaj diagonale pa je enaka \(0\). Determinanta te matrike je \(k^2\) za nek \(k\), izračunali pa smo že, da je determinanta tudi enaka \(p\). Torej bi bil \(k^2 \equiv p \pmod q\), kar pa pomeni, da je \(p\) kvadratni ostanek in bi moralo veljati \(\legendre{p}{q}=1\). Pod predpostavko, da velja \(\legendre{p}{q}=-1\), imamo torej \(p+1\) matrik, ki tvorijo simetrično množico brez identitete in jih lahko uporabimo kot generatorje Cayleyevega grafa. Grupa \(\PGL(2, \modZ{q})\) ima \(q(q^2-1)\) elementov, torej dobimo \(p+1\)-regularen graf na \(q(q^2-1)\) vozliščih. Kasneje bomo dokazali, da so ti grafi povezani in Ramanujanovi. Izkaže pa se, da so dvodelni; ena particija pripada podmnožici \(\PSL\), druga pa njenemu komplementu.
 
-Če pa velja \(\legendre{p}{q} = 1\) pa k konstrukciji pristopimo z uporabo grup \(\PSL\). V tem primeru obstaja tak \(k\), da velja \(p\equiv k^2 \pmod q\). Potem seveda obstaja tudi \(k^{-1}\) in lahko napišemo \(k^{-2} \equiv p^{-1}\pmod q\). Vsako matriko od prej lahko pomnožimo z skalarno matriko
+V primeru, da velja \(\legendre{p}{q} = 1\), pa k konstrukciji pristopimo z uporabo grup \(\PSL\). V tem primeru obstaja tak \(k\), da velja \(p\equiv k^2 \pmod q\). Potem seveda obstaja tudi \(k^{-1}\) in lahko napišemo \(k^{-2} \equiv p^{-1}\pmod q\). Vsako matriko od prej lahko pomnožimo s skalarno matriko
 \begin{align*}
     \begin{bmatrix}
         k^{-1} & 0 \\
         0 & k^{-1}
     \end{bmatrix}\in Z(n, \mathbb F)
 \end{align*}
-in dobimo matrike, ki imajo determinanto \(1\). Tako vidimo, da so vse matrike pravzaprav del podgrupe \(\PSL(2, \modZ{q})\) in ne le \(\PGL\). Ker je množenje elementov iz podgrupe zaprto, lahko iz elementov \(\PSL\) pridemo le do drugih elementov \(\PSL\), če uporabimo le izbrane matrike. Tako bi bil graf nepovezan, če za vozlišča uporabimo celotno grupo \(\PGL\). Namesto tega, kot rečeno uporabimo grupo \(\PSL(2, \modZ{q})\). Kot prej je množica še vedno simetrična, potrebno pa je še preveriti, da ne vsebuje identitete. V tem primeru bi dobili matriko, pri kateri je \(a_0 +ia_1 \equiv a_0 - ia_1 \pmod q\), torej \(a_1 \equiv 0 \pmod q\) oziroma \(a_1 = n\cdot q\). Ker je \(p<q\) in smo \(a_1\) izbrali iz rešitev enačbe \(p=a_1^2 + \cdots\) v \(\Z\) je torej \(a_1=0\). Da bi dobili skalarno matriko torej rabimo, da velja \(a_0^2 = p\) (v polju \(\Z\), saj smo tam izbirali rešitve enačbe). Ker pa je \(p\) praštevilo to ni mogoče. Torej smo dobili simetrično množico brez identitete, ki jo bomo uporabili kot množico generatorjev za \(\PSL(2, \modZ{q})\). Grupa \(\PSL(2, \modZ{q})\) pa ima \(q(q^2-1)/2\) elementov, dobljeni graf pa ni dvodelen. Caylejev graf za izbrane parametre \(p\) in \(q\) označimo z \(X^{p,q}\).
+in dobimo matrike, ki imajo determinanto \(1\). Tako vidimo, da so vse matrike pravzaprav del podgrupe \(\PSL(2, \modZ{q})\) in ne le \(\PGL\). Ker je množenje elementov iz podgrupe zaprto, lahko iz elementov \(\PSL\) pridemo le do drugih elementov \(\PSL\), če uporabimo le te matrike kot generatorje. Tako bi bil graf nepovezan, če za vozlišča uporabimo celotno grupo \(\PGL\). Namesto tega, kot rečeno uporabimo grupo \(\PSL(2, \modZ{q})\). Kot prej je množica še vedno simetrična, potrebno pa je še preveriti, da ne vsebuje identitete. V tem primeru bi dobili matriko, pri kateri je \(a_0 +ia_1 \equiv a_0 - ia_1 \pmod q\), torej \(a_1 \equiv 0 \pmod q\) oziroma \(a_1 = n\cdot q\). Ker je \(p<q\) in smo \(a_1\) izbrali iz rešitev enačbe \(p=a_1^2 + \cdots\) v \(\Z\) je torej \(a_1=0\). Da bi dobili skalarno matriko torej rabimo, da velja \(a_0^2 = p\) (v polju \(\Z\), saj smo tam izbirali rešitve enačbe). Ker pa je \(p\) praštevilo to ni mogoče. Torej smo dobili simetrično množico brez identitete, ki jo bomo uporabili kot množico generatorjev za \(\PSL(2, \modZ{q})\). Grupa \(\PSL(2, \modZ{q})\) ima \(q(q^2-1)/2\) elementov, dobljeni graf pa ni dvodelen. Pomembno za nas pa je, da so tudi ti Ramanujanovi. 
 
-Če torej povzamemo konstrukcijo, poiščemo rešitve enačbe \(p = a_0^2 + a_1^2 + a_2^2 + a_3^2\), in iz njih dobimo \(p+1\) matrik v \(\PGL(2, \modZ{q})\), če je \(\legendre{p}{q}=1\) in v \(\PSL(2, \modZ{q})\), če je \(\legendre{p}{q}=-1\). Te matrike služijo kot generatorji za Caylejev graf, vsak tak graf pa je Ramanujanov. Če fiksiramo \(p\) in povečujemo \(q\) (z enakimi omejitvami kot prej) dobimo neskončno družino Ramanujanovih grafov stopnje \(p+1\).
+V obeh primerih Cayleyev graf za izbrana parametra \(p\) in \(q\) označimo z \(X^{p,q}\).
+
+Če torej povzamemo konstrukcijo, poiščemo rešitve enačbe \(p = a_0^2 + a_1^2 + a_2^2 + a_3^2\), in iz njih dobimo \(p+1\) matrik v \(\PGL(2, \modZ{q})\), če je \(\legendre{p}{q}=-1\) in v \(\PSL(2, \modZ{q})\), če je \(\legendre{p}{q}=1\). Te matrike služijo kot generatorji za Cayleyev graf, vsak tak graf pa je Ramanujanov. Če fiksiramo \(p\) in povečujemo \(q\) (z enakimi omejitvami kot prej), dobimo neskončno družino Ramanujanovih grafov stopnje \(p+1\).
 
 To zaključi konstrukcijo, potrebno pa je pokazati, da je ta konstrukcija pravilna in da so vsi dobljeni grafi Ramanujanovi.
 
 \subsection{Pravilnost konstrukcije}
-Dokazali bomo, da naši grafi od zgoraj zadoščajo določenim lastnostim, med drugim tudi mejo za drugo največjo lastno vrednost, ki definira Ramanujanove grafe. Poleg tega bomo pa pokazali še nekaj drugih lastnosti.
-
-
+Dokazali bomo, da so konstruirani grafi zares Ramanujanovi.
 
 \subsubsection{Kvocienti dreves}
-Iz prejšne konstrukcije smo do meje \(2\sqrt{d-1}\) prišli preko dreves poti, za katere smo lahko izračunali lastne vrednosti v izreku \ref{lastne-vrednosti-drevesa}. V tej konstrukciji bomo naredili nekaj sorodnega ter pokazali, da so naši grafi kvocienti dreves. Tako ni preveč presenetljivo, da tudi tukaj pride v upoštev meja \(2\sqrt{d-1}\), vidimo pa, da so drevesa tesno povezana s konstanto \(2\sqrt{d-1}\).
+Iz prejšnje konstrukcije smo do meje \(2\sqrt{d-1}\) prišli preko dreves poti, za katere smo lahko izračunali lastne vrednosti v izreku \ref{lastne-vrednosti-drevesa}. V tej konstrukciji bomo naredili nekaj sorodnega ter pokazali, da so naši grafi kvocienti dreves. Tako ni preveč presenetljivo, da tudi tukaj nastopa meja \(2\sqrt{d-1}\), vidimo pa, da so drevesa tesno povezana s konstanto \(2\sqrt{d-1}\).
 
-Definiramo si pomožno podmnožico \(\Lambda' \subset \bH(\Z)\) kot
+Definiramo pomožno podmnožico \(\Lambda' \subset \bH(\Z)\) kot
 \begin{align*}
-    \Lambda' = \{\alpha \in \bH(\Z) \mid \alpha \equiv 1 \pmod 2 \land \exists k.\, \abs{\alpha} = p^k\}.
+    \Lambda' = \{\alpha \in \bH(\Z) \mid \alpha \equiv 1 \pmod 2 \land \exists k\in\mathbb{N}.\, \abs{\alpha} = p^k\}.
 \end{align*}
-Ta množica vsebuje našo množico generatorjev, dodatno pa še velja, da je zaprta za množenje. Posebnost te množice pa je, da lahko v njej na enoličen način zapišemo vsak element kot produkt generatorjev našega grafa, oziroma iz elementov \(S\), ki so definirani kot kanonične rešitve enačbe vsote štirih kvadratov.
+Ta množica vsebuje našo množico generatorjev, poleg tega pa velja, da je zaprta za množenje. Posebnost te množice pa je, da lahko v njej na enoličen način zapišemo vsak element kot produkt generatorjev našega grafa, torej elementov množice \(S\), ki so definirani kot kanonične rešitve enačbe vsote štirih kvadratov.
 \begin{definicija}[Okrajšana beseda]\label{okrajsana-beseda}
-    Okrajšana beseda nad \(S\) je produkt elementov iz \(S\), ki ne vsebuje zaporednih elementov iz \(S\), ki so si konjugirani; torej je to produkt \(\prod_i s_i\) za katereja \(s_i \neq \overline{s_{i+1}}\).
+    Okrajšana beseda nad \(S\) je produkt elementov iz \(S\), ki ne vsebuje zaporednih elementov iz \(S\), ki so si konjugirani; torej je to produkt \(\prod_i s_i\) za katerega \(s_i \neq \overline{s_{i+1}}\).
 \end{definicija}
 \begin{izrek}
-    Naj bo \(\alpha \in \bH(\Z)\) tak, da je \(\abs{\alpha} = p^k\). Potem obstaja enolična faktorizacija \(\alpha = \varepsilon p^r w_m\), kjer je \(\varepsilon\) enota v \(bH(\Z)\), \(w_m\) je okrajšana beseda dolžine \(m\) nad množico \(S\), \(k\) pa je enak \(2r+m\). 
+    Naj bo \(\alpha \in \bH(\Z)\) tak, da je \(\abs{\alpha} = p^k\). Potem obstaja enolična faktorizacija \(\alpha = \varepsilon p^r w_m\), kjer je \(\varepsilon\) enota v \(\bH(\Z)\), \(w_m\) je okrajšana beseda dolžine \(m\) nad množico \(S\), \(k\) pa je enak \(2r+m\). 
 \end{izrek}
 \begin{dokaz}
-    Začnemo z dokazom obstoja. Fiksiramo \(\alpha\) z \(\abs{\alpha}=p^k\). Ta \(\alpha\) lahko napišemo kot produkt nerazcepnih kvaternionov \(\alpha = \delta_1 \cdots \delta_n\). Ker je vsak od njih nerazcepen je njihova norma praštevilo. Ker je norma multiplikativna sledi, da je \(\abs{\delta_i} = p\). Torej je \(n=k\). Ker je \(\abs{\delta_i}=p\) zadošča enačbi za vsoto štirih kvadratov, torej obstaja nek generator \(\gamma_i\in S\), da je \(\varepsilon_i \gamma_i =  \delta_i\). Enostavno je preveriti, da izraz skoraj komutira, bolj natančno, če imamo izraz \(\varepsilon_i \gamma_i\) lahko poiščemo \(\varepsilon_i'\) in \(\gamma_i'\), da je \(\varepsilon_i \gamma_i = \gamma_i' \varepsilon_i'\). Tako lahko vse \(\varepsilon_i\) prestavimo na levo stran in dobimo izraz
+    Začnemo z dokazom obstoja. Fiksiramo \(\alpha\) z \(\abs{\alpha}=p^k\). Ta \(\alpha\) lahko napišemo kot produkt nerazcepnih kvaternionov \(\alpha = \delta_1 \cdots \delta_n\). Ker je vsak od njih nerazcepen, je njihova norma praštevilo. Ker je norma multiplikativna, sledi, da je \(\abs{\delta_i} = p\). Torej je \(n=k\). Ker je \(\abs{\delta_i}=p\), reši enačbo vsote štirih kvadratov, torej obstaja generator \(\gamma_i\in S\), da je \(\varepsilon_i \gamma_i =  \delta_i\). Enostavno je preveriti, da izraz skoraj komutira; bolj natančno, če imamo izraz \(\varepsilon_i \gamma_i\) lahko poiščemo \(\varepsilon_i'\) in \(\gamma_i'\), da je \(\varepsilon_i \gamma_i = \gamma_i' \varepsilon_i'\). Tako lahko vse \(\varepsilon_i\) prestavimo na levo stran in dobimo izraz
     \begin{align*}
         \alpha = \varepsilon \gamma_1' \cdots \gamma_n'.
     \end{align*}
-    Ta beseda ni nujno okrajšana. Če imamo kje v besedi par \(\gamma_i' \overline{\gamma_i'}\) ali \( \overline{\gamma_i'}\gamma_i'\), je ta par enak \(p\). Ker cela števila komutirajo s kvaternioni lahko vse take pojavitve pripeljemo na začetek, da dobimo faktor \(p^r\) (ta faktor pa prispeva \(p^{2r}\) k normi). 
+    Ta beseda ni nujno okrajšana. Če se v besedi pojavi par \(\gamma_i' \overline{\gamma_i'}\) ali \( \overline{\gamma_i'}\gamma_i'\), je produkt takega para enak \(p\). Ker cela števila komutirajo s kvaternioni lahko vse take pojavitve preuredimo na začetek, da dobimo faktor \(p^r\) (ta faktor pa prispeva \(p^{2r}\) k normi). 
 
     Enoličnost dokažemo s preštevanjem. Jacobijev izrek o štirih kvadratih (\ref{jacobi-four-squares}) nam pove, koliko je kvaternionov, ki imajo normo \(p^k\). Delitelji \(p^k\) so natanko potence \(p^i\) za \(i\leq k\), nobena pa ni deljiva z \(4\). Torej je število kvaternionov z normo \(p^k\) enako 
     \begin{align*}
         8\sum_{i=0}^k p^i = 8\frac{p^{k+1}-1}{p-1}.
     \end{align*}
-    Oglejmo si, koliko je okrajšanih besed dolžine \(m\) nad \(S\). Za prvo črko imamo \(p+1\) možnosti, saj lahko izberemo poljuben element. Pogoj, da sosednja elementa ne smeta biti konjugirana pa nam odstrani eno možnost za naslednje elemente, torej imamo \(p\) možnosti za naslednjih \(m-1\) elementov. Število okrajšanih besed dolžine \(m\) je torej \((p+1)p^{m-1}\). Zaradi norm vemo, da je \(2r+m=k\). Če je \(k\) liho število dobimo vseh možnih izrazov ravno
+    Oglejmo si, koliko je okrajšanih besed dolžine \(m\) nad \(S\). Za prvo črko imamo \(p+1\) možnosti, saj lahko izberemo poljuben element. Pogoj, da sosednja elementa ne smeta biti konjugirana, odstrani eno možnost za vsak naslednji element, torej imamo \(p\) možnosti za naslednjih \(m-1\) elementov. Število okrajšanih besed dolžine \(m\) je torej \((p+1)p^{m-1}\). Zaradi norm vemo, da je \(2r+m=k\). Če je \(k\) liho število, dobimo vseh možnih izrazov ravno
     \begin{align*}
         8\sum_{r=0}^{\frac{k-1}{2}} (p+1)p^{k-2r-1},
     \end{align*} 
     če je pa \(k\) sod pa
     \begin{align*}
-        8+8\sum_{r=1}^{\frac{k}{2}+1} (p+1)p^{k-2r-1}.
+        8+8\sum_{r=0}^{\frac{k}{2}-1} (p+1)p^{k-2r-1}.
     \end{align*}
-    (kjer faktor \(+8\) dobimo v primeru \(m=0\)). V izrazu opazimo vsoto geometrijskega zaporedja. Poenostavimo izraz za primer lihega \(k\) (sodo je analogno).
+    Število \(8\) pred vsoto dobimo v primeru, ko se vsi elementi okrajšajo in je \(m=0\). V izrazu opazimo vsoto geometrijskega zaporedja. Poenostavimo izraz za primer lihega \(k\) (sodo je analogno). Najprej izpostavimo konstante.
     \begin{align*}
         &\sum_{r=0}^{\frac{k-1}{2}} (p+1)p^{k-2r-1}\\
-        =& (p+1)p^{k-1}\sum_{r=0}^{\frac{k-1}{2}} \left(p^{-2}\right)^r \\
+        =& (p+1)p^{k-1}\sum_{r=0}^{\frac{k-1}{2}} \left(p^{-2}\right)^r
+    \end{align*}
+    Potem uporabimo formulo za geometrijsko vsoto in izraz poenostavimo.
+    \begin{align*}
         =& (p+1)p^{k-1} \frac{p^{-2\cdot \left(\frac{k-1}{2}+1\right)}-1}{p^{-2}-1} \\
         =& (p+1)p^{k-1} \frac{p^{-k-1}-1}{(1+p)(1-p)} p^2\\
         =& \frac{p^{-2} - p^{k-1}}{1-p} p^2\\
         =& \frac{p^{k+1} - 1}{p-1}
     \end{align*}
-    Tako smo pogazali, da je vseh možnih zapisov \(\alpha\) v želeni obliki ravno \(8\left(\frac{p^{k+1}-1}{p-1}\right)\), kar je enako številu vseh kvaternionov z normo \(p^k\). Ker lahko (po dokazu obstoja) vsak kvaternion napišemo v taki obliki je faktorizacija enolična.
+    Tako smo pokazali, da je vseh možnih zapisov \(\alpha\) v želeni obliki ravno \(8\left(\frac{p^{k+1}-1}{p-1}\right)\), kar je enako številu vseh kvaternionov z normo \(p^k\). Ker lahko (po dokazu obstoja) vsak kvaternion napišemo v taki obliki, je faktorizacija enolična.
 \end{dokaz}
 Oglejmo si analogno trditev v \(\Lambda'\) namesto v \(\bH(\Z)\).
 \begin{posledica}
@@ -286,11 +286,11 @@ Oglejmo si analogno trditev v \(\Lambda'\) namesto v \(\bH(\Z)\).
     Vsak element \(\alpha \in \Lambda'\) z \(\abs{\alpha} = p^k\) lahko enolično faktoriziramo kot \(\alpha = \pm p^r w_m\), kjer je \(w_m\) okrajšana beseda dolžine \(m\) nad množico \(S\) in \(k=2r+m\).
 \end{posledica}
 \begin{dokaz}
-    Vemo že, da lahko vsak \(\alpha\) napišemo enolično kot \(\alpha = \varepsilon p^r w_m\). To enačbo si lahko ogledamo modulo 2, \(\alpha \equiv \epsilon w_m \pmod 2\). Vsi generatorji \(\alpha_i\in S\) v \(w_m\) so prav tako \(\equiv 1 \pmod 2\) (saj so \(i\), \(j\) in \(k\) komponente sode, realna komponenta pa liha). Torej dobimo \(\alpha \equiv \varepsilon \pmod 2\). Ker je \(\alpha\) prav tako element \(\Lambda'\) je tudi \(\varepsilon \equiv \alpha \equiv 1 \pmod 2\). Torej je \(\varepsilon = \pm 1\).  
+    Vemo že, da lahko vsak \(\alpha\) napišemo enolično kot \(\alpha = \varepsilon p^r w_m\). To enačbo si lahko ogledamo modulo 2, \(\alpha \equiv \varepsilon w_m \pmod 2\). Vsi generatorji \(\alpha_i\in S\) v \(w_m\) so prav tako ekvivalentni \(1 \pmod 2\) (saj so \(i\), \(j\) in \(k\) komponente sode, realna komponenta pa liha). Torej dobimo \(\alpha \equiv \varepsilon \pmod 2\). Ker je \(\alpha\) prav tako element \(\Lambda'\), je tudi \(\varepsilon \equiv \alpha \equiv 1 \pmod 2\). Torej je \(\varepsilon = \pm 1\).  
 \end{dokaz}
 
 \subsubsection{Proste grupe}
-Vsak \(\alpha\in \Lambda'\) smo lahko enolično razpisali po generatorjih kot \(\pm p^k w_m\). Želimo si ogledati samo grupo besed \(w_m\), ki pa jo lahko zapišemo kot kvocient grupe \(\Lambda'\). Ta grupa je prosta, njen Caylejev graf pa ravno \((p+1)\)-regularno drevo. Tako bomo dobili povezavo med našo grupo generatorjev (s katero definiramo Ramanujanove grafe) in drevesom, ki prinaša mejo lastne vrednosti.
+Vsak \(\alpha\in \Lambda'\) smo lahko enolično razpisali po generatorjih kot \(\pm p^k w_m\). Želimo si ogledati samo grupo besed \(w_m\), ki pa jo lahko zapišemo kot kvocient grupe \(\Lambda'\). Ta grupa je prosta, njen Cayleyev graf pa ravno \((p+1)\)-regularno drevo. Tako bomo dobili povezavo med našo grupo generatorjev (s katero definiramo Ramanujanove grafe) in drevesom, ki prinaša mejo lastne vrednosti.
 
 Definiramo ekvivalenčno relacijo \(\sim\) na \(\Lambda\) z 
 \begin{align*}
@@ -299,16 +299,15 @@ Definiramo ekvivalenčno relacijo \(\sim\) na \(\Lambda\) z
 za neka \(m\) in \(n\). Ta relacija definira grupo \(\Lambda = \Lambda'/\sim\). Kvocientno projekcijo označimo z \(Q\).
 
 \begin{izrek}
-    Caylejev graf grupe \(\Lambda\) z generatorji \(Q(S)\) je (neskončno) \((p+1)\)-regularno drevo
+    Cayleyev graf grupe \(\Lambda\) z generatorji \(Q(S)\) je (neskončno) \((p+1)\)-regularno drevo
 \end{izrek}
 \begin{dokaz}
     Množica \(Q(S)\) je očitno velikosti \(p+1\), saj za \(\alpha,\beta\in S\), \(\alpha\sim \beta \implies \alpha=\beta\).
 
-    Po definiciji, \(Q(S)\) generira \(\Lambda\), torej je Caylejev graf \((p+1)\)-regularen in povezan. Potrebno je le dokazati, da je drevo. Če graf ni drevo ima cikel dolžine vsaj \(3\), označimo ga \(v_0, v_1, \ldots, v_n=v_0\). Brez škode za splošnost predpostavimo \(v_0=1\). Po definiciji grafa je \(v_1=\gamma_1, v_2 = \gamma_1 \cdot \gamma_2,\ldots,v_n = \gamma_1\cdots\gamma_n\) za neke \(\gamma_i\in Q(S)\). Ker je cikel daljši od 3 ne velja nikjer \(v_{i-1}\neq v_{i+1}\). Iz tega pa sledi, da je beseda \(\gamma_1\cdots\gamma_n\) okrajšana. Imamo pa tudi \(v_0=1\), torej \(1 = \gamma_1\cdots\gamma_n\), kar pa je protislovno. Torej takega cikla ni.
+    Po definiciji, \(Q(S)\) generira \(\Lambda\), torej je Cayleyev graf \((p+1)\)-regularen in povezan. Potrebno je le dokazati, da je drevo. Če graf ni drevo, ima cikel dolžine vsaj \(3\), označimo ga \(v_0, v_1, \ldots, v_n=v_0\). Brez škode za splošnost predpostavimo \(v_0=1\). Po definiciji grafa je \(v_1=\gamma_1, v_2 = \gamma_1 \cdot \gamma_2,\ldots,v_n = \gamma_1\cdots\gamma_n\) za neke \(\gamma_i\in Q(S)\). Ker ima cikel vsaj \(3\) vozlišča, ponovi se pa le prvo iz zadnje vozlišče, ne velja nikjer \(v_{i-1} = v_{i+1}\). Iz tega pa sledi, da je beseda \(\gamma_1\cdots\gamma_n\) okrajšana. Imamo pa tudi \(v_0=1\), torej \(1 = \gamma_1\cdots\gamma_n\), kar pa je protislovno. Torej takega cikla ni.
 \end{dokaz}
 
-
-Kot smo prej projecirali generatorje v \(\modZ{q}\), projeciramo tako tudi sedaj. Definiramo centralno podgrupo grupe \(\bH(\modZ{q})^\times\)
+Kot smo prej projecirali generatorje v \(\modZ{q}\), projeciramo tudi sedaj. Definiramo centralno podgrupo grupe \(\bH(\modZ{q})^\times\)
 \begin{align*}
     Z_q = \{\alpha \in \bH(\modZ{q})^\times \mid \alpha = \overline\alpha\}.
 \end{align*}
@@ -316,14 +315,14 @@ Projekcija v \(\modZ{q}\) je preslikava oblike \(\Lambda' \to\bH(\modZ{q})^\time
 \begin{align*}
     \Pi_q: \Lambda \to \bH(\modZ{q})^\times/Z_q.
 \end{align*}
-Jedro tega homomorfizma označimo z \(\Lambda(q)\) in, po prvem izreku o izomorfizmih, sliko označimo z \(\Lambda/\Lambda(q)\). Generatorje \(S\) lahko preslikamo v generatorje \(T\) kot \(T=(\Pi_q \circ Q)(S)\). Enostavno preverimo, da je tudi tukaj velikost \(T\) enaka \(p+1\). Dobimo nov Caylejev graf: graf grupe \(\Lambda/\Lambda(q)\) z generatorji \(T\). Označimo ga z \(Y^{p,q}\). Tudi ta graf je \((p+1)\)-regularen in povezan.
+Jedro tega homomorfizma označimo z \(\Lambda(q)\) in, po prvem izreku o izomorfizmih, sliko označimo z \(\Lambda/\Lambda(q)\). Generatorje \(S\) lahko preslikamo v generatorje \(T\) kot \(T=(\Pi_q \circ Q)(S)\). Enostavno preverimo, da je tudi tukaj velikost \(T\) enaka \(p+1\). Dobimo nov Cayleyev graf: graf grupe \(\Lambda/\Lambda(q)\) z generatorji \(T\). Označimo ga z \(Y^{p,q}\). Tudi ta graf je \((p+1)\)-regularen in povezan.
 
-Izkaže se, da sta grafa \(X^{p,q}\) in \(Y^{p,q}\) izomorfna. Rezultat ni preveč presenetljiv, saj obe konstrukciji izvirata iz kvaternionov. To lahko dokažemo na več načinov, najbolj elemenentaren se zanaša na klasifikacijo podgrup grupe \(\PSL(2, \modZ{q})\). Imamo kanoničen izomorfizem \(\beta:\bH(\modZ{q})^\times /Z_q\to \PGL_2(q)\); s to preslikavo lahko dobimo tudi \(\beta(T)=S\). Pokazati je potrebno le, da je slika \(\Lambda/\Lambda(q)\) enaka \(PSL(2, \modZ{q})\) ali \(\PGL(2, \modZ{q})\) (odvisno od \(\legendre{p}{q}\)).  Vse stroge podgrupe \(\PSL(2, \modZ{q})\) razen dveh pa imajo lastnost, da imajo normalno podgrupo \(N\), za katero sta \(N\) in \(G/N\) abelovi. Te dve izjemi pa sta kvečjemu velikosti 60 (v primeru alternirajoče grupe \(A_5\)). Če si ogledamo lastnosti slike vidimo, da je večja od \(60\) (zaradi zahteve \(q>p^8\)), grupa pa nima omenjene lastnosti - torej ne more biti podgrupa in je slika kar enaka \(\PSL(2, \modZ{q})\). Podrobnega dokaza si ne bomo ogledali
+Izkaže se, da sta grafa \(X^{p,q}\) in \(Y^{p,q}\) izomorfna. Rezultat ni preveč presenetljiv, saj obe konstrukciji izvirata iz strukture kvaternionov. To lahko dokažemo na več načinov, najbolj elementaren se zanaša na klasifikacijo podgrup grupe \(\PSL(2, \modZ{q})\). Imamo kanoničen izomorfizem \(\beta:\bH(\modZ{q})^\times /Z_q\to \PGL(2, q)\); s to preslikavo lahko dobimo tudi \(\beta(T)=S\). Pokazati je potrebno le, da je slika \(\Lambda/\Lambda(q)\) enaka \(PSL(2, \modZ{q})\) ali \(\PGL(2, \modZ{q})\) (odvisno od \(\legendre{p}{q}\)). Vse stroge podgrupe \(\PSL(2, \modZ{q})\) razen dveh pa imajo lastnost, da imajo normalno podgrupo \(N\), za katero sta \(N\) in \(G/N\) abelovi. Te dve izjemi pa sta kvečjemu velikosti 60 (v primeru alternirajoče grupe \(A_5\)). Če si ogledamo lastnosti slike, vidimo, da je večja od \(60\) (zaradi zahteve \(q>p^8\)), grupa pa nima omenjene lastnosti - torej ne more biti podgrupa in je slika kar enaka \(\PSL(2, \modZ{q})\). Podrobnega dokaza si ne bomo ogledali.
 
-TODO: Premisli, če bi bilo dobro ta dokaz predelati bolj podrobno (pg. 119)
+%TODO: Premisli, če bi bilo dobro ta dokaz predelati bolj podrobno (pg. 119)
 
 \subsubsection{Ramanujanova domneva}
-Da si ogledamo spekter grafov si bomo, podobno kot pri dokazu za Alon-Boppanovo mejo (\ref{alon-boppanova-meja-izrek}), morali ogledati sled grafa oziroma število poti, ki vodijo od vozlišča do samega sebe. Sled lahko izrazimo tudi na drugače, s številom rešitev enačbe, ki je podobna enačbi v Jacobijovem izreku o štirih kvadratih (\ref{jacobi-four-squares}). Enačba v Jacobijovem izreku je bila \(p=a^2+b^2+c^2+d^2\), tu bomo pa uporabili enačbo oblike \(p^m = a^2 + 4q^2(b^2+c^2+d^2)\). Število teh rešitev pa ni tako enostavno poiskati; tu nam pomaga Ramanujanova domneva, iz katere tudi izhaja ime ``Ramanujan'' v Ramanujanovih grafih. Domneva nam opisuje velikost koeficientov modularne forme. Kot smo videli v dokazu Jacobijevega izreka o štirih kvadratih lahko na problem iz teorije števil gledamo tako, da ga prevedemo na enakost \(\theta\) vrst. Koeficienti te vrste štejejo ravno število rešitev, omenili smo pa tudi, da je naša \(\theta\) vrsta tudi modularna forma. Podobno lahko tudi našo novo enakost preoblikujemo v \(\theta\) vrsto, kjer koeficienti štejejo število rešitev, vrsta pa je prav tako modularna forma. Če na dobljeni vrsti uporabimo Ramanujanovo domnevo, dobimo oceno za koeficiente in torej število rešitev enačbe.
+Da si ogledamo spekter grafov, si bomo, podobno kot pri dokazu za Alon-Boppanovo mejo (\ref{alon-boppanova-meja-izrek}), morali ogledati sled grafa oziroma število poti, ki vodijo od vozlišča do samega sebe. Sled lahko izrazimo tudi drugače, s številom rešitev enačbe, ki je podobna enačbi v Jacobijovem izreku o štirih kvadratih (\ref{jacobi-four-squares}). Enačba v Jacobijovem izreku je bila \(p=a^2+b^2+c^2+d^2\), tu bomo pa uporabili enačbo oblike \(p^m = a^2 + 4q^2(b^2+c^2+d^2)\). Število teh rešitev pa ni tako enostavno poiskati; tu nam pomaga Ramanujanova domneva, iz katere tudi izhaja ime ``Ramanujan'' v Ramanujanovih grafih. Domneva nam opisuje velikost koeficientov modularne forme. Kot smo videli v dokazu Jacobijevega izreka o štirih kvadratih, lahko na problem iz teorije števil gledamo tako, da ga prevedemo na enakost \(\theta\) vrst. Koeficienti te vrste štejejo ravno število rešitev, omenili smo pa tudi, da je naša \(\theta\) vrsta modularna forma. Podobno lahko tudi našo novo enakost preoblikujemo v \(\theta\) vrsto, kjer koeficienti štejejo število rešitev, vrsta pa je prav tako modularna forma. Če na dobljeni vrsti uporabimo Ramanujanovo domnevo, dobimo oceno za koeficiente in torej število rešitev enačbe.
 
 \begin{definicija}[Asimptotska rast]
     Asimptotska rast \(f(m) = O_\varepsilon(g(m))\) pomeni, da lahko za vsak \(\varepsilon>0\) poiščemo konstante \(C(\varepsilon)\) in \(m_0(\varepsilon)\), da velja
@@ -340,9 +339,9 @@ Da si ogledamo spekter grafov si bomo, podobno kot pri dokazu za Alon-Boppanovo 
         s(p^m) = \frac{4}{q(q^2-1)}\frac{p^{m+1}-1}{p-1} + O_\varepsilon \left(p^{\frac{m}{2}(1+\varepsilon)}\right).
     \end{align*}
 \end{izrek}
-Izrek je pravzaprav neposredna posledica Ramanujanove domneve, kot opisano, vendar ga bomo imenovali kar Ramanujanova domneva. Podobno kot pri dokazu Jacobijevega izreka o štirih kvadratih, ga ne bomo dokazali. Osredotočimo se raje na to, kako ta izraz uporabimo, da omejimo lastne vrednosti grafa. %TODO : kdo je dokazal
+Izrek je pravzaprav neposredna posledica Ramanujanove domneve, kot opisano, vendar ga bomo imenovali kar Ramanujanova domneva. Podobno kot pri Jacobijevem izreku o štirih kvadratih ga ne bomo dokazali. Osredotočimo se raje na to, kako ta izraz uporabimo za omejitev lastnih vrednosti grafa. %TODO : kdo je dokazal
 
-Želimo opisati število poti dolžine \(l\) v grafu, ki se začnejo in končajo v vozlišču \(v\), dodatno pa še zahtevamo, da ne obiščejo nobenega vozlišča dvakrat zapored (torej \(v_{i-1}\neq v_{i+1}\) če je \(v_i\) vozlišče, ki ga pot obišče v koraku \(i\)). Pri Caylejevih grafih izraz postane še lažji. Če imamo namreč pot, ki se začne v elementu \(v\) ga lahko pomnožimo z poljubnim elementom grupe \(g\), da dobimo pot v elementu \(g\cdot v\). Torej je število poti neodvisno od začetnega vozlišča in za to uporabimo oznako \(\rho(l)\) za število poti v grafu \(X^{p,q}\) dolžine \(l\) brez zaporedno ponovljenih vozlišč.
+Želimo opisati število poti dolžine \(l\) v grafu, ki se začnejo in končajo v vozlišču \(v\), dodatno pa še zahtevamo, da ne obiščejo nobenega vozlišča dvakrat zapored (torej \(v_{i-1}\neq v_{i+1}\), če je \(v_i\) vozlišče, ki ga pot obišče v koraku \(i\)). Pri Cayleyevih grafih izraz postane še lažji. Če imamo namreč pot, ki se začne v elementu \(v\), ga lahko pomnožimo z poljubnim elementom grupe \(g\), da dobimo pot v elementu \(g\cdot v\). Torej je število poti neodvisno od začetnega vozlišča in lahko uporabimo oznako \(\rho(l)\) za število poti v grafu \(X^{p,q}\) dolžine \(l\) brez zaporedno ponovljenih vozlišč.
 
 \begin{izrek}
     Za \(m\in \N\) velja
@@ -351,30 +350,34 @@ Izrek je pravzaprav neposredna posledica Ramanujanove domneve, kot opisano, vend
     \end{align*}
 \end{izrek}
 \begin{dokaz}
-    Kot že vemo sta grafa \(X^{p,q}\) in \(Y^{p,q}\) izomorfna. Namesto v \(X^{p,q}\) bomo torej trditev dokazali za poti v \(Y^{p,q}\). Naj bodo \(1=v_0, v_1, \ldots, v_{l-1}, v_l=1\) vozlišča v poti dolžine \(l\) kot v definiciji \(\rho(l)\). Ker je graf Caylejev ga lahko razpišemo po generatorjih \(t_i\in T\) in preko kvocientne projekcije vsak \(t_i\) zapišemo enolično kot \(t_i = \Pi_q(\gamma_i)\). Ker pot ni obiskala vozlišča dvakrat zapored je beseda \(\gamma_1 \cdots \gamma_l\) okrajšana in, ker velja \(\Pi_q(\gamma_1 \cdots \gamma_l) = t_1\cdots t_l = v_l = 1\), je beseda \(\gamma_1 \cdots \gamma_l\) v \(\Lambda(q)\). Torej \(\rho(l)\) pravzaprav šteje okrajšane v \(\Lambda(q)\), ki so dolžine \(l\) v \(\Lambda\).
+    Kot že vemo, sta grafa \(X^{p,q}\) in \(Y^{p,q}\) izomorfna. Namesto v \(X^{p,q}\) bomo torej trditev dokazali za poti v \(Y^{p,q}\). Naj bodo \(1=v_0, v_1, \ldots, v_{l-1}, v_l=1\) vozlišča v poti dolžine \(l\) kot v definiciji \(\rho(l)\). Ker je graf Cayleyev, ga lahko razpišemo po generatorjih \(t_i\in T\) in preko kvocientne projekcije vsak \(t_i\) zapišemo enolično kot \(t_i = \Pi_q(\gamma_i)\). Ker pot ni obiskala vozlišča dvakrat zapored, je beseda \(\gamma_1 \cdots \gamma_l\) okrajšana in, ker velja \(\Pi_q(\gamma_1 \cdots \gamma_l) = t_1\cdots t_l = v_l = 1\), je beseda \(\gamma_1 \cdots \gamma_l\) v \(\Lambda(q)\). Torej \(\rho(l)\) pravzaprav šteje okrajšane besede v \(\Lambda(q)\), ki so dolžine \(l\) v \(\Lambda\).
 
-    Sedaj si izberemo \(a, b, c, d\in \Z\), ki rešijo enačbo \(p^m = a^2 + 4q^2 (b^2+c^2+d^2)\). To lahko zapišemo tudi kot kvaternion \(\alpha = a + q(b'i+c'j+d'k)\), ki ima normo \(p^m\) in ima sode koeficiente \(b, c\) in \(d\), kar pomeni, da je v \(\Lambda'\) in njegov ekvivalenčni razred v \(\Lambda(q)\). Podobno, kot smo faktor \(4\) uporabili, da smo povedali, da so koeficienti sodi, lahko faktor \(q^2\) uporabimo, da povemo, da so koeficienti deljivi tudi z \(q\). Torej dobimo enakost
+    Sedaj si izberemo \(a, b, c, d\in \Z\), ki rešijo enačbo \(p^m = a^2 + 4q^2 (b^2+c^2+d^2)\). To lahko zapišemo tudi kot kvaternion \(\alpha = a + q(b'i+c'j+d'k)\), ki ima normo \(p^m\) in ima sode koeficiente \(b, c\) in \(d\), kar pomeni, da je v \(\Lambda'\) in njegov ekvivalenčni razred v \(\Lambda(q)\). Podobno kot smo faktor \(4\) uporabili, da smo povedali, da so koeficienti sodi, lahko faktor \(q^2\) uporabimo, da povemo, da so koeficienti deljivi tudi z \(q\). Torej dobimo enakost
     \begin{align*}
-        s(p^m) = \lvert \{\alpha = a+bi+cj+dk \in \Lambda'\mid \lvert \alpha\rvert = p^m \land\, q\mid b,c,d \}\rvert
+        s(p^m) = \lvert \{\alpha = a+bi+cj+dk \in \Lambda'\mid \lvert \alpha\rvert = p^m \land\, q\mid b,c,d \}\rvert.
     \end{align*}
     
-    Sedaj povežemo besede z izrazom na desni. Če je \(\alpha\) nek kvaternion v množici na desni strani enačbe, potem ga lahko po izreku \ref{enolicna-faktorizacija-lambdacrtica} enolično faktoriziramo kot \(\alpha = \pm p^l w_{m-2l}\), kjer je \(w_{m-2l}\) beseda dolžine \(m-2l\) v \(\Lambda\), ekvivalenčni razred pa v \(\Lambda(q)\).
+    Sedaj povežemo besede z izrazom na desni. Če je \(\alpha\) nek kvaternion v množici na desni strani enačbe, potem ga lahko po izreku \ref{enolicna-faktorizacija-lambdacrtica} enolično faktoriziramo kot \(\alpha = \pm p^l w_{m-2l}\), kjer je \(w_{m-2l}\) beseda dolžine \(m-2l\) v \(\Lambda\), katere ekvivalenčni razred leži v \(\Lambda(q)\).
 
     Obratno, vsaka beseda \(w\) nam da dva kvaterniona te oblike, \(+ p^l w\) in \(-p^l w\).  Dobimo torej
     \begin{align*}
-        s(p^m) = \lvert \{\alpha\in \Lambda'\mid \alpha \in \Lambda(q)\land \abs{\alpha}=p^m\} \rvert 2 \sum_{0\leq l \leq \frac{m}{2}} \rho(m-2l).
+        s(p^m) = \lvert \{\alpha\in \Lambda'\mid \alpha \in \Lambda(q)\land \abs{\alpha}=p^m\} \rvert = 2 \sum_{0\leq l \leq \frac{m}{2}} \rho(m-2l).
     \end{align*}
 \end{dokaz}
 
-Tako smo število rešitev enačbe povezali z izrazom, za katerega že vemo, da je povezan z lastnimi vrednostmi. Preko polinomov Čebiševa pa lahko sled zapišemo tako, da bolj eksplicitno uporablja lastne vrednosti grafa.
+Tako smo število rešitev enačbe povezali z izrazom, za katerega že vemo, da je povezan z lastnimi vrednostmi. S pomočjo polinomov Čebiševa pa lahko sled zapišemo tako, da bolj eksplicitno uporablja lastne vrednosti grafa.
 \begin{definicija}[Polinomi Čebiševa drugega tipa]
     Za stopnjo \(m\) definiramo polinom Čebiševa drugega tipa kot 
     \begin{align*}
-        U_m(\cos(\theta)) = \frac{\sin(\theta(m+1))}{\sin(\theta)}
+        U_m(\cos(\theta)) = \frac{\sin(\theta\cdot(m+1))}{\sin(\theta)}
     \end{align*}
     ali rekurzivno kot
     \begin{align*}
-        U_{m+1}(x) = 2xU_m(x) - U_{m-1}(x).
+        U_{m+1}(x) = 2xU_m(x) - U_{m-1}(x)
+    \end{align*}
+    z začetnimi pogoji
+    \begin{align*}
+        U_0(x) = 1 && U_1(x)=2x
     \end{align*}
 \end{definicija}
 Polinome lahko opišemo tudi z generatorsko funkcijo kot
@@ -383,79 +386,84 @@ Polinome lahko opišemo tudi z generatorsko funkcijo kot
 \end{align*}
 ali, preko substitucije, kot
 \begin{align*}
-    \sum_{m=0}^{\infty} (k-1)^{\frac{m}{2}}U_m\left(\frac{x}{2\sqrt{k-1}}\right)t^m = \frac{1}{1-xt+(k-1)t^2}
+    \sum_{m=0}^{\infty} (k-1)^{\frac{m}{2}}U_m\left(\frac{x}{2\sqrt{k-1}}\right)t^m = \frac{1}{1-xt+(k-1)t^2}.
 \end{align*}
 
 \begin{izrek}
-    Če so \(\lambda_j\) lastne vrednosti in \(n\) število vozlišč grafa \(X^{p,q}\) potem velja
+    Če so \(\lambda_j\) lastne vrednosti in \(n\) število vozlišč grafa \(X^{p,q}\), potem velja
     \begin{align*}
         n\sum_{0\leq l \leq \frac{m}{2}} \rho(m-2l) = p^{\frac{m}{2}}\sum_{j=0}^{n-1} U_m \left(\frac{\lambda_j}{2\sqrt{p}}\right)
     \end{align*}
 \end{izrek}
-
 \begin{dokaz}
-    Definiramo si matriko, ki opisuje število poti med dvema vozliščema grafa. Vrednosti na diagonali (torej z indeksi \(i, i\)) te matrike \(A_l\) bodo enaki \(\rho(l)\). V splošnem definiramo vrednost \((A_l)_{i,j}\) kot število poti dolžine \(l\) od \(i\) do \(j\), ki ne obiščejo vozlišča dvakrat zapored kot v definiciji \(\rho\).
+    Definirajmo matriko, ki opisuje število poti med dvema vozliščema grafa. Vrednosti na diagonali (torej z indeksi \((i, i)\)) te matrike \(A_l\) bodo enake \(\rho(l)\). V splošnem definiramo vrednost \((A_l)_{i,j}\) kot število poti dolžine \(l\) od \(i\) do \(j\), ki ne obiščejo vozlišča dvakrat zapored kot v definiciji \(\rho\).
 
-    Te matrike imajo nekaj enostavnih rekurzivnih lastnosti. Prvi dve sta \(A_1^2 = A_2 + (p-1)\cdot I\) in \(A_1 A_l = A_lA_1 = A_{l+1}+pA_{l-1}\). Preko njih lahko enostavno dobimo tudi generatorsko funkcijo
+    Te matrike imajo nekaj preprostih rekurzivnih lastnosti. Prvi dve sta \(A_1^2 = A_2 + (p-1)\cdot I\) in \(A_1 A_l = A_lA_1 = A_{l+1}+pA_{l-1}\). Preko njih lahko enostavno dobimo tudi generatorsko funkcijo
     \begin{align*}
         \sum_{l=0}^\infty A_lt^l = \frac{1-t^2}{1-At+pt^2}
     \end{align*}
-    in, preko substitucije \(T_m = \sum_{0\leq l \leq \frac{m}{2}} A_{m-2l}\) dobimo še generatorsko funkcijo za \(T_m\)
+    in preko substitucije \(T_m = \sum_{0\leq l \leq \frac{m}{2}} A_{m-2l}\) dobimo še generatorsko funkcijo za \(T_m\)
     \begin{align*}
         \sum_{m=0}^\infty T_m t^m = \frac{1}{1-At+pt^2}.
     \end{align*}
 
     Kot vidimo pa se ta funkcija ujema z generatorsko funkcijo za polinome Čebiševa, torej velja
     \begin{align*}
-        T_m = p^{\frac{m}{2}} U_m\left(\frac{A}{2\sqrt{k-1}}\right)
+        T_m = p^{\frac{m}{2}} U_m\left(\frac{A}{2\sqrt{k-1}}\right).
     \end{align*}
     Enostavno lahko poiščemo lastne vrednosti polinoma matrike. Namreč, če je \(q\) polinom in \(A\) matrika z lastno vrednostjo \(\lambda\), potem je \(q(\lambda)\) lastna vrednost matrike \(q(A)\). Torej lahko, če so \(\lambda_i\) lastne vrednosti \(A\), sled matrike \(T_m\) napišemo kot
     \begin{align*}
-        \Tr T_m = p^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_i}{2\sqrt{p}}\right).
+        \Tr T_m = p^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_j}{2\sqrt{p}}\right).
     \end{align*}
     Namesto zveze z polinoma Čebiševa pa lahko sled \(T_m\) izračunamo tudi po definiciji
     \begin{align*}
         \Tr T_m = \sum_{0\leq l\leq \frac{m}{2}} \Tr A_{m-2l}
     \end{align*}
-    Kot že vemo ima matrika \(A_{m-2l}\) na diagonali vse vrednosti enake, saj smo jo dobili kot Caylejev graf grupe. Torej je izraz enak
+    Kot že vemo ima matrika \(A_{m-2l}\) na diagonali vse vrednosti enake, saj smo jo dobili kot Cayleyev graf grupe. Torej je izraz enak
     \begin{align*}
         \sum_{0\leq l\leq \frac{m}{2}} \rho(m-2l).
     \end{align*}
 
     Če to združimo skupaj z izrazom iz polinomov Čebiševa dobimo
     \begin{align*}
-        \sum_{0\leq l\leq \frac{m}{2}} \rho(m-2l) = p^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_i}{2\sqrt{p}}\right)
+        \sum_{0\leq l\leq \frac{m}{2}} \rho(m-2l) = p^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_i}{2\sqrt{p}}\right).
     \end{align*}
 \end{dokaz}
 
 Sedaj lahko združimo oba izreka skupaj, da dobimo enakost, ki povezuje število rešitev enačbe z lastnimi vrednostmi grafa
 \begin{align*}
-    s(p^m) = p^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_i}{2\sqrt{p}}\right)
+    s(p^m) = p^{\frac{m}{2}}\sum_{j=1}^n U_m \left(\frac{\lambda_j}{2\sqrt{p}}\right)
 \end{align*}
 
 Po definiciji polinomov Čebiševa pa je to kar
 \begin{align*}
     s(p^m) = \frac{2}{n} p^\frac{m}{2}\sum_{j=0}^{n-1}\frac{\sin((m+1)\theta_j)}{\sin \theta_j}
 \end{align*}
-za \(\lambda_j = 2\sqrt{p}\cos\theta_j\). Če so \(\theta_j\) vsi realni (z izjemo trivialnih vrednosti \(i\log\sqrt p\), ki nam da lastno vrednost \(p+1\) in \(\pi + i \log\sqrt{p}\), ki nam da \(-(p+1)\)), potem bo \(\lambda_k \leq 2\sqrt{p}\), kar je pogoj za Ramanujanove grafe. % https://chatgpt.com/c/67b37ad9-7168-800d-b996-661a838a6677
+za \(\lambda_j = 2\sqrt{p}\cos\theta_j\). Če so \(\theta_j\) vsi realni (z izjemo trivialnih vrednosti \(i\log\sqrt p\), iz katere dobimo lastno vrednost \(p+1\), in \(\pi + i \log\sqrt{p}\), ki nam da \(-(p+1)\)), potem bo \(\lambda_j \leq 2\sqrt{p}\), kar je pogoj za Ramanujanove grafe. % https://chatgpt.com/c/67b37ad9-7168-800d-b996-661a838a6677
 
-Združimo sedaj naš izraz, ki uporablja polinome Čebiševa z izrazom, ki smo ga dobili iz Ramanujanove domneve.
+Združimo sedaj naš izraz, ki uporablja polinome Čebiševa, z izrazom, ki smo ga dobili iz Ramanujanove domneve.
 \begin{align}\label{ramanujanova-domneva-izraz}
     \frac{4}{q(q^2-1)}\frac{p^{m+1}-1}{p-1} + O_\varepsilon \left(p^{\frac{m}{2}(1+\varepsilon)}\right) = \frac{2}{n} p^\frac{m}{2}\sum_{j=0}^{n-1}\frac{\sin((m+1)\theta_j)}{\sin \theta_j}
 \end{align}
-Prvi del leve strani enačbe opisuje prispevek trivialnih lastnih vrednosti. To lahko enostavno preverimo, tako da izračunamo del vsote, ki pripada le tej lastni vrednosti.
+Prvi člen leve strani enačbe opisuje prispevek trivialnih lastnih vrednosti. To lahko enostavno preverimo, tako da izračunamo del vsote desne strani, ki pripada le tej lastni vrednosti.
 \begin{align*}
-    \frac{2}{n} p^\frac{m}{2}\frac{\sin((m+1)\theta_0)}{\sin \theta_0} \\
-    \frac{2}{n}p^\frac{m}{2}\frac{\sin((m+1)i\log\sqrt p)}{\sin i\log\sqrt p} \\
-    \frac{2}{n}p^\frac{m}{2}\frac{i\sinh((m+1)\log\sqrt p)}{i\sinh \log\sqrt p} \\
-    \frac{2}{n}p^\frac{m}{2}\frac{ \sqrt{p}^{m+1} - \sqrt{p}^{-m-1}}{\sqrt{p} - \sqrt{p}^{-1}} \\
-    \frac{2}{n}p^\frac{m}{2}\frac{ \sqrt{p}^{m+2} - \sqrt{p}^{-m}}{p - 1} \\
-    \frac{2}{n}\frac{ \sqrt{p}^{2m+2} - 1}{p - 1} \\ 
-    \frac{2}{n}\frac{ p^{m+1} - 1}{p - 1} 
+    &\frac{2}{n} p^\frac{m}{2}\frac{\sin((m+1)\theta_0)}{\sin \theta_0} \\
+    =&\frac{2}{n}p^\frac{m}{2}\frac{\sin((m+1)i\log\sqrt p)}{\sin i\log\sqrt p}
 \end{align*}
-V temu izrazu \(n\) predstavlja število vozlišč, kar pa že vemo, da je enako \(q(q^2-1)\), če je \(\legendre{p}{q}=1\) in \(q(q^2-1)/2\), če je \(\legendre{p}{q}=-1\). V prvem primeru dobimo dvodelen graf (torej ima še trivialno lastno vrednost \(-(p+1)\)), v drugem primeru pa graf ni dvodelen (in je \(p+1\) edina trivialna lastna vrednost).
+V izrazu lahko sinuse prepišemo v hiperbolične sinuse.
+\begin{align*}
+    =\frac{2}{n}p^\frac{m}{2}\frac{i\sinh((m+1)\log\sqrt p)}{i\sinh \log\sqrt p}
+\end{align*}
+Razpišemo hiperbolični sinus po definiciji in poenostavimo izraz do konca.
+\begin{align*}
+    =&\frac{2}{n}p^\frac{m}{2}\frac{ \sqrt{p}^{m+1} - \sqrt{p}^{-m-1}}{\sqrt{p} - \sqrt{p}^{-1}} \\
+    =&\frac{2}{n}p^\frac{m}{2}\frac{ \sqrt{p}^{m+2} - \sqrt{p}^{-m}}{p - 1} \\
+    =&\frac{2}{n}\frac{ \sqrt{p}^{2m+2} - 1}{p - 1} \\ 
+    =&\frac{2}{n}\frac{ p^{m+1} - 1}{p - 1} 
+\end{align*}
+V tem izrazu \(n\) predstavlja število vozlišč, ki je enako \(q(q^2-1)\), če je \(\legendre{p}{q}=1\) in \(q(q^2-1)/2\), če je \(\legendre{p}{q}=-1\). V prvem primeru dobimo dvodelen graf (torej ima še trivialno lastno vrednost \(-(p+1)\)), v drugem primeru pa graf ni dvodelen (in je \(p+1\) edina trivialna lastna vrednost).
 
-Nadaljujmo zgornji račun z predpostavko, da je \(\legendre{p}{q}=1\). V tem primeru dobimo
+Nadaljujmo zgornji račun s predpostavko, da je \(\legendre{p}{q}=1\). V tem primeru dobimo
 \begin{align*}
     \frac{2}{q(q^2-1)}\frac{ p^{m+1} - 1}{p - 1},
 \end{align*}
@@ -463,20 +471,19 @@ enak račun pa bi lahko izvedli tudi za njegovo trivialno lastno vrednost \(-(p+
 \begin{align*}
     \frac{4}{q(q^2-1)}\frac{ p^{m+1} - 1}{p - 1}.
 \end{align*}
-Enak izraz dobimo, če izračunamo primer za \(\legendre{p}{q}\) - ima za polovico manj vozlišč, nima pa druge trivialne lastne vrednosti. Če te vrednosti odstranimo iz enačbe (\ref{ramanujanova-domneva-izraz}) dobimo
+Enak izraz dobimo, če izračunamo primer za \(\legendre{p}{q}=-1\) -- ima za polovico manj vozlišč, nima pa druge trivialne lastne vrednosti. Če te vrednosti odstranimo iz enačbe (\ref{ramanujanova-domneva-izraz}), dobimo
 \begin{align*}
-    \frac{2}{n}\sum_{\theta_j \text{ netrivialna}} \frac{\sin((m+1)\theta_j)}{\sin \theta_j} = O_\varepsilon\left(p^{\frac{m}{2}\varepsilon}\right)
+    \frac{2}{n}\sum_{\theta_j \text{ netrivialna}} \frac{\sin((m+1)\theta_j)}{\sin \theta_j} = O_\varepsilon\left(p^{\frac{m}{2}\varepsilon}\right).
 \end{align*}
-% TODO: change varepsilon to have m/2 eps everywhere (not m/2(1+eps))
 
-Spomnimo se, da smo definirali \(\theta_j\) z \(\lambda_j = 2\sqrt{p}\cos\theta_j\). Vemo, da je \(\lambda_j\) vedno realen (saj je lastna vrednost grafa), s tem pa lahko omejimo vrednosti \(\theta_j\). Vemo že, da če so \(\lambda_j\) v ramanujanovem intervalu je \(\theta_j\) realen, če pa je \(\lambda_j\) izven ramanujanovega intervala pa ga lahko zapišemo kot imaginarna vrednost. Tako lahko za take \(\theta_j\) definiramo
+Spomnimo se, da smo definirali \(\theta_j\) z \(\lambda_j = 2\sqrt{p}\cos\theta_j\). Vemo, da je \(\lambda_j\) vedno realen (saj je lastna vrednost grafa), s tem pa lahko omejimo vrednosti \(\theta_j\). Vemo tudi, da če so \(\lambda_j\) v Ramanujanovem intervalu, je \(\theta_j\) realen, če pa je \(\lambda_j\) izven Ramanujanovega intervala, pa ga lahko zapišemo kot imaginarna vrednost. Tako lahko imaginarne \(\theta_j\) definiramo kot
 \begin{align*}
-    \begin{cases}
-        \theta_j = i\psi_j & 2\sqrt{p} < \lambda_j < p+1 \\
-        \theta_j = \pi + i\psi_j & -(p+1) < \lambda_j < -2\sqrt{p}
+    \theta_j =\begin{cases}
+        i\psi_j & 2\sqrt{p} < \lambda_j < p+1 \\
+        \pi + i\psi_j & -(p+1) < \lambda_j < -2\sqrt{p}
     \end{cases}
 \end{align*}
-V obeh primerih velja \(0<\psi_j<\log\sqrt{p}\). Če torej nek \(\theta_j\) ni realen lahko ta izraz v vsoti napišemo kot
+V obeh primerih velja \(0<\psi_j<\log\sqrt{p}\). Če torej nek \(\theta_j\) ni realen, lahko ustrezen člen vsote napišemo kot
 \begin{align*}
     \frac{2}{n}\frac{\sin((m+1)\theta_j)}{\sin\theta_j} = \frac{2}{n}\frac{\sinh((m+1)\psi_j)}{\sinh \psi_j} > 0.
 \end{align*}
@@ -486,11 +493,9 @@ Vrednost realnih \(\theta_j\) pa lahko omejimo. Velja namreč
 \begin{align*}
     \abs{\frac{\sin((m+1)\theta_j)}{\sin(\theta_j)}} \leq m+1.
 \end{align*}
-Ker je v vsoti kvečjemu \(n\) členov lahko s trikotniško neenakostjo dobimo
+Ker je v vsoti kvečjemu \(n\) členov, lahko s trikotniško neenakostjo dobimo
 \begin{align*}
     \abs{\frac{2}{n}\sum_{\theta_j \text{realni}} \frac{\sin((m+1)\theta_j)}{\sin\theta_j}} \leq 2(m+1).
 \end{align*}
 
-Členi, ki pripadajo realnim \(\theta_j\) torej asimptotsko rastejo linearno, členi za imaginarne \(\theta_j\) pa rastejo eksponentno (neodvisno od \(\varepsilon\)). Imamo pa mejo, da vsota netrivialnih členov \(O_\varepsilon\left(p^{\frac{m}{2}\varepsilon}\right)\). Če izberemo \(\varepsilon\) dovolj majhen, bo prispevek imaginarnih \(\theta_j\) rastel hitreje od te meje, kar pa nas pripelje do protislovja. Torej takih imaginarnih \(\theta_j\) ni, kar pomeni, da so vse netrivialne lastne vrednosti pod Ramanujanovo mejo in grafi \(X^{p,q}\) so Ramanujanovi.
-
-% prostost equiv poti dreves
+Členi, ki pripadajo realnim \(\theta_j\), torej asimptotsko rastejo linearno, členi za imaginarne \(\theta_j\) pa rastejo eksponentno (neodvisno od \(\varepsilon\)). Imamo pa mejo, da je vsota netrivialnih členov \(O_\varepsilon\left(p^{\frac{m}{2}\varepsilon}\right)\). Če izberemo \(\varepsilon\) dovolj majhen, bo prispevek imaginarnih \(\theta_j\) rastel hitreje od te meje, kar nas pripelje do protislovja. Torej takih imaginarnih \(\theta_j\) ni, kar pomeni, da so vse netrivialne lastne vrednosti znotraj Ramanujanove meje in grafi \(X^{p,q}\) so Ramanujanovi.

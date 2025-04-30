@@ -1,12 +1,12 @@
-from random_regular_networkx import random_regular, is_random_ramanujan
+from random_regular_naive import random_regular, is_random_ramanujan
 from utils import second_eigenvalue
 from tqdm import tqdm
 
-attempts_per_size = 1000
+attempts_per_size = 10000
 vertex_step = 10_000
-max_size = 100_001
-d = 21
-starting_vertices =  90_000#d + 1 
+max_size = 24+1
+d = 4
+starting_vertices =  24#d + 1 
 assert starting_vertices > d
 
 processes = 10

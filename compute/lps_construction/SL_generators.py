@@ -1,7 +1,7 @@
 from math import sqrt
 
 
-def get_reprs(p,q):
+def get_reprs(p: int, q: int) -> list[list[int]]:
     num_representations = p+1
     all_representations = []
 
@@ -20,6 +20,10 @@ def get_reprs(p,q):
     
     assert len(all_representations) == num_representations
     return all_representations
+
+print(get_reprs(5, 29))
+1/0
+
 
 def legendre(p,q):
     if p % q == 0:
@@ -47,7 +51,7 @@ reduced_primes = []
 for prime in primes:
     if prime % 4 == 1:
         reduced_primes.append(prime)
-
+print(reduced_primes)
 # Find pairs of primes with p < q and (p/q) == 1
 
 def matching_pair(p,q):
