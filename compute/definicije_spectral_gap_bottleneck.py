@@ -72,7 +72,7 @@ def one_connection(n: int) -> np.ndarray:
 n = 31
 
 from utils import is_ramanujan
-matrix = one_connection(6)
+matrix = one_connection(10)
 print(matrix)
 print(spectral_gap(matrix))
 print(is_ramanujan(matrix))
