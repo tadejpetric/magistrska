@@ -215,6 +215,46 @@ Determinanta te matrike je
 \end{align*}
 torej je matrika obrnljiva in jo lahko gledamo kot element grupe \(\PGL(2, \modZ{q})\). Inverz kvaterniona lahko enostavno poiščemo preko konjungacije. Če je \(\alpha\) kvaternion, je \(\overline{\alpha}/\abs{\alpha}\) njegov inverz. Konjugiran element tudi reši enačbo in je torej eden izmed elementov naših matrik. Deljenje z normo ne povzroča težav, saj delujemo v grupi \(\PGL\), kjer so elementi enaki, če se razlikujejo do skalarja natančno -- torej \(\overline{\alpha}/\abs{\alpha}\) in \(\overline{\alpha}\) predstavljata isti element grupe, oba inverz elementa \(\alpha\). Množica teh matrik je torej simetrična. Če je \(\legendre{p}{q}=-1\), identiteta ni element te množice. V \(\PGL\) je identiteta matrika, ki ima na diagonali same enake elemente, zunaj diagonale pa je enaka \(0\). Determinanta te matrike je \(k^2\) za nek \(k\), izračunali pa smo že, da je determinanta tudi enaka \(p\). Torej bi bil \(k^2 \equiv p \pmod q\), kar pa pomeni, da je \(p\) kvadratni ostanek in bi moralo veljati \(\legendre{p}{q}=1\). Pod predpostavko, da velja \(\legendre{p}{q}=-1\), imamo torej \(p+1\) matrik, ki tvorijo simetrično množico brez identitete in jih lahko uporabimo kot generatorje Cayleyevega grafa. Grupa \(\PGL(2, \modZ{q})\) ima \(q(q^2-1)\) elementov, torej dobimo \(p+1\)-regularen graf na \(q(q^2-1)\) vozliščih. Kasneje bomo dokazali, da so ti grafi povezani in Ramanujanovi. Izkaže pa se, da so dvodelni; ena particija pripada podmnožici \(\PSL\), druga pa njenemu komplementu.
 
+\begin{primer}
+    Zaradi visokih dimenzij si primera nastalega Ramanujanovega grafa ne moremo pogledati, si pa lahko ogledamo generatorje. Če vzamemo \(p=5\), velja pogoj \(p \equiv 1 \pmod 4\). Po našem postopku dobimo \(6\) različnih rešitev enačbe \(p^2 = a_0^2 + a_1^2 + a_2^2 + a_3^2\).
+    \begin{align*}
+        p^2 = 1^2 + (-2)^2 + 0^2 + 0^2 && p^2 = 1^2 + 2^2 + 0^2 + 0^2 \\
+        p^2 = 1^2 + 0^2 + (-2)^2 + 0^2 && p^2 = 1^2 + 0^2 + 2^2 + 0^2 \\
+        p^2 = 1^2 + 0^2 + 0^2 + (-2)^2 && p^2 = 1^2 + 0^2 + 0^2 + 2^2 \\
+    \end{align*}
+    Iz teh šestih rešitev dobimo šest generatorjev, ki jih potrebujemo za konstrukcijo Cayleyevega grafa.
+    %\begin{bmatrix}
+    %    a_0 +ia_1 & a_2+ia_3 \\
+    %    -a_2+ia_3 & a_0-ia_1
+    %\end{bmatrix}.
+    \begin{align*}
+        \begin{bmatrix}
+            1-2i & 0 \\
+            0 & 1+2i
+        \end{bmatrix} &&
+        \begin{bmatrix}
+            1+2i & 0 \\
+            0 & 1-2i
+        \end{bmatrix} \\
+        \begin{bmatrix}
+            1 & -2 \\
+            2 & 1
+        \end{bmatrix} &&
+        \begin{bmatrix}
+            1 & 2 \\
+            -2 & 1
+        \end{bmatrix} \\
+        \begin{bmatrix}
+            1 & -2i \\
+            2i & 1
+        \end{bmatrix} &&
+        \begin{bmatrix}
+            1 & 2i \\
+            -2i & 1
+        \end{bmatrix}
+    \end{align*}
+\end{primer}
+
 V primeru, da velja \(\legendre{p}{q} = 1\), pa k konstrukciji pristopimo z uporabo grup \(\PSL\). V tem primeru obstaja tak \(k\), da velja \(p\equiv k^2 \pmod q\). Potem seveda obstaja tudi \(k^{-1}\) in lahko napišemo \(k^{-2} \equiv p^{-1}\pmod q\). Vsako matriko od prej lahko pomnožimo s skalarno matriko
 \begin{align*}
     \begin{bmatrix}
