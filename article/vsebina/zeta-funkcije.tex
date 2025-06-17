@@ -7,7 +7,7 @@ Začeli bomo z običajno Riemannovo zeta funkcijo \cite{freitag1}. Enostavno jo 
     \zeta(z) &= \sum_{n=1}^\infty \frac{1}{n^z} \\ 
     &= \prod_{p \text{ praštevilo}} \left(1-p^{-z}\right)^{-1}.
 \end{align*}
-Funkcijo \((1-z)\zeta(z)\) lahko analitično razširimo na celotno kompleksno ravnino, torej lahko tudi \(\zeta\) razširimo v meromorfno funkcijo na \(\C\) s polom v \(z=1\). Že iz alternativnega zapisa funkcije vidimo, da je tesno povezana s praštevili, Riemann pa je razširjeno različico uporabil, da je dokazal praštevilski izrek, ki pravi, da število praštevil manjših od števila \(n\) asimptotsko raste z \(\frac{n}{\log{n}}\). Ničle \(\zeta\) funkcije pa nam o tem izreku lahko povejo še več, z njimi lahko opišemo napako v oceni iz praštevilskega izreka in s tem bolje razumemo porazdelitev praštevil.
+Funkcijo \((1-z)\zeta(z)\) lahko analitično razširimo na celotno kompleksno ravnino, torej lahko tudi \(\zeta\) razširimo v meromorfno funkcijo na \(\C\) s polom v \(z=1\). Že iz alternativnega zapisa funkcije vidimo, da je tesno povezana s praštevili, Riemann pa je razširjeno različico uporabil, da je dokazal praštevilski izrek, ki pravi, da število praštevil manjših od števila \(n\) asimptotsko raste kot \(\frac{n}{\log{n}}\). Ničle \(\zeta\) funkcije pa nam o tem izreku lahko povejo še več, z njimi lahko opišemo napako v oceni iz praštevilskega izreka in s tem bolje razumemo porazdelitev praštevil.
 
 Ničle Riemannove zeta funkcije delimo na trivialne in na netrivialne. Najprej si oglejmo trivialne ničle ter območja, kjer je enostavno videti, da funkcija nima ničel. Nerazširjena zeta funkcija (torej na vrednostih \(\Re(z) > 1\)) nima ničel. Praštevilski izrek je ekvivalenten temu, da na premici \(\Re(z) = 1\) ni ničel \cite{harolddiamond}. Za negativno polravnino (\(\Re(z) \leq 0\)) je enostavno poiskati ničle, tu dobimo \emph{trivialne ničle}, ki se nahajajo v točkah \(-2k\) za \(k\in\Z^+\). Drugih ničel na tej polravnini ni.
 
@@ -55,7 +55,7 @@ Ogledali si bomo dokaz izreka Bassove formule \cite{rangarajan:LIPIcs.FSTTCS.201
 \begin{definicija}[Hashimotova matrika]
     Hashimotova matrika za \(d\)-regularen graf \(G\) na \(n\) vozliščih je \(\C^{dn\times dn}\) matrika. Elementi te matrike opisujejo obstoj poti brez povračanja. Če imamo urejena para \(e_1 = (u, v)\) in \(e_2= (u', v')\), potem je \(H_{e_1, e_2}=1\), če \(v = u'\) (pot iz \(e_1\) vodi v \(e_2\)) in \(u\neq v'\) (pot je brez povračanja). Vsi ostali elementi so ničelni.
 \end{definicija}
-\begin{primer}{Hashimotova matrika cikla}
+\begin{primer}[Hashimotova matrika cikla]
     Oglejmo si Hashimotovo matriko \(3\)-cikla. Sosednostna matrika cikla je
     \begin{align*}
         \begin{bmatrix}
@@ -168,7 +168,7 @@ Zdaj poznamo strukturo Ihara zeta funkcije grafa in si lahko podrobneje ogledamo
     \end{align*}
     Torej poli \(\zeta_G\) izvirajo iz ničel polinoma \(\chi_G\) oziroma iz lastnih vrednosti grafa \(G\).
 
-    Dokažimo najprej implikacijo v desno, torej predpostavimo, da je \(G\) Ramanujanov graf. Za vsako njegovo netrivialno lastno vrednost\(\lambda_0\) velja \(\abs{\lambda_0} \leq 2\sqrt{d-1}\) in zato tudi \(\lambda_0^2 \leq 4(d-1)\). Prepišemo substitucijo \(\lambda\) od zgoraj v standardno obliko.
+    Dokažimo najprej implikacijo v desno, torej predpostavimo, da je \(G\) Ramanujanov graf. Za vsako njegovo netrivialno lastno vrednost \(\lambda_0\) velja \(\abs{\lambda_0} \leq 2\sqrt{d-1}\) in zato tudi \(\lambda_0^2 \leq 4(d-1)\). Prepišemo substitucijo \(\lambda\) od zgoraj v standardno obliko.
     \begin{align*}
         \lambda = (1+(d-1)z^2)/z \\
         (d-1)z^2 - \lambda z + 1 = 0
@@ -183,7 +183,7 @@ Zdaj poznamo strukturo Ihara zeta funkcije grafa in si lahko podrobneje ogledamo
         &= \frac{(1+(d-1)z_0^2)\overline{z_0}}{z_0\overline{z_0}}\\
         &= \frac{\overline{z_0} + (d-1)\abs{z_0}^2z_0}{\abs{z_0}^2}
     \end{align*}
-    Imaginarni del izraza v imenovalcu je enak \(-\Im(z_0) + (d-1)\abs{z_0}^2\Im(z_0)\). Vse lastne vrednosti grafa, vključno z izbrano \(\lambda_0\), so realne, torej more biti ta imaginarni del enak nič. To pa pomeni, da je \((d-1)\abs{z_0}^2 = 1\) oziroma \(\abs{z_0} = 1/\sqrt{d-1}\), kot zahteva izrek.
+    Imaginarni del izraza v števcu je enak \(-\Im(z_0) + (d-1)\abs{z_0}^2\Im(z_0)\). Vse lastne vrednosti grafa, vključno z izbrano \(\lambda_0\), so realne, torej mora biti ta imaginarni del enak nič. To pa pomeni, da je \((d-1)\abs{z_0}^2 = 1\) oziroma \(\abs{z_0} = 1/\sqrt{d-1}\), kot zahteva izrek.
 
     Podobno sledi tudi izrek v obratno smer. Če je \(z_0\) netrivialen pol, predpostavimo, da velja \((d-1)\abs{z_0}^2 = 1\). Podobno kot prej poračunamo \(\lambda_0\).
     \begin{align*}

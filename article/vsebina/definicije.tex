@@ -128,9 +128,9 @@ Oglejmo si primer, kjer je zelo očitna povezava med ozkim grlom grafa in Cheege
     \begin{align*}
         c(G) = \frac{2}{n}.
     \end{align*}
-    Večji kot je \(n\), bolj izrazito je ozko grlo na grafu, kar vidimo tudi v manjši vrednosti \(c(G)\). V primeru \(n=6\) smo dobili 5-regularen graf na dvanajstih vozliščih s \(c(G)=0.4\).
+    Večji kot je \(n\), bolj izrazito je ozko grlo na grafu, kar vidimo tudi v manjši vrednosti \(c(G)\). V primeru \(n=6\) smo dobili 5-regularen graf na dvanajstih vozliščih s \(c(G)=1/3\).
 \end{primer}
-Če izberemo naključen graf pa je verjetnost, da ima ozko grlo majhna. Oglejmo si primer naključno izbranega \(5\)-regularnega grafa na dvanajstih vozliščih.
+Če izberemo naključen graf, pa je verjetnost, da ima ozko grlo, majhna. Oglejmo si primer naključno izbranega \(5\)-regularnega grafa na dvanajstih vozliščih.
 % [[0. 0. 1. 1. 1. 0. 0. 0. 0. 1. 0. 1.]
 %  [0. 0. 1. 0. 1. 1. 0. 1. 0. 0. 0. 1.]
 %  [1. 1. 0. 0. 1. 1. 0. 1. 0. 0. 0. 0.]
@@ -650,7 +650,7 @@ V dokazu bomo velikost lastnih vrednosti ocenili s številom sprehodov določene
     \begin{align*}
         \binom{2(l-1)}{l-1}.
     \end{align*}
-    Ker se pred koncem sprehoda ne želimo vrniti v koren, mora biti ob vsakem dodanem številu seštevek vseh števil nenegativen. Oglejmo si zaporedja ki prekršijo to pravilo. Za taka zaporedja \((a_1, \ldots, a_{2l-2})\) obstaja nek najmanjši \(k\), da je \(a_{2k+1}=-1\) in \(\sum_{i=1}^{2k} a_i = 0\). Definirajmo funkcijo \(f\) na takšnih zaporedjih, ki spremeni predznak prvih \(2k+1\) elementov, preostale elemente pa pusti nespremenjene. Ker je med prvimi \(2k\) elementi enako število vrednosti \(+1\) in \(-1\), ostane uravnoteženost nespremenjena tudi po zamenjavi predznakov. Ker je število \(+1\) in \(-1\) enako tudi v celotnem zaporedju dolžine \(2l-2\), pomeni, da je število \(+1\) in \(-1\) v prvotnem zaporedju enako tudi na zadnjih \(2l-2-2k\) elementih; ker pa smo zamenjali element \(a_{2k+1}\) iz \(-1\) na \(+1\) bo v transformiranem zaporedju \(f(a)\) zato na zadnjih \(2l-2-2k\) elementih \(l-2-k\) elementov \(-1\) in \(l-k\) elementov \(+1\). Združimo vse ugotovitve: v \(f(a)\) je natanko \(l\) elementov \(+1\) in \(l-2\) elementov \(-1\). 
+    Ker se pred koncem sprehoda ne želimo vrniti v koren, mora biti ob vsakem dodanem številu seštevek vseh števil nenegativen. Oglejmo si zaporedja, ki prekršijo to pravilo. Za taka zaporedja \((a_1, \ldots, a_{2l-2})\) obstaja nek najmanjši \(k\), da je \(a_{2k+1}=-1\) in \(\sum_{i=1}^{2k} a_i = 0\). Definirajmo funkcijo \(f\) na takšnih zaporedjih, ki spremeni predznak prvih \(2k+1\) elementov, preostale elemente pa pusti nespremenjene. Ker je med prvimi \(2k\) elementi enako število vrednosti \(+1\) in \(-1\), ostane uravnoteženost nespremenjena tudi po zamenjavi predznakov. Ker je število \(+1\) in \(-1\) enako tudi v celotnem zaporedju dolžine \(2l-2\), pomeni, da je število \(+1\) in \(-1\) v prvotnem zaporedju enako tudi na zadnjih \(2l-2-2k\) elementih; ker pa smo zamenjali element \(a_{2k+1}\) iz \(-1\) na \(+1\) bo v transformiranem zaporedju \(f(a)\) zato na zadnjih \(2l-2-2k\) elementih \(l-2-k\) elementov \(-1\) in \(l-k\) elementov \(+1\). Združimo vse ugotovitve: v \(f(a)\) je natanko \(l\) elementov \(+1\) in \(l-2\) elementov \(-1\). 
     
     Trdimo, da je \(f\) bijekcija med zaporedji, ki imajo nekje negativno delno vsoto, ter zaporedji z \(l\) vrednostmi \(+1\) in \(l-2\) vrednostmi \(-1\). Inverz funkcije \(f\) poišče prvi element, kjer je delna vsota enaka \(+1\), in zamenja predznake tega elementa ter vseh elementov pred njim. Dokažimo, da ta operacija res definira inverz. Če imamo dva zaporedja \(x\) in \(y\) z \(f(x)=f(y)\), ta inverz očitno pokaže, da velja \(x=y\), torej je \(f\) injektivna. Za surjektivnost opazimo, da imajo zaporedja iz kodomene več elementov \(+1\) kot \(-1\). Zato mora obstajati vsaj ena delna vsota, ki je enaka \(+1\), in lahko uporabimo inverz. Zaporedij iz kodomene je \(\binom{2l-2}{l}\), torej je toliko tudi zaporedij, ki prekršijo pravilo, da je delna vsota vedno nenegativna.
     

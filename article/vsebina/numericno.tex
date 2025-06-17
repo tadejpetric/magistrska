@@ -1,5 +1,5 @@
 \section{Naključne konstrukcije}
-Cilj poglavja je generiranje Ramanujanovih grafov na računalniku. Uporabili bomo najenostavnejši algoritem: generiramo naključen \(d\)-regularen graf in izračunamo njegovo spektralno vrzel. Če je dovolj velika, je naš graf Ramanujanov, če pa je premajhna, graf zavržemo in generiramo nov graf, dokler ne dobimo takega, ki ima dovolj veliko spektralno vrzel. Računanje lastnih vrednosti grafa je zelo enostavno, si bomo podrobneje ogledali algoritem za učinkovito generiranje naključnih regularnih grafov.
+Cilj poglavja je generiranje Ramanujanovih grafov na računalniku. Uporabili bomo najenostavnejši algoritem: generiramo naključen \(d\)-regularen graf in izračunamo njegovo spektralno vrzel. Če je dovolj velika, je naš graf Ramanujanov, če pa je premajhna, graf zavržemo in generiramo nov graf, dokler ne dobimo takega, ki ima dovolj veliko spektralno vrzel. Računanje lastnih vrednosti grafa je zelo enostavno, zato si bomo podrobneje ogledali le algoritem za učinkovito generiranje naključnih regularnih grafov.
 
 S pomočjo dobljenega algoritma si lahko ogledamo nekaj lastnosti grafov. Zanima nas velikost spektralne vrzeli v odvisnosti od števila vozlišč in delež Ramanujanov grafov. Če je ta delež dovolj velik, je naš algoritem učinkovit in lahko enostavno generiramo Ramanujanove grafe. Velikost povprečne spektralne vrzeli pa nam pove, kako daleč je poljuben graf od tega, da je Ramanujanov; Ramanujanovi grafi imajo sicer zanimive matematične lastnosti, v praksi bi se pa morda kdaj zadovoljili že z grafom, ki je ``približno'' Ramanujanov.
 
@@ -12,15 +12,15 @@ Generiranje regularnih grafov je netrivialen problem. Težava pri večini pristo
     Začnemo s praznim grafom, ki ima vozlišča \(\{1, 2, 3, 4\}\). Izberemo naključni dve vozlišči, recimo \(1\) in \(2\), in ju povežemo. Nato izberemo vozlišči \(2\) in \(3\) in ju povežemo, zatem pa še \(3\) in \(1\) in ju povežemo. Sedaj imamo \(3\) vozlišča stopnje \(2\) in enega stopnje \(0\). Ob vsaki točki smo izbrali vozlišči, ki imata stopnjo manjšo od \(2\), algoritem pa se ne more zaključiti, saj smo prišli do točke, ko vozlišča \(4\) ne moremo povezati z nobenim vozliščem, ki ima stopnjo manjšo od \(2\).
 \end{primer}
 
-V tem primeru je bil problem, da ne moremo povezati vozlišča s samim seboj, lahko pa bi se zgodilo tudi, da imamo dva vozlišča stopnje \(d-1\), ki pa ju ne moremo povezati, saj sta že povezani. Obstaja enostaven način da rešimo to težavo: če algoritma ne moremo zaključiti graf zavržemo in začnemo znova. Z malo optimizacije nas to prinese do naslednjega algoritma \cite{kim-vu-regularni}.
+V tem primeru je bil problem, da ne moremo povezati vozlišča s samim seboj, lahko pa bi se zgodilo tudi, da imamo dve vozlišči stopnje \(d-1\), ki pa ju ne moremo povezati, saj sta že povezani. Obstaja enostaven način, kako lahko rešimo to težavo: če algoritma ne moremo zaključiti, graf zavržemo in začnemo znova. Z malo optimizacije nas to prinese do naslednjega algoritma \cite{kim-vu-regularni}.
 
 \algnewcommand\algorithmicto{\textbf{to}}
 \algnewcommand\algorithmicin{\textbf{in}}
 \algnewcommand\algorithmicforeach{\textbf{for each}}
 \algrenewtext{For}[3]{\algorithmicfor\ #1 $\gets$ #2\ \algorithmicto\ #3\ \algorithmicdo}
 \algdef{S}[FOR]{ForEach}[2]{\algorithmicforeach\ #1\ \algorithmicin\ #2\ \algorithmicdo}
-Za vse pristope bomo uporabljali funkcijo, ki ponavlja klice na naš algoritem, dokler ne dobimo regularnega grafa.
-\begin{algorithm}[H]
+Za vse pristope bomo uporabljali funkcijo, ki ponavlja klice na naš algoritem, dokler ne dobimo veljavnega regularnega grafa. 
+\begin{algorithm}[t]
     \caption{Generiranje naključnih regularnih grafov}
     \label{enakomerno-nakljucni-pomozno}
     \raggedright
@@ -38,7 +38,7 @@ Za vse pristope bomo uporabljali funkcijo, ki ponavlja klice na naš algoritem, 
     \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[H]
+\begin{algorithm}[t]
     \caption{Generiranje naključnih regularnih grafov}
     \label{enakomerno-nakljucni-pocasi}
     \raggedright
@@ -62,7 +62,7 @@ Za vse pristope bomo uporabljali funkcijo, ki ponavlja klice na naš algoritem, 
     \end{algorithmic}
 \end{algorithm}
 
-Algoritem \ref{enakomerno-nakljucni-pocasi} je sicer pravilen, vendar pa je zelo počasen. Velikokrat se zgodi, da moramo ponovno generirati graf, še posebej za velike \(d\), zaradi česar postane neuporaben za generiranje večjih grafov. Izkaže se, da je verjetnost generiranja regularnega grafa \(O(e^{-\frac{d^2}{4}})\), kar se zelo hitro približuje \(0\), ko povečujemo \(d\). Algoritem postane nepraktičen že, če želimo generirati \(10\)-regularne grafe. Obstajajo algoritmi s polinomsko časovno zahtevnostjo, vendar so še vedno počasni in njihova implementacija je zahtevna. Delo si lahko olajšamo tako, da grafov ne generiramo enakomerno naključno \cite{STEGER_WORMALD_1999}.
+Algoritem \ref{enakomerno-nakljucni-pocasi} je sicer pravilen, vendar pa je zelo počasen. Velikokrat se zgodi, da moramo ponovno generirati graf, še posebej za velike \(d\), zaradi česar postane neuporaben za generiranje večjih grafov. Izkaže se, da je verjetnost generiranja regularnega grafa \(O(e^{-\frac{d^2}{4}})\) \cite{STEGER_WORMALD_1999}, kar se zelo hitro približuje \(0\), ko povečujemo \(d\). Algoritem postane nepraktičen že, če želimo generirati \(10\)-regularne grafe. Obstajajo algoritmi s polinomsko časovno zahtevnostjo, vendar so še vedno počasni in njihova implementacija je zahtevna. Delo si lahko olajšamo tako, da grafov ne generiramo enakomerno naključno \cite{STEGER_WORMALD_1999}.
 
 \begin{algorithm}[H]
     \caption{Hitro generiranje naključnih regularnih grafov}
@@ -83,7 +83,7 @@ Algoritem \ref{enakomerno-nakljucni-pocasi} je sicer pravilen, vendar pa je zelo
         \State \Return True
         \EndFunction
         \Function{generiraj-pomozno}{$n$, $d$}
-        \State \(U = \{1, 2, \ldots, nd\}\) \Comment{Točke, ki še nimajo para}
+        \State \(U = \{1, 2, \ldots, nd\}\) \Comment{Točke, ki še nimajo para.}
         \For {$i$}{$0$}{$n-1$}
         \For {$j$}{$0$}{$d-1$}
         \State \(V[i][j] \gets i\cdot n + j\) \Comment{Ustvarimo \(d\) elementov za vsako vozlišče.}
@@ -125,7 +125,7 @@ Omenimo še enostavnejši algoritem \ref{naivno-generiranje-nakljucnih}, ki pred
         \State \(A \gets\) ničelna matrika velikosti \(n \times n\)
         \For {$i$}{$0$}{$n-1$}
         \State \(V \gets \) množica vozlišč, stopnje manj od \(d\), ki niso povezana z \(i\)
-        \State \(d' \gets \Call{Stopnja}(i)\)
+        \State \(d' \gets \Call{Stopnja}i\)
         \If {\(\abs{V} < d-d'\)}
         \State \Return \(A\)
         \EndIf
@@ -311,7 +311,7 @@ Na sliki \ref{fig:5-regular} vidimo, da se povprečje lastnih vrednosti približ
     \end{figure}
 
 \subsection{Delež Ramanujanovih grafov}
-Nadaljujemo z deležom Ramanujanovih grafov. Postopek bo enak kot prej, le da rišemo vse hkrati na enem grafu. Da dobimo boljše rezultate si tokrat ogledamo tudi grafe z več vozlišči. Začnemo z grafi, ki imajo manj kot \(1000\) vozlišč, za tem pa tudi izračunamo delež Ramanujanovih grafov za grafe z do \(10^5\) vozlišči. Zaradi časovne zahtevnosti, za tako velike grafe izračunamo delež v korakih po \(10 000\) vozlišč. Pri tako velikih grafih je za sosednostne matrike potrebno uporabljati razpršene matrike, da prostorska zahtevnost raste linearno in ne kvadratično. Brez razpršenih matrik bi v primeru \(n=10^5\) in \(d=21\) program porabil okoli \(40\) GB pomnilnika, če pa uporabimo razpršene matrike pa le okoli \(10\) MB.
+Nadaljujemo z deležom Ramanujanovih grafov. Postopek bo enak kot prej, le da rišemo vse hkrati na enem grafu. Da dobimo boljše rezultate si tokrat ogledamo tudi grafe z več vozlišči. Začnemo z grafi, ki imajo manj kot \(1000\) vozlišč, za tem pa tudi izračunamo delež Ramanujanovih grafov za grafe z do \(10^5\) vozlišči. Zaradi časovne zahtevnosti za tako velike grafe izračunamo delež v korakih po \(10 000\) vozlišč. Pri tako velikih grafih je za sosednostne matrike potrebno uporabljati razpršene matrike, da prostorska zahtevnost raste linearno in ne kvadratično. Brez razpršenih matrik bi v primeru \(n=10^5\) in \(d=21\) program porabil okoli \(40\) GB pomnilnika, če pa uporabimo razpršene matrike pa le okoli \(10\) MB.
 
 \begin{figure}[H]
     \centering
@@ -558,7 +558,7 @@ Nadaljujemo z deležom Ramanujanovih grafov. Postopek bo enak kot prej, le da ri
     \end{tikzpicture}
     \caption{Graf deleža Ramanujanovih grafov od 10000 do 100000}
 \end{figure}
-Na grafih vidimo, da se delež Ramanujanovih grafov z večanjem števila vozlišč zmanjšuje. Vidimo pa tudi, da se ta delež zmanjšuje hitreje pri nižjih stopnjah regularnosti. Najpomembnejše pa je, da se ta delež ne približuje \(0\), ne glede na stopnjo regularnosti; na grafih vidimo, da se delež približuje približno \(70\%\), vendar je težko trditi, saj kljub velikemu številu vozlišč, še vedno ni vidne končne konvergence. Dokaza za to trditev si ne bomo ogledali, je bilo pa nedavno dokazano, da je delež Ramanujanovih grafov asimptotično neodvisen od stopnje regularnosti in se približuje približno \(69\%\) \cite{huang2024ramanujanpropertyedgeuniversality}. Ključni del dokaza je bil, da so izračunali, da se porazdelitev največje netrivialne lastne vrednosti približuje Tracy-Widomovi porazdelitvi. Za to porazdelitev pa lahko preverimo, kolikšno maso ima pod Ramanujanovo mejo.
+Na grafih vidimo, da se delež Ramanujanovih grafov z večanjem števila vozlišč zmanjšuje. Vidimo pa tudi, da se ta delež zmanjšuje hitreje pri nižjih stopnjah regularnosti. Najpomembnejše pa je, da se ta delež ne približuje \(0\), ne glede na stopnjo regularnosti; na grafih vidimo, da se delež približuje približno \(70\%\), vendar je težko trditi, saj kljub velikemu številu vozlišč še vedno ni vidne končne konvergence. Dokaza za to trditev si ne bomo ogledali, je bilo pa nedavno dokazano, da je delež Ramanujanovih grafov asimptotično neodvisen od stopnje regularnosti in se približuje približno \(69\%\) \cite{huang2024ramanujanpropertyedgeuniversality}. Ključni del dokaza je bil, da so izračunali, da se porazdelitev največje netrivialne lastne vrednosti približuje Tracy-Widomovi porazdelitvi. Za to porazdelitev pa lahko preverimo, kolikšno maso ima pod Ramanujanovo mejo.
 
 \begin{figure}[H]
     \begin{center}
@@ -569,7 +569,7 @@ Na grafih vidimo, da se delež Ramanujanovih grafov z večanjem števila vozliš
 
 Ramanujanovi grafi so torej dovolj pogosti, da so naši algoritmi za generiranje učinkoviti -- ne glede na velikost grafa, bomo z naključnim izbiranjem hitro našli Ramanujanov graf.
 
-Zaključimo še s tem, da si ogledamo kakšen bi bil delež grafov, če za majo največje netrivialne lastne vrednosti vzamemo neko drugo konstanto; namesto \(2\sqrt{d-1}\) vzamemo \(2\sqrt{d-1} + c\), izračunamo delež Ramanujanovih grafov in ga prikažemo na grafu. Na grafu abscisna os predstavlja število vozlišč, ordinatna os predstavlja \(c\), barva na koordinati \((n,c)\) pa predstavlja delež grafov na \(n\) vozliščih z največjo netrivialno lastno vrednostjo večjo od \(2\sqrt{d-1}+c\); temnejša kot je, večji je ta delež.
+Zaključimo še s tem, da si ogledamo, kakšen bi bil delež grafov, če za mejo največje netrivialne lastne vrednosti vzamemo neko drugo konstanto; namesto \(2\sqrt{d-1}\) vzamemo \(2\sqrt{d-1} + c\), izračunamo delež Ramanujanovih grafov in ga prikažemo na grafu. Na grafu abscisna os predstavlja število vozlišč, ordinatna os predstavlja \(c\), barva na koordinati \((n,c)\) pa predstavlja delež grafov na \(n\) vozliščih z največjo netrivialno lastno vrednostjo večjo od \(2\sqrt{d-1}+c\); temnejša kot je, večji je ta delež.
 \begin{figure}[H]
     \begin{center}
         \input{images/proportion_plot.pgf}

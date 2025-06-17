@@ -1,5 +1,5 @@
 \section{Konstrukcije Ramanujanovih grafov poljubne stopnje}
-Opisali bomo postopek, s katerim lahko začnemo s poljubnim dvodelnim Ramanujanovim grafom z \(n\) vozlišči in ga uporabimo za konstrukcijo dvodelnega Ramanujanovega grafa z \(2n\) vozlišči. Tako lahko začnemo z polnim dvodelnim grafom poljubne stopnje regularnosti, saj za te vemo, da so Ramanujanovi in poiščemo večji Ramanujanov graf z enako stopnjo regularnosti. Postopek lahko nato ponavljamo induktivno in dobimo neskončno družino Ramanujanovih grafov poljubne stopnje regularnosti \cite{marcus2014interlacingfamiliesibipartite}.
+Opisali bomo postopek, s katerim lahko začnemo s poljubnim dvodelnim Ramanujanovim grafom z \(n\) vozlišči in ga uporabimo za konstrukcijo dvodelnega Ramanujanovega grafa z \(2n\) vozlišči. Tako lahko začnemo s polnim dvodelnim grafom poljubne stopnje regularnosti, saj za te vemo, da so Ramanujanovi, in poiščemo večji Ramanujanov graf z enako stopnjo regularnosti. Postopek lahko nato ponavljamo induktivno in dobimo neskončno družino Ramanujanovih grafov poljubne stopnje regularnosti \cite{marcus2014interlacingfamiliesibipartite}.
 
 \subsection{Dvodelni grafi}
 Ker so dvodelni grafi v osrednjem delu tega poglavja, si poglejmo njihovo definicijo in lastnost, ki razloži, zakaj je za konstrukcijo ključno, da uporabljamo dvodelne grafe.
@@ -14,7 +14,7 @@ Podobno kot smo videli, da imajo regularni grafi največjo lastno vrednost enako
 \begin{dokaz}
     Najprej predpostavimo, da je graf \(G\) dvodelen. Kot v definiciji razdelimo množico vozlišč na dve disjunktni množici \(V_1\) in \(V_2\).
 
-    Izberemo vektor \(v\), ki ima vrednosti \(+1\) na mestih, ki pripadajo \(V_1\) in vrednosti \(-1\) na mestih, ki pripadajo \(V_2\). Poglejmo si vrstico sosednostne matrike, ki ustreza vozlišču iz \(V_1\). Vidimo, da ima vrstica vseh \(d\) vrednosti \(1\) na mestih, ki pripadajo \(V_2\) -- ti pa imajo v vektorju \(v\) vrednost \(-1\). Tako bo v vektorju \(v\) na takih mestih pred množenjem s sosednostno matriko vrednost \(1\), po množenju pa \(-d\). Podobno velja za vozlišča iz \(V_2\), saj so povezana samo z vozlišči v \(V_1\), kjer ima \(v\) vrednost \(+1\).
+    Izberemo vektor \(v\), ki ima vrednosti \(+1\) na mestih, ki pripadajo \(V_1\), in vrednosti \(-1\) na mestih, ki pripadajo \(V_2\). Poglejmo si vrstico sosednostne matrike, ki ustreza vozlišču iz \(V_1\). Vidimo, da ima vrstica vseh \(d\) vrednosti \(1\) na mestih, ki pripadajo \(V_2\) -- ti pa imajo v vektorju \(v\) vrednost \(-1\). Tako bo v vektorju \(v\) na takih mestih pred množenjem s sosednostno matriko vrednost \(1\), po množenju pa \(-d\). Podobno velja za vozlišča iz \(V_2\), saj so povezana samo z vozlišči v \(V_1\), kjer ima \(v\) vrednost \(+1\).
 
     Dokažimo še obratno; predpostavimo, da ima graf najmanjšo lastno vrednost enako \(-d\). Naj bo \(v\) lastni vektor za lastno vrednost \(-d\). Definiramo \(m = \max_i \abs{v_i}\), \(V_1=\{i \mid v_i = m\}\) in \(V_2 = \{i \mid v_i = -m\}\). Želimo dokazati, da te množici tvorita particijo kot v definiciji dvodelnih grafov.
 
@@ -22,7 +22,7 @@ Podobno kot smo videli, da imajo regularni grafi največjo lastno vrednost enako
     \begin{align*}
         -d v_i = \sum_{i\sim j} v_j.
     \end{align*}
-    Če izberemo \(i\in V_1\) potem velja
+    Če izberemo \(i\in V_1\), potem velja
     \begin{align*}
         -d m = -d v_i = \sum_{i\sim j} v_j.
     \end{align*}
@@ -61,20 +61,20 @@ Konstrukcija, ki jo bomo uporabili za konstrukcijo večjega Ramanujanovega grafa
 
 Posebej poudarimo, da \(2\)-dvig grafa ni nujno povezan. Če v dvigu uporabimo izključno povezave prvega tipa, potem dobimo disjunktno unijo dveh kopij prvotnega grafa. Če pa uporabljamo izključno povezave drugega tipa, dvig imenujemo \emph{dvojni krov} grafa. Za nas ni pomembno, vendar je zanimivo, da je konstrukcija dvodelnih Ramanujanovih grafov poljubne stopnje regularnosti lažja kot konstrukcija takih Ramanujanovih grafov, ki niso dvodelni; dvojni krov grafa bo namreč vedno dvodelen, dvojni krov nedvodelnega Ramanujanovega grafa pa bo spet Ramanujanov.
 
-Ime izvira iz teorije kategorij. Homomorfizmi grafov preslikajo vozlišča v vozlišča in povezave v povezave. Enostavno lahko definiramo projekcijo iz \(2\)-dviga \(\pi: G'\to G\) z \(\iota_i(v)\mapsto v\), prav tako pa \(\iota_i(u)\sim\iota_j(v)\mapsto u\sim v\) za \(i, j\in \{1,2\}\). Sedaj če imamo poljuben homomorfizem \(\phi: H\to G\) ga lahko faktoriziramo preko \(\pi\). Vsako preslikavo povezav \(\phi\) lahko razumemo kot kompozitum dveh preslikav; najprej \(\phi'\), ki preslika \(u\sim v\) v \(\iota_i(\phi(u)) \sim \iota_j(\phi(v))\) (za ustrezno izbiro \(i\) in \(j\)) in projekcije \(\pi\). Tako lahko vsak homomorfizem \(\phi: H\to G\) zapišemo kot \(\phi = \pi\circ \phi'\) in kategorično bi bil \(\phi'\) dvig preslikave \(\phi\) na \(G'\).
+Ime izvira iz teorije kategorij. Homomorfizmi grafov preslikajo vozlišča v vozlišča in povezave v povezave. Enostavno lahko definiramo projekcijo iz \(2\)-dviga \(\pi: G'\to G\) z \(\iota_i(v)\mapsto v\), prav tako pa \(\iota_i(u)\sim\iota_j(v)\mapsto u\sim v\) za \(i, j\in \{1,2\}\). Poljuben homomorfizem \(\phi: H\to G\) lahko faktoriziramo preko \(\pi\). Vsako preslikavo povezav \(\phi\) lahko razumemo kot kompozitum dveh preslikav; najprej \(\phi'\), ki preslika \(u\sim v\) v \(\iota_i(\phi(u)) \sim \iota_j(\phi(v))\) (za ustrezno izbiro \(i\) in \(j\)) in projekcije \(\pi\). Tako lahko vsak homomorfizem \(\phi: H\to G\) zapišemo kot \(\phi = \pi\circ \phi'\) in kategorično bi bil \(\phi'\) dvig preslikave \(\phi\) na \(G'\).
 
 \begin{definicija}[Značenje dviga]
-    Značenje grafa \(G = (V, E)\) je preslikava \(s: E\to \{-1, +1\}\). Če imamo povezave oštevilčene od \(1\) do \(m\) lahko značenje definiramo kot vektor \(s\in \{-1, +1\}^m\).
+    Značenje grafa \(G = (V, E)\) je preslikava \(s: E\to \{-1, +1\}\). Če imamo povezave oštevilčene od \(1\) do \(m\), lahko značenje definiramo kot vektor \(s\in \{-1, +1\}^m\).
 
-    Značenje, ki pripada \(2\)-dvigu \(G'\) grafa \(G\) je preslikava \(s': E \to \{-1, +1\}\), kjer \(u\sim v \mapsto 1\), če povezavi \(u\sim v\) v dvigu pripada povezava prvega tipa in \(-1\), če pripada povezava drugega tipa.
+    Značenje, ki pripada \(2\)-dvigu \(G'\) grafa \(G\), je preslikava \(s': E \to \{-1, +1\}\), kjer \(u\sim v \mapsto 1\), če povezavi \(u\sim v\) v dvigu pripada povezava prvega tipa, in \(-1\), če pripada povezava drugega tipa.
 \end{definicija}
 
 Iz definicije sledi, da vsako značenje enolično definira \(2\)-dvig grafa.
 
-Sedaj lahko definiramo sosednostno matriko glede na značenje grafa. Ta bo na ničelnih vrednostih enaka navadni sosednostni matriki, kjer pa je v sosednostni matriki \(1\) bo v značeni sosednostni matriki vrednost, ki jo definira značenje.
+Sedaj lahko definiramo sosednostno matriko glede na značenje grafa. Ta bo na ničelnih vrednostih enaka navadni sosednostni matriki, kjer pa je v sosednostni matriki \(1\), bo v značeni sosednostni matriki vrednost, ki jo definira značenje.
 
 \begin{definicija}[Značena sosednostna matrika]
-    Naj bo \(G = (V, E)\) graf in \(s: E\to \{-1, +1\}\) značenje grafa. Značena sosednostna matrika \(A_s\) je \(\abs{V}\times \abs{V}\) matrika, ki ima na mestu \((u,v)\) vrednost \(0\), če \((u,v)\notin E\) in vrednost \(s(u\sim v)\), če \((u,v)\in E\).
+    Naj bo \(G = (V, E)\) graf in \(s: E\to \{-1, +1\}\) značenje grafa. Značena sosednostna matrika \(A_s\) je \(\abs{V}\times \abs{V}\) matrika, ki ima na mestu \((u,v)\) vrednost \(0\), če \((u,v)\notin E\), in vrednost \(s(u\sim v)\), če \((u,v)\in E\).
 \end{definicija}
 
 Ta definicija ima presenetljive posledice, saj lastne vrednosti sosednostne matrike grafa in lastne vrednosti značene sosednostne matrike za značenje, ki pripada dvigu, natanko določajo lastne vrednosti dviga \cite{bilu2004constructingexpandergraphs2lifts}.
@@ -82,7 +82,7 @@ Ta definicija ima presenetljive posledice, saj lastne vrednosti sosednostne matr
     Naj bo \(G\) graf, \(G'\) njegov \(2\)-dvig in \(s\) značenje, ki pripada \(G'\). Potem so lastne vrednosti \(G'\) enake uniji lastnih vrednosti \(G\) in lastnih vrednosti \(A_s\) (skupaj z večkratnostjo).
 \end{izrek}
 \begin{dokaz}
-    Povezave grafa razdelimo na dva dela; na povezave, ki v dvigu postanejo povezave prvega tipa in na povezave, ki postanejo povezave drugega tipa
+    Povezave grafa razdelimo na dva dela; na povezave, ki v dvigu postanejo povezave prvega tipa, in na povezave, ki postanejo povezave drugega tipa
     \begin{align*}
         E_1 = s^{-1}(1) &  & E_2 = s^{-1}(-1).
     \end{align*}
@@ -96,7 +96,7 @@ Ta definicija ima presenetljive posledice, saj lastne vrednosti sosednostne matr
              \end{bmatrix}.
     \end{align*}
 
-    Sedaj lahko uganimo lastne vektorje. Če je \(\lambda\) lastna vrednost \(A\) za lastni vektor \(v\), potem je \((v, v)\) lastni vektor za lastno vrednost \(\lambda\) matrike \(A'\). Podobno, če je \(\mu\) lastna vrednost \(A_s\) za lastni vektor \(u\), potem je \((u, -u)\) lastni vektor za lastno vrednost \(\mu\) matrike \(A'\). Če izračunamo skalarni produkt, vidimo, da so vsi lastni vektorji pravokotni med seboj, torej tvorijo bazo lastnih vektorjev in smo poiskali vse lastne vrednosti matrike \(A'\).
+    Sedaj lahko uganemo lastne vektorje. Če je \(\lambda\) lastna vrednost \(A\) za lastni vektor \(v\), potem je \((v, v)\) lastni vektor za lastno vrednost \(\lambda\) matrike \(A'\). Podobno, če je \(\mu\) lastna vrednost \(A_s\) za lastni vektor \(u\), potem je \((u, -u)\) lastni vektor za lastno vrednost \(\mu\) matrike \(A'\). Če izračunamo skalarni produkt, vidimo, da so vsi lastni vektorji pravokotni med seboj, torej tvorijo bazo lastnih vektorjev in smo poiskali vse lastne vrednosti matrike \(A'\).
 \end{dokaz}
 Seveda iz izreka tudi sledi, da je \(2\)-dvig dvodelnega \(d\)-regularnega grafa spet dvodelen \(d\)-regularen graf, saj ohrani lastne vrednosti \(d\) in \(-d\).
 
@@ -104,7 +104,7 @@ Seveda iz izreka tudi sledi, da je \(2\)-dvig dvodelnega \(d\)-regularnega grafa
 % Matching [in graph theory]
 Prirejanja v grafu opisujejo, kako lahko izbiramo povezave v grafu tako, da si niso med seboj incidenčne. Število vseh možnih prirejanj določene velikosti bomo uporabili za definicijo polinoma prirejanja. Ta polinom pa ima dve ključni lastnosti, ki sta pomembni za konstrukcijo: njegove ničle znamo omejiti in polinom znamo povezati s karakteristično funkcijo značene sosednostne matrike. Na ta način lahko omejimo lastne vrednosti značene sosednostne matrike. Od prej pa že vemo, da lastne vrednosti značene sosednostne matrike določajo lastne vrednosti dviga. Na ta način bomo lahko omejili lastne vrednosti dviga in s tem dobili Ramanujanove grafe.
 
-Da poenostavimo izražanje definiramo \(n=\abs{V}\).
+Da poenostavimo izražanje, označimo \(n=\abs{V}\).
 
 \begin{definicija}[Prirejanje]
     Prirejanje velikosti \(i\) v grafu \(G\) je množica povezav \(M\subseteq E\) z \(\abs{M} = i\), za katero velja, da si nobeni dve povezavi ne delita vozlišča.
@@ -151,7 +151,7 @@ Dokazi lastnosti polinoma prirejanja se običajno dokazujejo z indukcijo po šte
     \end{align*}
 \end{dokaz}
 
-Prva pomembna lastnost polinoma prirejanja je, da znamo omejiti njegove ničle torej, da so vse ničle po absolutni vrednosti manjše od neke konstante. Da to dokažemo, pa si moramo najprej ogledati prepletene družine polinomov. Dva polinoma z realnimi ničlami sta prepletena, če se ničle enega nahajajo med ničlami drugega in obratno. Pokazali bomo, da je polinom prirejanja grafa prepleten s polinomom prirejanja istega grafa z odstranjenim vozliščem.
+Prva pomembna lastnost polinoma prirejanja je, da znamo omejiti njegove ničle, torej da so vse ničle po absolutni vrednosti manjše od neke konstante. Da to dokažemo, pa si moramo najprej ogledati prepletene družine polinomov. Dva polinoma z realnimi ničlami sta prepletena, če se ničle enega nahajajo med ničlami drugega in obratno. Pokazali bomo, da je polinom prirejanja grafa prepleten s polinomom prirejanja istega grafa z odstranjenim vozliščem.
 
 \begin{definicija}[Prepletena polinoma]\label{prepletena-polinoma}
     Naj bosta \(n\) in \(m\) naravni števili z \(n=m\) ali \(n=m+1\). Naj bosta \(p(x) = C_1 \prod_{i=1}^n (x-\lambda_i)\) in \(q(x) = C_2 \prod_{i=1}^m (x-\nu_i)\) polinoma z realnimi ničlami \(\lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_n\) in \(\nu_1 \leq \nu_2 \leq \cdots \leq \nu_m\). V primeru \(n=m\) rečemo, da polinom \(q\) prepleta polinom \(p\), če velja
@@ -176,7 +176,7 @@ Prva pomembna lastnost polinoma prirejanja je, da znamo omejiti njegove ničle t
 \begin{dokaz}
     Dokaz bo potekal po indukciji. Predpostavimo, da za vsak graf \(H\) z manj kot \(n\) vozlišči velja, da ima polinom prirejanja realne ničle, ki so med seboj različne, in da za vsako vozlišče \(v\in H\) polinom \(\mu_{H-\{v\}}\) strogo prepleta polinom \(\mu_H\).
 
-    Naj bo \(v\in G\) in naj bodo \(\lambda_1 < \cdots < \lambda_{n-1}\) ničle polinoma \(\mu_{G-\{v\}}\). Po indukciji za poljubno vozlišče \(u\in G-\{v\}\) polinom \(\mu_{G-\{v, u\}}\) strogo prepleta polinom \(\mu_{G-\{v\}}\). Polinomi prirejanja so monični, torej zavzemajo le pozitivne vrednosti desno od njihove največje ničle. Po definiciji prepletanja je \(\lambda_{n-1}\) večja od največje ničle \(\mu_{G-\{v, u\}}\), torej velja \(\mu_{G-\{v, u\}}(\lambda_{n-1}) > 0\). Dodatno, vsak interval \((\lambda_i, \lambda_{i+1})\) vsebuje natanko eno ničlo \(\mu_{G-\{v, u\}}\), torej vemo kakšne predznake ima \(\mu_{G-\{v, u\}}\) na vseh ničlah \(\lambda_i\) -- največja ničla je pozitivna, druga največja negativna, nato spet pozitivna in tako naprej. Tako za poljuben \(u\neq v\) velja
+    Naj bo \(v\in G\) in naj bodo \(\lambda_1 < \cdots < \lambda_{n-1}\) ničle polinoma \(\mu_{G-\{v\}}\). Po indukciji za poljubno vozlišče \(u\in G-\{v\}\) polinom \(\mu_{G-\{v, u\}}\) strogo prepleta polinom \(\mu_{G-\{v\}}\). Polinomi prirejanja so monični, torej zavzemajo le pozitivne vrednosti desno od njihove največje ničle. Po definiciji prepletanja je \(\lambda_{n-1}\) večja od največje ničle \(\mu_{G-\{v, u\}}\), torej velja \(\mu_{G-\{v, u\}}(\lambda_{n-1}) > 0\). Dodatno, vsak interval \((\lambda_i, \lambda_{i+1})\) vsebuje natanko eno ničlo \(\mu_{G-\{v, u\}}\), torej vemo, kakšne predznake ima \(\mu_{G-\{v, u\}}\) na vseh ničlah \(\lambda_i\) -- največja ničla je pozitivna, druga največja negativna, nato spet pozitivna in tako naprej. Tako za poljuben \(u\neq v\) velja
     \begin{align*}
         \sgn\left({\mu_{G-\{v, u\}}(\lambda_i)}\right) = (-1)^{i-(n-1)},
     \end{align*}
@@ -196,12 +196,12 @@ Prva pomembna lastnost polinoma prirejanja je, da znamo omejiti njegove ničle t
 Nadaljujemo z izrekom, ki nam bo omejil ničle polinoma prirejanja. Ta rezultat spet poteka v dveh korakih. Najprej bomo pokazali, da so ničle polinoma prirejanja grafa omejene z lastnimi vrednostmi ustreznega drevesa. Nato bomo pokazali, da so lastne vrednosti tega drevesa tudi omejene in sicer ravno z konstanto \(2\sqrt{d-1}\) -- enako konstanto, kot v definiciji Ramanujanovih grafov. Ta izrek poudari dodatno pomembnost vrednosti \(2\sqrt{d-1}\), saj omejuje spektralni radij drevesa; neskončno \(d\)-regularno drevo je univerzalni krov vsakega \(d\)-regularnega grafa, spektralni radij univerzalnega krova pa je ravno \(2\sqrt{d-1}\). Ramanujanovi grafi imajo torej vse netrivialne lastne vrednosti zajete v spektralnem radiju svojega univerzalnega krova \cite{hoory}.
 
 \begin{definicija}[Drevo poti]
-    Naj bo \(G=(V, E)\) graf. Drevo poti grafa \(G\) z izhodiščem v \(v\) je graf \(T_v(G)\), katerega vozlišča predstavljajo poti v grafu \(G\), ki se začnejo v \(v\) in ne vsebujejo nobenega vozlišča dvakrat, dve vozlišči pa sta povezani, če je pot za eno izmed vozlišč enaka kot pot za drugo vozlišče, le skrajšana za en korak
+    Naj bo \(G=(V, E)\) graf. Drevo poti grafa \(G\) z izhodiščem v \(v\) je graf \(T_v(G)\), katerega vozlišča predstavljajo poti v grafu \(G\), ki se začnejo v \(v\) in ne vsebujejo nobenega vozlišča dvakrat, dve vozlišči pa sta povezani, če je pot za eno izmed vozlišč enaka kot pot za drugo vozlišče, le skrajšana za en korak.
 \end{definicija}
 \begin{primer}\hspace{0em}\vspace{1em}
-    Za graf \(G\) vzamemo naslednji graf.
+    Za graf \(G\) vzamemo graf na sliki \ref{fig:grafnasliki12}.
     % TikZ for the graph on the left
-    \begin{figure}[H]
+    \begin{figure}[t]
         \centering
         \begin{tikzpicture}[node distance=1.5cm and 1cm, every node/.style={draw, circle}]
             % Nodes
@@ -219,8 +219,9 @@ Nadaljujemo z izrekom, ki nam bo omejil ničle polinoma prirejanja. Ta rezultat 
             \draw (c) -- (e);
         \end{tikzpicture}
         \caption{Graf \(G\)}
+        \label{fig:grafnasliki12}
     \end{figure}
-    Potem je njegov graf poti \(T_a(G)\)
+    Potem je njegov graf poti \(T_a(G)\) prikazan na sliki \ref{fig:grafnasliki13}.
 
     % TikZ for the paths on the right
     \begin{figure}[H]
@@ -248,6 +249,7 @@ Nadaljujemo z izrekom, ki nam bo omejil ničle polinoma prirejanja. Ta rezultat 
             \draw (acd) -- (ace);
         \end{tikzpicture}
         \caption{Drevo poti \(T_a(G)\)}
+        \label{fig:grafnasliki13}
     \end{figure}
 \end{primer}
 
@@ -260,15 +262,15 @@ Nadaljujemo z izrekom, ki nam bo omejil ničle polinoma prirejanja. Ta rezultat 
 \begin{dokaz}
     Dokaz bo potekal po indukciji na številu vozlišč v grafu \(G\). Enostavno je preveriti, da izrek velja na vseh grafih z manj kot tremi vozlišči. Predpostavimo torej, da velja na vseh grafih z manj vozlišč, kot jih ima \(G\).
 
-    Sedaj razpišemo levo stran enačbe z uporabo rekurzivne definicije \(\mu\)
+    Sedaj razpišemo levo stran enačbe z uporabo rekurzivne definicije \(\mu\):
 
     \begin{align*}
         \frac{\mu_G(x)}{\mu_{G-\{v\}}(x)} & = \frac{x \mu_{G-\{v\}}(x) - \sum_{u\sim v}\mu_{G-\{u, v\}(x)}}{\mu_{G-\{v\}}(x)} \\
-                                          & = x - \sum_{u\sim v}\frac{\mu_{G-\{u, v\}(x)}}{\mu_{G-\{v\}}(x)}
+                                          & = x - \sum_{u\sim v}\frac{\mu_{G-\{u, v\}(x)}}{\mu_{G-\{v\}}(x)}.
     \end{align*}
     V izrazu v vsoti lahko opazimo recipročno trditev izreka za graf \(G-\{v\}\). Na tem izrazu lahko uporabimo indukcijsko predpostavko.
     \begin{align}\label{lemamatching}
-        = x - \sum_{u\sim v}\frac{\mu_{T_u(G-\{v\}) - \{u\}}(x)}{\mu_{T_u(G-\{v\})}(x)}
+        x - \sum_{u\sim v}\frac{\mu_{T_u(G-\{v\}) - \{u\}}(x)}{\mu_{T_u(G-\{v\})}(x)}
     \end{align}
     Če drevesu \(T_v(G)\) odstranimo korensko vozlišče \(v\), dobimo disjunktno unijo dreves \(T_u(G-\{v\})\) za vsak \(u\sim v\). To lahko zapišemo kot
     \begin{align*}
@@ -285,7 +287,7 @@ Nadaljujemo z izrekom, ki nam bo omejil ničle polinoma prirejanja. Ta rezultat 
         T_v(G) - \{v\} - \{vu\} & = \left(\bigcup_{w\sim v, w\neq u} T_w(G-\{v\})\right) \cup \left(\bigcup_{w\sim u, w\neq v} T_w(G-\{v,u\})\right) \\
                                 & = \left(\bigcup_{w\sim v, w\neq u} T_w(G-\{v\})\right) \cup (T_u(G-\{v\}) - \{u\})
     \end{align*}
-    Spet so ta drevesa disjunktna torej velja
+    Spet so ta drevesa disjunktna, torej velja
     \begin{align*}
         \mu_{T_v(G) - \{v\} - \{vu\}}(x) = \left(\prod_{w\sim v, w\neq u} \mu_{T_w(G-\{v\})}(x)\right) \mu_{T_u(G-\{v\}) - \{u\}}(x) \\
         \mu_{T_u(G-\{v\}) - \{u\}}(x) = \frac{\mu_{T_v(G) - \{v\} - \{vu\}}(x)}{\prod_{w\sim v, w\neq u} \mu_{T_w(G-\{v\})}(x)}
@@ -343,9 +345,9 @@ Trditev izreka lahko izrazimo tudi drugače: vse ničle polinoma prirejanja graf
                   & = \sum_{\pi \in S_n}\sgn(\pi)x^{\abs{\{v \mid \pi(v) = v\}}}\prod_{v \mid \pi(v)\neq v}(-A)_{v,\pi(v)}
     \end{align*}
 
-    Pokazali bomo, da k vsoti prispevajo le involucije, torej permutacije \(\pi\), za katere velja \(\pi(\pi(v)) = v\) za vsak \(v\). Če obstaja \(v\), za katerega velja \(\pi(\pi(v))\neq v\), potem ima permutacija \(\pi\) cikel dolžine \(k\geq 3\). Da je sumand, ki pripada tej permutaciji, neničelen morajo biti vsi elementi sosednostne matrike, ki pripadajo ciklu, enaki \(1\). To bi pa pomenilo, da ima tudi graf cikel, kar pa ni mogoče, saj je \(T\) drevo.
+    Pokazali bomo, da k vsoti prispevajo le involucije, torej permutacije \(\pi\), za katere velja \(\pi(\pi(v)) = v\) za vsak \(v\). Če obstaja \(v\), za katerega velja \(\pi(\pi(v))\neq v\), potem ima permutacija \(\pi\) cikel dolžine \(k\geq 3\). Da je sumand, ki pripada tej permutaciji, neničelen, morajo biti vsi elementi sosednostne matrike, ki pripadajo ciklu, enaki \(1\). To bi pa pomenilo, da ima tudi graf cikel, kar pa ni mogoče, saj je \(T\) drevo.
 
-    Involucije v grafu pa ustrezajo prirejanjem. Sestavljene so samo iz fiksnih točk in ciklov dolžine \(2\). Da to pokažemo, vzamemo neko involucijo, ki pripada neničelnemu sumandu. Ker je involucija, ima le cikle dolžine 2 in fiksne točke, vsi cikli pa pripadajo elementom, ki so neničelni v sosednostni matriki - torej sta vozlišči povezani in vsak cikel predstavlja povezavo. V permutaciji pa ne smeta biti predstavljeni dve incidentni povezavi, saj bi to pomenilo, da obstaja cikel dolžine več od 2. To pa je ravno definicija prirejanja. Če ima involucija \(k\) ciklov, potem jo prištejemo k koeficientu \(x^{n-2k}\), njen znak pa je \((-1)^k\) -- kar ustreza definiciji polinoma prirejanja.
+    Involucije v grafu pa ustrezajo prirejanjem. Sestavljene so samo iz fiksnih točk in ciklov dolžine \(2\). Da to pokažemo, vzamemo neko involucijo, ki pripada neničelnemu sumandu. Ker je involucija, ima le cikle dolžine 2 in fiksne točke, vsi cikli pa pripadajo elementom, ki so neničelni v sosednostni matriki -- torej sta vozlišči povezani in vsak cikel predstavlja povezavo. V permutaciji pa ne smeta biti predstavljeni dve incidenčni povezavi, saj bi to pomenilo, da obstaja cikel dolžine več od 2. To pa je ravno definicija prirejanja. Če ima involucija \(k\) ciklov, potem jo prištejemo h koeficientu \(x^{n-2k}\), njen znak pa je \((-1)^k\) -- kar ustreza definiciji polinoma prirejanja.
 \end{dokaz}
 
 Sedaj lahko ocenimo lastne vrednosti drevesa.
@@ -360,11 +362,11 @@ Sedaj lahko ocenimo lastne vrednosti drevesa.
     \begin{align*}
         D_{v, v} = \sqrt{d-1}^{h(v)}.
     \end{align*}
-    Matrika je seveda obrnljiva in lastne vrednosti \(A\) so enake lastnim vrednostim \(D A D^{-1}\). Matrika \(DAD^{-1}\) ima vse elemente nenegativne, torej je po izreku \ref{def-najvecja-lv} njena največja lastna vrednost manjša ali enaka njeni največji vrstični vsoti. Če torej pokežamo, da so vsote vseh vrstic manjše od \(2\sqrt{d-1}\), bomo s tem dokazali trditev. Ločimo tri primere: vrstica, ki pripadajo korenu, listom in preostalim vozliščem.
+    Matrika je seveda obrnljiva in lastne vrednosti \(A\) so enake lastnim vrednostim \(D A D^{-1}\). Matrika \(DAD^{-1}\) ima vse elemente nenegativne, torej je po izreku \ref{def-najvecja-lv} njena največja lastna vrednost manjša ali enaka njeni največji vrstični vsoti. Če torej pokažamo, da so vsote vseh vrstic manjše od \(2\sqrt{d-1}\), bomo s tem dokazali trditev. Ločimo tri primere: vrstica, ki pripadajo korenu, listom in preostalim vozliščem.
 
     Najprej si oglejmo vrstico matrike \(DAD^{-1}\), ki pripada korenu. Matrika \(A\) ima v tej vrstici kvečjemu \(d\) neničelnih elementov, vsak od njih pa se zmnoži z \(\sqrt{d-1}^{-1}\), ko množimo iz desne z \(D^{-1}\) in z \(1\), ko množimo z \(D\) iz leve. Torej je vsota elementov v tej vrstici kvečjemu \(d/\sqrt{d-1}\), kar je manj kot \(2\sqrt{d-1}\) za \(d\geq 2\).
 
-    Nato si oglejmo vrstice, ki pripadajo listom. Naj bo \(v\) ta list. Ima le enega soseda, njegova višina pa je za ena manjša od višine \(v\). Ko množimo \(A\) iz desne z \(D^{-1}\), dobimo vrstico, ki ima le en element neničelen in sicer \(\sqrt{d-1}^{-h(v)+1}\). Ko to vrstico množimo iz leve z \(D\), dobimo vrstico, ki ima le en element neničeln, ta pa je \(\sqrt{d-1}^{-h(v)+1}\sqrt{d-1}^{h(v)}\) oziroma \(\sqrt{d-1}\), spet manjše od \(2\sqrt{d-1}\).
+    Nato si oglejmo vrstice, ki pripadajo listom. Naj bo \(v\) ta list. Ima le enega soseda, njegova višina pa je za ena manjša od višine \(v\). Ko množimo \(A\) iz desne z \(D^{-1}\), dobimo vrstico, ki ima le en element neničelen, in sicer je enak \(\sqrt{d-1}^{-h(v)+1}\). Ko to vrstico množimo iz leve z \(D\), dobimo vrstico, ki ima le en element neničeln, ta pa je \(\sqrt{d-1}^{-h(v)+1}\sqrt{d-1}^{h(v)}\) oziroma \(\sqrt{d-1}\), spet manjše od \(2\sqrt{d-1}\).
 
     Preostala vozlišča \(v\) imajo en element, ki ima višino manjšo za ena in kvečjemu \(d-1\) elementov, ki imajo višino večjo za ena. Torej bo po množenju z \(D^{-1}\) iz desne v vrstici en element \(\sqrt{d-1}^{-h(v)+1}\) in kvečjemu \(d-1\) elementov \(\sqrt{d-1}^{-h(v)-1}\). Ko množimo iz leve z \(D\) se vsi elementi pomnožijo z \(\sqrt{d-1}^{h(v)}\). Vsota je torej kvečjemu \(\sqrt{d-1} + (d-1)/\sqrt{d-1}\) oziroma \(2\sqrt{d-1}\).
 \end{dokaz}
@@ -378,9 +380,9 @@ Zdaj, ko imamo informacije o ničlah polinoma prirejanja, lahko opišemo, kako s
     \end{align*}
 \end{izrek}
 \begin{dokaz}
-    Z \(\mathrm{sym}(S)\) označimo množico vseh permutacij na množici \(S\) in z \(\abs{\pi}\) označimo število inverzij permutacije \(\pi\). Z \(n\) označimo število vozlišč. Determinanto najprej razpišemo kot vsoto po permutacijah \(\sigma\in \mathrm{sym}([n])\), nato pa to vsoto spremenimo v vsoto po vseh permutacijah, ki imajo \(k\) fiksnih točk (ter seštejemo vse \(k\)). Za preglednejši zapis uvedemo oznako \(\mathrm{fix(S)} = \{\sigma \in \mathrm{sym}([n]) \mid \forall i\in S.\, \sigma(i) = i \}\).
+    Z \(\mathrm{Sym}(S)\) označimo množico vseh permutacij na množici \(S\) in z \(\abs{\pi}\) označimo število inverzij permutacije \(\pi\). Z \(n\) označimo število vozlišč. Determinanto najprej razpišemo kot vsoto po permutacijah \(\sigma\in \mathrm{Sym}([n])\), nato pa to vsoto spremenimo v vsoto po vseh permutacijah, ki imajo \(k\) fiksnih točk (ter seštejemo vse \(k\)). Za preglednejši zapis uvedemo oznako \(\mathrm{fix}(S) = \{\sigma \in \mathrm{Sym}([n]) \mid \forall i\in S.\, \sigma(i) = i \}\).
     \begin{align*}
-        \det(xI - A_s) & = \sum_{\sigma\in \mathrm{sym}([n])}\sgn(\sigma)\prod_{i=1}^n(xI-A_s)_{i, \sigma(i)} \\
+        \det(xI - A_s) & = \sum_{\sigma\in \mathrm{Sym}([n])}\sgn(\sigma)\prod_{i=1}^n(xI-A_s)_{i, \sigma(i)} \\
                        & = \sum_{k=0}^n \sum_{\substack{S \subseteq [n]                                       \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{fix(S)}}\sgn(\sigma)\prod_{i=1}^n(xI-A_s)_{i, \sigma(i)}\\
                        & = \sum_{k=0}^n \sum_{\substack{S \subseteq [n]                                       \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{fix(S)}}\sgn(\sigma) x^{k} \prod_{i\in \overline{S}} (-A_s)_{i, \sigma(i)}\\
     \end{align*}
@@ -398,7 +400,7 @@ Zdaj, ko imamo informacije o ničlah polinoma prirejanja, lahko opišemo, kako s
         \mathbb{E}_{s\in \{\pm 1\}^m} \left[\det(xI - A_s)\right] & = \mathbb{E}_{s\in \{\pm 1\}^m} \left[ \sum_{k=0}^n x^{k} \sum_{\substack{S \subseteq [n] \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{efix(S)}}\sgn(\sigma)  \prod_{(i, \sigma(i))\in E} -s(i, \sigma(i))\right] \\
         & = \sum_{k=0}^n x^{k} \sum_{\substack{S \subseteq [n] \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{efix(S)}} \sgn(\sigma)  \mathbb{E}_{s\in \{\pm 1\}^m} \left[ \prod_{(i, \sigma(i))\in E} -s(i, \sigma(i)) \right]\\
     \end{align*}
-    Najprej si oglejmo produkt \(\prod s\), za tem bomo pa izračunali prispevek negativnih predznakov in izračunali produkt \(\prod -s\). Ker računamo pričakovano vrednost po vseh možnih značenjih je \(\mathbb{E}[s(i,j)] = 0\). Če izberemo \((i,j)\) in \(A\subset [n]\times [n]\), kjer \((i,j) \notin A\) in \((j,i)\notin A\), potem je \(s(i,j)\) neodvisen od vseh ostalih \(s(k,l)\) (za \((k,l)\in A\)), saj lahko značenje vsakega roba izberemo neodvisno od ostalih. Torej je
+    Najprej si oglejmo produkt \(\prod s\), za tem bomo pa izračunali prispevek negativnih predznakov in izračunali produkt \(\prod (-s)\). Ker računamo pričakovano vrednost po vseh možnih značenjih je \(\mathbb{E}[s(i,j)] = 0\). Če izberemo \((i,j)\) in \(A\subset [n]\times [n]\), kjer \((i,j) \notin A\) in \((j,i)\notin A\), potem je \(s(i,j)\) neodvisen od vseh ostalih \(s(k,l)\) (za \((k,l)\in A\)), saj lahko značenje vsakega roba izberemo neodvisno od ostalih. Torej je
     \begin{align*}
         \mathbb{E}\left[s(i,j) \prod_{(k,l)\in A} s(k,l)\right] & = \mathbb{E}[s(i,j)]\mathbb{E}\left[\prod_{(k,l)\in A} s(k,l)\right] \\
                                                                 & = 0.
@@ -422,18 +424,18 @@ Na prvi pogled je cilj tega poglavja nekoliko nenavaden. Dokazati želimo, da so
 \end{align*}
 realne. Iz te trditve bomo kasneje lahko sklepali, da so polinomi \(f_s\) prepleteni, podobno, kot so bili prepleteni polinomi prirejanja. Prepletene družine pa nosijo veliko informacij o ničlah funkcij, ki jih tvorijo.
 
-Za dokaz potrebujemo še nekaj definicij in lem. Želimo posplošiti pojem realne ničle na polinome z več spremenljivkami. Če imamo polinom v eni spremenljivki z realnimi koeficienti, lahko ničle delimo na realne in na kompleksne (z neničelno imaginarno komponento). Realne ničle so lahko samostojne, kompleksne pa vedno prihajajo v konjugiranih parih. Lahko torej rečemo, da ima polinom same realne ničle, če nima nobene ničle, ki ima imaginarno komponento večjo od nič (saj iz tega sledi, da nima tudi nobenih z imaginarno komponento manjšo od nič). Posledica, da so vse ničle strogo realne ne velja v večjih dimenzijah, bomo pa karakterizacijo vseeno uporabili za definicijo realno stabilnih polinomov.
+Za dokaz potrebujemo še nekaj definicij in lem. Želimo posplošiti pojem realne ničle na polinome z več spremenljivkami. Če imamo polinom v eni spremenljivki z realnimi koeficienti, lahko ničle delimo na realne in na kompleksne (z neničelno imaginarno komponento). Realne ničle so lahko samostojne, kompleksne pa vedno prihajajo v konjugiranih parih. Lahko torej rečemo, da ima polinom same realne ničle, če nima nobene ničle, ki ima imaginarno komponento večjo od nič (saj iz tega sledi, da nima tudi nobenih z imaginarno komponento manjšo od nič). Posledica, da so vse ničle strogo realne, ne velja v večjih dimenzijah, bomo pa karakterizacijo vseeno uporabili za definicijo realno stabilnih polinomov.
 \begin{definicija}[Realno stabilen polinom]
     Polinom \(f\in \mathbb R[z_1, \ldots, z_n]\) je realno stabilen, če je ničelen polinom ali pa velja
     \begin{align*}
         \left(\forall i.\, \Im(z_i) > 0\right) \implies f(z_1, \ldots, z_n) \neq 0.
     \end{align*}
 \end{definicija}
-V literaturi se pogosto uporabljajo tudi drugačne definicije. V našem primeru ničle ne smejo biti na določenem kvadratnu, lahko bi pa definirali, da so vse ničle na kakšni kompleksni polravnini ali kateremkoli drugem kvadrantu. Definicije imajo skupno, da prepovedujejo ničle na določenem delu kompleksne ravnine, ker pa lahko ta del preoblikujemo s pomočjo Möbiusove transformacije, lahko vsako trditev, ki uporablja eno definicijo, preoblikujemo v trditev, ki uporablja drugo \cite{mckenzie}.
+V literaturi se pogosto uporabljajo tudi drugačne definicije. V našem primeru ničle ne smejo biti na določenem kvadrantu, lahko bi pa definirali, da so vse ničle na kakšni kompleksni polravnini ali kateremkoli drugem kvadrantu. Definicije imajo skupno, da prepovedujejo ničle na določenem delu kompleksne ravnine, ker pa lahko ta del preoblikujemo s pomočjo Möbiusove transformacije, lahko vsako trditev, ki uporablja eno definicijo, preoblikujemo v trditev, ki uporablja drugo \cite{mckenzie}.
 
 Zdaj si lahko ogledamo družino realno stabilnih polinomov, ki jo bomo potrebovali v našem izreku \cite{JuliusPetter}.
 \begin{izrek}\label{matrike-realnostabilna}
-    Za \(1\leq j \leq n\) naj bodo \(A_j\) pozitivne semidefinitne matrike. Potem je polinom
+    Za \(1\leq j \leq n\) naj bodo \(A_j\) pozitivno semidefinitne matrike. Potem je polinom
     \begin{align*}
         f(z_1, \ldots, z_n) = \det\left(\sum_{j=1}^n z_j A_j\right)
     \end{align*}
@@ -463,12 +465,12 @@ Hurwitzevega izreka ne bomo dokazali, saj je standarden rezultat iz kompleksne a
     Ker sta matriki \(H\) in \(P^{-1/2}\) definitni je tudi \(P^{-1/2}HP^{-1/2}\) definiten. Torej je izraz enak skalarnemu večkratniku karakterističnega polinoma pozitivno definitne matrike (za skalar \(\det(P)\)). Ta pa ima same realne ničle, torej je \(\Im(t)=0\).
 \end{dokaz}
 
-Sedaj potrebujemo še nekaj načinov, kako konstruiramo nove realno stabilne polinome iz že znanih. Očitno je, da če imamo dva realno stabilna polinoma je tudi njun produkt realno stabilen. Imamo pa še dve drugi konstrukciji, ki ju bomo potrebovali \cite{wagner-multivariate}.
+Sedaj potrebujemo še nekaj načinov, kako konstruiramo nove realno stabilne polinome iz že znanih. Očitno je, da je produkt dveh realno stabilnih polinomov spet realno stabilen. Imamo pa še dve drugi konstrukciji, ki ju bomo potrebovali \cite{wagner-multivariate}.
 \begin{izrek}[Specializacija realno stabilnih polinomov]
     Naj bo \(f(z_1, \ldots, z_n)\) realno stabilen polinom. Potem je za poljuben \(a\in \mathbb C\) z \(\Im(a)\geq 0\) polinom \(g(z_2, \ldots, z_n) = f(a, z_2, \ldots, z_n)\) realno stabilen.
 \end{izrek}
 \begin{dokaz}
-    Rezultat je očiten, če je \(Im(a) > 0\). Za \(\Im(a) = 0\) pa uporabimo Hurwitzev izrek.Naj bo torej \(a\in \mathbb R\). Za domeno vzamemo
+    Rezultat je očiten, če je \(Im(a) > 0\). Za \(\Im(a) = 0\) pa uporabimo Hurwitzev izrek. Naj bo torej \(a\in \mathbb R\). Za domeno vzamemo
     \begin{align*}
         D=\{(z_2,\ldots,z_n) \in \mathbb C^{n-1}\mid \forall 2\leq j \leq n.\, \Im(z_j)> 0\}.
     \end{align*}
@@ -491,7 +493,7 @@ Potrebovali bomo še način, kako dobimo nov realno stabilen polinom preko odvod
 \end{izrek}
 Izreka ne bomo dokazali, ga pa potrebujemo v nadaljevanju.
 
-Da se lotimo izrekov, ki zagotavljajo, da imajo določeni polinomi realne ničle, potrebujemo še dve manjši lemi. Prva je standardni rezultat iz linearne algebre, ki nam pomaga izračunati determinanto\cite{matrix-determinant-lemma}, z drugo pa izračunamo rezultat zgoraj definiranih operatorjev na določenih polinomih, dobljenih iz determinant.
+Da se lotimo izrekov, ki zagotavljajo, da imajo določeni polinomi realne ničle, potrebujemo še dve manjši lemi. Prva je standardni rezultat iz linearne algebre, ki nam pomaga izračunati determinanto cite{matrix-determinant-lemma}, z drugo pa izračunamo rezultat zgoraj definiranih operatorjev na določenih polinomih, dobljenih iz determinant.
 \begin{lema}\label{matrix-det-lemma}
     Če je \(A\in \mathbb C^{n\times n}\) obrnljiva matrika in \(u, v \in \mathbb C^n\) vektorja, potem velja
     \begin{align*}
@@ -642,14 +644,14 @@ Sedaj izrek uporabimo, da zaključimo poglavje, in dokažemo trditev iz začetka
 \end{dokaz}
 
 \subsection{Prepletena značenja}
-Prepletene polinome smo že srečali v dokazih za prirejanja v grafih. Izkazalo se je, da polinom prirejanja grafa prepleta polinom prirejanja istega grafa z dodanim vozliščem. Sedaj si bomo ogledali drugačno družino prepletenih polinomov, in sicer \(\{f_s\}_{s\in \{\pm 1\}^m}\). Pokazali bomo, da je družina prepletena in da imajo prepletene družine polinomov vsaj en polinom, ki ima največjo ničlo manjšo od največje ničle pričakovane vrednosti cele družine. Ker pa zaradi izreka \ref{znacenje-prirejanje} že poznamo dobro oceno za pričakovano vrednost, bo to pokazalo obstoj nekega polinoma, ki ima največjo ničlo dovolj majhno. To pa je ravno pogoj, da je graf Ramanujanov, kot bomo povzeli po zaključko vseh potrebnih dokazih.
+Prepletene polinome smo že srečali v dokazih za prirejanja v grafih. Izkazalo se je, da polinom prirejanja grafa prepleta polinom prirejanja istega grafa z dodanim vozliščem. Sedaj si bomo ogledali drugačno družino prepletenih polinomov, in sicer \(\{f_s\}_{s\in \{\pm 1\}^m}\). Pokazali bomo, da je družina prepletena in da imajo prepletene družine polinomov vsaj en polinom, ki ima največjo ničlo manjšo od največje ničle pričakovane vrednosti cele družine. Ker pa zaradi izreka \ref{znacenje-prirejanje} že poznamo dobro oceno za pričakovano vrednost, bo to pokazalo obstoj nekega polinoma, ki ima največjo ničlo dovolj majhno. To pa je ravno pogoj, da je graf Ramanujanov, kot bomo povzeli po zaključku vseh potrebnih dokazov.
 
 Najprej posplošimo definicijo \ref{prepletena-polinoma} prepletenih polinomov na družino polinomov.
 \begin{definicija}[Skupno prepletanje]
     Polinomi \(f_1, \ldots, f_k\) imajo skupno prepletanje, če obstaja polinom \(g\), ki prepleta vse polinome \(f_i\).
 \end{definicija}
 \begin{definicija}[Prepletena družina]\label{prepletena-druzina}
-    Naj bodo \(S_1, \ldots, S_m\) končne množice in, za poljuben element \((s_1, \ldots, s_m)\in S_1\times \ldots \times S_m\), naj bo \(f_{s_1, \ldots, s_m}\) polinom stopnje \(n\) z realnimi ničlami in pozitivnim vodilnim koeficientom.
+    Naj bodo \(S_1, \ldots, S_m\) končne množice in za poljuben element \((s_1, \ldots, s_m)\in S_1\times \ldots \times S_m\) naj bo \(f_{s_1, \ldots, s_m}\) polinom stopnje \(n\) z realnimi ničlami in pozitivnim vodilnim koeficientom.
 
     Za \(0\leq k<m\) definiramo
     \begin{align*}
@@ -660,7 +662,7 @@ Najprej posplošimo definicijo \ref{prepletena-polinoma} prepletenih polinomov n
 \end{definicija}
 V definiciji nam indeksi fiksirajo določene parametre, seštevamo pa po vseh možnih nefiksiranih parametrih. V skrajnosti, \(f_{()}\) sešteje kar vse polinome v družini.
 
-Za nas bo zanimiv primer, ko so vsi \(S_i=\{-1, +1\}\), posamezni \(s_i\) pa predstavljajo značenje določenega robova. Polinom \(f_{s_1, \ldots, s_m}\) bo predstavljal značeni karakteristični polinom, za značenje \((s_1,\ldots, s_m) \in \{\pm 1\}^m\). Primer \(f_{()}\) sešteje vsa možna značenja, torej je do skalarja natančno enak pričakovani vrednosti vseh značenih karakterističnih polinomov (seveda ima tudi enake ničle). Družina značenih karakterističnih polinomov bo pa prepletena, če, ne glede na to kako definiramo značenje robova (imamo pa fiksirano značenje za robove, ki imajo manjši indeks), obstaja nek polinom, ki prepleta pričakovani polinom po nefiksiranih spremenljivkah. To pa omejuje koliko se lahko spremenijo ničle, saj morajo biti ničle prepletenega polinoma med ničlami pričakovanega polinoma.
+Za nas bo zanimiv primer, ko so vsi \(S_i=\{-1, +1\}\), posamezni \(s_i\) pa predstavljajo značenje določenega robova. Polinom \(f_{s_1, \ldots, s_m}\) bo predstavljal značeni karakteristični polinom za značenje \((s_1,\ldots, s_m) \in \{\pm 1\}^m\). Primer \(f_{()}\) sešteje vsa možna značenja, torej je do skalarja natančno enak pričakovani vrednosti vseh značenih karakterističnih polinomov (seveda ima tudi enake ničle). Družina značenih karakterističnih polinomov bo pa prepletena, če, ne glede na to kako definiramo značenje robova (imamo pa fiksirano značenje za robove, ki imajo manjši indeks), obstaja nek polinom, ki prepleta pričakovani polinom po nefiksiranih spremenljivkah. To pa omejuje koliko se lahko spremenijo ničle, saj morajo biti ničle prepletenega polinoma med ničlami pričakovanega polinoma.
 
 Najprej bomo dokazali, da značeni karakteristični polinomi res tvorijo prepleteno družino. Za to potrebujemo drugačno karakterizacijo skupnih prepletanj \cite{DEDIEU1992269}.
 \begin{izrek}\label{konveksne-kombinacije-prepletenih}
