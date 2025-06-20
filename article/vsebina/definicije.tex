@@ -14,7 +14,7 @@ Koncept ramanujanovih grafov ima preprosto definicijo, vendar njen pomen ni oči
 \subsection{Cheegerjeva konstanta}
 Kot v uvodnem primeru nas zanima, koliko povezav moramo odstraniti, da graf ni več povezan.
 
-Naj bo \(G=(V,E)\) povezan graf in \(S\subseteq V\) podmnožica vozlišč z \(0<\abs{S} \leq \abs{V}/{2}\). Z \(\partial S\subseteq E\) označimo množico povezav od \(S\) do komplementa vozlišč, \(\overline{S}\). Če iz grafa odstranimo \(\partial S\), potem se graf razdeli na več komponent.
+Naj bo \(G=(V,E)\) povezan graf in \(S\subseteq V\) podmnožica vozlišč z \(0<\abs{S} \leq \abs{V}/{2}\). Z \(\partial S\subseteq E\) označimo množico povezav od \(S\) do komplementa vozlišč \(\overline{S} = V \setminus S\). Če iz grafa odstranimo \(\partial S\), potem se graf razdeli na več komponent.
 
 Največjo težavo predstavljajo ozka grla grafa. To je majhna množica povezav, ki ločuje dva dela grafa z velikim številom vozlišč. Za dobro povezanost grafa torej želimo, da ni ozkih grl in da je za velik \(\abs{S}\) tudi velik \(\abs{\partial S} \), oziroma da \(\abs{\partial S}/{\abs{S}}\) ni nikoli majhen.
 
@@ -25,10 +25,10 @@ Največjo težavo predstavljajo ozka grla grafa. To je majhna množica povezav, 
     \end{align*}
     definiramo Cheegerjevo konstanto \cite{polatajko} kot
     \begin{align*}
-        c(G) = \min_{S\in T} \frac{\abs{\partial S}}{\abs{S}}
+        h(G) = \min_{S\in T} \frac{\abs{\partial S}}{\abs{S}}
     \end{align*}
 \end{definicija}
-Večja kot je vrednost \(c(G)\), manj ozkih grl ima graf \(G\).
+Večja kot je vrednost \(h(G)\), manj ozkih grl ima graf \(G\).
 
 \begin{primer}[Cikli]
     \hspace{0em}
@@ -47,7 +47,7 @@ Večja kot je vrednost \(c(G)\), manj ozkih grl ima graf \(G\).
 
     Za minimizacijo izraza \(\abs{\partial S}/{\abs{S}}\) lahko izberemo množico sosednjih vozlišč. Tako bo vedno \(\abs{\partial S} = 2\), \(S\) pa povečamo do polovice cikla, kot omejuje definicija. Za cikel \(C_{2n}\) torej vzamemo \(\abs{S} = n\), za \(C_{2n+1}\) pa prav tako \(\abs{S} = n\). Sledi
     \begin{align*}
-        c(C_n) = \frac{2}{\lfloor \frac n2\rfloor}.
+        h(C_n) = \frac{2}{\lfloor \frac n2\rfloor}.
     \end{align*}
     Večji kot je \(n\), manjša je Cheegerjeva konstanta, kar pomeni, da je graf slabše povezan, saj je potrebno odstraniti le dve povezavi, da ločimo graf na dve veliki komponenti.
 \end{primer}
@@ -64,15 +64,15 @@ Večja kot je vrednost \(c(G)\), manj ozkih grl ima graf \(G\).
             \draw (A) -- (B) -- (C) -- (D) -- (E) -- (A);
             \draw (A) -- (C) -- (E) -- (B) -- (D) -- (A);
         \end{tikzpicture}
-        \caption{Graf \(K_5\).}
+        \caption{Poln graf \(K_5\).}
     \end{figure}
     Za poln graf \(K_n\) velja, da je \(\abs{\partial S} = \abs{S} \cdot (n - \abs{S})\). Zato je
     \begin{align*}
-        c(K_n) = \min_{S} \left(n-\abs{S}\right).
+        h(K_n) = \min_{S} \left(n-\abs{S}\right).
     \end{align*}
     Minimum dosežemo pri \(\abs{S} = \lfloor\frac n2\rfloor\) s poljubno izbiro vozlišč. Sledi
     \begin{align*}
-        c(K_n) = \left\lceil \frac n2 \right\rceil.
+        h(K_n) = \left\lceil \frac n2 \right\rceil.
     \end{align*}
     Večji kot je \(n\), večja je Cheegerjeva konstanta in graf je bolje povezan.
 \end{primer}
@@ -138,9 +138,9 @@ Oglejmo si primer, kjer je zelo očitna povezava med ozkim grlom grafa in Cheege
     \end{figure}
     Za \(n\geq3\) vzamemo dva polna grafa \(K_n\) in pri vsakemu izberemo dve vozlišči. Dobimo vozlišči \(u_1, v_1\) prvega grafa in \(u_2, v_2\) drugega grafa. Odstranimo povezavi \((u_1, v_1)\) in \((u_2, v_2)\) in dodamo \((u_1, v_2)\), \((u_2, v_1)\), da tvorimo regularen povezan graf \(G = (V,E)\) kot na sliki \ref{fig:grafozkogrlo}. Če za \(S\) vzamemo enega izmed polnih grafov, je \(\abs{S} = n\) maksimalen in \(\abs{\partial S} = 2\) minimalen. Torej je Cheegerjeva konstanta
     \begin{align*}
-        c(G) = \frac{2}{n}.
+        h(G) = \frac{2}{n}.
     \end{align*}
-    Večji kot je \(n\), bolj izrazito je ozko grlo na grafu, kar vidimo tudi v manjši vrednosti \(c(G)\). V primeru \(n=6\) smo dobili 5-regularen graf na dvanajstih vozliščih s \(c(G)=1/3\).
+    Večji kot je \(n\), bolj izrazito je ozko grlo na grafu, kar vidimo tudi v manjši vrednosti \(h(G)\). V primeru \(n=6\) smo dobili 5-regularen graf na dvanajstih vozliščih s \(h(G)=1/3\).
 \end{primer}
 Če izberemo naključen graf, pa je verjetnost, da ima ozko grlo, majhna. Oglejmo si primer naključno izbranega \(5\)-regularnega grafa na dvanajstih vozliščih.
 % [[0. 0. 1. 1. 1. 0. 0. 0. 0. 1. 0. 1.]
@@ -230,7 +230,7 @@ Oglejmo si primer, kjer je zelo očitna povezava med ozkim grlom grafa in Cheege
         \caption{Naključno izbran graf.}
         \label{fig:nakljucnograf}
     \end{figure}
-    Za graf s pomočjo računalnika izračunamo Cheegerjevo konstanto tako, da preverimo vse možne izbire \(S \subset \{1, \ldots, 12\}\). V tem primeru je optimalna izbira \(S = \{1, 4, 5, 9, 10, 11\}\) in Cheegerjeva konstanta je \(c(G) = 10/6 \approx 1{,}66\), veliko višje kot v primeru grafa z ozkim grlom, kljub temu, da sta imela enako stopnjo regularnosti in enako število vozlišč.
+    Za graf s pomočjo računalnika izračunamo Cheegerjevo konstanto tako, da preverimo vse možne izbire \(S \subset \{1, \ldots, 12\}\). V tem primeru je optimalna izbira \(S = \{1, 4, 5, 9, 10, 11\}\) in Cheegerjeva konstanta je \(h(G) = 10/6 \approx 1{,}66\), veliko višje kot v primeru grafa z ozkim grlom, kljub temu, da sta imela enako stopnjo regularnosti in enako število vozlišč.
 \end{primer}
 \subsection{Spektralna vrzel}
 Sedaj se namesto geometrijskih lastnosti grafov osredotočimo na njihove algebraične lastnosti. Vsak graf lahko identificiramo z njegovo sosednostno matriko, ki je simetrična matrika z elementi 0 in 1. Po spektralnem izreku ima torej \(n\) realnih lastnih vrednosti \(\lambda_i\), ki pripadajo \(n\) realnim lastnim vektorjem. Lastne vrednosti lahko uredimo po velikosti:
@@ -323,7 +323,7 @@ Sedaj se namesto geometrijskih lastnosti grafov osredotočimo na njihove algebra
     \caption{Sosednostna matrika ozkega grla za \(n=6\).}
 \end{figure}
 
-    Spektralne vrzeli izračunamo numerično in jih izrišemo na grafu.
+    Spektralne vrzeli izračunamo numerično in jih izrišemo na grafu, ki je prikazan na sliki \ref{fig:grafspektralnihozkega}.
     % compute/definicije_spectral_gap_bottleneck.py
     \begin{figure}[t]
         \centering
@@ -372,6 +372,7 @@ Sedaj se namesto geometrijskih lastnosti grafov osredotočimo na njihove algebra
             \end{axis}
         \end{tikzpicture}
         \caption{Graf spektralnih vrzeli ozkega grla za \(n\) od 1 do 30}
+        \label{fig:grafspektralnihozkega}
     \end{figure}
     Opazimo, da večji kot je \(n\), manjša je spektralna vrzel, prav tako kot je manjša Cheegerjeva konstanta (in bolj kot je izrazito ozko grlo). V primeru \(n=6\) dobimo drugo največjo lastno vrednost enako približno \(4{,}46\), iz česar sledi, da je spektralna vrzel približno \(0{,}54\).
 \end{primer}
@@ -381,7 +382,7 @@ Nazadnje si oglejmo še primer naključnega grafa.
 \end{primer}
 
 Računanje lastnih vrednosti regularnega grafa nam olajša tudi lastnost, da je njegova največja lastna vrednost enaka stopnji regularnosti.
-\begin{izrek}[Največja lastna vrednost \(d\)-regularnega grafa]
+\begin{izrek}[Največja lastna vrednost \unboldmath\(d\)-regularnega grafa]
     Največja lastna vrednost \(d\)-regularnega grafa je \(d\).
 \end{izrek}
 
@@ -449,11 +450,11 @@ Kljub temu lahko vzpostavimo povezavo med Cheegerjevo konstanto in spektralno vr
 \begin{izrek}[Cheegerjeva neenakost]\label{cheeger-neenakost}
     Naj bo \(G\) \(d\)-regularen graf. Potem velja 
     \begin{align*}
-        \frac{1}{2}s(G) \leq c(G) \leq \sqrt{2ds(G)}
+        \frac{1}{2}s(G) \leq h(G) \leq \sqrt{2ds(G)}
     \end{align*}
     oziroma
     \begin{align*}
-        2c(G) \geq s(G) \geq \frac{c(G)^2}{2d}.
+        2h(G) \geq s(G) \geq \frac{h(G)^2}{2d}.
     \end{align*} 
 \end{izrek}
 Za dokaz izreka potrebujemo naslednjo lemo.
@@ -478,9 +479,9 @@ Za dokaz izreka potrebujemo naslednjo lemo.
     \end{align*}
 \end{dokaz}
 \begin{dokaz}[Dokaz Cheegerjeve neenakosti]
-    Najprej dokažimo \(2c(G) \geq s(G)\). Naj bo \(S\subset V(G)\) ena od množic, ki dosega minimum v definiciji Cheegerjeve konstante, torej \(0<\abs{S} \leq \abs{V(G)}/2\) in 
+    Najprej dokažimo \(2h(G) \geq s(G)\). Naj bo \(S\subset V(G)\) ena od množic, ki dosega minimum v definiciji Cheegerjeve konstante, torej \(0<\abs{S} \leq \abs{V(G)}/2\) in 
     \begin{align*}
-        c(G) = \frac{\abs{\partial S}}{\abs{S }}.
+        h(G) = \frac{\abs{\partial S}}{\abs{S }}.
     \end{align*}
     Spektralno vrzel poiščemo preko Rayleighovega kvocienta. Za sosednostno matriko \(A\) in vektor \(v\) definiramo Rayleighov kvocient kot
     \begin{align*}
@@ -513,17 +514,17 @@ Za dokaz izreka potrebujemo naslednjo lemo.
         R(A, v) &= d - \frac{\abs{\partial S} \cdot \left(\frac{1}{\abs{S}} + \frac{1}{\abs{\overline S}}\right)^2}{\abs{S} \frac{1}{\abs{S}^2} + \abs{\overline S} \frac{1}{\abs{\overline S}^2}}\\
         &= d - \abs{\partial S}\left(\frac{1}{\abs{S}} + \frac{1}{\abs{\overline S}}\right) \\ 
         &= d - \frac{\abs{\partial S}}{\abs{S}}\frac{\left(\abs{S} + \abs{\overline S}\right)}{\abs{\overline S}}\\
-        &= d- c(G) \frac{V(G)}{\abs{\overline S}}\\
-        &\geq d - 2c(G)
+        &= d- h(G) \frac{V(G)}{\abs{\overline S}}\\
+        &\geq d - 2h(G)
     \end{align*}
     Torej velja
     \begin{align*}
-        \lambda_2 \geq R(A,v) \geq d-2c(G),\\
-        2c(G) \geq d-\lambda_2 = s(G).
+        \lambda_2 \geq R(A,v) \geq d-2h(G),\\
+        2h(G) \geq d-\lambda_2 = s(G).
     \end{align*}
 
     % file:///home/tadej/library/math/magistrska/cheeger_chung.pdf
-    Zdaj dokažemo še drugo neenakost, \(s(G) \geq \frac{c(G)^2}{2d}\). Podobno kot v Fiedlerjevem algoritmu \cite{fiedlerjevvektor} bomo s pomočjo lastnega vektorja, ki ustreza drugi največji lastni vrednosti, konstruirali particijo grafa.
+    Zdaj dokažemo še drugo neenakost, \(s(G) \geq \frac{h(G)^2}{2d}\). Podobno kot v Fiedlerjevem algoritmu \cite{fiedlerjevvektor} bomo s pomočjo lastnega vektorja, ki ustreza drugi največji lastni vrednosti, konstruirali particijo grafa.
 
     Naj bo \(v\) lastni vektor za drugo največjo lastno vrednost, \(\lambda_2\). Brez škode za splošnost preuredimo vozlišča grafa tako, da je \(v_i \geq v_j\) za \(i < j\). Definiramo množico \(S_i = \{v_1, \ldots, v_i\}\) in 
     \begin{align*}
@@ -823,12 +824,12 @@ Oglejmo si, kako so te konstante povezane z drugo največjo lastno vrednostjo gr
     Ker je seštevek \(\sum_{j\in V} v_j\) enak \(0\), vemo, da je vektor \(v\) pravokoten na vektor samih enic, ki je lastni vektor za lastno vrednost \(d\). Torej je razmerje \(\norm{A v} / \norm{ v} \leq \lambda(G)\). Če vstavimo izračunane norme dobimo
     \begin{align*}
         \frac{\norm{A v}}{\norm v} \leq \lambda(G) \\
-        \norm{A v} \leq \lambda(G) \norm v
+        \norm{A v} \leq \lambda(G) \norm v.
     \end{align*} 
-    Da zaključimo dokaz le vstavimo prej-izračunano vrednost \(i(G)\) in izraz poenostavimo.
+    Da zaključimo dokaz le vstavimo prej-izračunano vrednost \(i(G)\) in izraz poenostavimo:
     \begin{align*}
         d^2 i(G)^3 \leq \lambda(G)^2 i(G) n^2\\
-        i(G) \leq \frac{n}{d} \lambda(G)
+        i(G) \leq \frac{n}{d} \lambda(G).
     \end{align*}
 \end{dokaz}
 

@@ -53,20 +53,23 @@ Potrebujemo še zadnji izrek, ki bo razložil uporabo dvodelnih grafov v konstru
 \end{dokaz}
 
 \subsection{Dvig grafa}
-Konstrukcija, ki jo bomo uporabili za konstrukcijo večjega Ramanujanovega grafa, se imenuje dvig, oziroma v našem primeru 2-dvig. Idejno 2-dvig grafa \(G\) tvori nov graf, ki ima dvakrat več vozlišč in povezav, te povezave pa so izbrane tako, da ohranimo določene lastnosti grafa. Vsako vozlišče \(v\) bo imelo v dvigu dve kopiji, \(v_1\) in \(v_2\), če pa imamo povezavo \(u\sim v\) v prvotnem grafu, ima dvig dve novi povezavi, ki povežeta \(v_1\) in \(v_2\) z \(u_1\) in \(u_2\) (ni pa določeno, ali je povezan \(v_1\sim u_1\) ali \(v_1\sim u_2\)). Pomembno je, da na ta način ohranimo stopnjo regularnosti grafa.
+Konstrukcija, ki jo bomo uporabili za konstrukcijo večjega Ramanujanovega grafa, se imenuje dvig, oziroma v našem primeru 2-dvig. Idejno 2-dvig grafa \(G\) tvori nov graf, ki ima dvakrat več vozlišč in povezav, te povezave pa so izbrane tako, da ohranimo določene lastnosti grafa. Vsako vozlišče \(v\) bo imelo v dvigu dve kopiji, \(v_1\) in \(v_2\), če pa imamo povezavo \((u, v)\) v prvotnem grafu, ima dvig dve novi povezavi, ki povežeta \(v_1\) in \(v_2\) z \(u_1\) in \(u_2\) (ni pa določeno, ali je povezan \(v_1\sim u_1\) ali \(v_1\sim u_2\)). Pomembno je, da na ta način ohranimo stopnjo regularnosti grafa. Za definicijo bomo potrebovali še pojem disjunktne vsote množic, ki jo označimo \(A+B\) za množici \(A\) in \(B\). Ta je definirana kot
+\begin{align*}
+    A+B = \{\iota_1(a) \mid a \in A\}\cup \{\iota_2(b) \mid b\in B\}.
+\end{align*}
 
 \begin{definicija}[2-dvig grafa]
-    Naj bo \(G = (V, E)\) graf. Rečemo, da je \(G'= (V', E')\) 2-dvig grafa \(G\), če je \(V' = V + V\) (do bijekcije natančno), za vsako povezavo \(u\sim v\) v \(G\) pa imamo v \(E'\) ali povezavi \(\{\iota_1(v)\sim \iota_1(u), \iota_2(v)\sim \iota_2(u)\}\) (povezavi prvega tipa) ali povezavi \(\{\iota_1(v)\sim \iota_2(u), \iota_2(v)\sim \iota_1(u)\}\) (povezavi drugega tipa). Drugih povezav v \(E'\) ni.
+    Naj bo \(G = (V, E)\) graf. Rečemo, da je \(G'= (V', E')\) 2-dvig grafa \(G\), če je \(V' = V + V\) (do bijekcije natančno), za vsako povezavo \((u, v)\) v \(G\) pa imamo v \(E'\) ali povezavi \(\{(\iota_1(v), \iota_1(u)), (\iota_2(v), \iota_2(u))\}\) (povezavi prvega tipa) ali povezavi \(\{(\iota_1(v), \iota_2(u)), (\iota_2(v), \iota_1(u))\}\) (povezavi drugega tipa). Drugih povezav v \(E'\) ni.
 \end{definicija}
 
 Posebej poudarimo, da \(2\)-dvig grafa ni nujno povezan. Če v dvigu uporabimo izključno povezave prvega tipa, potem dobimo disjunktno unijo dveh kopij prvotnega grafa. Če pa uporabljamo izključno povezave drugega tipa, dvig imenujemo \emph{dvojni krov} grafa. Za nas ni pomembno, vendar je zanimivo, da je konstrukcija dvodelnih Ramanujanovih grafov poljubne stopnje regularnosti lažja kot konstrukcija takih Ramanujanovih grafov, ki niso dvodelni; dvojni krov grafa bo namreč vedno dvodelen, dvojni krov nedvodelnega Ramanujanovega grafa pa bo spet Ramanujanov \cite{marcus2014interlacingfamiliesibipartite}.
 
-Ime izvira iz teorije kategorij. Homomorfizmi grafov preslikajo vozlišča v vozlišča in povezave v povezave. Enostavno lahko definiramo projekcijo iz \(2\)-dviga \(\pi\colon G'\to G\) z \(\iota_i(v)\mapsto v\), prav tako pa \(\iota_i(u)\sim\iota_j(v)\mapsto u\sim v\) za \(i, j\in \{1,2\}\). Poljuben homomorfizem \(\phi\colon H\to G\) lahko faktoriziramo preko \(\pi\). Vsako preslikavo povezav \(\phi\) lahko razumemo kot kompozitum dveh preslikav; najprej \(\phi'\), ki preslika \(u\sim v\) v \(\iota_i(\phi(u)) \sim \iota_j(\phi(v))\) (za ustrezno izbiro \(i\) in \(j\)) in projekcije \(\pi\). Tako lahko vsak homomorfizem \(\phi\colon H\to G\) zapišemo kot \(\phi = \pi\circ \phi'\) in kategorično bi bil \(\phi'\) dvig preslikave \(\phi\) na \(G'\).
+Ime izvira iz teorije kategorij. Homomorfizmi grafov preslikajo vozlišča v vozlišča in povezave v povezave. Enostavno lahko definiramo projekcijo iz \(2\)-dviga \(\pi\colon G'\to G\) z \(\iota_i(v)\mapsto v\), prav tako pa \((\iota_i(u), \iota_j(v))\mapsto (u, v)\) za \(i, j\in \{1,2\}\). Poljuben homomorfizem \(\phi\colon H\to G\) lahko faktoriziramo preko \(\pi\). Vsako preslikavo povezav \(\phi\) lahko razumemo kot kompozitum dveh preslikav; najprej \(\phi'\), ki preslika \((u, v)\) v \((\iota_i(\phi(u)), \iota_j(\phi(v)))\) (za ustrezno izbiro \(i\) in \(j\)) in projekcije \(\pi\). Tako lahko vsak homomorfizem \(\phi\colon H\to G\) zapišemo kot \(\phi = \pi\circ \phi'\) in kategorično bi bil \(\phi'\) dvig preslikave \(\phi\) na \(G'\).
 
 \begin{definicija}[Predznačenje dviga]
     Predznačenje grafa \(G = (V, E)\) je preslikava \(s\colon E\to \{-1, +1\}\). Če imamo povezave oštevilčene od \(1\) do \(m\), lahko predznačenje definiramo kot vektor \(s\in \{-1, +1\}^m\).
 
-    Predznačenje, ki pripada \(2\)-dvigu \(G'\) grafa \(G\), je preslikava \(s'\colon E \to \{-1, +1\}\), kjer \(u\sim v \mapsto 1\), če povezavi \(u\sim v\) v dvigu pripada povezava prvega tipa, in \(-1\), če pripada povezava drugega tipa.
+    Predznačenje, ki pripada \(2\)-dvigu \(G'\) grafa \(G\), je preslikava \(s'\colon E \to \{-1, +1\}\), kjer \((u, v) \mapsto 1\), če povezavi \((u, v)\) v dvigu pripada povezava prvega tipa, in \(-1\), če pripada povezava drugega tipa.
 \end{definicija}
 
 Iz definicije sledi, da vsako predznačenje enolično definira \(2\)-dvig grafa.
@@ -74,7 +77,7 @@ Iz definicije sledi, da vsako predznačenje enolično definira \(2\)-dvig grafa.
 Sedaj lahko definiramo sosednostno matriko glede na predznačenje grafa. Ta bo na ničelnih vrednostih enaka navadni sosednostni matriki, kjer pa je v sosednostni matriki \(1\), bo v predznačeni sosednostni matriki vrednost, ki jo definira predznačenje.
 
 \begin{definicija}[Predznačena sosednostna matrika]
-    Naj bo \(G = (V, E)\) graf in \(s\colon E\to \{-1, +1\}\) predznačenje grafa. Predznačena sosednostna matrika \(A_s\) je \(\abs{V}\times \abs{V}\) matrika, ki ima na mestu \((u,v)\) vrednost \(0\), če \((u,v)\notin E\), in vrednost \(s(u\sim v)\), če \((u,v)\in E\).
+    Naj bo \(G = (V, E)\) graf in \(s\colon E\to \{-1, +1\}\) predznačenje grafa. Predznačena sosednostna matrika \(A_s\) je \(\abs{V}\times \abs{V}\) matrika, ki ima na mestu \((u,v)\) vrednost \(0\), če \((u,v)\notin E\), in vrednost \(s((u,v))\), če \((u,v)\in E\).
 \end{definicija}
 
 Ta definicija ima presenetljive posledice, saj lastne vrednosti sosednostne matrike grafa in lastne vrednosti predznačene sosednostne matrike za predznačenje, ki pripada dvigu, natanko določajo lastne vrednosti dviga \cite{bilu2004constructingexpandergraphs2lifts}.
@@ -130,7 +133,7 @@ Dokazi lastnosti polinoma prirejanja se običajno dokazujejo z indukcijo po šte
     Če je \(G\) prazen graf, pa velja \(\mu_G(x) = 1\).
 \end{izrek}
 \begin{dokaz}
-    Oglejmo si poljubno prirejanje v grafu \(G\). Če vozlišče \(v\) ni incidenčno nobeni povezavi v prirejanju, potem je to prirejanje šteto v \(m_i(G)\) in \(m_i({G-\{v\}})\). V nasprotnem primeru pa ima prirejanje povezavo \(u\sim v\). Potem je prirejanje brez te povezave šteto v \(m_{i-1}({G-\{u, v\}})\). Seveda velja tudi obratno in tako dobimo rekurzivno zvezo
+    Oglejmo si poljubno prirejanje v grafu \(G\). Če vozlišče \(v\) ni incidenčno nobeni povezavi v prirejanju, potem je to prirejanje šteto v \(m_i(G)\) in \(m_i({G-\{v\}})\). V nasprotnem primeru pa ima prirejanje povezavo \((u, v)\). Potem je prirejanje brez te povezave šteto v \(m_{i-1}({G-\{u, v\}})\). Seveda velja tudi obratno in tako dobimo rekurzivno zvezo
     \begin{align*}
         m_i(G) = m_i({G-\{v\}}) + \sum_{u\sim v} m_{i-1}({G-\{u, v\}}).
     \end{align*}
@@ -272,7 +275,7 @@ Nadaljujemo z izrekom, ki nam bo omejil ničle polinoma prirejanja. Ta rezultat 
     \begin{align}\label{lemamatching}
         x - \sum_{u\sim v}\frac{\mu_{T_u(G-\{v\}) - \{u\}}(x)}{\mu_{T_u(G-\{v\})}(x)}
     \end{align}
-    Če drevesu \(T_v(G)\) odstranimo korensko vozlišče \(v\), dobimo disjunktno unijo dreves \(T_u(G-\{v\})\) za vsak \(u\sim v\). To lahko zapišemo kot
+    Če drevesu \(T_v(G)\) odstranimo korensko vozlišče \(v\), dobimo disjunktno unijo dreves \(T_u(G-\{v\})\) za vsako povezavo \((u, v)\). To lahko zapišemo kot
     \begin{align*}
         T_v(G) - \{v\} = \bigcup_{u\sim v} T_u(G-\{v\}), \\
         T_u(G - \{v\}) - \{u\} = \bigcup_{w\sim u, w\neq v} T_w(G-\{u, v\}).
@@ -298,9 +301,9 @@ Nadaljujemo z izrekom, ki nam bo omejil ničle polinoma prirejanja. Ta rezultat 
                                           & = x - \sum_{u\sim v}\frac{\mu_{T_v(G) - \{v\} - \{vu\}}(x)}{\mu_{T_v(G-\{v\})}(x)}                                                  \\
                                           & = \frac{x \mu_{T_v(G-\{v\})}(x) - \sum_{u\sim v} \mu_{T_v(G) - \{v\} - \{vu\}}(x)}{\mu_{T_v(G-\{v\})}(x)}
     \end{align*}
-    Da zaključimo dokaz, le uporabimo rekurzivno definicijo polinoma prirejanja.
+    Da zaključimo dokaz, le uporabimo rekurzivno definicijo polinoma prirejanja:
     \begin{align*}
-        \frac{\mu_G(x)}{\mu_{G-\{v\}}(x)} = \frac{\mu_{T_v(G)}(x)}{\mu_{T_v(G-\{v\})}(x)}
+        \frac{\mu_G(x)}{\mu_{G-\{v\}}(x)} = \frac{\mu_{T_v(G)}(x)}{\mu_{T_v(G-\{v\})}(x)}.
     \end{align*}
 \end{dokaz}
 
@@ -311,7 +314,7 @@ To lemo uporabimo, da pokažemo, da so ničle polinoma prirejanja nekega grafa t
     Za poljubno vozlišče \(v\in G\) polinom \(\mu_G\) deli polinom \(\mu_{T_v(G)}\).
 \end{izrek}
 \begin{dokaz}
-    Dokazujemo z indukcijo po številu vozlišč grafa \(G\). Trditev enostavno preverimo za grafe z manj kot tremi vozlišči. Predpostavimo torej, da izrek velja za vse grafe z manj vozlišči kot jih ima \(G\). Za poljubno povezavo \(u\sim v\) potem velja, da \(\mu_{G-\{v\}}\) deli \(\mu_{T_u(G-\{v\})}\).
+    Dokazujemo z indukcijo po številu vozlišč grafa \(G\). Trditev enostavno preverimo za grafe z manj kot tremi vozlišči. Predpostavimo torej, da izrek velja za vse grafe z manj vozlišči, kot jih ima \(G\). Za poljubno povezavo \((u, v)\) potem velja, da \(\mu_{G-\{v\}}\) deli \(\mu_{T_u(G-\{v\})}\).
 
     Ker velja
     \begin{align*}
@@ -367,7 +370,7 @@ Sedaj lahko ocenimo lastne vrednosti drevesa.
 
     Nato si oglejmo vrstice, ki pripadajo listom. Naj bo \(v\) ta list. Ima le enega soseda, njegova višina pa je za ena manjša od višine \(v\). Ko množimo \(A\) iz desne z \(D^{-1}\), dobimo vrstico, ki ima le en element neničelen, in sicer je enak \(\sqrt{d-1}^{-h(v)+1}\). Ko to vrstico množimo iz leve z \(D\), dobimo vrstico, ki ima le en element neničeln, ta pa je \(\sqrt{d-1}^{-h(v)+1}\sqrt{d-1}^{h(v)}\) oziroma \(\sqrt{d-1}\), spet manjše od \(2\sqrt{d-1}\).
 
-    Preostala vozlišča \(v\) imajo en element, ki ima višino manjšo za ena in kvečjemu \(d-1\) elementov, ki imajo višino večjo za ena. Torej bo po množenju z \(D^{-1}\) iz desne v vrstici en element \(\sqrt{d-1}^{-h(v)+1}\) in kvečjemu \(d-1\) elementov \(\sqrt{d-1}^{-h(v)-1}\). Ko množimo iz leve z \(D\) se vsi elementi pomnožijo z \(\sqrt{d-1}^{h(v)}\). Vsota je torej kvečjemu \(\sqrt{d-1} + (d-1)/\sqrt{d-1}\) oziroma \(2\sqrt{d-1}\).
+    Preostala vozlišča \(v\) imajo en element, ki ima višino manjšo za ena in kvečjemu \(d-1\) elementov, ki imajo višino večjo za ena. Torej bo po množenju z \(D^{-1}\) iz desne v vrstici en element \(\sqrt{d-1}^{-h(v)+1}\) in kvečjemu \(d-1\) elementov \(\sqrt{d-1}^{-h(v)-1}\). Ko množimo iz leve z \(D\), se vsi elementi pomnožijo z \(\sqrt{d-1}^{h(v)}\). Vsota je torej kvečjemu \(\sqrt{d-1} + (d-1)/\sqrt{d-1}\) oziroma \(2\sqrt{d-1}\).
 \end{dokaz}
 
 Zdaj, ko imamo informacije o ničlah polinoma prirejanja, lahko opišemo, kako so te ničle povezane z predznačeno sosednostno matriko dviga.
@@ -406,11 +409,11 @@ Zdaj, ko imamo informacije o ničlah polinoma prirejanja, lahko opišemo, kako s
     \end{align*}
     To se ne zgodi v primeru \(2\)-cikla, kjer je \(\mathbb{E}(s(i,j)s(j,i)) = 1\). Torej bodo vsi produkti ničelni, razen tisti, ki jih sestavljajo samo \(2\)-cikli in fiksne točke. Kot smo že videli v dokazu izreka \ref{drevo-karakteristicni}, take permutacije predstavljajo prirejanja v grafu. Produkt bo torej \(1\), če permutacija predstavlja prirejanje in \(0\) sicer.
 
-    Zdaj določimo še predznak sumanda. Znak permutacije je določen s številom inverzij, ki je enako številu povezav v prirejanju (vsaka inverzija predstavlja krajišča povezave). Imamo \(n-k\) vozlišč, ki so del prirejanja, torej imamo \((n-k)/{2}\) povezav. Tako je predznak \(\sgn{\sigma} = (-1)^{\frac{n-k}{2}}\). Produkt \(\prod -s\) množi sodo mnogo elementov (saj je sestavljen iz samih \(2\)-ciklov), torej se negativni predznaki \(-s\) pokrajšajo.
+    Zdaj določimo še predznak sumanda. Znak permutacije je določen s številom inverzij, ki je enako številu povezav v prirejanju (vsaka inverzija predstavlja krajišča povezave). Imamo \(n-k\) vozlišč, ki so del prirejanja, torej imamo \((n-k)/{2}\) povezav. Tako je predznak \(\sgn{\sigma} = (-1)^{\frac{n-k}{2}}\). Produkt \(\prod -s\) množi sodo mnogo elementov (saj je sestavljen iz samih \(2\)-ciklov), torej se negativni predznaki \(-s\) pokrajšajo. Torej velja:
     \begin{align*}
         \mathbb{E}_{s\in \{\pm 1\}^m} \det(xI - A_s) & =\sum_{k=0}^n x^{k} \sum_{\substack{S \subseteq [n]        \\ \abs{S} = k}} \sum_{\sigma \in \mathrm{efix(S)}} (-1)^{\frac{n-k}{2}} \\
                                                      & =\sum_{k=0}^n x^{k} m_{\frac{n-k}{2}} (-1)^{\frac{n-k}{2}} \\
-                                                     & = \sum_{i \geq 0} m_i (-1)^{i} x^{n-2i}
+                                                     & = \sum_{i \geq 0} m_i (-1)^{i} x^{n-2i}.
     \end{align*}
 \end{dokaz}
 
@@ -494,7 +497,7 @@ Potrebovali bomo še način, kako dobimo nov realno stabilen polinom preko odvod
 \end{izrek}
 Izreka ne bomo dokazali, ga pa potrebujemo v nadaljevanju.
 
-Da se lotimo izrekov, ki zagotavljajo, da imajo določeni polinomi realne ničle, potrebujemo še dve manjši lemi. Prva je standardni rezultat iz linearne algebre, ki nam pomaga izračunati determinanto cite{matrix-determinant-lemma}, z drugo pa izračunamo rezultat zgoraj definiranih operatorjev na določenih polinomih, dobljenih iz determinant.
+Da se lotimo izrekov, ki zagotavljajo, da imajo določeni polinomi realne ničle, potrebujemo še dve manjši lemi. Prva je standardni rezultat iz linearne algebre, ki nam pomaga izračunati determinanto \cite{matrix-determinant-lemma}, z drugo pa izračunamo rezultat zgoraj definiranih operatorjev na določenih polinomih, dobljenih iz determinant.
 \begin{lema}\label{matrix-det-lemma}
     Če je \(A\in \mathbb C^{n\times n}\) obrnljiva matrika in \(u, v \in \mathbb C^n\) vektorja, potem velja
     \begin{align*}
@@ -520,7 +523,7 @@ Da se lotimo izrekov, ki zagotavljajo, da imajo določeni polinomi realne ničle
         \begin{bmatrix}
             I & u            \\
             0 & 1 + v^\top u
-        \end{bmatrix}
+        \end{bmatrix}.
     \end{align*}
     Ker je determinanta odvisna le od diagonalnih blokov, dobimo želeno enakost.
 
@@ -545,7 +548,7 @@ Da se lotimo izrekov, ki zagotavljajo, da imajo določeni polinomi realne ničle
                                                       & = \det(A + z_j bb^\top) a^\top (A + z_j bb^\top)^{-1} a                                 \\
         \partial_j \det(A + z_i aa^\top +z_j bb^\top) & = \det(A + z_i aa^\top) b^\top (A + z_i aa^\top)^{-1} b
     \end{align*}
-    tako lahko izračunamo rezultat operatorja \((1+p\partial_i + (1-p)\partial_j)\).
+    Tako lahko izračunamo rezultat operatorja \((1+p\partial_i + (1-p)\partial_j)\).
     \begin{align*}
          & (1+p\partial_i + (1-p)\partial_j)\det(A + z_i aa^\top + z_j bb^\top) = \\
          & = \det(A + z_i aa^\top + z_j bb^\top)                                  \\
