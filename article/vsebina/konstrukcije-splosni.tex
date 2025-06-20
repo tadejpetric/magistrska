@@ -1,25 +1,25 @@
 \section{Konstrukcija splošnih Ramanujanovih grafov}
 Ogledali si bomo še zadnjo konstrukcijo Ramanujanovih grafov, ki pa je pravzaprav bila kronološko prva \cite{lps-ramanujan}. Ta nam bo poiskala neskončno družino Ramanujanovih grafov stopnje \(p+1\) za praštevilo \(p\). Za razliko od prejšnje konstrukcije pa tukaj ne bomo dobili zgolj dvodelnih grafov, poleg tega pa je konstrukcija tokrat eksplicitna.
 
-Glavni razlog, da si bomo ogledali to konstrukcijo pa je, da uporablja povsem drugačen pristop. Skica konstrukcije je sledeča: poiskali bomo družino matričnih grup, ki imajo \(p+1\) generatorjev. Za vsako grupo lahko poiščemo njen Cayleyev graf, ki ima stopnjo regularnosti enako številu generatorjev grupe, torej dobimo \((p+1)\)-regularen graf. Za te grafe pa se bo izkazalo, da so Ramanujanovi.
+Glavni razlog, da si bomo ogledali to konstrukcijo pa je, da uporablja povsem drugačen pristop. Skica konstrukcije je sledeča: poiskali bomo družino matričnih grup, ki imajo \(p+1\) generatorjev. Za vsako grupo lahko poiščemo njen Cayleyjev graf, ki ima stopnjo regularnosti enako številu generatorjev grupe, torej dobimo \((p+1)\)-regularen graf. Za te grafe pa se bo izkazalo, da so Ramanujanovi.
 
 \subsection{Konstrukcija}
-\subsubsection{Cayleyevi grafi}
-Začnimo z definicijo Cayleyevih grafov, saj nam ta pojem pove največ o konstrukciji, ki jo bomo uporabili. Kot vemo, je grupa sestavljena iz elementov ter binarne operacije (množenja), ki zadošča določenim pogojem. Vsaka grupa pa ima množico generatorjev. To so elementi, ki so potrebni, da dosežemo kateri koli element grupe le preko množenja s temi elementi.
+\subsubsection{Cayleyjevi grafi}
+Začnimo z definicijo Cayleyjevih grafov, saj nam ta pojem pove največ o konstrukciji, ki jo bomo uporabili. Kot vemo, je grupa sestavljena iz elementov ter binarne operacije (množenja), ki zadošča določenim pogojem. Vsaka grupa pa ima množico generatorjev. To so elementi, ki so potrebni, da dosežemo kateri koli element grupe le preko množenja s temi elementi.
 
 \begin{definicija}[Generatorji]
     Naj bo \(G\) grupa in \(S\) simetrična (\(S=S^{-1}\)) podmnožica elementov grupe \(G\), ki ne vključuje enote. Elementi \(S\) so generatorji grupe \(G\), če lahko poljuben element grupe \(G\) zapišemo kot produkt elementov iz \(S\).
 \end{definicija}
-Običajno se v definiciji generatorjev izpusti zahtevo, da je množica simetrična in da ne vsebuje enote. V našem primeru pa to definicijo potrebujemo le v kontekstu Cayleyevih grafov, kjer je naša definicija bolj priročna.
+Običajno se v definiciji generatorjev izpusti zahtevo, da je množica simetrična in da ne vsebuje enote. V našem primeru pa to definicijo potrebujemo le v kontekstu Cayleyjevih grafov, kjer je naša definicija bolj priročna.
 
-\begin{definicija}[Cayleyev graf]
-    Naj bo \(G\) grupa in \(S\) množica generatorjev grupe \(G\). Cayleyev graf grupe \(G\) glede na množico generatorjev \(S\) je graf, katerega vozlišča so elementi grupe \(G\), vozlišče \(v\) pa je povezano z vozliščem \(u\) natanko takrat, ko obstaja tak \(s\in S\), da je \(v\cdot s = u\).
+\begin{definicija}[Cayleyjev graf]
+    Naj bo \(G\) grupa in \(S\) množica generatorjev grupe \(G\). Cayleyjev graf grupe \(G\) glede na množico generatorjev \(S\) je graf, katerega vozlišča so elementi grupe \(G\), vozlišče \(v\) pa je povezano z vozliščem \(u\) natanko takrat, ko obstaja tak \(s\in S\), da je \(v\cdot s = u\).
 \end{definicija}
-Dobljena struktura je res graf. Ker \(S\) nima enote, ni nobeno vozlišče povezano s samim sabo. Ker je \(S\) tudi simetrična, je definicija povezav dobro definirana. Če je namreč med \(v\) in \(u\) povezava, to pomeni, da obstaja \(s\in S\), da \(vs=u\), kar pa je ekvivalentno \(v = u s^{-1}\). Po definiciji pa je tudi \(s^{-1}\in S\), torej je tudi, simetrično, med \(u\) in \(v\) povezava. Če množica \(S\) ne generira cele grupe (obstaja nek element, ki ga ne moremo dobiti kot produkt elementov iz \(S\)), še vedno dobimo graf, le da ta ni nujno povezan.
+Dobljena struktura je res graf. Ker \(S\) nima enote, ni nobeno vozlišče povezano s samim sabo. Ker je \(S\) tudi simetrična, je definicija povezav dobro definirana. Če je namreč med \(v\) in \(u\) povezava, to pomeni, da obstaja \(s\in S\), da je \(vs=u\), kar pa je ekvivalentno \(v = u s^{-1}\). Po definiciji pa je tudi \(s^{-1}\in S\), torej je tudi, simetrično, med \(u\) in \(v\) povezava. Če množica \(S\) ne generira cele grupe (obstaja nek element, ki ga ne moremo dobiti kot produkt elementov iz \(S\)), še vedno dobimo graf, le da ta ni nujno povezan.
 
-Naši Ramanujanovi grafi bodo dobljeni kot Cayleyevi grafi. Ker so Ramanujanovi grafi regularni, si torej želimo tudi, da so Cayleyevi grafi regularni.
-\begin{izrek}[Cayleyevi grafi so regularni]
-    Če je \(S\) množica generatorjev, potem je Cayleyev graf glede na to množico \(\abs{S}\)-regularen.
+Naši Ramanujanovi grafi bodo dobljeni kot Cayleyjevi grafi. Ker so Ramanujanovi grafi regularni, si torej želimo tudi, da so Cayleyjevi grafi regularni.
+\begin{izrek}[Cayleyjevi grafi so regularni]
+    Če je \(S\) množica generatorjev, potem je Cayleyjev graf glede na to množico \(\abs{S}\)-regularen.
 \end{izrek}
 \begin{dokaz}
     Po definiciji ima lahko poljubno vozlišče kvečjemu toliko sosedov, kolikor je elementov v množici generatorjev. Dokazati moramo le, da ne moreta dva različna elementa \(S\) predstavljati iste povezave.
@@ -45,9 +45,9 @@ Konstrukcija uporablja dve družini grup, obe pa sta različici matričnih grup.
     Na grupo \(\PSL(n, \mathbb F)\) lahko gledamo kot na podgrupo \(\PGL(n, \mathbb F)\).
 \end{definicija}
 
-Za konstrukcijo bomo uporabili polje \(\modZ{q}\), kjer je \(q\) praštevilo. Naši grafi bodo konstruirani kot Cayleyevi grafi grup \(\PSL(2, \modZ{q})\) in \(\PGL(2, \modZ{q})\).
+Za konstrukcijo bomo uporabili polje \(\modZ{q}\), kjer je \(q\) praštevilo. Naši grafi bodo konstruirani kot Cayleyjevi grafi grup \(\PSL(2, \modZ{q})\) in \(\PGL(2, \modZ{q})\).
 
-Za Cayleyeve grafe pa potrebujemo definirati še generatorje, zato si bomo ogledali še nekaj teorije števil. Tu bomo tudi dobili kriterij, ki nam pove, katero izmed obeh grup izbrati.
+Za Cayleyjeve grafe pa potrebujemo definirati še generatorje, zato si bomo ogledali še nekaj teorije števil. Tu bomo tudi dobili kriterij, ki nam pove, katero izmed obeh grup izbrati.
 
 \subsubsection{Teorija števil}
 Prva definicija posploši pojem popolnega kvadrata na končne kolobarje. V celih številih so popolni kvadrati števila oblike \(k^2\), kjer je \(k\) celo število. Če pa to gledamo v kolobarju \(\mathbb Z/n\mathbb Z\), dobimo enako definicijo, samo modulo \(n\).
@@ -115,7 +115,7 @@ Izbiro grupe bomo pogojevali glede na Legendrov simbol. Če bomo želeli naredit
 \begin{dokaz}
     Ogledali si bomo le glavno idejo dokaza: kako lahko izrek prevedemo na identiteto \(\theta\) vrst \cite{kato3}. Od tam naprej je dokaz sicer dolg ampak le računski \cite{Hirschhorn_1982}; lahko pa pristopimo tudi preko modularnih form \cite{kato3}.
 
-    Najprej definirajmo funkcijo \(\theta\).
+    Najprej definirajmo funkcijo \(\theta\colon \mathbb C \to \mathbb C\).
     \begin{align*}
         \theta(z) = \sum_{n=-\infty}^\infty e^{\pi i n^2 z}
     \end{align*}
@@ -189,7 +189,7 @@ Kvaternione lahko predstavimo tudi kot matrike. Vsak kvaternion oblike \(a + bi 
         -c+di & a-bi
     \end{bmatrix}.
 \end{align*}
-Lahko bi jih predstavili tudi preko \(4\times 4\) realnih matrik. V vsakem primeru pa je ta zapis enostavno utemeljiti; če poračunamo produkt kvaternionov vidimo, da se ujema z matričnim produktom. Če bodo naši kvaternioni definirani nad kolobarjem \(\Z\), potem bodo imele matrike elemente iz \(\Z[i]\). Če pa obravnavamo kvaternione nad končnim poljem \(\modZ{q}\), se izkaže, da je element \(i\) (ki je definiran tako, da je \(i^2 = -1\)) že del polja. Recimo, če si ogledamo \(\modZ{5}\) je \(-1 = 4 = 2^2\), torej je \(i=2\). V primeru kvaternionov nad \(\modZ{q}\) jih lahko torej predstavimo kar kot \(2\times 2\) matrike nad \(\modZ{q}\).
+Lahko bi jih predstavili tudi preko \(4\times 4\) realnih matrik. V vsakem primeru pa je ta zapis enostavno utemeljiti; če poračunamo produkt kvaternionov vidimo, da se ujema z matričnim produktom. Če bodo naši kvaternioni definirani nad kolobarjem \(\Z\), potem bodo imele matrike elemente iz \(\Z[i]\). Če pa obravnavamo kvaternione nad končnim poljem \(\modZ{q}\) z \(q \equiv 1 \pmod 4\), se izkaže, da je element \(i\) (ki je definiran tako, da je \(i^2 = -1\)) že del polja. Recimo, če si ogledamo \(\modZ{5}\) je \(-1 = 4 = 2^2\), torej je \(i=2\). V primeru kvaternionov nad \(\modZ{q}\) jih lahko torej predstavimo kar kot \(2\times 2\) matrike nad \(\modZ{q}\).
 
 % dokaz lahko dobimo v corollary 2.6.10 o ramanujan graphs knjigici
 \begin{definicija}[Nerazcepni kvaternioni]
@@ -213,7 +213,7 @@ Determinanta te matrike je
     (a_0+ia_1)(a_0-ia_1) - (a_2+ia_3)(-a_2+ia_3)\\
     = a_0^2 + a_1^2 + a_2^2 + a_3^2 = p,
 \end{align*}
-torej je matrika obrnljiva in jo lahko gledamo kot element grupe \(\PGL(2, \modZ{q})\). Inverz kvaterniona lahko enostavno poiščemo preko konjungacije. Če je \(\alpha\) kvaternion, je \(\overline{\alpha}/\abs{\alpha}\) njegov inverz. Konjugiran element tudi reši enačbo in je torej eden izmed elementov naših matrik. Deljenje z normo ne povzroča težav, saj delujemo v grupi \(\PGL\), kjer so elementi enaki, če se razlikujejo do skalarja natančno -- torej \(\overline{\alpha}/\abs{\alpha}\) in \(\overline{\alpha}\) predstavljata isti element grupe, oba inverz elementa \(\alpha\). Množica teh matrik je torej simetrična. Če je \(\legendre{p}{q}=-1\), identiteta ni element te množice. V \(\PGL\) je identiteta matrika, ki ima na diagonali same enake elemente, zunaj diagonale pa je enaka \(0\). Determinanta te matrike je \(k^2\) za nek \(k\), izračunali pa smo že, da je determinanta tudi enaka \(p\). Torej bi bil \(k^2 \equiv p \pmod q\), kar pa pomeni, da je \(p\) kvadratni ostanek in bi moralo veljati \(\legendre{p}{q}=1\). Pod predpostavko, da velja \(\legendre{p}{q}=-1\), imamo torej \(p+1\) matrik, ki tvorijo simetrično množico brez identitete in jih lahko uporabimo kot generatorje Cayleyevega grafa. Grupa \(\PGL(2, \modZ{q})\) ima \(q(q^2-1)\) elementov, torej dobimo \(p+1\)-regularen graf na \(q(q^2-1)\) vozliščih. Kasneje bomo dokazali, da so ti grafi povezani in Ramanujanovi. Izkaže pa se, da so dvodelni; ena particija pripada podmnožici \(\PSL\), druga pa njenemu komplementu.
+torej je matrika obrnljiva in jo lahko gledamo kot element grupe \(\PGL(2, \modZ{q})\). Inverz kvaterniona lahko enostavno poiščemo preko konjungacije. Če je \(\alpha\) kvaternion, je \(\overline{\alpha}/\abs{\alpha}\) njegov inverz. Konjugiran element tudi reši enačbo in je torej eden izmed elementov naših matrik. Deljenje z normo ne povzroča težav, saj delujemo v grupi \(\PGL\), kjer so elementi enaki, če se razlikujejo do skalarja natančno -- torej \(\overline{\alpha}/\abs{\alpha}\) in \(\overline{\alpha}\) predstavljata isti element grupe, oba inverz elementa \(\alpha\). Množica teh matrik je torej simetrična. Če je \(\legendre{p}{q}=-1\), identiteta ni element te množice. V \(\PGL\) je identiteta matrika, ki ima na diagonali same enake elemente, zunaj diagonale pa je enaka \(0\). Determinanta te matrike je \(k^2\) za nek \(k\), izračunali pa smo že, da je determinanta tudi enaka \(p\). Torej bi bil \(k^2 \equiv p \pmod q\), kar pa pomeni, da je \(p\) kvadratni ostanek in bi moralo veljati \(\legendre{p}{q}=1\). Pod predpostavko, da velja \(\legendre{p}{q}=-1\), imamo torej \(p+1\) matrik, ki tvorijo simetrično množico brez identitete in jih lahko uporabimo kot generatorje Cayleyjevega grafa. Grupa \(\PGL(2, \modZ{q})\) ima \(q(q^2-1)\) elementov, torej dobimo \(p+1\)-regularen graf na \(q(q^2-1)\) vozliščih. Kasneje bomo dokazali, da so ti grafi povezani in Ramanujanovi. Izkaže pa se, da so dvodelni; ena particija pripada podmnožici \(\PSL\), druga pa njenemu komplementu.
 
 \begin{primer}
     Zaradi visokih dimenzij si primera nastalega Ramanujanovega grafa ne moremo pogledati, si pa lahko ogledamo generatorje. Če vzamemo \(p=5\), velja pogoj \(p \equiv 1 \pmod 4\). Po našem postopku dobimo \(6\) različnih rešitev enačbe \(p^2 = a_0^2 + a_1^2 + a_2^2 + a_3^2\).
@@ -222,7 +222,7 @@ torej je matrika obrnljiva in jo lahko gledamo kot element grupe \(\PGL(2, \modZ
         p^2 = 1^2 + 0^2 + (-2)^2 + 0^2 && p^2 = 1^2 + 0^2 + 2^2 + 0^2 \\
         p^2 = 1^2 + 0^2 + 0^2 + (-2)^2 && p^2 = 1^2 + 0^2 + 0^2 + 2^2 \\
     \end{align*}
-    Iz teh šestih rešitev dobimo šest generatorjev, ki jih potrebujemo za konstrukcijo Cayleyevega grafa.
+    Iz teh šestih rešitev dobimo šest generatorjev, ki jih potrebujemo za konstrukcijo Cayleyjevega grafa.
     %\begin{bmatrix}
     %    a_0 +ia_1 & a_2+ia_3 \\
     %    -a_2+ia_3 & a_0-ia_1
@@ -262,11 +262,11 @@ V primeru, da velja \(\legendre{p}{q} = 1\), pa k konstrukciji pristopimo z upor
         0 & k^{-1}
     \end{bmatrix}\in Z(n, \mathbb F)
 \end{align*}
-in dobimo matrike, ki imajo determinanto \(1\). Tako vidimo, da so vse matrike pravzaprav del podgrupe \(\PSL(2, \modZ{q})\) in ne le \(\PGL\). Ker je množenje elementov iz podgrupe zaprto, lahko iz elementov \(\PSL\) pridemo le do drugih elementov \(\PSL\), če uporabimo le te matrike kot generatorje. Tako bi bil graf nepovezan, če za vozlišča uporabimo celotno grupo \(\PGL\). Namesto tega uporabimo grupo \(\PSL(2, \modZ{q})\). Kot prej je množica še vedno simetrična, potrebno pa je še preveriti, da ne vsebuje identitete. V tem primeru bi dobili matriko, pri kateri je \(a_0 +ia_1 \equiv a_0 - ia_1 \pmod q\), torej \(a_1 \equiv 0 \pmod q\) oziroma \(a_1 = n\cdot q\). Ker je \(p<q\) in smo \(a_1\) izbrali iz rešitev enačbe \(p=a_1^2 + \cdots\) v \(\Z\) je torej \(a_1=0\). Da bi dobili skalarno matriko torej mora veljati \(a_0^2 = p\) (v kolobarju \(\Z\), saj smo tam izbirali rešitve enačbe). Ker pa je \(p\) praštevilo, to ni mogoče. Torej smo dobili simetrično množico brez identitete, ki jo bomo uporabili kot množico generatorjev za \(\PSL(2, \modZ{q})\). Grupa \(\PSL(2, \modZ{q})\) ima \(q(q^2-1)/2\) elementov, dobljeni graf pa ni dvodelen. Pomembno za nas pa je, da so tudi ti Ramanujanovi. 
+in dobimo matrike, ki imajo determinanto \(1\). Tako vidimo, da so vse matrike pravzaprav del podgrupe \(\PSL(2, \modZ{q})\) in ne le \(\PGL\). Ker je množenje elementov iz podgrupe zaprto, lahko iz elementov \(\PSL\) pridemo le do drugih elementov \(\PSL\), če uporabimo le te matrike kot generatorje. Tako bi bil graf nepovezan, če za vozlišča uporabimo celotno grupo \(\PGL\). Namesto tega uporabimo grupo \(\PSL(2, \modZ{q})\). Kot prej je množica še vedno simetrična, potrebno pa je še preveriti, da ne vsebuje identitete. V tem primeru bi dobili matriko, pri kateri je \(a_0 +ia_1 \equiv a_0 - ia_1 \pmod q\), torej \(a_1 \equiv 0 \pmod q\) oziroma \(a_1 = n\cdot q\). Ker je \(p<q\) in smo \(a_1\) izbrali iz rešitev enačbe \(p=a_1^2 + a_0^2 + a_2^2 + a_3^2\) v \(\Z\) je torej \(a_1=0\). Da bi dobili skalarno matriko torej mora veljati \(a_0^2 = p\) (v kolobarju \(\Z\), saj smo tam izbirali rešitve enačbe). Ker pa je \(p\) praštevilo, to ni mogoče. Torej smo dobili simetrično množico brez identitete, ki jo bomo uporabili kot množico generatorjev za \(\PSL(2, \modZ{q})\). Grupa \(\PSL(2, \modZ{q})\) ima \(q(q^2-1)/2\) elementov, dobljeni graf pa ni dvodelen. Pomembno za nas pa je, da so tudi ti Ramanujanovi. 
 
-V obeh primerih Cayleyev graf za izbrana parametra \(p\) in \(q\) označimo z \(X^{p,q}\).
+V obeh primerih Cayleyjev graf za izbrana parametra \(p\) in \(q\) označimo z \(X^{p,q}\).
 
-Če torej povzamemo konstrukcijo, poiščemo rešitve enačbe \(p = a_0^2 + a_1^2 + a_2^2 + a_3^2\) in iz njih dobimo \(p+1\) matrik v \(\PGL(2, \modZ{q})\), če je \(\legendre{p}{q}=-1\), oziroma v \(\PSL(2, \modZ{q})\), če je \(\legendre{p}{q}=1\). Te matrike služijo kot generatorji za Cayleyev graf, vsak tak graf pa je Ramanujanov. Če fiksiramo \(p\) in povečujemo \(q\) (z enakimi omejitvami kot prej), dobimo neskončno družino Ramanujanovih grafov stopnje \(p+1\).
+Če torej povzamemo konstrukcijo, poiščemo rešitve enačbe \(p = a_0^2 + a_1^2 + a_2^2 + a_3^2\) in iz njih dobimo \(p+1\) matrik v \(\PGL(2, \modZ{q})\), če je \(\legendre{p}{q}=-1\), oziroma v \(\PSL(2, \modZ{q})\), če je \(\legendre{p}{q}=1\). Te matrike služijo kot generatorji za Cayleyjev graf, vsak tak graf pa je Ramanujanov. Če fiksiramo \(p\) in povečujemo \(q\) (z enakimi omejitvami kot prej), dobimo neskončno družino Ramanujanovih grafov stopnje \(p+1\).
 
 To zaključi konstrukcijo, potrebno pa je pokazati, da je ta konstrukcija pravilna in da so vsi dobljeni grafi Ramanujanovi.
 
@@ -292,13 +292,13 @@ Ta množica vsebuje našo množico generatorjev, poleg tega pa velja, da je zapr
     \begin{align*}
         \alpha = \varepsilon \gamma_1' \cdots \gamma_n'.
     \end{align*}
-    Ta beseda ni nujno okrajšana. Če se v besedi pojavi par \(\gamma_i' \overline{\gamma_i'}\) ali \( \overline{\gamma_i'}\gamma_i'\), je produkt takega para enak \(p\). Ker cela števila komutirajo s kvaternioni lahko vse take pojavitve preuredimo na začetek, da dobimo faktor \(p^r\) (ta faktor pa prispeva \(p^{2r}\) k normi). 
+    Ta beseda ni nujno okrajšana. Če se v besedi pojavi par \(\gamma_i' \overline{\gamma_i'}\) ali \( \overline{\gamma_i'}\gamma_i'\), je produkt takega para enak \(p\). Ker cela števila komutirajo s kvaternioni lahko vse take pojavitve preuredimo na začetek, da dobimo faktor \(p^r\). 
 
     Enoličnost dokažemo s preštevanjem. Jacobijev izrek o štirih kvadratih (\ref{jacobi-four-squares}) nam pove, koliko je kvaternionov, ki imajo normo \(p^k\). Delitelji \(p^k\) so natanko potence \(p^i\) za \(i\leq k\), nobena pa ni deljiva z \(4\). Torej je število kvaternionov z normo \(p^k\) enako 
     \begin{align*}
         8\sum_{i=0}^k p^i = 8\frac{p^{k+1}-1}{p-1}.
     \end{align*}
-    Oglejmo si, koliko je okrajšanih besed dolžine \(m\) nad \(S\). Za prvo črko imamo \(p+1\) možnosti, saj lahko izberemo poljuben element. Pogoj, da sosednja elementa ne smeta biti konjugirana, odstrani eno možnost za vsak naslednji element, torej imamo \(p\) možnosti za naslednjih \(m-1\) elementov. Število okrajšanih besed dolžine \(m\) je torej \((p+1)p^{m-1}\). Zaradi norm vemo, da je \(2r+m=k\). Če je \(k\) liho število, dobimo vseh možnih izrazov ravno
+    Oglejmo si, koliko je okrajšanih besed dolžine \(m\) nad \(S\). Za prvo črko imamo \(p+1\) možnosti, saj lahko izberemo poljuben element. Pogoj, da sosednja elementa ne smeta biti konjugirana, odstrani eno možnost za vsak naslednji element, torej imamo \(p\) možnosti za naslednjih \(m-1\) elementov. Število okrajšanih besed dolžine \(m\) je torej \((p+1)p^{m-1}\). Vemo, da je norma vsake izmed \(m\) besed enaka \(p\), norma faktorja \(p^r\) je enaka \(p^{2r}\) in norma \(\varepsilon\) je enaka \(1\). Njihov produkt \(\alpha\) ima normo \(p^k\), torej velja \(2r+m=k\). Če je \(k\) liho število, dobimo vseh možnih izrazov ravno
     \begin{align*}
         8\sum_{r=0}^{\frac{k-1}{2}} (p+1)p^{k-2r-1},
     \end{align*} 
@@ -329,39 +329,39 @@ Oglejmo si analogno trditev v \(\Lambda'\) namesto v \(\bH(\Z)\).
 \end{dokaz}
 
 \subsubsection{Proste grupe}
-Vsak \(\alpha\in \Lambda'\) smo lahko enolično razpisali po generatorjih kot \(\pm p^k w_m\). Želimo si ogledati samo grupo besed \(w_m\), ki pa jo lahko zapišemo kot kvocient grupe \(\Lambda'\). Ta grupa je prosta, njen Cayleyev graf pa ravno \((p+1)\)-regularno drevo. Tako bomo dobili povezavo med našo grupo generatorjev (s katero definiramo Ramanujanove grafe) in drevesom, ki prinaša mejo lastne vrednosti.
+Vsak \(\alpha\in \Lambda'\) smo lahko enolično razpisali po generatorjih kot \(\pm p^k w_m\). Želimo si ogledati samo grupo besed \(w_m\), ki pa jo lahko zapišemo kot kvocient grupe \(\Lambda'\). Ta grupa je prosta, njen Cayleyjev graf pa ravno \((p+1)\)-regularno drevo. Tako bomo dobili povezavo med našo grupo generatorjev (s katero definiramo Ramanujanove grafe) in drevesom, ki prinaša mejo lastne vrednosti.
 
 Definiramo ekvivalenčno relacijo \(\sim\) na \(\Lambda\) z 
 \begin{align*}
     \alpha \sim \beta \iff p^m \alpha = \pm p^n \beta.
 \end{align*}
-za neka \(m\) in \(n\). Ta relacija definira grupo \(\Lambda = \Lambda'/\sim\). Kvocientno projekcijo označimo z \(Q\).
+za neka \(m\) in \(n\). Enostavno je preveriti, da ta relacija definira grupo \(\Lambda = \Lambda'/\sim\). Kvocientno projekcijo označimo z \(Q\).
 
 \begin{izrek}
-    Cayleyev graf grupe \(\Lambda\) z generatorji \(Q(S)\) je (neskončno) \((p+1)\)-regularno drevo
+    Cayleyjev graf grupe \(\Lambda\) z generatorji \(Q(S)\) je (neskončno) \((p+1)\)-regularno drevo
 \end{izrek}
 \begin{dokaz}
     Množica \(Q(S)\) je očitno velikosti \(p+1\), saj za \(\alpha,\beta\in S\), \(\alpha\sim \beta \implies \alpha=\beta\).
 
-    Po definiciji, \(Q(S)\) generira \(\Lambda\), torej je Cayleyev graf \((p+1)\)-regularen in povezan. Potrebno je le dokazati, da je drevo. Če graf ni drevo, ima cikel dolžine vsaj \(3\), označimo ga \(v_0, v_1, \ldots, v_n=v_0\). Brez škode za splošnost predpostavimo \(v_0=1\). Po definiciji grafa je \(v_1=\gamma_1, v_2 = \gamma_1 \cdot \gamma_2,\ldots,v_n = \gamma_1\cdots\gamma_n\) za neke \(\gamma_i\in Q(S)\). Ker ima cikel vsaj \(3\) vozlišča, ponovi se pa le prvo iz zadnje vozlišče, ne velja nikjer \(v_{i-1} = v_{i+1}\). Iz tega pa sledi, da je beseda \(\gamma_1\cdots\gamma_n\) okrajšana. Imamo pa tudi \(v_0=1\), torej \(1 = \gamma_1\cdots\gamma_n\), kar pa je protislovno. Torej takega cikla ni.
+    Po definiciji, \(Q(S)\) generira \(\Lambda\), torej je Cayleyjev graf \((p+1)\)-regularen in povezan. Potrebno je le dokazati, da je drevo. Če graf ni drevo, ima cikel dolžine vsaj \(3\), označimo ga \(v_0, v_1, \ldots, v_n=v_0\). Brez škode za splošnost predpostavimo \(v_0=1\). Po definiciji grafa je \(v_1=\gamma_1, v_2 = \gamma_1 \cdot \gamma_2,\ldots,v_n = \gamma_1\cdots\gamma_n\) za neke \(\gamma_i\in Q(S)\). Ker ima cikel vsaj \(3\) vozlišča, ponovi se pa le prvo iz zadnje vozlišče, ne velja nikjer \(v_{i-1} = v_{i+1}\). Iz tega pa sledi, da je beseda \(\gamma_1\cdots\gamma_n\) okrajšana. Imamo pa tudi \(v_0=1\), torej \(1 = \gamma_1\cdots\gamma_n\), kar pa je protislovno. Torej takega cikla ni.
 \end{dokaz}
 
 Kot smo prej projecirali generatorje v \(\modZ{q}\), projeciramo tudi sedaj. Definiramo centralno podgrupo grupe \(\bH(\modZ{q})^\times\)
 \begin{align*}
     Z_q = \{\alpha \in \bH(\modZ{q})^\times \mid \alpha = \overline\alpha\}.
 \end{align*}
-Projekcija v \(\modZ{q}\) je preslikava oblike \(\Lambda' \to\bH(\modZ{q})^\times\). Ker se ekvivalentni elementi v \(\Lambda\) preslikajo v center, torej \(\pi(\alpha)^{-1}\pi(\beta)\in Z_q\) za \(\pi:\Lambda' \to\bH(\modZ{q})^\times\) in \(\alpha\sim\beta\) v \(\Lambda\), sledi, da lahko iz njega dobro definiramo homomorfizem grupe \(\Lambda\)
+Projekcija v \(\modZ{q}\) je preslikava oblike \(\Lambda' \to\bH(\modZ{q})^\times\). Za poljubna ekvivalentna elementa \(\alpha\) in \(\beta\) v \(\Lambda\) velja \(\pi(\alpha)^{-1}\pi(\beta)\in Z_q\) za \(\pi\colon \Lambda' \to\bH(\modZ{q})^\times\), torej lahko iz projekcije definiramo homomorfizem grupe \(\Lambda\)
 \begin{align*}
-    \Pi_q: \Lambda \to \bH(\modZ{q})^\times/Z_q.
+    \Pi_q\colon \Lambda \to \bH(\modZ{q})^\times/Z_q.
 \end{align*}
-Jedro tega homomorfizma označimo z \(\Lambda(q)\) in, po prvem izreku o izomorfizmih, sliko označimo z \(\Lambda/\Lambda(q)\). Generatorje \(S\) lahko preslikamo v generatorje \(T\) kot \(T=(\Pi_q \circ Q)(S)\). Enostavno preverimo, da je tudi tukaj velikost \(T\) enaka \(p+1\). Dobimo nov Cayleyev graf: graf grupe \(\Lambda/\Lambda(q)\) z generatorji \(T\). Označimo ga z \(Y^{p,q}\). Tudi ta graf je \((p+1)\)-regularen in povezan.
+Jedro tega homomorfizma označimo z \(\Lambda(q)\) in, po prvem izreku o izomorfizmih, sliko označimo z \(\Lambda/\Lambda(q)\). Generatorje \(S\) lahko preslikamo v generatorje \(T\) kot \(T=(\Pi_q \circ Q)(S)\). Enostavno preverimo, da je tudi tukaj velikost \(T\) enaka \(p+1\). Dobimo nov Cayleyjev graf: graf grupe \(\Lambda/\Lambda(q)\) z generatorji \(T\). Označimo ga z \(Y^{p,q}\). Tudi ta graf je \((p+1)\)-regularen in povezan.
 
-Izkaže se, da sta grafa \(X^{p,q}\) in \(Y^{p,q}\) izomorfna. Rezultat ni preveč presenetljiv, saj obe konstrukciji izvirata iz strukture kvaternionov. To lahko dokažemo na več načinov, najbolj elementaren se zanaša na klasifikacijo podgrup grupe \(\PSL(2, \modZ{q})\). Imamo kanoničen izomorfizem \(\beta:\bH(\modZ{q})^\times /Z_q\to \PGL(2, q)\); s to preslikavo lahko dobimo tudi \(\beta(T)=S\). Pokazati je potrebno le, da je slika \(\Lambda/\Lambda(q)\) enaka \(PSL(2, \modZ{q})\) ali \(\PGL(2, \modZ{q})\) (odvisno od \(\legendre{p}{q}\)). Vse stroge podgrupe \(\PSL(2, \modZ{q})\) razen dveh pa imajo lastnost, da imajo podgrupo edinko \(N\), za katero sta \(N\) in \(G/N\) abelovi. Te dve izjemi pa sta kvečjemu velikosti 60 (v primeru alternirajoče grupe \(A_5\)). Če si ogledamo lastnosti slike, vidimo, da je večja od \(60\) (zaradi zahteve \(q>p^8\)), grupa pa nima omenjene lastnosti - torej ne more biti podgrupa in je slika kar enaka \(\PSL(2, \modZ{q})\). Podrobnega dokaza si ne bomo ogledali.
+Izkaže se, da sta grafa \(X^{p,q}\) in \(Y^{p,q}\) izomorfna. Rezultat ni preveč presenetljiv, saj obe konstrukciji izvirata iz strukture kvaternionov. To lahko dokažemo na več načinov, najbolj elementaren se zanaša na klasifikacijo podgrup grupe \(\PSL(2, \modZ{q})\). Imamo kanoničen izomorfizem \(\beta\colon\bH(\modZ{q})^\times /Z_q\to \PGL(2, \modZ{q})\); s to preslikavo lahko dobimo tudi \(\beta(T)=S\). Pokazati je potrebno le, da je slika \(\Lambda/\Lambda(q)\) enaka \(PSL(2, \modZ{q})\) ali \(\PGL(2, \modZ{q})\) (odvisno od \(\legendre{p}{q}\)). Vse stroge podgrupe \(\PSL(2, \modZ{q})\) razen dveh pa imajo lastnost, da imajo podgrupo edinko \(N\), za katero sta \(N\) in \(G/N\) abelovi. Te dve izjemi pa sta kvečjemu velikosti 60 (v primeru alternirajoče grupe \(A_5\)). Če si ogledamo lastnosti slike, vidimo, da je večja od \(60\) (zaradi zahteve \(q>p^8\)), grupa pa nima omenjene lastnosti - torej ne more biti podgrupa in je slika kar enaka \(\PSL(2, \modZ{q})\). Podrobnega dokaza si ne bomo ogledali.
 
 %TODO: Premisli, če bi bilo dobro ta dokaz predelati bolj podrobno (pg. 119)
 
 \subsubsection{Ramanujanova domneva}
-Da si ogledamo spekter grafov, si bomo, podobno kot pri dokazu za Alon-Boppanovo mejo (\ref{alon-boppanova-meja-izrek}), morali ogledati sled grafa oziroma število poti, ki vodijo od vozlišča do samega sebe. Sled lahko izrazimo tudi drugače, s številom rešitev enačbe, ki je podobna enačbi v Jacobijovem izreku o štirih kvadratih (\ref{jacobi-four-squares}). Enačba v Jacobijovem izreku je bila \(p=a^2+b^2+c^2+d^2\), tu bomo pa uporabili enačbo oblike \(p^m = a^2 + 4q^2(b^2+c^2+d^2)\). Število teh rešitev pa ni tako enostavno poiskati; tu nam pomaga Ramanujanova domneva, iz katere tudi izhaja ime ``Ramanujan'' v Ramanujanovih grafih. Domneva nam opisuje velikost koeficientov modularne forme. Kot smo videli v dokazu Jacobijevega izreka o štirih kvadratih, lahko na problem iz teorije števil gledamo tako, da ga prevedemo na enakost \(\theta\) vrst. Koeficienti te vrste štejejo ravno število rešitev, omenili smo pa tudi, da je naša \(\theta\) vrsta modularna forma. Podobno lahko tudi našo novo enakost preoblikujemo v \(\theta\) vrsto, kjer koeficienti štejejo število rešitev, vrsta pa je prav tako modularna forma. Če na dobljeni vrsti uporabimo Ramanujanovo domnevo, dobimo oceno za koeficiente in torej število rešitev enačbe.
+Da si ogledamo spekter grafov, si bomo, podobno kot pri dokazu za Alon-Boppanovo mejo (\ref{alon-boppanova-meja-izrek}), morali ogledati sled grafa oziroma število poti, ki vodijo od vozlišča do samega sebe. Sled lahko izrazimo tudi drugače in sicer s številom rešitev enačbe, ki je podobna enačbi v Jacobijovem izreku o štirih kvadratih (\ref{jacobi-four-squares}). Enačba v Jacobijovem izreku je bila \(p=a^2+b^2+c^2+d^2\), tu bomo pa uporabili enačbo oblike \(p^m = a^2 + 4q^2(b^2+c^2+d^2)\). Število teh rešitev pa ni tako enostavno poiskati; tu nam pomaga Ramanujanova domneva, iz katere tudi izhaja ime ``Ramanujan'' v Ramanujanovih grafih. Domneva nam opisuje velikost koeficientov modularne forme. Kot smo videli v dokazu Jacobijevega izreka o štirih kvadratih, lahko na problem iz teorije števil gledamo tako, da ga prevedemo na enakost \(\theta\) vrst. Koeficienti te vrste štejejo ravno število rešitev, omenili smo pa tudi, da je naša \(\theta\) vrsta modularna forma. Podobno lahko tudi našo novo enakost preoblikujemo v \(\theta\) vrsto, kjer koeficienti štejejo število rešitev, vrsta pa je prav tako modularna forma. Če na dobljeni vrsti uporabimo Ramanujanovo domnevo, dobimo oceno za koeficiente in torej število rešitev enačbe.
 
 \begin{definicija}[Asimptotska rast]
     Asimptotska rast \(f(m) = O_\varepsilon(g(m))\) pomeni, da lahko za vsak \(\varepsilon>0\) poiščemo konstante \(C(\varepsilon)\) in \(m_0(\varepsilon)\), da velja
@@ -380,7 +380,7 @@ Da si ogledamo spekter grafov, si bomo, podobno kot pri dokazu za Alon-Boppanovo
 \end{izrek}
 Izrek je pravzaprav neposredna posledica Ramanujanove domneve, kot opisano, vendar ga bomo imenovali kar Ramanujanova domneva. Podobno kot pri Jacobijevem izreku o štirih kvadratih ga ne bomo dokazali. Osredotočimo se raje na to, kako ta izraz uporabimo za omejitev lastnih vrednosti grafa. %TODO : kdo je dokazal
 
-Želimo opisati število poti dolžine \(l\) v grafu, ki se začnejo in končajo v vozlišču \(v\), dodatno pa še zahtevamo, da ne obiščejo nobenega vozlišča dvakrat zapored (torej \(v_{i-1}\neq v_{i+1}\), če je \(v_i\) vozlišče, ki ga pot obišče v koraku \(i\)). Pri Cayleyevih grafih izraz postane še lažji. Če imamo namreč pot, ki se začne v elementu \(v\), ga lahko pomnožimo z poljubnim elementom grupe \(g\), da dobimo pot v elementu \(g\cdot v\). Torej je število poti neodvisno od začetnega vozlišča in lahko uporabimo oznako \(\rho(l)\) za število poti v grafu \(X^{p,q}\) dolžine \(l\) brez zaporedno ponovljenih vozlišč.
+Želimo opisati število poti dolžine \(l\) v grafu, ki se začnejo in končajo v vozlišču \(v\), dodatno pa še zahtevamo, da ne obiščejo nobenega vozlišča dvakrat zapored (torej \(v_{i-1}\neq v_{i+1}\), če je \(v_i\) vozlišče, ki ga pot obišče v koraku \(i\)). Pri Cayleyjevih grafih izraz postane še lažji. Če imamo namreč pot, ki se začne v elementu \(v\), ga lahko pomnožimo z poljubnim elementom grupe \(g\), da dobimo pot v elementu \(g\cdot v\). Torej je število poti neodvisno od začetnega vozlišča in lahko uporabimo oznako \(\rho(l)\) za število poti v grafu \(X^{p,q}\) dolžine \(l\) brez zaporedno ponovljenih vozlišč.
 
 \begin{izrek}
     Za \(m\in \N\) velja
@@ -389,7 +389,7 @@ Izrek je pravzaprav neposredna posledica Ramanujanove domneve, kot opisano, vend
     \end{align*}
 \end{izrek}
 \begin{dokaz}
-    Kot že vemo, sta grafa \(X^{p,q}\) in \(Y^{p,q}\) izomorfna. Namesto v \(X^{p,q}\) bomo torej trditev dokazali za poti v \(Y^{p,q}\). Naj bodo \(1=v_0, v_1, \ldots, v_{l-1}, v_l=1\) vozlišča v poti dolžine \(l\) kot v definiciji \(\rho(l)\). Ker je graf Cayleyev, ga lahko razpišemo po generatorjih \(t_i\in T\) in preko kvocientne projekcije vsak \(t_i\) zapišemo enolično kot \(t_i = \Pi_q(\gamma_i)\). Ker pot ni obiskala vozlišča dvakrat zapored, je beseda \(\gamma_1 \cdots \gamma_l\) okrajšana in, ker velja \(\Pi_q(\gamma_1 \cdots \gamma_l) = t_1\cdots t_l = v_l = 1\), je beseda \(\gamma_1 \cdots \gamma_l\) v \(\Lambda(q)\). Torej \(\rho(l)\) pravzaprav šteje okrajšane besede v \(\Lambda(q)\), ki so dolžine \(l\) v \(\Lambda\).
+    Kot že vemo, sta grafa \(X^{p,q}\) in \(Y^{p,q}\) izomorfna. Namesto v \(X^{p,q}\) bomo torej trditev dokazali za poti v \(Y^{p,q}\). Naj bodo \(1=v_0, v_1, \ldots, v_{l-1}, v_l=1\) vozlišča v poti dolžine \(l\) kot v definiciji \(\rho(l)\). Ker je graf Cayleyjev, ga lahko razpišemo po generatorjih \(t_i\in T\) in preko kvocientne projekcije vsak \(t_i\) zapišemo enolično kot \(t_i = \Pi_q(\gamma_i)\). Ker pot ni obiskala vozlišča dvakrat zapored, je beseda \(\gamma_1 \cdots \gamma_l\) okrajšana in, ker velja \(\Pi_q(\gamma_1 \cdots \gamma_l) = t_1\cdots t_l = v_l = 1\), je beseda \(\gamma_1 \cdots \gamma_l\) v \(\Lambda(q)\). Torej \(\rho(l)\) pravzaprav šteje okrajšane besede v \(\Lambda(q)\), ki so dolžine \(l\) v \(\Lambda\).
 
     Sedaj si izberemo \(a, b, c, d\in \Z\), ki rešijo enačbo \(p^m = a^2 + 4q^2 (b^2+c^2+d^2)\). To lahko zapišemo tudi kot kvaternion \(\alpha = a + q(b'i+c'j+d'k)\), ki ima normo \(p^m\) in ima sode koeficiente \(b, c\) in \(d\), kar pomeni, da je v \(\Lambda'\) in njegov ekvivalenčni razred v \(\Lambda(q)\). Podobno kot smo faktor \(4\) uporabili, da smo povedali, da so koeficienti sodi, lahko faktor \(q^2\) uporabimo, da povemo, da so koeficienti deljivi tudi z \(q\). Torej dobimo enakost
     \begin{align*}
@@ -458,7 +458,7 @@ ali, preko substitucije, kot
     \begin{align*}
         \Tr T_m = \sum_{0\leq l\leq \frac{m}{2}} \Tr A_{m-2l}
     \end{align*}
-    Kot že vemo ima matrika \(A_{m-2l}\) na diagonali vse vrednosti enake, saj smo jo dobili kot Cayleyev graf grupe. Torej je izraz enak
+    Kot že vemo ima matrika \(A_{m-2l}\) na diagonali vse vrednosti enake, saj smo jo dobili kot Cayleyjev graf grupe. Torej je izraz enak
     \begin{align*}
         \sum_{0\leq l\leq \frac{m}{2}} \rho(m-2l).
     \end{align*}

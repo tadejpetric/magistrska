@@ -1,5 +1,16 @@
 \section{Ramanujanovi grafi}
 Koncept ramanujanovih grafov ima preprosto definicijo, vendar njen pomen ni očiten brez predhodne motivacije s sorodnimi definicijami in izreki. Te nam razjasnijo povezavo med lastnimi vrednostmi grafa, ki se pojavijo v definiciji Ramanujanovih grafov, ter povezljivostjo grafa.
+
+% Jaz bi to spustil
+%\subsection{Grafi}
+%Da lažje definiramo Ramanujanove grafe, najprej ponovimo osnovne definicije iz teorije grafov.
+%\begin{definicija}[Graf]
+%    Usmerjen graf \(G = (V, E)\) je množica vozlišč \(V\) ter povezav med njimi \(E \subseteq V \times V\).
+%
+%    Če za vsako povezavo \((v, u)\in E\) obstaja povezava \((u, v)\in E\) je tak graf neusmerjen, oziroma samo \emph{graf}.
+%\end{definicija}
+%
+
 \subsection{Cheegerjeva konstanta}
 Kot v uvodnem primeru nas zanima, koliko povezav moramo odstraniti, da graf ni več povezan.
 
@@ -67,7 +78,7 @@ Večja kot je vrednost \(c(G)\), manj ozkih grl ima graf \(G\).
 \end{primer}
 Oglejmo si primer, kjer je zelo očitna povezava med ozkim grlom grafa in Cheegerjevo konstanto.
 \begin{primer}[Ozko grlo]\label{ozko-grlo-cheeger}\hspace{0em}
-    \begin{figure}[H]
+    \begin{figure}[t]
         \centering
         \begin{tikzpicture}
             % First K_5
@@ -122,9 +133,10 @@ Oglejmo si primer, kjer je zelo očitna povezava med ozkim grlom grafa in Cheege
             \draw (F1) -- (C2);
             \draw (E1) -- (B2);
         \end{tikzpicture}
-        \caption{Povezana grafa \(K_6\)}
+        \caption{Povezana grafa \(K_6\) predstavljata graf ozkega grla.}
+        \label{fig:grafozkogrlo}
     \end{figure}
-    Za \(n\geq3\) vzamemo dva polna grafa \(K_n\) in pri vsakemu izberemo dve vozlišči. Dobimo vozlišči \(u_1, v_1\) prvega grafa in \(u_2, v_2\) drugega grafa. Odstranimo povezavi \((u_1, v_1)\) in \((u_2, v_2)\) in dodamo \((u_1, v_2)\), \((u_2, v_1)\), da tvorimo regularen povezan graf \(G = (V,E)\). Če za \(S\) vzamemo enega izmed polnih grafov, je \(\abs{S} = n\) maksimalen in \(\abs{\partial S} = 2\) minimalen. Torej je Cheegerjeva konstanta
+    Za \(n\geq3\) vzamemo dva polna grafa \(K_n\) in pri vsakemu izberemo dve vozlišči. Dobimo vozlišči \(u_1, v_1\) prvega grafa in \(u_2, v_2\) drugega grafa. Odstranimo povezavi \((u_1, v_1)\) in \((u_2, v_2)\) in dodamo \((u_1, v_2)\), \((u_2, v_1)\), da tvorimo regularen povezan graf \(G = (V,E)\) kot na sliki \ref{fig:grafozkogrlo}. Če za \(S\) vzamemo enega izmed polnih grafov, je \(\abs{S} = n\) maksimalen in \(\abs{\partial S} = 2\) minimalen. Torej je Cheegerjeva konstanta
     \begin{align*}
         c(G) = \frac{2}{n}.
     \end{align*}
@@ -150,7 +162,7 @@ Oglejmo si primer, kjer je zelo očitna povezava med ozkim grlom grafa in Cheege
 % [0, 3, 4, 8, 9, 10]
 % Cheeger: 1.6666666666666667
 \begin{primer}[Naključen graf]\label{nakljucen-graf-cheeger}
-    Naj bo \(G\) graf s sosednostno matriko
+    Naj bo \(G\) graf iz slike \ref{fig:nakljucnograf} s sosednostno matriko
     \begin{align*}
         A = \begin{bmatrix}
             0 & 0& 1& 1& 1& 0& 0& 0& 0& 1& 0 &1\\
@@ -168,21 +180,22 @@ Oglejmo si primer, kjer je zelo očitna povezava med ozkim grlom grafa in Cheege
         \end{bmatrix}.
     \end{align*}
     Graf smo izbrali enakomerno naključno izmed vseh 5-regularnih grafov na dvanajstih vozliščih.
-    \begin{figure}[H]
+    \begin{figure}[t]
         \centering
         \begin{tikzpicture}
-            \node[circle, fill=black, inner sep=2pt] (A) at (0.0: 2) {};
-            \node[circle, fill=black, inner sep=2pt] (B) at (30.0: 2) {};
-            \node[circle, fill=black, inner sep=2pt] (C) at (60.0: 2) {};
-            \node[circle, fill=black, inner sep=2pt] (D) at (90.0: 2) {};
-            \node[circle, fill=black, inner sep=2pt] (E) at (120.0: 2) {};
-            \node[circle, fill=black, inner sep=2pt] (F) at (150.0: 2) {};
-            \node[circle, fill=black, inner sep=2pt] (G) at (180.0: 2) {};
-            \node[circle, fill=black, inner sep=2pt] (H) at (210.0: 2) {};
-            \node[circle, fill=black, inner sep=2pt] (I) at (240.0: 2) {};
-            \node[circle, fill=black, inner sep=2pt] (J) at (270.0: 2) {};
-            \node[circle, fill=black, inner sep=2pt] (K) at (300.0: 2) {};
-            \node[circle, fill=black, inner sep=2pt] (L) at (330.0: 2) {};
+            \definecolor{pleasantred}{rgb}{0.85, 0.2, 0.2}
+            \node[circle, fill=pleasantred, inner sep=2pt, label=right:1] (A) at (0.0: 2) {};
+            \node[circle, fill=black, inner sep=2pt, label=right:2] (B) at (30.0: 2) {};
+            \node[circle, fill=black, inner sep=2pt, label=above:3] (C) at (60.0: 2) {};
+            \node[circle, fill=pleasantred, inner sep=2pt, label=above:4] (D) at (90.0: 2) {};
+            \node[circle, fill=pleasantred, inner sep=2pt, label=above:5] (E) at (120.0: 2) {};
+            \node[circle, fill=black, inner sep=2pt, label=left:6] (F) at (150.0: 2) {};
+            \node[circle, fill=black, inner sep=2pt, label=left:7] (G) at (180.0: 2) {};
+            \node[circle, fill=black, inner sep=2pt, label=left:8] (H) at (210.0: 2) {};
+            \node[circle, fill=pleasantred, inner sep=2pt, label=left:9] (I) at (240.0: 2) {};
+            \node[circle, fill=pleasantred, inner sep=2pt, label=below:10] (J) at (270.0: 2) {};
+            \node[circle, fill=pleasantred, inner sep=2pt, label=right:11] (K) at (300.0: 2) {};
+            \node[circle, fill=black, inner sep=2pt, label=right:12] (L) at (330.0: 2) {};
             \draw (C) -- (A);
             \draw (C) -- (B);
             \draw (D) -- (A);
@@ -215,11 +228,12 @@ Oglejmo si primer, kjer je zelo očitna povezava med ozkim grlom grafa in Cheege
             \draw (L) -- (K);
         \end{tikzpicture}
         \caption{Naključno izbran graf.}
+        \label{fig:nakljucnograf}
     \end{figure}
-    Za graf s pomočjo računalnika izračunamo Cheegerjevo konstanto tako, da preverimo vse možne izbire \(S \subset \{1, \ldots, 12\}\). V tem primeru je optimalna izbira \(S = \{1, 4, 5, 9, 10, 11\}\) in Cheegerjeva konstanta je \(c(G)\approx 1.66\), veliko višje kot v primeru grafa z ozkim grlom, kljub temu, da sta imela enako stopnjo regularnosti in enako število vozlišč.
+    Za graf s pomočjo računalnika izračunamo Cheegerjevo konstanto tako, da preverimo vse možne izbire \(S \subset \{1, \ldots, 12\}\). V tem primeru je optimalna izbira \(S = \{1, 4, 5, 9, 10, 11\}\) in Cheegerjeva konstanta je \(c(G) = 10/6 \approx 1{,}66\), veliko višje kot v primeru grafa z ozkim grlom, kljub temu, da sta imela enako stopnjo regularnosti in enako število vozlišč.
 \end{primer}
 \subsection{Spektralna vrzel}
-Sedaj se namesto geometrijskih lastnosti grafov osredotočimo na njihove algebraične lastnosti. Vsak graf lahko identificiramo z njegovo sosednostno matriko, ki je simetrična matrika z elementi 0 in 1. Po spektralnem izreku ima torej \(n\) realnih lastnih vrednosti \(\lambda_i\), ki jih lahko uredimo po velikosti:
+Sedaj se namesto geometrijskih lastnosti grafov osredotočimo na njihove algebraične lastnosti. Vsak graf lahko identificiramo z njegovo sosednostno matriko, ki je simetrična matrika z elementi 0 in 1. Po spektralnem izreku ima torej \(n\) realnih lastnih vrednosti \(\lambda_i\), ki pripadajo \(n\) realnim lastnim vektorjem. Lastne vrednosti lahko uredimo po velikosti:
 \begin{align*}
     \lambda_1 \geq \lambda_2 \geq \ldots \geq \lambda_n.
 \end{align*}
@@ -278,7 +292,7 @@ Sedaj se namesto geometrijskih lastnosti grafov osredotočimo na njihove algebra
     \end{align*}
     kjer je \(e_j\) enotski vektor z \(1\) v \(j\)-ti komponenti. Ker je
     \begin{align*}
-        N(K_n)v_j = -1 \cdot v_j,
+        N(K_n)v_j = (-1) \cdot v_j,
     \end{align*}
     dobimo še \(n-1\) lastnih vrednosti \(-1\). Spektralna vrzel je torej
     \begin{align*}
@@ -288,7 +302,7 @@ Sedaj se namesto geometrijskih lastnosti grafov osredotočimo na njihove algebra
 \end{primer}
 \begin{primer}[Ozko grlo]\label{ozko-grlo-lv}
     Nadaljujemo s primerom grafa ozkega grla, kot v primeru \ref{ozko-grlo-cheeger}. Vzamemo primer dveh grafov \(K_n\), povezanih z dvema povezavama. Sosednostna matrika je dimenzije \(2n \times 2n\) in ima na zgornji levi \(n\times n\) podmatriki vrednosti \(1\) povsod, razen na diagonali in med dvema izbranima vozliščema, kjer so vrednosti enake \(0\). Enako je na spodnji desni \(n\times n\) podmatriki. Ostale vrednosti so \(0\), razen pri vnosih, ki predstavljajo dve dodani povezavi.
-\begin{figure}[H]
+\begin{figure}[t]
     \centering
     \[
         \begin{bmatrix}
@@ -311,7 +325,7 @@ Sedaj se namesto geometrijskih lastnosti grafov osredotočimo na njihove algebra
 
     Spektralne vrzeli izračunamo numerično in jih izrišemo na grafu.
     % compute/definicije_spectral_gap_bottleneck.py
-    \begin{figure}[H]
+    \begin{figure}[t]
         \centering
         \begin{tikzpicture}
             \begin{axis}[
@@ -322,6 +336,7 @@ Sedaj se namesto geometrijskih lastnosti grafov osredotočimo na njihove algebra
                     ymin=0, ymax=1.1,
                     xtick={3,6, 9,...,30},
                     ytick={0,0.5,1},
+                    tick label style={/pgf/number format/use comma},
                     thick
                 ]
                 \addplot coordinates {
@@ -370,7 +385,7 @@ Računanje lastnih vrednosti regularnega grafa nam olajša tudi lastnost, da je 
     Največja lastna vrednost \(d\)-regularnega grafa je \(d\).
 \end{izrek}
 
-Izrek bomo nekoliko posplošili, kar nam bo kasneje v pomoč.
+Enostavno vidimo, da je vektor samih enic lastni vektor za lastno vrednost \(d\). Da vidimo, da je ta lastna vrednost največja bomo izrek nekoliko posplošili, kar nam bo kasneje v pomoč.
 \begin{izrek}[Največja lastna vrednost matrike]\label{def-najvecja-lv}
     Naj bo \(A\) matrika z nenegativnimi vrednostmi, ki ima vsoto elementov v vsaki vrstici kvečjemu \(d\). Potem je največja lastna vrednost \(A\) manjša ali enaka \(d\).
 \end{izrek}
@@ -508,7 +523,7 @@ Za dokaz izreka potrebujemo naslednjo lemo.
     \end{align*}
 
     % file:///home/tadej/library/math/magistrska/cheeger_chung.pdf
-    Zdaj dokažemo še drugo neenakost, \(s(G) \geq \frac{c(G)^2}{2d}\). Podobno kot v Fiedlerjevem algoritmu bomo s pomočjo lastnega vektorja, ki ustreza drugi največji lastni vrednosti, konstruirali particijo grafa.
+    Zdaj dokažemo še drugo neenakost, \(s(G) \geq \frac{c(G)^2}{2d}\). Podobno kot v Fiedlerjevem algoritmu \cite{fiedlerjevvektor} bomo s pomočjo lastnega vektorja, ki ustreza drugi največji lastni vrednosti, konstruirali particijo grafa.
 
     Naj bo \(v\) lastni vektor za drugo največjo lastno vrednost, \(\lambda_2\). Brez škode za splošnost preuredimo vozlišča grafa tako, da je \(v_i \geq v_j\) za \(i < j\). Definiramo množico \(S_i = \{v_1, \ldots, v_i\}\) in 
     \begin{align*}
@@ -553,22 +568,37 @@ Za dokaz izreka potrebujemo naslednjo lemo.
     \begin{align*}
         (v_i - v_j)^2 = (v^+_i - v^+_j)^2 + (v^-_i - v^-_j)^2.
     \end{align*}
-    Enako velja, če sta oba manjša od \(v_r\). Z enostavnim računom dobimo podoben rezultat v primeru, da velja \(v_j \leq v_r \leq v_i\).
+    Enako velja, če sta oba manjša od \(v_r\). Podoben rezultat velja, če je \(v_j \leq v_r \leq v_i\). V tem primeru je \(v_r - v_i \leq 0\) in \(v_r - v_j \geq 0\). Torej velja  
     \begin{align*}
-        0 \geq (v_r - v_i)(v_r - v_j)\\
-        0 \geq v_r^2 - v_r v_i - v_r v_j + v_i v_j \\
-        -2 v_i v_j \geq 2 v_r^2 - 2 v_r v_i - 2 v_r v_j \\
-        v_i^2 - 2v_i v_j + v_j^2 \geq (v_r^2 - 2v_r v_i + v_i^2) + (v_r^2 - 2v_r v_j + v_j^2) \\ 
-        (v_i - v_j)^2 \geq (v_i - v_r -0)^2 + (0 + v_j - v_r)^2 \\
-        (v_i - v_j)^2 \geq  (v^+_i - v^+_j)^2 + (v^-_i - v^-_j)^2
+        0 \geq (v_r - v_i)(v_r - v_j).
+    \end{align*}
+    Izraz na desni strani neenakosti poenostavimo:
+    \begin{align*}
+        0 \geq v_r^2 - v_r v_i - v_r v_j + v_i v_j.
+    \end{align*}
+    Obe strani neenačbe pomnožimo z \(2\), ter člen \(2 v_i v_j\) prenesemo na levo stran:
+    \begin{align*}
+        -2 v_i v_j \geq 2 v_r^2 - 2 v_r v_i - 2 v_r v_j
+    \end{align*}
+    K obem stranem neenačbe prištejemo \(v_i^2 + v_j^2\): 
+    \begin{align*}
+        v_i^2 - 2v_i v_j + v_j^2 \geq (v_r^2 - 2v_r v_i + v_i^2) + (v_r^2 - 2v_r v_j + v_j^2).
+    \end{align*}
+    Sedaj enačbo le še poenostavimo
+    \begin{align*}
+        (v_i - v_j)^2 \geq (v_i - v_r -0)^2 + (0 + v_j - v_r)^2
+    \end{align*}
+    in vpeljemo \(v^+\) in \(v^-\): 
+    \begin{align*}
+        (v_i - v_j)^2 \geq  (v^+_i - v^+_j)^2 + (v^-_i - v^-_j)^2.
     \end{align*}
     Enako velja v primeru \(v_i \leq v_r \leq v_j\), torej je
     \begin{align*}
         s(G) &\geq \frac{\sum_{i\sim j}(v_i - v_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2 + 2\sum_{i=1}^{\abs{V(G)}} (v^-_i)^2}\\
-        &\geq \frac{\sum_{i\sim j}(v^+_i - v^+_j)^2 + (v^-_i - v^-_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2 + 2\sum_{i=1}^{\abs{V(G)}} (v^-_i)^2}
+        &\geq \frac{\sum_{i\sim j}\left((v^+_i - v^+_j)^2 + (v^-_i - v^-_j)^2\right)}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2 + 2\sum_{i=1}^{\abs{V(G)}} (v^-_i)^2}
     \end{align*}
     
-    Zgornjo neenakost lahko, s pomočjo predpostavke \eqref{eq:cheegerPredpostavka} in leme \ref{cheegerLema} spremenimo v
+    Zgornjo neenakost lahko, s pomočjo predpostavke \eqref{eq:cheegerPredpostavka} in leme \ref{cheegerLema}, spremenimo v
 
     \begin{align*}
         s(G) \geq  \frac{\sum_{i\sim j}(v^+_i - v^+_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2}.
@@ -576,7 +606,7 @@ Za dokaz izreka potrebujemo naslednjo lemo.
     Od tod sledi
     \begin{align*}
         s(G) &\geq  \frac{\sum_{i\sim j}(v^+_i - v^+_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2} \frac{\sum_{i\sim j}(v^+_i + v^+_j)^2}{\sum_{i\sim j}(v^+_i + v^+_j)^2}\\
-        &= \frac{\sum_{i\sim j}(v^+_i - v^+_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2} \frac{\sum_{i\sim j}(v^+_i + v^+_j)^2}{\sum_{i\sim j}(v^+_i)^2 + (v^+_j)^2 + 2v^+_i v^+_j}\\
+        &= \frac{\sum_{i\sim j}(v^+_i - v^+_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2} \frac{\sum_{i\sim j}(v^+_i + v^+_j)^2}{\sum_{i\sim j}\left((v^+_i)^2 + (v^+_j)^2 + 2v^+_i v^+_j\right)}\\
         &= \frac{\sum_{i\sim j}(v^+_i - v^+_j)^2}{2\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2} \frac{\sum_{i\sim j}(v^+_i + v^+_j)^2}{2d\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2 + 2\sum_{i\sim j}v^+_i v^+_j}
     \end{align*}
     Uporabimo Cauchy-Schwarzovo neenakost ločeno na števcu in na delu imenovalca.
@@ -590,8 +620,8 @@ Za dokaz izreka potrebujemo naslednjo lemo.
     \end{align*}
     Ker je graf neusmerjen, vemo, da če imamo povezavo \(i\sim j\), imamo tudi \(j\sim i\). V števcu torej vsako povezavo štejemo dvakrat.
     \begin{align*}
-        s(G) &\geq \frac{\left(2\sum_{i\sim j \land i< j}(v^+_i)^2 - (v^+_j)^2 \right)^2}{8d\left(\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2\right)^2} \\
-        &= \frac{\left(\sum_{i\sim j \land i< j}(v^+_i)^2 - (v^+_j)^2 \right)^2}{2d\left(\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2\right)^2}
+        s(G) &\geq \frac{\left(2\sum_{i\sim j \land i< j} \left((v^+_i)^2 - (v^+_j)^2 \right)\right)^2}{8d\left(\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2\right)^2} \\
+        &= \frac{\left(\sum_{i\sim j \land i< j}\left((v^+_i)^2 - (v^+_j)^2\right) \right)^2}{2d\left(\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2\right)^2}
     \end{align*}
     Vsak sumand \((v^+_i)^2 - (v^+_j)^2\) lahko teleskopsko razpišemo kot
     \begin{align*}
@@ -602,8 +632,8 @@ Za dokaz izreka potrebujemo naslednjo lemo.
     \end{align*}
     da dobimo
     \begin{align*}
-        s(G) &\geq \frac{\left(\sum_{i=1}^{\abs{V(G)}}\abs{\partial S_i}\left((v^+_i)^2 - (v^+_{i+1})^2\right) \right)^2}{2d\left(\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2\right)^2}\\
-        &=\frac{\left(\sum_{i=1}^{r}\abs{\partial S_i}\left((v^+_i)^2 - (v^+_{i+1})^2\right) \right)^2}{2d\left(\sum_{i=1}^{r} (v^+_i)^2\right)^2}
+        s(G) &\geq \frac{\left(\sum_{i=1}^{\abs{V(G)}}\left(\abs{\partial S_i}\left((v^+_i)^2 - (v^+_{i+1})^2 \right)\right) \right)^2}{2d\left(\sum_{i=1}^{\abs{V(G)}} (v^+_i)^2\right)^2}\\
+        &=\frac{\left(\sum_{i=1}^{r}\left(\abs{\partial S_i}\left((v^+_i)^2 - (v^+_{i+1})^2\right)\right) \right)^2}{2d\left(\sum_{i=1}^{r} (v^+_i)^2\right)^2}
     \end{align*}
     Po definiciji za vsak \(i\leq r\) velja \(\abs{\partial S_i} \geq \abs{S_i} \alpha(G)\).
     \begin{align*}
@@ -612,7 +642,6 @@ Za dokaz izreka potrebujemo naslednjo lemo.
     Dokaz lahko zaključimo z enostavnim računom.
     \begin{align*}
         s(G) &\geq \frac{\alpha(G)^2}{2d} \frac{\left(\sum_{i=1}^{r} \abs{S_i}\left((v^+_i)^2 - (v^+_{i+1})^2\right) \right)^2}{\left(\sum_{i=1}^{r} (v^+_i)^2\right)^2}\\
-        &= \frac{\alpha(G)^2}{2d} \frac{\left(\sum_{i=1}^{r} i\cdot (v^+_i)^2 - \sum_{i=1}^{r} (i-1) \cdot (v^+_{i})^2 \right)^2}{\left(\sum_{i=1}^{r} (v^+_i)^2\right)^2}\\
         &= \frac{\alpha(G)^2}{2d} \frac{\left(\sum_{i=1}^{r} i\cdot (v^+_i)^2 - \sum_{i=1}^{r} (i-1) \cdot (v^+_{i})^2 \right)^2}{\left(\sum_{i=1}^{r} (v^+_i)^2\right)^2}\\
         &= \frac{\alpha(G)^2}{2d} \frac{\left(\sum_{i=1}^{r} \cdot (v^+_i)^2 \right)^2}{\left(\sum_{i=1}^{r} (v^+_i)^2\right)^2}\\
         &= \frac{\alpha(G)^2}{2d}\\
@@ -623,7 +652,7 @@ Za dokaz izreka potrebujemo naslednjo lemo.
     \end{align*}
 \end{dokaz}
 \subsection{Alon-Boppanov izrek}
-Naša prvotna motivacija je bila iskanje grafov, ki so čim bolje povezani. Cheegerjeva neenakost upraviči, da poskušamo maksimizirati spektralno vrzel oziroma minimizirati drugo največjo lastno vrednost. Izkaže pa se, da druga največja lastna vrednost ne more biti poljubno majhna, kar opisuje Alon-Boppanov izrek. Izrek, kot ga je dokazal Alon omeji drugo največjo lastno vrednost \(d\)-regularnega grafa. Če je \(\lambda_2\) druga največja lastna vrednost \(d\)-regularnega grafa in obstajata dve povezavi, katerih krajišča sta med seboj oddaljeni vsaj \(2(k+1)\) (oziroma najkrajša pot v grafu med njima je \(2(k+1)\)), potem se Alon-Boppanov \cite{alon-boppana-original} izrek glasi 
+Naša prvotna motivacija je bila iskanje grafov, ki so čim bolje povezani. Cheegerjeva neenakost upraviči, da poskušamo maksimizirati spektralno vrzel oziroma minimizirati drugo največjo lastno vrednost. Izkaže pa se, da druga največja lastna vrednost ne more biti poljubno majhna, kar opisuje Alon-Boppanov izrek. Izrek, kot ga je dokazal Alon, omeji drugo največjo lastno vrednost \(d\)-regularnega grafa. Če je \(\lambda_2\) druga največja lastna vrednost \(d\)-regularnega grafa in obstajata dve povezavi, katerih krajišči sta med seboj oddaljeni vsaj \(2(k+1)\) (oziroma najkrajša pot v grafu med njima je \(2(k+1)\)), potem se Alon-Boppanov \cite{alon-boppana-original} izrek glasi 
 \begin{align*}
     \lambda_2 \geq 2\sqrt{d-1} - \frac{\sqrt{d-1}}{2(k+1)^2}.
 \end{align*}
